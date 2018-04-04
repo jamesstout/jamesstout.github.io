@@ -25,7 +25,9 @@ Then create each rule shown in the images below:
 
 #### Old Files
 ![image](/assets/images/hazel2.png) 
-#### SHASUM Router Firmware
+#### SHASUM Router Firmware #### 
+_NOTE: change the "name starts with" rule to match the name of your router_
+
 ![image](/assets/images/hazel3.png) 
 #### Newly Added Files
 ![image](/assets/images/hazel4.png) 
