@@ -1,1 +1,22 @@
 theme: jekyll-theme-modernist
+repository: jamesstout/jamesstout.github.io
+github: [metadata]
+timezone: Asia/Hong_Kong
+encoding: UTF-8
+kramdown:
+   input: GFM
+   hard_wrap: false
+future: true
+jailed: false
+gfm_quirks: paragraph_end
+show_downloads: false
+
+defaults:
+  - scope:
+      path: "assets/images"
+    values:
+      image: true
+  - scope:
+      path: "assets/files"
+    values:
+        image: true
