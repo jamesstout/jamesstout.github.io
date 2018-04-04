@@ -1,13 +1,39 @@
-# Hazel #
+---
+layout: default
+title: Automate SHA Checksum Checks For Asuswrt-Merlin Firmware With Hazel
+---
 
+# Automate SHA Checksum Checks For Asuswrt-Merlin Firmware With Hazel #
 
-Some text
+When a new firmware is released by [Asuswrt-Merlin](https://asuswrt.lostrealm.ca/), the download comes with a checksum file (`sha256sum.sha256`) enabling you to check the validity of the firmware you downloaded. 
 
-An image:
+You could do this manually:
 
- ![image](/assets/images/hazel1.png) 
+```` bash
+james@Jamess-iMac: ~/Downloads/RT-AC66U_380.70_beta1-gc8353dc
+$ shasum -a 256  -c sha256sum.sha256
+RT-AC66U_380.70_beta1-gc8353dc.trx: OK
+````
 
-Link to [file](/assets/files/hazelLabelForASUS.sh)
+However, I automated the check with [Hazel](https://www.noodlesoft.com/) and a shell script. 
+
+Setup Hazel rules per the image below for your Downloads folder:
+
+![image](/assets/images/hazel1.png) 
+
+Then create each rule shown in the images below:
+
+#### Old Files
+![image](/assets/images/hazel2.png) 
+#### SHASUM Router Firmware
+![image](/assets/images/hazel3.png) 
+#### Newly Added Files
+![image](/assets/images/hazel4.png) 
+#### No Longer New Files
+![image](/assets/images/hazel5.png) 
+
+The shell script used in the SHASUM Router Firmware rule is shown below and linked [here](/assets/files/hazelLabelForASUS.sh).
+
 
 ```` bash
 #!/usr/bin/env bash
@@ -92,6 +118,8 @@ fi
 
 logger "sha256sumFile is $sha256sumFile"
 
+# yes we could use shasum -a 256  -c sha256sum.sha256, but I don't think sha256deep has
+# the same option, so we parse the file
 sha256sum=$(awk '{print $1}' "$sha256sumFile")
 firmwareFileFromSha256sumFile=$(awk '{print $2}' "$sha256sumFile")
 
