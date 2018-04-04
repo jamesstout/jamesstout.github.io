@@ -80,6 +80,8 @@ fi
 
 logger "sha256sumFile is $sha256sumFile"
 
+# yes we could use shasum -a 256  -c sha256sum.sha256, but I don't think sha256deep has
+# the same option, so we parse the file
 sha256sum=$(awk '{print $1}' "$sha256sumFile")
 firmwareFileFromSha256sumFile=$(awk '{print $2}' "$sha256sumFile")
 
