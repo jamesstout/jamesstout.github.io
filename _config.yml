@@ -11,6 +11,8 @@ jailed: false
 gfm_quirks: paragraph_end
 show_downloads: false
 exclude: [misc]
+plugins:
+  - jekyll-sitemap
 defaults:
   - scope:
       path: "assets/images"
