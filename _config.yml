@@ -10,6 +10,8 @@ future: true
 jailed: false
 gfm_quirks: paragraph_end
 show_downloads: false
+github:
+    repository_url: https://github.com/jamesstout/jamesstout.github.io
 exclude: [misc]
 plugins:
   - jekyll-sitemap
