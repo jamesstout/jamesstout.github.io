@@ -1,5 +1,2 @@
 jamesstout.github.io
 ====================
-
-
-# gjdfklgjkflgfjdl
