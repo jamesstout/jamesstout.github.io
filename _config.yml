@@ -10,7 +10,7 @@ future: true
 jailed: false
 gfm_quirks: paragraph_end
 show_downloads: false
-
+exclude: [misc]
 defaults:
   - scope:
       path: "assets/images"
