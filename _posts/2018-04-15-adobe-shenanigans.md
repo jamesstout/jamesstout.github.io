@@ -32,13 +32,13 @@ Going to download the file at /Users/james/.extra/Adobe/AdobeGCClient/AdobeGCCli
 Unable to create directory /Users/james/.extra/Adobe/AdobeGCClient/. Error is 512 and error domain is NSCocoaErrorDomain.
 The file “.extra” couldn’t be saved in the folder “james”.
 failed to create a dir - /Users/james/.extra/Adobe/AdobeGCClient/ on local disk.
-``` 
+```
 
 Eh? `.extra`? I already have a file named that in that location, hence the error. What's it up to?
 
 I found another log file here `/Users/james/Library/Logs/AdobeDownload/DLM.log`
 
-```text 
+```text
 | *******************start of Download****************
 | GDE Version is 9.0.0.4 (BuildVersion: 6.0; BuildDate: Wed Mar 04 2015 21:34:10 )
 | The file to be downloaded is http://agsupdate.adobe.com/osx/AGC_4_5_0_814_osx10_cef.zip
