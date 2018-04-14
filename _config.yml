@@ -1,10 +1,10 @@
 theme: minimal-mistakes-jekyll
 repository: jamesstout/jamesstout.github.io
 minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
-name: &NAME "James Stout"
+name: &NAME "zoooot.xyz"
 title: *NAME
 title_separator: "|"
-description: "A flexible Jekyll theme for your blog or site with a minimalist aesthetic."
+description: "James Stout. iOS/web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather."
 url: "https://jamesstout.github.io/"
 
 search: true
@@ -17,12 +17,12 @@ twitter:
 
 # Site Author
 author:
-  #name             : *NAME
+  name             : "James Stout"
   avatar           :  # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "iOS/web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather"
   location         : "Hong Kong"
   email            : 
-  uri              :
+  uri              : https://www.zoooot.xyz/
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        : stouty
   codepen          :
