@@ -171,7 +171,6 @@ defaults:
       comments: true
       layout: single
       author_profile: true
-      read_time: true
       share: false
       related: true
   - scope:
