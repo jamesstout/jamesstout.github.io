@@ -116,12 +116,12 @@ paginate: 5 # amount of posts to show
 paginate_path: /page:num/
 timezone: Asia/Hong_Kong
 
-# category_archive:
-#   type: liquid
-#   path: /categories/
-# tag_archive:
-#   type: liquid
-#   path: /tags/
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
 
 
 # Plugins (previously gems:)
