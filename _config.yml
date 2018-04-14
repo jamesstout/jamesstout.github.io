@@ -5,7 +5,7 @@ name: &NAME "zoooot.xyz"
 title: *NAME
 title_separator: "|"
 description: "James Stout. iOS/web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather."
-url: "https://jamesstout.github.io/"
+url: "https://www.zoooot.xyz/"
 
 search: true
 search_provider: lunr
