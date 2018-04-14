@@ -123,6 +123,7 @@ tag_archive:
   type: liquid
   path: /tags/
 
+future: true
 
 # Plugins (previously gems:)
 plugins:
