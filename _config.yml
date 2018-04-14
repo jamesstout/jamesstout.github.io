@@ -153,6 +153,10 @@ compress_html:
 # github:
 #     repository_url: https://github.com/jamesstout/jamesstout.github.io
 
+comments:
+  provider: "disqus"
+  disqus:
+    shortname: "www-zoooot-xyz"
 
 exclude: [misc]
 
@@ -167,7 +171,6 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
       share: false
       related: true
   - scope:
