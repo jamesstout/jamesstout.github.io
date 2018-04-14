@@ -5,7 +5,7 @@ name: &NAME "zoooot.xyz"
 title: *NAME
 title_separator: "|"
 description: "James Stout. iOS/web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather."
-url: "https://www.zoooot.xyz/"
+url: "https://www.zoooot.xyz"
 
 search: true
 search_provider: lunr
@@ -22,7 +22,7 @@ author:
   bio              : "iOS/web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather"
   location         : "Hong Kong"
   email            : 
-  uri              : https://www.zoooot.xyz/
+  uri              : https://www.zoooot.xyz
   home             : # null (default), "absolute or relative url to link to author home"
   bitbucket        : stouty
   codepen          :
