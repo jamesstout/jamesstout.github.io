@@ -19,6 +19,8 @@
     url: /categories/
   - title: "Tags"
     url: /tags/
+  - title: "Things I Use"
+    url: /things-i-use/
   # - title: "Collections"
   #   url: /collection-archive/
   # - title: "External Link"
