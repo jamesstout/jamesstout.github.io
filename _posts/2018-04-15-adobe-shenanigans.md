@@ -79,6 +79,6 @@ After a bit of `awk` and `uniq`, I found:
 
 Adobe apps and files in random places. They all look like this:
 
-![image](/assets/images/Adobe-Screen-Shot.png)
+<img data-src="/assets/images/Adobe-Screen-Shot.png" src="/assets/images/Adobe-Screen-Shot-lq.png" class="lazyload blur-up" alt="macOS Finder screenshot"/>
 
 I've deleted them all for now, no one else seems to have reported this when I search on Google.
