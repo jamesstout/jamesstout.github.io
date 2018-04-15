@@ -170,7 +170,7 @@ Applications, hardware, products and services that I use[^fn-update].
 
 See my [Updated First & Twenty][88] for my iPhone home screen.
 
- [88]: http://zoooot.com/919/updated-first-20
+ [88]: /ios/2018/04/15/first-and-twenty/
 
 <a class="nolink" name="Other"></a>Other apps I use:
 
