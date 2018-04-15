@@ -9,9 +9,9 @@ header:
 
 Hi, I'm James - an English guy living in Hong Kong - into technology, photos, comedy, smashing telly, Apple, iOS/Mac development and, of course, the weather.
 
-I'm on [Twitter][1] and [alpha][2] for day to day stuff and links. I sometimes post photos to [Instagram][3].
+I'm on [Twitter][1] for day to day stuff and links. I sometimes post photos to [Instagram][3].
 
-I do a bit of iPhone development and have a couple of apps on app on the iTunes AppStore - [HKWarnings][4] and [WeatherVibe][5]. More details can be found on my [iPhone development blog][6].
+I do a bit of iPhone development and have an app on the iTunes AppStore - [HKWarnings][4]. More details can be found on my [iPhone development blog][6].
 
 I'm on [GitHub][7] too. Some of my repos:
 
@@ -25,11 +25,16 @@ I also try to contribute to:
 * [Spotweb][17] - a web-based usenet binary resource indexer.
 * [iTerm2][18] - a terminal emulator for Mac OS X that does amazing things.
 * [SVWebViewController][19] - a simple inline browser for iOS.
+* [NYTPhotoViewer][24] - A modern [photo viewing experience](https://open.blogs.nytimes.com/2015/03/27/a-new-view-for-nytimes-photos/) for iOS.
+* [OneSignal-iOS-SDK][25] - [OneSignal](https://onesignal.com/) is a free push notification service for mobile apps.
 
-Also the occasional [Gist][20]. For example:
+Also the occasional [Gist][20]:
 
 * [verifyReceipt.php][21] - a script to verify iOS in-app purchase receipts
-* [checkDodgyIPs.php][22] - look up the location of a list of IP addresses. Uses [ipinfodb.com][23]. Writes known IP info to a file to prevent repeat lookups. Generates a [nice table][24] with the IP info and a Google Maps link to the IP location.
+* [checkDodgyIPs.php][22] - look up the location of a list of IP addresses. Uses [ipinfodb.com][23]. Writes known IP info to a file to prevent repeat lookups.
+
+Love [Docker](https://www.docker.com/) and have a few repos on [Docker Hub](https://hub.docker.com/r/stoutyhk/).
+e.g. [docker-phpservermonitor-nginx](https://hub.docker.com/r/stoutyhk/docker-phpservermonitor-nginx/) - source [here](https://bitbucket.org/stouty/docker-phpservermonitor-nginx/src).
 
    [1]: https://twitter.com/stoutyhk
    [2]: https://alpha.app.net/stouty (alpha stouty link)
@@ -54,4 +59,5 @@ Also the occasional [Gist][20]. For example:
 [21]: https://gist.github.com/jamesstout/5073237
 [22]: https://gist.github.com/jamesstout/5199181
 [23]: http://ipinfodb.com/
-[24]: http://zoooot.com/blackhole/checkDodgyIPs.php
+[24]: https://github.com/jamesstout/NYTPhotoViewer
+[25]: https://github.com/jamesstout/OneSignal-iOS-SDK
