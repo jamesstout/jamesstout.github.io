@@ -189,3 +189,4 @@ defaults:
       path: "assets/files"
     values:
         image: true
+        
