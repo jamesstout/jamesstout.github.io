@@ -49,7 +49,6 @@ author:
 
 # Reading Files
 include:
-  - .htaccess
   - _pages
   - _redirects
 exclude:
@@ -189,4 +188,3 @@ defaults:
       path: "assets/files"
     values:
         image: true
-        
