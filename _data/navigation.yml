@@ -11,19 +11,19 @@
   # - title: "Sitemap"
   #   url: /sitemap/
   main:
-  - title: "About"
+  - title: "about"
     url: /about/
-  - title: "Posts"
+  - title: "posts"
     url: /year-archive/
-  - title: "Categories"
+  - title: "categories"
     url: /categories/
-  - title: "Tags"
+  - title: "tags"
     url: /tags/
-  - title: "Things I Use"
+  - title: "things"
     url: /things-i-use/
   # - title: "Collections"
   #   url: /collection-archive/
   # - title: "External Link"
   #   url: https://google.com
-  - title: "Sitemap"
+  - title: "sitemap"
     url: /sitemap.xml
