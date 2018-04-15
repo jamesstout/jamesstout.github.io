@@ -92,6 +92,12 @@ lsi: false
 excerpt_separator: "\n\n"
 incremental: false
 
+# Analytics
+analytics:
+  provider               : google-gtag # false (default), "google", "google-universal", "google-gtag", "custom"
+  google:
+    tracking_id          : UA-105789475-1
+#google_site_verification: UA-105789475-1
 
 # Markdown Processing
 kramdown:
