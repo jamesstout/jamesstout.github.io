@@ -14,7 +14,7 @@ Applications, hardware, products and services that I use[^fn-update].
 
 **Services**
 
-* [DigitalOcean][1] for hosting.
+* [DigitalOcean][1] - for hosting.
 * [Giganews][2] - usenet access and VPN (Diamond plan).
 * [Dropbox][4] - file storage/syncing/sharing.
 * [Pinboard][5] - bookmarking.
