@@ -10,7 +10,7 @@ header:
 
 Applications, hardware, products and services that I use[^fn-update].
 
-[^fn-update]: This list needs a thourough updating.
+[^fn-update]: This list needs a thorough updating.
 
 **Services**
 
@@ -242,8 +242,8 @@ See my [Updated First & Twenty][88] for my iPhone home screen.
 * [iMac][129] - Core i7, 3.4 GHz, 27-inch, 16GB RAM, 256GB SSD, 2TB HDD.
 * [13-inch MacBook Air (mid–2011)][131]
 * [iPhone][132] 4S 16GB - for the moment, need a 64GB.
-* iPad (1st gen, 16GB, WiFi)
-* [iPad][133] (3rd gen, 16GB, WiFi)
+* iPad (1st generation, 16GB, WiFi)
+* [iPad][133] (3rd generation, 16GB, WiFi)
 * [Apple 30-inch Cinema HD Display][134]
 * [Shure SE535][135] Headphones
 * [Apple Magic Trackpad][136]
