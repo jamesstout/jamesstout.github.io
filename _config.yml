@@ -8,8 +8,26 @@ description: "James Stout. iOS/web developer. Flatliner. Tech, crypto, comedy, H
 url: "https://www.zoooot.xyz"
 
 search: true
-search_provider: lunr
+# search_provider: lunr
 show_dir_listing: false
+
+search_provider: algolia
+algolia:
+  application_id         : TE1537XNZ4
+  index_name             : zoooot.xyz
+  search_only_api_key    : c3967c693f4a1d3ca8ed221f259c6a5f
+  powered_by             : true
+  files_to_exclude       :
+    - categories/*.html
+    - tags/*.html
+    - year-archive/*.html
+    - page*/*.html
+    - index.html
+    - 404.html
+  settings:
+    highlightPreTag: '<em class="custom_highlight">'
+    highlightPostTag: '</em>'
+
 
 twitter:
   username: "stoutyhk"
