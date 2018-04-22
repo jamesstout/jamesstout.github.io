@@ -22,6 +22,10 @@ algolia:
     - tags/*.html
     - year-archive/*.html
     - page*/*.html
+    - page*/
+    - year-archive/
+    - tags/
+    - categories/
     - index.html
     - 404.html
   settings:
