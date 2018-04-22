@@ -10,5 +10,6 @@ group :jekyll_plugins do
     gem 'jekyll-paginate'
     gem 'jekyll-typogrify'
     gem "jekyll-algolia"
+    gem "premonition", "~> 2.0.0"
   end
 

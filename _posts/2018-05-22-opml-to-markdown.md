@@ -40,8 +40,8 @@ I customized a [Python script](https://gist.github.com/domdavis/9988867) by Dom 
 This generates the Markdown for you to paste into your post:
 <script src="https://gist.github.com/jamesstout/213b9376d740b8b2234d1e4a7f3025b3.js"></script>
 
-TIP: to remove the real username:password from `opml2md-py` before posting the gist, a little `sed`:
-
-```bash
-sed -i '' "s/passwd = .*/passwd = \"username:password@\"/" opml2md.py
-```
+> info "TIP"
+> To remove the real username:password from `opml2md-py` before posting the gist, a little `sed`:
+> ```bash
+> sed -i '' "s/passwd = .*/passwd = \"username:password@\"/" opml2md.py
+> ```
