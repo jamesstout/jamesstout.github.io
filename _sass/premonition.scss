@@ -13,7 +13,8 @@
     grid-template-columns: 43px auto;
     padding-top: 13px;
     padding-bottom: 6px;
-    margin: 30px 0 30px 0;
+    padding-left: 20px !important;
+    margin: 30px 0 30px 0!important;
     background-color: $default-light-color;
     border-left: 4px solid $default-color;
     color: $default-color;
@@ -33,7 +34,7 @@
       font-size: 18px;
       opacity: .3;
       padding-top: 2px;
-      padding-left: 20px;
+      padding-left: 20px !important;
     }
   
     .content {
