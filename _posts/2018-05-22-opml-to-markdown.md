@@ -10,7 +10,9 @@ excerpt: "How to convert OPML to Markdown."
 When you export your podcast subscriptions from [Overcast](https://overcast.fm/), you get an [OPML](https://en.wikipedia.org/wiki/OPML) file something like this:
 
 <script src="https://gist.github.com/jamesstout/a4050fdfda4f1fad5d5637ff35293549.js"></script>
-_Note that the file contains usernames and passwords in the feed URL_
+
+> warning ""
+> Note that the file contains usernames and passwords in the feed URL
 
 I wanted to convert the OPML to a Markdown list. Something like this:
 
@@ -42,6 +44,7 @@ This generates the Markdown for you to paste into your post:
 
 > info "TIP"
 > To remove the real username:password from `opml2md-py` before posting the gist, a little `sed`:
-> ```bash
-> sed -i '' "s/passwd = .*/passwd = \"username:password@\"/" opml2md.py
-> ```
+
+```bash
+sed -i '' "s/passwd = .*/passwd = \"username:password@\"/" opml2md.py
+```
