@@ -4,6 +4,7 @@ title: OPML to Markdown
 date:   2018-04-22 16:29:01 +0800
 categories: code
 tags: podcasts overcast python opml markdown
+excerpt: "How to convert OPML to Markdown."
 ---
 
 When you export your podcast subscriptions from [Overcast](https://overcast.fm/), you get an [OPML](https://en.wikipedia.org/wiki/OPML) file something like this:

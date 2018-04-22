@@ -6,6 +6,7 @@ categories: iOS
 tags: iOS apps
 comments: false
 related: false
+excerpt: "My iPhone home screen."
 ---
 First & 20 - well, 28 now (on an iPhone 8).
 
