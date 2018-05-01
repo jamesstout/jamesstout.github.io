@@ -7,6 +7,14 @@
 .custom_highlight {
     color:#619bac;
 }
+
+$type-size-9: 0.575em !default; // ~10px
+
+div.highlighter-rouge,
+figure.highlight {
+  font-size: $type-size-9 !important;
+}
+
 @import "premonition"; /* main partials */
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
