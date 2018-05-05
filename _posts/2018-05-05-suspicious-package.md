@@ -21,6 +21,6 @@ After that scare, I found [Suspicious Package](http://www.mothersruin.com/softwa
 >
 >With Suspicious Package, you can answer these questions and more. Maybe you're quite literally suspicious of a package you've downloaded. Or perhaps you're just curious about what some package does. Or maybe you want to find out after the fact exactly what files a package scattered across your computer. Whatever the reason, Suspicious Package allows you to see inside an installer package. (And it's completely free.)
 
-
+***
 > warning "TIP"
 > Be suspicious. Use Suspicious Package from Mothers Ruin Software.
