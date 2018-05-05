@@ -72,8 +72,8 @@ Phew. All fixed.
 
 Do I like APFS?
 
-<video width="240" height="240" autoplay muted loop playsinline poster="/assets/images/bale.gif">
-  <source src="/assets/images/bale.mp4" type="video/mp4" />
+<video width="240" height="240" autoplay muted loop playsinline poster="{% asset_path bale.gif %}">
+  <source src="{% asset_path bale.mp4 %}" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
 

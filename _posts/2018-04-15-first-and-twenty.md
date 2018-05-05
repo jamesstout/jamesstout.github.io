@@ -12,7 +12,7 @@ First & 20 - well, 28 now (on an iPhone 8).
 
 Initially inspired by the (now defunct) [First & 20](https://web.archive.org/web/20150410090518/http://www.firstand20.com)[^fn-first].
 
-<img data-src="/assets/images/IMG_9506.JPG" src="/assets/images/IMG_9506-lq.JPG" class="lazyload blur-up" alt="iPhone 8 home screen"/>
+<img data-src="{% asset_path IMG_9506.JPG %}" src="{% asset_path IMG_9506-lq.JPG %}" class="lazyload blur-up" alt="iPhone 8 home screen"/>
 _My current iPhone 8 Home Screen_
 
 ***
