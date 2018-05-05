@@ -3,7 +3,7 @@ layout: single
 title: APFS Snapshots Saved The Day
 date:   2018-05-01 09:29:01 +0800
 categories: macOS
-tags: apfs macos snapshots filesystems tmutil
+tags: APFS macOS snapshots filesystems tmutil
 excerpt: The perils of `rm -rf` and the wonder of filesystem snapshots.
 ---
 
