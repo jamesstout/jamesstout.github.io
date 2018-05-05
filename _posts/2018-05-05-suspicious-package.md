@@ -8,7 +8,7 @@ excerpt: Be suspicious. Use Suspicious Package from Mothers Ruin Software.
 ---
 I always try to view package contents when I download a `.pkg` file, with something like [Pacifist](https://www.charlessoft.com/). The other day, doing that installed some malware:
 
-<img data-src="/assets/images/malware.png" class="lazyload blur-up" alt="malware screenshot"/>
+<img data-src="{% asset_path malware.png %}" class="lazyload blur-up" alt="malware screenshot"/>
 
 I hadn't run it, just opened in Pacifist. [Bitdefender](https://www.bitdefender.com/solutions/antivirus-for-mac.html) caught and deleted it, but it’s the first time I've seen malware on my Mac.
 
