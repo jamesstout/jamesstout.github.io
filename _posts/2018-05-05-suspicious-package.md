@@ -24,7 +24,6 @@ After that scare, I found [Suspicious Package](http://www.mothersruin.com/softwa
 <img data-src="{% asset_path app-snap.png %}" class="lazyload blur-up" alt="Suspicious Package screenshot" />
 <span style="font-size: 0.6em;">[[Biggify]](/assets/images/posts/suspicious-package/app-snap.png)</span>
 
-
 ***
 > warning "TIP"
 > Be suspicious. Use Suspicious Package from Mothers Ruin Software.
