@@ -89,6 +89,7 @@ author:
 include:
   - _pages
   - _redirects
+  - /.well-known/acme-challenge/
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
