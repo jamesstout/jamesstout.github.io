@@ -207,7 +207,7 @@ compress_html:
 comments:
   provider: "disqus"
   disqus:
-    shortname: "www-zoooot-xyz"
+    shortname: "stouty-xyz"
 
 # exclude: [misc]
 
