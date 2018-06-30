@@ -133,10 +133,10 @@ excerpt_separator: "\n\n"
 incremental: false
 
 # Analytics
-# analytics:
-#   provider               : google-gtag # false (default), "google", "google-universal", "google-gtag", "custom"
-#   google:
-#     tracking_id          : UA-105789475-1
+analytics:
+  provider               : google-gtag # false (default), "google", "google-universal", "google-gtag", "custom"
+  google:
+    tracking_id          : UA-121620384-1
 
 # google_site_verification: 1090wZmdhUfoCKnEqVFawGTa6AKwbN_vmrw-H6Y7aSE
 # bing_site_verification: 33DDEA42FFE3F60411C72F8B34B31973
