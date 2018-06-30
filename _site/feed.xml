@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2018-06-30T20:27:37+08:00</updated><id>https://stouty.xyz/</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS/web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Essential macOS Software: Suspicious Package</title><link href="https://stouty.xyz/macos/2018/05/05/suspicious-package/" rel="alternate" type="text/html" title="Essential macOS Software: Suspicious Package" /><published>2018-05-05T12:29:01+08:00</published><updated>2018-05-05T12:29:01+08:00</updated><id>https://stouty.xyz/macos/2018/05/05/suspicious-package</id><content type="html" xml:base="https://stouty.xyz/macos/2018/05/05/suspicious-package/">&lt;p&gt;I always try to view package contents when I download a &lt;code class=&quot;highlighter-rouge&quot;&gt;.pkg&lt;/code&gt; file, with something like &lt;a href=&quot;https://www.charlessoft.com/&quot;&gt;Pacifist&lt;/a&gt;. The other day, doing that installed some malware:&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/suspicious-package/malware.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;malware screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I hadn’t run it, just opened in Pacifist. &lt;a href=&quot;https://www.bitdefender.com/solutions/antivirus-for-mac.html&quot;&gt;Bitdefender&lt;/a&gt; caught and deleted it, but it’s the first time I’ve seen malware on my Mac.&lt;/p&gt;
+
+&lt;p&gt;After that scare, I found &lt;a href=&quot;http://www.mothersruin.com/software/SuspiciousPackage/&quot;&gt;Suspicious Package&lt;/a&gt; from Mothers Ruin Software:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Suspicious Package: An Application for Inspecting macOS Installer Packages&lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Do you know what files that macOS Installer package actually installs?&lt;/li&gt;
+    &lt;li&gt;Do you know what scripts it runs during installation, and what they do?&lt;/li&gt;
+    &lt;li&gt;Do you know who the package really came from?&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;With Suspicious Package, you can answer these questions and more. Maybe you’re quite literally suspicious of a package you’ve downloaded. Or perhaps you’re just curious about what some package does. Or maybe you want to find out after the fact exactly what files a package scattered across your computer. Whatever the reason, Suspicious Package allows you to see inside an installer package. (And it’s completely free.)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/suspicious-package/app-snap.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Suspicious Package screenshot&quot; /&gt;
+&lt;span style=&quot;font-size: 0.6em;&quot;&gt;&lt;a href=&quot;/assets/images/posts/suspicious-package/app-snap.png&quot;&gt;[Biggify]&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;div class=&quot;premonition warning&quot;&gt;&lt;div class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;p class=&quot;header&quot;&gt;TIP&lt;/p&gt;&lt;p&gt;Be suspicious. Use Suspicious Package from Mothers Ruin Software.&lt;/p&gt;
+
+
+&lt;/div&gt;&lt;/div&gt;</content><author><name>James Stout</name></author><category term="macOS" /><category term="software" /><category term="malware" /><summary type="html">Be suspicious. Use Suspicious Package from Mothers Ruin Software.</summary></entry><entry><title type="html">APFS Snapshots Saved The Day</title><link href="https://stouty.xyz/macos/2018/05/01/apfs-snapshots/" rel="alternate" type="text/html" title="APFS Snapshots Saved The Day" /><published>2018-05-01T09:29:01+08:00</published><updated>2018-05-01T09:29:01+08:00</updated><id>https://stouty.xyz/macos/2018/05/01/apfs-snapshots</id><content type="html" xml:base="https://stouty.xyz/macos/2018/05/01/apfs-snapshots/">&lt;p&gt;I had a shocker earlier with an out of control&lt;sup id=&quot;fnref:fn-bad-code&quot;&gt;&lt;a href=&quot;#fn:fn-bad-code&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; shell script that was supposed to tidy up a load of empty directories on my Mac. Just in my home dir I had nearly 18,000 empty directories:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-not&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\(&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; .svn &lt;span class=&quot;nt&quot;&gt;-prune&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; .git &lt;span class=&quot;nt&quot;&gt;-prune&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-type&lt;/span&gt; d &lt;span class=&quot;nt&quot;&gt;-empty&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;wc&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+   17825
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I wrote a &lt;em&gt;test&lt;/em&gt; script to try out on a few directories. The next thing I saw … &lt;code class=&quot;highlighter-rouge&quot;&gt;rm -rf /&lt;/code&gt; commands whizzing past on my terminal. Then things stopped working: &lt;code class=&quot;highlighter-rouge&quot;&gt;bash&lt;/code&gt; had been deleted.&lt;/p&gt;
+
+&lt;p&gt;I use &lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt; so &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local&lt;/code&gt; is writable by my user. And deletable. So my &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local/bin&lt;/code&gt; dir was gone, along with some other files.&lt;/p&gt;
+
+&lt;p&gt;I’m a proper backup nerd and have multiple backup strategies:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Time_Machine_(macOS)&quot;&gt;Time Machine&lt;/a&gt; to my &lt;a href=&quot;https://www.synology.com/en-global/products/DS1817+&quot;&gt;NAS&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.econtechnologies.com/chronosync/overview.html&quot;&gt;ChronoSync&lt;/a&gt; to a &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; container running &lt;a href=&quot;https://www.crashplan.com/en-us/business/&quot;&gt;CrashPlan&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://secure.backblaze.com/r/001z1s&quot;&gt;Backblaze&lt;/a&gt;.&lt;sup id=&quot;fnref:fn-ref-link&quot;&gt;&lt;a href=&quot;#fn:fn-ref-link&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+  &lt;li&gt;Finally, and this is what let me down, a &lt;a href=&quot;https://bombich.com/&quot;&gt;Carbon Copy&lt;/a&gt; clone of my main drive.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The clone was a few weeks old, my &lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/local&lt;/code&gt; changes all the time. It wasn’t usable.&lt;/p&gt;
+
+&lt;div class=&quot;premonition warning&quot;&gt;&lt;div class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;p class=&quot;header&quot;&gt;TIP&lt;/p&gt;&lt;p&gt;Clone your drive often and test that it &lt;a href=&quot;https://bombich.com/kb/ccc5/how-verify-or-test-your-backup&quot;&gt;works&lt;/a&gt;!&lt;/p&gt;
+
+
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;However, I’d been learning about APFS, and had taken a snapshot .. yesterday.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/APFS_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40016999-CH1-DontLinkElementID_19&quot;&gt;APFS&lt;/a&gt; is Apple’s new filesystem:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Apple File System is a new, modern file system for iOS, macOS, tvOS, and watchOS. It is optimized for Flash/SSD storage and features strong encryption, copy-on-write metadata, space sharing, cloning for files and directories, snapshots, fast directory sizing, atomic safe-save primitives, and improved file system fundamentals.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;What’s a &lt;a href=&quot;https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/APFS_Guide/Features/Features.html#//apple_ref/doc/uid/TP40016999-CH5-DontLinkElementID_5&quot;&gt;snapshot&lt;/a&gt;?&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;A volume snapshot is a point-in-time, read-only instance of the file system.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Time Machine also takes local snapshots if your &lt;a href=&quot;https://support.apple.com/en-hk/HT204015&quot;&gt;backup drive isn’t available&lt;/a&gt;, so I actually had a few snapshots:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;tmutil listlocalsnapshots /
+com.apple.TimeMachine.2018-04-30-165525
+com.apple.TimeMachine.2018-04-30-175518
+com.apple.TimeMachine.2018-04-30-185503
+com.apple.TimeMachine.2018-04-30-195506
+com.apple.TimeMachine.2018-04-30-205509
+com.apple.TimeMachine.2018-04-30-215522
+com.apple.TimeMachine.2018-04-30-225512
+com.apple.TimeMachine.2018-04-30-235517
+com.apple.TimeMachine.2018-05-01-005520
+com.apple.TimeMachine.2018-05-01-015548
+com.apple.TimeMachine.2018-05-01-025524
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can use &lt;code class=&quot;highlighter-rouge&quot;&gt;tmutil&lt;/code&gt; to &lt;a href=&quot;http://krypted.com/mac-os-x/ins-outs-using-tmutil-backup-restore-review-time-machine-backups/&quot;&gt;compare and restore&lt;/a&gt;, or simply Time Machine, but the files are available right there on the filesystem, I just had to copy my missing files back into the right places from the local snapshot dir:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /Volumes/com.apple.TimeMachine.localsnapshots/Backups.backupdb/James’s&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;iMac/2018-05-01-025524/Macintosh&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;HD/usr/local/
+
+james@Jamess-iMac: /Volumes/com.apple.TimeMachine.localsnapshots/Backups.backupdb/James’s iMac/2018-05-01-025524/Macintosh HD/usr/local
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;Caskroom      Frameworks    MacGPG2       etc           lib           opt           remotedesktop share
+Cellar        Homebrew      bin           include       man           pear          sbin          var
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Phew. All fixed.&lt;/p&gt;
+
+&lt;p&gt;Do I like APFS?&lt;/p&gt;
+
+&lt;video width=&quot;240&quot; height=&quot;240&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot; playsinline=&quot;&quot; poster=&quot;/assets/images/posts/apfs-snapshots/bale.gif&quot;&gt;
+  &lt;source src=&quot;/assets/images/posts/apfs-snapshots/bale.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;hr /&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:fn-bad-code&quot;&gt;
+      &lt;p&gt;Er, poorly written. &lt;a href=&quot;#fnref:fn-bad-code&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:fn-ref-link&quot;&gt;
+      &lt;p&gt;Referral link. &lt;a href=&quot;#fnref:fn-ref-link&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="APFS" /><category term="macOS" /><category term="snapshots" /><category term="filesystems" /><category term="tmutil" /><summary type="html">The perils of `rm -rf` and the wonder of filesystem snapshots.</summary></entry><entry><title type="html">Prince estate releases original version of ‘Nothing Compares 2 U’</title><link href="https://stouty.xyz/music/2018/04/22/prince/" rel="alternate" type="text/html" title="Prince estate releases original version of 'Nothing Compares 2 U'" /><published>2018-04-22T19:36:01+08:00</published><updated>2018-04-22T19:36:01+08:00</updated><id>https://stouty.xyz/music/2018/04/22/prince</id><content type="html" xml:base="https://stouty.xyz/music/2018/04/22/prince/">&lt;!-- Courtesy of embedresponsively.com //--&gt;
+&lt;div class=&quot;responsive-video-container&quot;&gt;
+
+  &lt;iframe src=&quot;https://www.youtube.com/embed/cpGA0azFdCs&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;[&lt;a href=&quot;https://www.dailydot.com/upstream/prince-estate-original-nothing-compares-2-u/&quot;&gt;Link&lt;/a&gt;]&lt;/p&gt;</content><author><name>James Stout</name></author><category term="music" /><category term="youtube" /><category term="prince" /><summary type="html"></summary></entry><entry><title type="html">Westworld: Eight Lingering Questions from Season 1</title><link href="https://stouty.xyz/links/2018/04/22/westworld-catchup/" rel="alternate" type="text/html" title="Westworld: Eight Lingering Questions from Season 1" /><published>2018-04-22T18:58:01+08:00</published><updated>2018-04-22T18:58:01+08:00</updated><id>https://stouty.xyz/links/2018/04/22/westworld-catchup</id><content type="html" xml:base="https://stouty.xyz/links/2018/04/22/westworld-catchup/"></content><author><name>James Stout</name></author><category term="link" /><summary type="html"></summary></entry><entry><title type="html">OPML to Markdown</title><link href="https://stouty.xyz/code/2018/04/22/opml-to-markdown/" rel="alternate" type="text/html" title="OPML to Markdown" /><published>2018-04-22T16:29:01+08:00</published><updated>2018-04-22T16:29:01+08:00</updated><id>https://stouty.xyz/code/2018/04/22/opml-to-markdown</id><content type="html" xml:base="https://stouty.xyz/code/2018/04/22/opml-to-markdown/">&lt;p&gt;When you export your podcast subscriptions from &lt;a href=&quot;https://overcast.fm/&quot;&gt;Overcast&lt;/a&gt;, you get an &lt;a href=&quot;https://en.wikipedia.org/wiki/OPML&quot;&gt;OPML&lt;/a&gt; file something like this:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/jamesstout/a4050fdfda4f1fad5d5637ff35293549.js&quot;&gt;&lt;/script&gt;
+
+&lt;div class=&quot;premonition warning&quot;&gt;&lt;div class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;p&gt;Note that the file contains usernames and passwords in the feed URL&lt;/p&gt;
+
+
+&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;I wanted to convert the OPML to a Markdown list. Something like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;htmlUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;RSS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;(xmlUrl)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Well a little fancier, I wanted a &lt;a href=&quot;https://fontawesome.com/icons/rss-square?style=solid&quot;&gt;FontAwesome&lt;/a&gt; RSS SVG icon as the feed link:&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;htmlUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;color:#fa9b39&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xmlURL&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sameAs&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fas fa-fw fa-rss-square&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;aria-hidden=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I customized a &lt;a href=&quot;https://gist.github.com/domdavis/9988867&quot;&gt;Python script&lt;/a&gt; by Dom Davis to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Output an unordered list instead of headers.&lt;/li&gt;
+  &lt;li&gt;Sort the list alphabetically.&lt;/li&gt;
+  &lt;li&gt;In addition to the title (&lt;code class=&quot;highlighter-rouge&quot;&gt;text&lt;/code&gt;)
+    &lt;ul&gt;
+      &lt;li&gt;extract the feed URL (&lt;code class=&quot;highlighter-rouge&quot;&gt;xmlUrl&lt;/code&gt;)&lt;/li&gt;
+      &lt;li&gt;and the podcast home page (&lt;code class=&quot;highlighter-rouge&quot;&gt;htmlUrl&lt;/code&gt;)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Strip username:password from feed URLs.&lt;/li&gt;
+  &lt;li&gt;Strip &lt;code class=&quot;highlighter-rouge&quot;&gt;(Ad-Free)&lt;/code&gt; from titles as they made each line too long.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script src=&quot;https://gist.github.com/jamesstout/39405a465e94bde0c6478a1a1dcf64f4.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;This generates the Markdown for you to paste into your post:
+&lt;script src=&quot;https://gist.github.com/jamesstout/213b9376d740b8b2234d1e4a7f3025b3.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;div class=&quot;premonition info&quot;&gt;&lt;div class=&quot;fa fa-info-circle&quot;&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;p&gt;To remove the real username:password from &lt;code class=&quot;highlighter-rouge&quot;&gt;opml2md.py&lt;/code&gt; before posting the gist, a little &lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt;:&lt;/p&gt;
+
+
+&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;s/passwd = .*/passwd = &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;username:password@&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&quot;&lt;/span&gt; opml2md.py
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>James Stout</name></author><category term="podcasts" /><category term="overcast" /><category term="python" /><category term="OPML" /><category term="markdown" /><summary type="html">How to convert OPML to Markdown.</summary></entry><entry><title type="html">Podcasts</title><link href="https://stouty.xyz/podcasts/2018/04/22/podcasts/" rel="alternate" type="text/html" title="Podcasts" /><published>2018-04-22T13:29:01+08:00</published><updated>2018-04-22T13:29:01+08:00</updated><id>https://stouty.xyz/podcasts/2018/04/22/podcasts</id><content type="html" xml:base="https://stouty.xyz/podcasts/2018/04/22/podcasts/">&lt;p&gt;I listen to quite a few &lt;a href=&quot;https://en.wikipedia.org/wiki/Podcast&quot;&gt;podcasts&lt;/a&gt;. My podcatcher of choice is &lt;a href=&quot;https://overcast.fm/&quot;&gt;Overcast&lt;/a&gt;&lt;sup id=&quot;fnref:fn-icon&quot;&gt;&lt;a href=&quot;#fn:fn-icon&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; from &lt;a href=&quot;https://marco.org/&quot;&gt;Marco Arment&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you’re interested in how I generated this list, see my &lt;a href=&quot;/code/2018/04/22/opml-to-markdown/&quot;&gt;next post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here’s the list…&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://5by5.tv/movies&quot;&gt;5by5 at the Movies&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.5by5.tv/movies&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.slashfilm.com/&quot;&gt;A Cast of Kings - A Game of Thrones Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/castofkings&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://stormofspoilers.com/&quot;&gt;A STORM OF SPOILERS - A Pop Culture Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/AStormOfSpoilers&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://atp.fm/&quot;&gt;Accidental Tech Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://atp.fm/episodes?format=rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.ambernectar.org/&quot;&gt;Amber Nectar HCAFC&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.soundcloud.com/users/soundcloud:users:54747069/sounds.rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://5by5.tv/b2w&quot;&gt;Back to Work&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.5by5.tv/b2w&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://baldmove.com/category/tv-podcast&quot;&gt;Bald Move TV&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://baldmove.com/feed/ad-free-tv-podcast/&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://baldmove.com/category/bald-movies/&quot;&gt;Bald Movies&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://baldmove.com/feed/ad-free-bald-movies/&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blogs.amctv.com/better-call-saul/podcasts/&quot;&gt;Better Call Saul Insider Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://movietouch.sony.com.edgesuite.net/podcasts/better_call_saul_v1/better_call_saul_insider_podcast.xml&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://baldmove.com/category/better-call-saul/&quot;&gt;Better Cast Saul - Better Call Saul Unofficial Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://baldmove.com/feed/ad-free-better-call-saul/&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://brutestrength.libsyn.com/podcast&quot;&gt;Brute Strength Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://brutestrength.libsyn.com/rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.relay.fm/clockwise&quot;&gt;Clockwise&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://www.relay.fm/clockwise/feed&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://baldmove.com/tag/commissioned/&quot;&gt;Commissioned&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://baldmove.com/feed/commissioned/&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.coreint.org/&quot;&gt;Core Intuition&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://coreint.org/podcast.xml/&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.dancarlin.com/&quot;&gt;Dan Carlin’s Hardcore History&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/dancarlin/history?format=xml&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.discoveryuk.com/shows/david-baddiel-on-the-silk-road/&quot;&gt;David Baddiel On the Silk Road&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://rss.acast.com/davidbaddielonthesilkroad&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.imore.com/debug/&quot;&gt;Debug&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/debugshow&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://soundcloud.com/decodingwestworld&quot;&gt;Decoding Westworld&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.soundcloud.com/users/soundcloud:users:259871793/sounds.rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.relay.fm/download&quot;&gt;Download&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://www.relay.fm/download/feed&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://baldmove.com/category/stranger-things/&quot;&gt;Dungeons and Demogorgons - A Stranger Things Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://baldmove.com/feed/ad-free-stranger-things/&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://art19.com/shows/ews-game-of-thrones-weekly&quot;&gt;EW’s Game of Thrones Weekly&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/ew-got-pod&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://fargotalksfargo.com/&quot;&gt;Fargo Talks Fargo&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://fargotalksfargo.com/feed/&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://baldmove.com/category/the-leftovers/&quot;&gt;Following The Leftovers&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://baldmove.com/feed/ad-free-the-leftovers/&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://art19.com/shows/friendly-fire&quot;&gt;Friendly Fire&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/FriendlyFirePod&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.futilitycloset.com/&quot;&gt;Futility Closet&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feedpress.me/futilitycloset&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://baldmove.com/category/game-of-thrones/&quot;&gt;Game of Thrones The Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://baldmove.com/feed/ad-free-game-of-thrones/&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://genpopshow.com/&quot;&gt;Gen Pop - A Pop Culture Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.soundcloud.com/users/soundcloud:users:272776774/sounds.rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.patreon.com/genpopshow&quot;&gt;Gen Pop Bonus Audio&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/GenPopBonus&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://goodfellasminute.com/&quot;&gt;Goodfellas Minute&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/goodfellasminute&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.harmontown.com/&quot;&gt;Harmontown&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/HarmontownPodcast&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.hellointernet.fm/&quot;&gt;Hello Internet&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://www.hellointernet.fm/podcast?format=rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.wnycstudios.org/shows/heresthething&quot;&gt;Here’s The Thing with Alec Baldwin&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/wnycheresthething&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://5by5.tv/hypercritical&quot;&gt;Hypercritical&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.5by5.tv/hypercritical&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://art19.com/shows/inside-the-hive&quot;&gt;Inside the Hive with Nick Bilton&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/inside-the-hive&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.bbc.co.uk/programmes/b00lvdrj&quot;&gt;Kermode and Mayo’s Film Review&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://podcasts.files.bbci.co.uk/b00lvdrj.rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.relay.fm/liftoff&quot;&gt;Liftoff&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://www.relay.fm/liftoff/feed&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://baldmove.com/&quot;&gt;Lunch with Jim &amp;amp; A.Ron&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://baldmove.com/feed/lwja&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.comedy.co.uk/podcasts/richard_herring_snooker/&quot;&gt;Me1 vs Me2 Snooker with Richard Herring&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/RichardHerringSnooker&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.imore.com/donmelton&quot;&gt;Melton&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/meltonshow&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.relay.fm/mixedfeelings&quot;&gt;Mixed Feelings&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://www.relay.fm/mixedfeelings/feed&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://audioboom.com/channel/nosuchthingasafish&quot;&gt;No Such Thing As A Fish&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://audioboom.com/channels/2399216.rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.omnibusproject.com/&quot;&gt;Omnibus&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://feeds.megaphone.fm/omnibus&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://soundcloud.com/peakstv&quot;&gt;Peaks TV - a Twin Peaks Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.soundcloud.com/users/soundcloud:users:306450555/sounds.rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://5by5.tv/podcastmethod&quot;&gt;Podcast Method&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.5by5.tv/podcastmethod&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.relay.fm/query&quot;&gt;Query&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://www.relay.fm/query/feed&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://wondery.com/realcrimeprofile&quot;&gt;Real Crime Profile&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://rss.art19.com/real-crime-profile-wondery&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.relay.fm/rd&quot;&gt;Reconcilable Differences&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://www.relay.fm/rd/feed&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://releasenotes.tv/&quot;&gt;Release Notes&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://releasenotes.tv/feed/podcast/&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://gimletmedia.com/shows/reply-all&quot;&gt;Reply All&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.gimletmedia.com/hearreplyall&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.comedy.co.uk/podcasts/richard_herring_edinburgh/&quot;&gt;Richard Herring’s Edinburgh Fringe Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/RichardHerringEdinburghPodcast&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.comedy.co.uk/podcasts/richard_herring_lst_podcast/&quot;&gt;Richard Herring’s Leicester Square Theatre Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/RichardHerringLSTPodcast&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://5by5.tv/roadwork&quot;&gt;Road Work&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.5by5.tv/roadwork&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.merlinmann.com/roderick/&quot;&gt;Roderick on the Line&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/RoderickOnTheLine&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stownpodcast.org/&quot;&gt;S-Town&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.stownpodcast.org/stownpodcast&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.acast.com/stalkingtimeforthemoonboys&quot;&gt;Stalking Time for the Moon Boys with David Baddiel&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://rss.acast.com/stalkingtimeforthemoonboys&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.starwarsminute.com/&quot;&gt;Star Wars Minute&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://rss.art19.com/star-wars-minute&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://stephenfry.com/greatleapyears&quot;&gt;Stephen Fry’s Great Leap Years&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://rss.acast.com/greatleapyears&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.vanityfair.com/hollywood&quot;&gt;Still Watching: Westworld&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.megaphone.fm/PPY3889133426&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.howstuffworks.com/&quot;&gt;Stuff You Should Know&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://feeds.megaphone.fm/stuffyoushouldknow&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.theincomparable.com/tvtm/&quot;&gt;TV Talk Machine&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.theincomparable.com/tvtm&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.techmeme.com/&quot;&gt;Techmeme Ride Home&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/TechmemeRideHome&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.theincomparable.com/teevee/&quot;&gt;TeeVee&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;HTTP://feeds.theincomparable.com/teevee&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.slashfilm.com/filmcast&quot;&gt;The /Filmcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/filmcast&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://changelog.fm/&quot;&gt;The Changelog&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://changelog.com/podcast/feed&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.podtrac.com/pts/redirect.mp3/www.comedianscomedian.com/&quot;&gt;The Comedian’s Comedian Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://stuartgoldsmith.podbean.com/feed/&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://5by5.tv/criticalpath&quot;&gt;The Critical Path&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.5by5.tv/criticalpath&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.dga.org/Craft/Podcast.aspx&quot;&gt;The Director’s Cut - A DGA Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.soundcloud.com/users/soundcloud:users:87851010/sounds.rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.theincomparable.com/theincomparable/&quot;&gt;The Incomparable&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.theincomparable.com/theincomparable&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.joerogan.net/&quot;&gt;The Joe Rogan Experience&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://joeroganexp.joerogan.libsynpro.com/rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.themenu.bar/&quot;&gt;The Menu Bar&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://www.themenu.bar/show?format=rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.slashfilm.com/&quot;&gt;The Ones Who Knock - A Breaking Bad Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/theoneswhoknock&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.theskepticsguide.org/podcast/sgu&quot;&gt;The Skeptics’ Guide to the Universe&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://feed.theskepticsguide.org/feed/rss.aspx?feed=sgu&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://daringfireball.net/thetalkshow&quot;&gt;The Talk Show With John Gruber&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://daringfireball.net/thetalkshow/rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://thevanishedpodcast.com/&quot;&gt;The Vanished Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://rss.art19.com/the-vanished-podcast-wondery&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://theringer.com/&quot;&gt;The Watch&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.feedburner.com/thewatchpod&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://apple.co/2dxjZTo&quot;&gt;The Westworld Podcast&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.soundcloud.com/users/soundcloud:users:250003597/sounds.rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://trackchanges.libsyn.com/podcast&quot;&gt;Track Changes&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://trackchanges.libsyn.com/rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.relay.fm/radar&quot;&gt;Under the Radar&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://www.relay.fm/radar/feed&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.joe.co.uk/unfiltered&quot;&gt;Unfiltered with James O’Brien&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://feeds.soundcloud.com/users/soundcloud:users:334433730/sounds.rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.imore.com/vector&quot;&gt;Vector with Rene Ritchie&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://vector.libsyn.com/rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://baldmove.com/category/westworld/&quot;&gt;Watching Westworld&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://baldmove.com/feed/ad-free-westworld/&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.macintosh.fm/episodes/&quot;&gt;Welcome to Macintosh&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;https://macintoshfm.squarespace.com/episodes?format=rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://shatontv.com/category/westworld/&quot;&gt;Westworld&lt;/a&gt; &lt;a style=&quot;color:#fa9b39&quot; href=&quot;http://shatontv.libsyn.com/rss&quot; itemprop=&quot;sameAs&quot;&gt; &lt;i class=&quot;fas fa-fw fa-rss-square&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:fn-icon&quot;&gt;
+      &lt;p&gt;Look at that beautiful icon: &lt;img data-src=&quot;/assets/images/posts/podcasts/small-overcast.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Overcast iOS app icon&quot; /&gt; &lt;a href=&quot;#fnref:fn-icon&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="podcasts" /><category term="overcast" /><category term="python" /><category term="OPML" /><summary type="html">The list of podcasts I listen to.</summary></entry><entry><title type="html">First and Twenty</title><link href="https://stouty.xyz/ios/2018/04/15/first-and-twenty/" rel="alternate" type="text/html" title="First and Twenty" /><published>2018-04-15T20:29:01+08:00</published><updated>2018-04-15T20:29:01+08:00</updated><id>https://stouty.xyz/ios/2018/04/15/first-and-twenty</id><content type="html" xml:base="https://stouty.xyz/ios/2018/04/15/first-and-twenty/">&lt;p&gt;First &amp;amp; 20 - well, 28 now (on an iPhone 8).&lt;/p&gt;
+
+&lt;p&gt;Initially inspired by the (now defunct) &lt;a href=&quot;https://web.archive.org/web/20150410090518/http://www.firstand20.com&quot;&gt;First &amp;amp; 20&lt;/a&gt;&lt;sup id=&quot;fnref:fn-first&quot;&gt;&lt;a href=&quot;#fn:fn-first&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/first-and-twenty/IMG_9506.JPG&quot; src=&quot;/assets/images/posts/first-and-twenty/IMG_9506-lq.JPG&quot; class=&quot;lazyload blur-up&quot; alt=&quot;iPhone 8 home screen&quot; /&gt;
+&lt;em&gt;My current iPhone 8 Home Screen&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:fn-first&quot;&gt;
+      &lt;p&gt;A Collection of iPhone &amp;amp; iPad Home Screens from some very talented designers, developers and tech writers. &lt;a href=&quot;#fnref:fn-first&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="iOS" /><category term="apps" /><summary type="html">My iPhone home screen.</summary></entry><entry><title type="html">Adobe Shenanigans</title><link href="https://stouty.xyz/macos/2018/04/15/adobe-shenanigans/" rel="alternate" type="text/html" title="Adobe Shenanigans" /><published>2018-04-15T01:29:01+08:00</published><updated>2018-04-15T01:29:01+08:00</updated><id>https://stouty.xyz/macos/2018/04/15/adobe-shenanigans</id><content type="html" xml:base="https://stouty.xyz/macos/2018/04/15/adobe-shenanigans/">&lt;p&gt;&lt;em&gt;What on Earth are Adobe up to?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I found a random folder in my &lt;a href=&quot;https://github.com/github/gitignore&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.gitignore-boilerplates&lt;/code&gt;&lt;/a&gt; repo (created by &lt;a href=&quot;https://github.com/simonwhitaker/gibo&quot;&gt;gibo&lt;/a&gt;):&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/.gitignore-boilerplates on master
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-ld&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/
+drwxr-xr-x  10 james  staff   320 Apr 15 00:54 .git/
+drwxr-xr-x   3 james  staff    96 Mar 17 15:09 .github/
+drwxr-xr-x  61 james  staff  1952 Mar 17 15:09 Global/
+drwx------+  3 root   staff    96 Apr 15 00:39 Library/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;Library&lt;/code&gt; folder, created by &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt; contains an Adobe log file:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; Library/Logs/AdobeDownload/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-rw-rw-rw-&lt;/span&gt;@ 1 root  staff  5184 Mar 27 01:14 Library/Logs/AdobeDownload/DLM.log
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;Library/Logs/AdobeDownload/DLM.log | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;extra
+
+Going to download the file at /Users/james/.extra/Adobe/AdobeGCClient/AdobeGCClient.zip
+Unable to create directory /Users/james/.extra/Adobe/AdobeGCClient/. Error is 512 and error domain is NSCocoaErrorDomain.
+The file “.extra” couldn’t be saved &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;the folder “james”.
+failed to create a &lt;span class=&quot;nb&quot;&gt;dir&lt;/span&gt; - /Users/james/.extra/Adobe/AdobeGCClient/ on &lt;span class=&quot;nb&quot;&gt;local &lt;/span&gt;disk.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Eh? &lt;code class=&quot;highlighter-rouge&quot;&gt;.extra&lt;/code&gt;? I already have a file named that in that location, hence the error. What’s it up to?&lt;/p&gt;
+
+&lt;p&gt;I found another log file here &lt;code class=&quot;highlighter-rouge&quot;&gt;/Users/james/Library/Logs/AdobeDownload/DLM.log&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;| *******************start of Download****************
+| GDE Version is 9.0.0.4 (BuildVersion: 6.0; BuildDate: Wed Mar 04 2015 21:34:10 )
+| The file to be downloaded is http://agsupdate.adobe.com/osx/AGC_4_5_0_814_osx10_cef.zip
+| Going to download the file at /Users/james/Library/Application Support/ImageOptim/Adobe/AdobeGCClient/AdobeGCClient.zip
+| Preference: Client has set the preference for single stream download
+| **File download complete.**
+| *******************End****************
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Eh? &lt;code class=&quot;highlighter-rouge&quot;&gt;.../ImageOptim/Adobe/AdobeGCClient/AdobeGCClient.zip&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;So I went searching:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find /  &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; AdobeGCClient &lt;span class=&quot;nt&quot;&gt;-print&lt;/span&gt; 2&amp;gt;/dev/null
+find ~  &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; AdobeGCClient &lt;span class=&quot;nt&quot;&gt;-print&lt;/span&gt; 2&amp;gt;/dev/null
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After a bit of &lt;code class=&quot;highlighter-rouge&quot;&gt;awk&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;uniq&lt;/code&gt;, I found:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/Adobe/AdobeGCClient/AdobeGCClient.app
+/Adobe/AdobeGCClient/AdobeGCClientNew.app
+/Adobe/AdobeGCClient/temp
+/Applications/Utilities/Adobe Application Manager/AdobeGCClient
+/Library/Application Support/Adobe/AdobeGCClient/AdobeGCClient.app
+/Library/QuickTime/DVCPROHDCodec.component/Adobe/AdobeGCClient/AdobeGCClient.app
+/Library/QuickTime/DVCPROHDCodec.component/Adobe/AdobeGCClient/AdobeGCClientNew.app
+/Users/james/Library/Application Support/Bartender/Adobe
+/Users/james/Library/Application Support/Dropbox/Adobe/AdobeGCClient/AdobeGCClient.app
+/Users/james/Library/Application Support/Dropbox/Adobe/AdobeGCClient/AdobeGCClientNew.app
+/Users/james/Library/Application Support/Google/Chrome/Default/Extensions/kbmfpngjjgdllneeigpgjifpgocmfgmb/Adobe/AdobeGCClient
+/Users/james/Library/Application Support/ImageOptim/Adobe/AdobeGCClient/AdobeGCClient.app
+/Users/james/Library/Application Support/ImageOptim/Adobe/AdobeGCClient/AdobeGCClientNew.app
+/Users/james/Library/Application Support/Quick Look/Adobe/AdobeGCClient/AdobeGCClient.app
+/Users/james/Library/Application Support/Quick Look/Adobe/AdobeGCClient/AdobeGCClientNew.app
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Adobe apps and files in random places. They all look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/adobe-shenanigans/Adobe-Screen-Shot.png&quot; src=&quot;/assets/images/posts/adobe-shenanigans/Adobe-Screen-Shot-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;macOS Finder screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve deleted them all for now, no one else seems to have reported this when I search on Google.&lt;/p&gt;</content><author><name>James Stout</name></author><category term="adobe" /><category term="adobegcclient" /><category term="adobedownload" /><summary type="html">What on Earth are Adobe up to?</summary></entry><entry><title type="html">Automate SHA Checksum Checks For Asuswrt-Merlin Firmware With Hazel</title><link href="https://stouty.xyz/automation/2018/04/04/hazel/" rel="alternate" type="text/html" title="Automate SHA Checksum Checks For Asuswrt-Merlin Firmware With Hazel" /><published>2018-04-04T21:29:01+08:00</published><updated>2018-04-04T21:29:01+08:00</updated><id>https://stouty.xyz/automation/2018/04/04/hazel</id><content type="html" xml:base="https://stouty.xyz/automation/2018/04/04/hazel/">&lt;p&gt;When a new firmware is released by &lt;a href=&quot;https://asuswrt.lostrealm.ca/&quot;&gt;Asuswrt-Merlin&lt;/a&gt;, the download comes with a checksum file (&lt;code class=&quot;highlighter-rouge&quot;&gt;sha256sum.sha256&lt;/code&gt;) enabling you to check the validity of the firmware you downloaded.&lt;/p&gt;
+
+&lt;p&gt;You could do this manually:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Downloads/RT-AC66U_380.70_beta1-gc8353dc
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;shasum &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; 256  &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; sha256sum.sha256
+RT-AC66U_380.70_beta1-gc8353dc.trx: OK
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;However, I automated the check with &lt;a href=&quot;https://www.noodlesoft.com/&quot;&gt;Hazel&lt;/a&gt; and a shell script.&lt;/p&gt;
+
+&lt;p&gt;Setup Hazel rules per the image below for your Downloads folder:&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/hazel/hazel1.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Hazel screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then create each rule shown in the images below:&lt;/p&gt;
+
+&lt;h4 id=&quot;old-files&quot;&gt;Old Files&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/hazel/hazel2.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Hazel screenshot&quot; /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;shasum-router-firmware&quot;&gt;SHASUM Router Firmware&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;NOTE: change the “name starts with” rule to match the name of your router&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/hazel/hazel3.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Hazel screenshot&quot; /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;newly-added-files&quot;&gt;Newly Added Files&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/hazel/hazel4.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Hazel screenshot&quot; /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;no-longer-new-files&quot;&gt;No longer new Files&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/hazel/hazel5.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Hazel screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The shell script used in the SHASUM Router Firmware rule is shown below and linked &lt;a href=&quot;/assets/files/hazelLabelForASUS.sh&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# shellcheck shell=bash&lt;/span&gt;
+
+label&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$# &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;-lt&lt;/span&gt; 2 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;USAGE: label [0-7] file1 [file2] ...&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Sets the Finder label (color) for files&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Default colors:&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot; 0  No color&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot; 1  Orange&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot; 2  Red&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot; 3  Yellow&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot; 4  Blue&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot; 5  Purple&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot; 6  Green&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot; 7  Gray&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+    /usr/bin/osascript - &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;EOF&lt;/span&gt;&lt;span class=&quot;sh&quot;&gt;
+    on run argv
+        set labelIndex to (item 1 of argv as number)
+        repeat with i from 2 to (count of argv)
+          tell application &quot;Finder&quot;
+              set theFile to POSIX file (item i of argv) as alias
+              set label index of theFile to labelIndex
+          end tell
+        end repeat
+    end run
+&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;EOF
+&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+file_exists&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+      return &lt;/span&gt;0
+    &lt;span class=&quot;k&quot;&gt;fi
+    return &lt;/span&gt;1
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#logger &quot;path is is $PATH&quot;&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/usr/local/bin:&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#logger &quot;path is is $PATH&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; file_exists &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# must exit with zero so Hazel does't retry it&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;0&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#say &quot;The file $1 matches this rule’s conditions.&quot;&lt;/span&gt;
+logger &lt;span class=&quot;s2&quot;&gt;&quot;Directory is &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+logger &lt;span class=&quot;s2&quot;&gt;&quot;Checking for shasum binaries&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;hash &lt;/span&gt;sha256deep 2&amp;gt; /dev/null&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+  &lt;/span&gt;logger &lt;span class=&quot;s2&quot;&gt;&quot;found sha256deep&quot;&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;sha256deep&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;elif &lt;/span&gt;shasum &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; 256 &amp;lt; /dev/null &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /dev/null 2&amp;gt;&amp;amp;1 &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+  &lt;/span&gt;logger &lt;span class=&quot;s2&quot;&gt;&quot;found shasum&quot;&lt;/span&gt;
+  &lt;span class=&quot;nv&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;shasum -a 256&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else
+  &lt;/span&gt;logger &lt;span class=&quot;s2&quot;&gt;&quot;No binary found to compute and compare SHA-256 message digests&quot;&lt;/span&gt;
+  osascript &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'display notification &quot;No binary found to compute and compare SHA-256 message digests&quot; with title &quot;ERROR&quot;'&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;0&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi
+
+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;0&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;firmwareFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.trx&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;sha256sumFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.sha256&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; file_exists &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$firmwareFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# must exit with zero so Hazel does't retry it&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;0&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi
+
+&lt;/span&gt;logger &lt;span class=&quot;s2&quot;&gt;&quot;firmwareFile is &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$firmwareFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; file_exists &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sha256sumFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+  &lt;span class=&quot;c&quot;&gt;# must exit with zero so Hazel does't retry it&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;0&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi
+
+&lt;/span&gt;logger &lt;span class=&quot;s2&quot;&gt;&quot;sha256sumFile is &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sha256sumFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# yes we could use shasum -a 256  -c sha256sum.sha256, but I don't think sha256deep has&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# the same option, so we parse the file&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sha256sum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $1}'&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sha256sumFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;firmwareFileFromSha256sumFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $2}'&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sha256sumFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$firmwareFileFromSha256sumFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$firmwareFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+  &lt;/span&gt;logger &lt;span class=&quot;s2&quot;&gt;&quot;Filename mismatch: &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$firmwareFileFromSha256sumFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; != &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$firmwareFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;0&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi
+
+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;sha256deepFromFirmware&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$cmd&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$firmwareFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $1}'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sha256deepFromFirmware&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sha256sum&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+  &lt;/span&gt;logger &lt;span class=&quot;s2&quot;&gt;&quot;sha256deep mismatch: &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sha256deepFromFirmware&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; != &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sha256sum&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; set label to red&quot;&lt;/span&gt;
+   label 2 &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$firmwareFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /dev/null
+   &lt;span class=&quot;c&quot;&gt;#also set folder to green so we don't process it again&lt;/span&gt;
+   label 2 &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /dev/null
+   osascript &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'display notification &quot;shasums mismatch for firmware&quot; with title &quot;INVALID ASUS Firmware&quot;'&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;0&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else
+    &lt;/span&gt;logger &lt;span class=&quot;s2&quot;&gt;&quot;sha256deep match: &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sha256deepFromFirmware&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; == &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$sha256sum&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;, set label to green&quot;&lt;/span&gt;
+    label 6 &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$firmwareFile&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /dev/null
+    &lt;span class=&quot;c&quot;&gt;#also set folder to green so we don't process it again&lt;/span&gt;
+    label 6 &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; /dev/null
+    osascript &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'display notification &quot;shasums match for firmware&quot; with title &quot;Valid ASUS Firmware&quot;'&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi
+
+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;0&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>James Stout</name></author><category term="hazel" /><category term="asuswrt-merlin" /><category term="checksum" /><category term="shasum" /><category term="shell" /><category term="AppleScript" /><category term="macOS" /><summary type="html">Hazel, routers, firmware and checksums.</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="https://stouty.xyz/jekyll/2018/04/01/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2018-04-01T16:32:41+08:00</published><updated>2018-04-01T16:32:41+08:00</updated><id>https://stouty.xyz/jekyll/2018/04/01/welcome-to-jekyll</id><content type="html" xml:base="https://stouty.xyz/jekyll/2018/04/01/welcome-to-jekyll/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name>James Stout</name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry></feed>

@@ -1,0 +1,633 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.11.1 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Things I Use | stouty.xyz</title>
+<meta name="description" content="James Stout. iOS/web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather.">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="stouty.xyz">
+<meta property="og:title" content="Things I Use">
+<meta property="og:url" content="https://stouty.xyz/things-i-use/">
+
+
+
+
+  <meta property="og:image" content="https://stouty.xyz/assets/images/IMG_8719.jpg">
+
+
+
+  <meta name="twitter:site" content="@stoutyhk">
+  <meta name="twitter:title" content="Things I Use">
+  <meta name="twitter:description" content="James Stout. iOS/web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather.">
+  <meta name="twitter:url" content="https://stouty.xyz/things-i-use/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://stouty.xyz/assets/images/IMG_8719.jpg">
+  
+
+  
+
+
+
+
+
+
+
+
+<link rel="canonical" href="https://stouty.xyz/things-i-use/">
+
+
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="1090wZmdhUfoCKnEqVFawGTa6AKwbN_vmrw-H6Y7aSE" />
+
+
+  <meta name="msvalidate.01" content="33DDEA42FFE3F60411C72F8B34B31973">
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="stouty.xyz Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<script src="/assets/files/lazysizes.min.js" async=""></script>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> -->
+<style>
+	.blur-up {
+		-webkit-filter: blur(5px);
+		filter: blur(5px);
+		transition: filter 400ms, -webkit-filter 400ms;
+	}
+
+	.blur-up.lazyloaded {
+		-webkit-filter: blur(0);
+		filter: blur(0);
+	}
+</style>
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">stouty.xyz</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://stouty.xyz/about/" >about</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://stouty.xyz/year-archive/" >posts</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://stouty.xyz/categories/" >categories</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://stouty.xyz/tags/" >tags</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://stouty.xyz/things-i-use/" >things</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="https://stouty.xyz/sitemap.xml" >sitemap</a>
+            </li>
+          
+        </ul>
+        
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" "
+>
+  
+    <img src="/assets/images/IMG_8719.jpg" alt="Site header image - image of HK looking west from HK Island" class="page__hero-image lazyload blur-up">
+  
+  
+</div>
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">James Stout</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        iOS/web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Hong Kong</span>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://keybase.io/stouty" itemprop="sameAs">
+            <i class="fas fa-fw fa-key" aria-hidden="true"></i> Keybase
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://twitter.com/stoutyhk" itemprop="sameAs">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+      
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://bitbucket.org/stouty" itemprop="sameAs">
+            <i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://github.com/jamesstout" itemprop="sameAs">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://last.fm/user/stoutyhk" itemprop="sameAs">
+            <i class="fab fa-fw fa-lastfm-square" aria-hidden="true"></i> Last.fm
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a href="http://www.feedio.co/@stoutyhk?came_from=homepagefeedbutton" itemprop="sameAs">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feedio
+        </a>
+      </li>
+    
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Things I Use">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Things I Use
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Applications, hardware, products and services that I use<sup id="fnref:fn-update"><a href="#fn:fn-update" class="footnote">1</a></sup>.</p>
+
+<p><strong>Services</strong></p>
+
+<ul>
+  <li><a href="https://m.do.co/c/81f4d6d55f4b">DigitalOcean</a> - for hosting.</li>
+  <li><a href="http://www.giganews.com/?c=gn842903">Giganews</a> - usenet access and VPN (Diamond plan).</li>
+  <li><a href="http://db.tt/zRIAfIU">Dropbox</a> - file storage/syncing/sharing.</li>
+  <li><a href="http://pinboard.in">Pinboard</a> - bookmarking.</li>
+  <li><a href="http://getpocket.com/">Pocket</a> - reading later.</li>
+  <li><a href="https://itunes.apple.com/us/app/bear/id1091189122?mt=12">Bear</a> - notes.</li>
+  <li><a href="http://www.backblaze.com/partner/af3998">Backblaze</a> - online backup. $5 a month, unlimited storage.</li>
+</ul>
+
+<p><strong>Mac Software</strong></p>
+
+<ul>
+  <li><a href="https://itunes.apple.com/us/app/1password-password-manager/id443987910?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">1Password</a> - password manager.</li>
+  <li><a href="https://itunes.apple.com/us/app/unison/id411074413?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Unison 2</a> - Usenet browser.</li>
+  <li><a href="https://itunes.apple.com/us/app/yojimbo/id404581200?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Yojimbo</a> - my <a href="http://shawnblanc.net/2009/09/yojimbo-and-anything-buckets/">Anything Bucket</a>.</li>
+  <li><a href="http://smilesoftware.com/TextExpander/index.html">TextExpander</a> - typing shortcut utility.</li>
+  <li><a href="http://www.alfredapp.com/">Alfred</a> - app launcher and more.</li>
+  <li><a href="https://itunes.apple.com/us/app/fantastical/id435003921?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Fantastical</a> - calendar.</li>
+  <li><a href="https://itunes.apple.com/us/app/coda-2/id499340368?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Coda 2</a> - text editor + file transfer + svn + css + terminal + books + more.</li>
+  <li><a href="http://www.sublimetext.com/2">Sublime Text 2</a> - a hardcore text editor.</li>
+  <li><a href="https://itunes.apple.com/us/app/byword/id420212497?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Byword</a> - a simple text editor.</li>
+  <li><a href="https://itunes.apple.com/us/app/transmit/id403388562?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Transmit 5</a> - FTP client.</li>
+  <li><a href="https://itunes.apple.com/us/app/id557168941?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Tweetbot</a> - Twitter client.</li>
+  <li><a href="http://www.freemacsoft.net/appcleaner/">AppCleaner</a> - app uninstaller.</li>
+  <li><a href="http://metaquark.de/appfresh/mac">AppFresh</a> - app updates.</li>
+  <li><a href="http://www.vmware.com/products/fusion/overview.html">VMware Fusion</a> - to run Windows XP/Ubuntu/Moutain Lion.</li>
+  <li><a href="http://www.sequelpro.com/">Sequel Pro</a> - MySQL database management/query.</li>
+  <li><a href="http://www.videolan.org/vlc/">VLC Player</a> - media player. Plays everything.</li>
+  <li><a href="http://www.transmissionbt.com/">Transmission</a> - bittorrent client.</li>
+  <li><a href="http://tmkk.undo.jp/xld/index_e.html">XLD</a> - lossless decoder.</li>
+  <li><a href="https://itunes.apple.com/us/app/daisydisk/id411643860?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">DaisyDisk</a> - See what takes up your disk space.</li>
+  <li><a href="https://itunes.apple.com/us/app/pixelmator/id407963104?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Pixelmator</a> - image editing.</li>
+  <li><a href="http://www.prosofteng.com/products/drive_genius.php">Drive Genius 5</a> - defrag etc.</li>
+  <li><a href="https://itunes.apple.com/us/app/battery-health/id490192174?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Battery Health</a> - check your laptop battery.</li>
+  <li><a href="https://itunes.apple.com/us/app/flare/id419917767?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Flare</a> - add filters to photos.</li>
+  <li><a href="http://adium.im/">Adium</a> - multi-protocol instant messaging client.</li>
+  <li><a href="http://brettterpstra.com/projects/nvalt/">nvALT2</a> - notes (syncs with Simplenote).</li>
+  <li><a href="https://itunes.apple.com/us/app/day-one/id422304217?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Day One</a> - diary/journal.</li>
+  <li><a href="http://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html">SuperDuper!</a> - backup - for creating a bootable clone of my main drive.</li>
+  <li><a href="http://www.econtechnologies.com/pages/cs/chrono_overview.html">ChronoSync</a> - more backup, this syncs everything to my OpenSolaris ZFS fileserver.</li>
+  <li><a href="https://itunes.apple.com/us/app/rubbernet/id425980801?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Rubbernet</a> - network monitoring.</li>
+  <li><a href="https://itunes.apple.com/us/app/marked/id448925439?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Marked</a> - <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> preview.</li>
+  <li><a href="http://videomonkey.org/">VideoMonkey</a> - video encoding.</li>
+  <li><a href="http://bjango.com/mac/istatmenus/">iStat Menus</a> - system monitoring.</li>
+  <li><a href="http://versionsapp.com/">Versions</a> - a Subversion client. <a href="http://www.sourcetreeapp.com/">SourceTree</a> - client for Git and Mercurial version control systems. <a href="https://itunes.apple.com/us/app/kaleidoscope/id587512244?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Kaleidoscope 2</a> - file comparison app. <a href="http://zoooot.com/1246/kaleidoscope-2">Kaleidoscope v2.0</a> - a great update.</li>
+  <li><a href="https://itunes.apple.com/us/app/things/id407951449?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Things</a> - a task manager.</li>
+  <li><a href="https://itunes.apple.com/us/app/unclutter/id577085396?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Unclutter</a> - a neat clipboard, file storage area, and notepad - all in one.</li>
+  <li><a href="https://itunes.apple.com/us/app/soulver/id413965349?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Soulver</a> - a better calculator.</li>
+  <li><a href="https://itunes.apple.com/us/app/memory-clean/id451444120?mt=12">Memory Clean</a> - I thought it was a gimmick - but it really works. Frees up that inactive RAM.</li>
+  <li><a href="https://itunes.apple.com/us/app/xscope/id447661441?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">xScope</a> - for measuring pixels and stuff.</li>
+  <li><a href="https://itunes.apple.com/us/app/boom/id415312377?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Boom</a> - volume booster and system-wide equalizer</li>
+  <li><a href="http://filebot.sourceforge.net/">FileBot</a> - for renaming your TV shows etc.</li>
+  <li><a href="https://itunes.apple.com/us/app/geektool/id456877552?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">GeekTool</a> - for geeking out your <a href="http://zoooot.com/things-i-use/desktop2">desktop</a>.</li>
+  <li><a href="https://itunes.apple.com/us/app/radium/id413215890?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Radium</a> - an internet radio player.</li>
+  <li><a href="http://www.onyxmac.com/">OnyX</a> - an all-in-one system maintenance tool and optimiser.</li>
+  <li><a href="https://itunes.apple.com/us/app/mailstewardapp/id412878864?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">MailSteward</a> - email archiver.</li>
+  <li><a href="http://code.google.com/p/cronnix/">CronniX</a> - crontab editor.</li>
+  <li><a href="http://grandperspectiv.sourceforge.net/">GrandPerspective</a> - graphically shows the disk usage within a file system. I use it to no-hard-links filter scan my Time Machine backup disk to see what just changed.</li>
+  <li><a href="http://ridiculousfish.com/hexfiend/">Hex Fiend</a> - a hex editor. Fast.</li>
+  <li><a href="https://itunes.apple.com/us/app/linkinus/id402390998?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Linkinus</a> - IRC client.</li>
+  <li><a href="http://handbrake.fr/">HandBrake</a> - a video transcoder.</li>
+  <li><a href="https://itunes.apple.com/us/app/codebox/id412536790?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">CodeBox</a> - a code/text snippet manager.</li>
+  <li><a href="http://www.noodlesoft.com/hazel.php">Hazel</a> - a magic rule-runner to do all sorts of things. Check out this <a href="http://www.macosxscreencasts.com/tutorial/hazel-tutorial/">tutorial</a>.</li>
+  <li><a href="https://itunes.apple.com/us/app/marsedit-blog-editor-for-wordpress/id402376225?mt=12&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">MarsEdit</a> - a blog editor I use for Wordpress.</li>
+  <li><a href="http://sickbeard.com">Sick Beard</a> - searches for and manages your TV shows - auto-downloads NZBs for your Usenet client to grab.</li>
+  <li><a href="http://sabnzbd.org">SABnzbd</a> - an Open Source Binary Newsreader written in Python.</li>
+</ul>
+
+<p><strong>iOS Software</strong></p>
+
+<p>See my <a href="/ios/2018/04/15/first-and-twenty/">Updated First &amp; Twenty</a> for my iPhone home screen.</p>
+
+<p><a class="nolink" name="Other"></a>Other apps I use:</p>
+
+<ul>
+  <li><a href="https://itunes.apple.com/us/app/tweetbot-for-twitter-ipad/id498801050?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Tweetbot for iPad</a> - Twitter client.</li>
+  <li><a href="https://itunes.apple.com/us/app/dropvox-record-voice-memos/id416288287?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">DropVox</a> - <a href="http://db.tt/zRIAfIU">Dropbox</a> + Voice Memos</li>
+  <li><a href="https://itunes.apple.com/us/app/soundhound/id355554941?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">SoundHound</a> - music recognition</li>
+  <li><a href="https://itunes.apple.com/us/app/1password-pro/id319898689?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">1Password Pro</a> - password manager</li>
+  <li><a href="https://itunes.apple.com/us/app/textexpander/id326180690?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">TextExpander</a> - snippet manager and expander</li>
+  <li><a href="https://itunes.apple.com/us/app/screens-vnc-control-your-computer/id400012962?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Screens VNC</a> - VNC client for iPad, iPhone or iPod touch</li>
+  <li><a href="https://itunes.apple.com/us/app/prompt/id421507115?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Prompt</a> - SSH client for your iPad or iPhone</li>
+  <li><a href="https://itunes.apple.com/us/app/momento-diary-journal/id347019672?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Momento</a> - diary/journal writing application, pulls in Twitter, FB, Foursquare etc check-ins/posts.</li>
+  <li><a href="https://itunes.apple.com/us/app/birdbrain-statistics-for-twitter/id322796852?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Birdbrain</a> - statistics for Twitter</li>
+  <li><a href="https://itunes.apple.com/us/app/dropbox/id327630330?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Dropbox</a> - access your <a href="http://db.tt/zRIAfIU">Dropbox</a></li>
+  <li><a href="https://itunes.apple.com/us/app/thermo/id414215658?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Thermo</a> - shows the current temperature outside along with the temperature from the day before</li>
+  <li><a href="https://itunes.apple.com/us/app/weather-neue/id527856624?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">WeatherNeue</a> -  a minimalistic weather app</li>
+  <li><a href="https://itunes.apple.com/us/app/quotebook-notebook-for-quotes/id423726272?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Quotebook</a> - a notebook for your quotes</li>
+  <li><a href="https://itunes.apple.com/us/app/skype/id304878510?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Skype</a> - VoIP, IM, <em>etc</em>.</li>
+  <li><a href="https://itunes.apple.com/us/app/viber-free-phone-calls-text/id382617920?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Viber</a> - Free phone calls &amp; texts</li>
+  <li><a href="https://itunes.apple.com/us/app/tunein-radio/id418987775?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">TuneIn Radio</a> - listen to your favourite radio stations, anywhere</li>
+  <li><a href="https://itunes.apple.com/us/app/sleep-cycle-alarm-clock/id320606217?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Sleep Cycle</a> - an intelligent alarm clock that analyzes your sleep and wakes you in the lightest sleep phase – the natural way to wake up feeling rested and relaxed.</li>
+  <li><a href="https://itunes.apple.com/us/app/alien-blue-reddit-client/id370144106?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Alien Blue</a> - a Reddit client</li>
+  <li><a href="https://itunes.apple.com/us/app/tripit-travel-organizer-free/id311035142?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">Tripit</a> - travel organiser</li>
+  <li><a href="https://itunes.apple.com/us/app/seatguru-by-tripadvisor-seat/id508487044?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">SeatGuru</a> - pick your ideal seat on the plane</li>
+  <li><a href="https://itunes.apple.com/us/app/runkeeper-gps-track-running/id300235330?mt=8&amp;partnerId=30&amp;siteID=4M*lvL2TS6Q">RunKeeper</a> - GPS track running, walking and cycling</li>
+</ul>
+
+<p><strong>Hardware</strong></p>
+
+<ul>
+  <li><a href="http://www.apple.com/imac/">iMac</a> - Core i7, 3.4 GHz, 27-inch, 16GB RAM, 256GB SSD, 2TB HDD.</li>
+  <li><a href="http://www.macstories.net/reviews/13-inch-macbook-air-review/">13-inch MacBook Air (mid–2011)</a></li>
+  <li><a href="http://www.apple.com/iphone/">iPhone</a> 4S 16GB - for the moment, need a 64GB.</li>
+  <li>iPad (1st generation, 16GB, WiFi)</li>
+  <li><a href="http://www.apple.com/ipad/">iPad</a> (3rd generation, 16GB, WiFi)</li>
+  <li><a href="http://en.wikipedia.org/wiki/Apple_Cinema_Display#Technical_specifications">Apple 30-inch Cinema HD Display</a></li>
+  <li><a href="http://www.shure.com/americas/products/earphones-headphones/se-models/se535-sound-isolating-earphones">Shure SE535</a> Headphones</li>
+  <li><a href="http://www.apple.com/magictrackpad/">Apple Magic Trackpad</a></li>
+  <li><a href="http://www.dpreview.com/reviews/canoneos5dmarkii">Canon EOS 5D Mark II</a></li>
+  <li><a href="http://www.apple.com/airportextreme/">Apple Airport Extreme</a></li>
+  <li>Western Digital external HDD</li>
+  <li><a href="http://en.wikipedia.org/wiki/OpenSolaris">OpenSolaris</a> box with 9TB <a href="http://en.wikipedia.org/wiki/ZFS">ZFS</a> storage in <a href="http://en.wikipedia.org/wiki/Non-standard_RAID_levels#RAID-Z">RAID-Z</a> configuration.</li>
+  <li><a href="http://www.popcornhour.com/onlinestore/index.php?pluginoption=catalog&amp;mainItemId=45">Popcorn Hour A–300</a> - Networked Media Jukebox for playing videos etc.</li>
+  <li><a href="http://www.mophie.com/mophie-juice-pack-air-iPhone-4-4S-battery-case-p/1145_jpa-ip4-blk.htm">Mophie Juice Pack Air</a></li>
+</ul>
+
+<p><strong>Bags</strong></p>
+
+<ul>
+  <li>Tom Bihn <a href="http://www.tombihn.com/PROD/TB0110.html">Synapse</a> - backpack in navy/solar.</li>
+  <li>Tom Bihn <a href="http://www.tombihn.com/PROD/TB0950.html">Western Flyer</a> - overnight bag in steel/solar, good for a few days away.</li>
+  <li>Tom Bihn <a href="http://www.tombihn.com/PROD/TB0152.html">Buzz</a> - sling bag for laptop in indigo/steel.</li>
+  <li>Tom Bihn <a href="http://www.tombihn.com/PROD/TB0222.html">Ristretto for iPad</a> - messenger bag in olive/cayenne.</li>
+</ul>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:fn-update">
+      <p>This list needs a thorough updating. <a href="#fnref:fn-update" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+    <div class="search-hits"></div></div>
+      </div>
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+    
+      <li><a href="https://twitter.com/stoutyhk"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="https://github.com/jamesstout"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+      <li><a href="https://bitbucket.org/stouty"><i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket</a></li>
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 stouty.xyz. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"></script>
+
+
+<!-- Including InstantSearch.js library and styling -->
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.3.3/dist/instantsearch-theme-algolia.min.css">
+
+<script>
+// Instanciating InstantSearch.js with Algolia credentials
+const search = instantsearch({
+  appId: 'TE1537XNZ4',
+  apiKey: 'c3967c693f4a1d3ca8ed221f259c6a5f',
+  indexName: 'zoooot.xyz',
+  searchParameters: {
+    restrictSearchableAttributes: [
+      'title',
+      'content'
+    ]
+  }
+});
+
+const hitTemplate = function(hit) {
+  const url = hit.url;
+  const title = hit._highlightResult.title.value;
+  const content = hit._highlightResult.html.value;
+
+  return `
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+        <div class="archive__item-excerpt" itemprop="description">${content}</div>
+      </article>
+    </div>
+  `;
+}
+
+// Adding searchbar and results widgets
+search.addWidget(
+  instantsearch.widgets.searchBox({
+    container: '.search-searchbar',
+    poweredBy: true,
+    placeholder: 'Enter your search term...'
+  })
+);
+search.addWidget(
+  instantsearch.widgets.hits({
+    container: '.search-hits',
+    templates: {
+      item: hitTemplate
+    }
+  })
+);
+
+// Starting the search
+search.start();
+</script>
+
+
+
+
+
+
+  </body>
+</html>

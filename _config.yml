@@ -98,8 +98,12 @@ exclude:
   - Rakefile
   - README
   - tmp
+  - netlify.toml
+  - Gemfile
+  - Gemfile.lock
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  - /misc
 keep_files:
   - .git
   - .svn
@@ -191,7 +195,7 @@ comments:
   disqus:
     shortname: "www-zoooot-xyz"
 
-exclude: [misc]
+# exclude: [misc]
 
 defaults:
   # _posts
