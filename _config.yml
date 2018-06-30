@@ -1,11 +1,11 @@
 theme: minimal-mistakes-jekyll
 repository: jamesstout/jamesstout.github.io
 minimal_mistakes_skin: "mint" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum" "sunrise"
-name: &NAME "zoooot.xyz"
+name: &NAME "stouty.xyz"
 title: *NAME
 title_separator: "|"
 description: "James Stout. iOS/web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather."
-url: "https://www.zoooot.xyz"
+url: "https://stouty.xyz"
 
 search: true
 # search_provider: lunr
