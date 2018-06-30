@@ -12,9 +12,10 @@ search: true
 show_dir_listing: false
 
 search_provider: algolia
+
 algolia:
   application_id         : TE1537XNZ4
-  index_name             : zoooot.xyz
+  index_name             : stouty.xyz
   search_only_api_key    : c3967c693f4a1d3ca8ed221f259c6a5f
   powered_by             : true
   files_to_exclude       :
@@ -29,9 +30,23 @@ algolia:
     - index.html
     - 404.html
   settings:
+    attributesForFaceting:
+      - type
+      - searchable(categories)
+      - searchable(tags)
+      - searchable(title)
+    searchableAttributes:
+      - title
+      - unordered(content)
+      - collection,categories,tags
+    attributesToHighlight:
+      - title
+      - content
+      - html
+      - categories
+      - tags
     highlightPreTag: '<em class="custom_highlight">'
     highlightPostTag: '</em>'
-
 
 twitter:
   username: "stoutyhk"
