@@ -4,7 +4,6 @@ title: First and Twenty
 date:   2018-04-15 20:29:01 +0800
 categories: iOS
 tags: iOS apps
-comments: false
 related: false
 excerpt: "My iPhone home screen."
 ---

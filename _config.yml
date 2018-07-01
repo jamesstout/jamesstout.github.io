@@ -89,7 +89,6 @@ author:
 include:
   - _pages
   - _redirects
-  - "*.well-known"
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -122,6 +121,8 @@ exclude:
 keep_files:
   - .git
   - .svn
+  - "*.well-known"
+  - .well-known/
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
@@ -205,10 +206,10 @@ compress_html:
 # github:
 #     repository_url: https://github.com/jamesstout/jamesstout.github.io
 
-comments:
-  provider: "disqus"
-  disqus:
-    shortname: "stouty-xyz"
+# comments:
+#   provider: "disqus"
+#   disqus:
+#     shortname: "stouty-xyz"
 
 # exclude: [misc]
 
@@ -219,7 +220,6 @@ defaults:
       type: posts
     values:
       read_time: true
-      comments: true
       layout: single
       author_profile: true
       share: false

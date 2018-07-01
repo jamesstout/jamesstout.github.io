@@ -7,5 +7,4 @@ tags:
   - link
 link: https://www.vanityfair.com/hollywood/2018/04/westworld-season-2-burning-questions-anthony-hopkins-dead-shogun-world
 related: false
-comments: false
 ---
