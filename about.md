@@ -7,7 +7,7 @@ header:
     image: /assets/images/IMG_8719.jpg
 ---
 
-XXX Hi, I'm James - an English guy living in Hong Kong - into technology, photos, comedy, smashing telly, Apple, iOS/Mac development and, of course, the weather.
+Hi, I'm James - an English guy living in Hong Kong - into technology, photos, comedy, smashing telly, Apple, iOS/Mac development and, of course, the weather.
 
 I'm on [Twitter][1] for day to day stuff and links. I sometimes post photos to [Instagram][3].
 
