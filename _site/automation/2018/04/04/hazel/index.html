@@ -780,7 +780,7 @@ logger <span class="s2">"Checking for shasum binaries"</span>
       const content = (hit._highlightResult.html !== undefined) ? hit._highlightResult.html.value : undefined;
       
       if(content === undefined){
-        return;
+        throw "whoops";
       }
       else{
         return `

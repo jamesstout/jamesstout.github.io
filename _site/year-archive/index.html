@@ -719,7 +719,7 @@
       const content = (hit._highlightResult.html !== undefined) ? hit._highlightResult.html.value : undefined;
       
       if(content === undefined){
-        return;
+        throw "whoops";
       }
       else{
         return `
