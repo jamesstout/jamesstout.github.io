@@ -58,4 +58,9 @@ var store = [{
         "excerpt":"[Neofetch](https://github.com/dylanaraps/neofetch) is a command-line system information tool written in bash 3.2+. >Neofetch displays information about your operating system, software and hardware in an aesthetic and visually pleasing way.Here's my MacBook Air info:>Neofetch supports almost 150 different operating systems. From Linux to Windows, all the way to more obscure operating systems...","categories": ["macOS"],
         "tags": ["neofetch","github"],
         "url": "https://stouty.xyz/macos/2018/07/08/neofetch/",
+        "teaser":null},{
+        "title": "HTTP vs HTTPS Test",
+        "excerpt":">Encrypted Websites Protect Our Privacy and are Significantly Faster.[HTTP vs HTTPS Test](https://www.httpvshttps.com/)","categories": ["internet"],
+        "tags": ["https"],
+        "url": "https://stouty.xyz/internet/2018/07/08/httpvshttps/",
         "teaser":null}]
