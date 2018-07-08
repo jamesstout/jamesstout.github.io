@@ -48,4 +48,9 @@ var store = [{
         "excerpt":"I always try to view package contents when I download a .pkg file, with something like Pacifist. The other day, doing that installed some malware: I hadn’t run it, just opened in Pacifist. Bitdefender caught and deleted it, but it’s the first time I’ve seen malware on my Mac. After...","categories": ["macOS"],
         "tags": ["macOS","software","malware"],
         "url": "https://stouty.xyz/macos/2018/05/05/suspicious-package/",
+        "teaser":null},{
+        "title": "Creative Selection: Inside Apple's Design Process During the Golden Age of Steve Jobs",
+        "excerpt":"","categories": ["links"],
+        "tags": ["link"],
+        "url": "https://stouty.xyz/links/2018/07/08/creative-selection/",
         "teaser":null}]
