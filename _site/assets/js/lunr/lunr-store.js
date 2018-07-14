@@ -64,8 +64,8 @@ var store = [{
         "tags": ["https"],
         "url": "https://stouty.xyz/internet/2018/07/08/httpvshttps/",
         "teaser":null},{
-        "title": "Debugging PHP with VSCode, Vagrant and Xdebug",
-        "excerpt":"Finally: [Biggify] ","categories": ["webdev"],
+        "title": "Debugging PHP with VS Code, Vagrant and XDebug",
+        "excerpt":"How to configure VS Code and XDebug to debug PHP1 running in a Vagrant box. Finally: [Biggify]             What? No HTTPS PHP.net? Come on… &#8617;       ","categories": ["webdev"],
         "tags": ["vagrant","vscode","php","xdebug"],
         "url": "https://stouty.xyz/webdev/2018/07/14/vagrant-vscode-php-xdebug/",
         "teaser":null}]
