@@ -24,6 +24,7 @@ algolia:
     - year-archive/*.html
     - page*/*.html
     - page*/
+    - piwik/
     - year-archive/
     - tags/
     - categories/
