@@ -63,4 +63,9 @@ var store = [{
         "excerpt":"  Encrypted Websites Protect Our Privacy and are Significantly Faster. HTTP vs HTTPS Test  ","categories": ["internet"],
         "tags": ["https"],
         "url": "https://stouty.xyz/internet/2018/07/08/httpvshttps/",
+        "teaser":null},{
+        "title": "Debugging PHP with VSCode, Vagrant and Xdebug",
+        "excerpt":"Finally: [Biggify] ","categories": ["webdev"],
+        "tags": ["vagrant","vscode","php","xdebug"],
+        "url": "https://stouty.xyz/webdev/2018/07/14/vagrant-vscode-php-xdebug/",
         "teaser":null}]

@@ -1,4 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2018-07-08T18:30:23+08:00</updated><id>https://stouty.xyz/</id><title type="html">stouty.xyz</title><subtitle>James Stout. CTO. iOS. Web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">HTTP vs HTTPS Test</title><link href="https://stouty.xyz/internet/2018/07/08/httpvshttps/" rel="alternate" type="text/html" title="HTTP vs HTTPS Test" /><published>2018-07-08T10:37:01+08:00</published><updated>2018-07-08T10:37:01+08:00</updated><id>https://stouty.xyz/internet/2018/07/08/httpvshttps</id><content type="html" xml:base="https://stouty.xyz/internet/2018/07/08/httpvshttps/">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2018-07-14T12:43:42+08:00</updated><id>https://stouty.xyz/</id><title type="html">stouty.xyz</title><subtitle>James Stout. CTO. iOS. Web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Debugging PHP with VSCode, Vagrant and Xdebug</title><link href="https://stouty.xyz/webdev/2018/07/14/vagrant-vscode-php-xdebug/" rel="alternate" type="text/html" title="Debugging PHP with VSCode, Vagrant and Xdebug" /><published>2018-07-14T12:04:28+08:00</published><updated>2018-07-14T12:04:28+08:00</updated><id>https://stouty.xyz/webdev/2018/07/14/vagrant-vscode-php-xdebug</id><content type="html" xml:base="https://stouty.xyz/webdev/2018/07/14/vagrant-vscode-php-xdebug/">&lt;script src=&quot;https://gist.github.com/jamesstout/fd6eae2b2ba34e7f32ff3e1a179d55fe.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Finally:&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/vagrant-vscode-php-xdebug/debugging.png&quot; src=&quot;/assets/images/posts/vagrant-vscode-php-xdebug/debugging-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;VSCode screenshot&quot; /&gt;
+&lt;span style=&quot;font-size: 0.6em;&quot;&gt;&lt;a href=&quot;/assets/images/posts/vagrant-vscode-php-xdebug/debugging.png&quot;&gt;[Biggify]&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;</content><author><name>James Stout</name></author><category term="vagrant" /><category term="vscode" /><category term="php" /><category term="xdebug" /><summary type="html">Configure XDebug, Visual Studio Code for a Vagrant VM</summary></entry><entry><title type="html">HTTP vs HTTPS Test</title><link href="https://stouty.xyz/internet/2018/07/08/httpvshttps/" rel="alternate" type="text/html" title="HTTP vs HTTPS Test" /><published>2018-07-08T10:37:01+08:00</published><updated>2018-07-08T10:37:01+08:00</updated><id>https://stouty.xyz/internet/2018/07/08/httpvshttps</id><content type="html" xml:base="https://stouty.xyz/internet/2018/07/08/httpvshttps/">&lt;blockquote&gt;
   &lt;p&gt;Encrypted Websites Protect Our Privacy and are Significantly Faster.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -277,19 +282,4 @@ Cellar        Homebrew      bin           include       man           pear      
       &lt;p&gt;Look at that beautiful icon: &lt;img data-src=&quot;/assets/images/posts/podcasts/small-overcast.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Overcast iOS app icon&quot; /&gt; &lt;a href=&quot;#fnref:fn-icon&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>James Stout</name></author><category term="podcasts" /><category term="overcast" /><category term="python" /><category term="OPML" /><summary type="html">The list of podcasts I listen to.</summary></entry><entry><title type="html">First and Twenty</title><link href="https://stouty.xyz/ios/2018/04/15/first-and-twenty/" rel="alternate" type="text/html" title="First and Twenty" /><published>2018-04-15T20:29:01+08:00</published><updated>2018-04-15T20:29:01+08:00</updated><id>https://stouty.xyz/ios/2018/04/15/first-and-twenty</id><content type="html" xml:base="https://stouty.xyz/ios/2018/04/15/first-and-twenty/">&lt;p&gt;First &amp;amp; 20 - well, 28 now (on an iPhone 8).&lt;/p&gt;
-
-&lt;p&gt;Initially inspired by the (now defunct) &lt;a href=&quot;https://web.archive.org/web/20150410090518/http://www.firstand20.com&quot;&gt;First &amp;amp; 20&lt;/a&gt;&lt;sup id=&quot;fnref:fn-first&quot;&gt;&lt;a href=&quot;#fn:fn-first&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/first-and-twenty/IMG_9506.JPG&quot; src=&quot;/assets/images/posts/first-and-twenty/IMG_9506-lq.JPG&quot; class=&quot;lazyload blur-up&quot; alt=&quot;iPhone 8 home screen&quot; /&gt;
-&lt;em&gt;My current iPhone 8 Home Screen&lt;/em&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:fn-first&quot;&gt;
-      &lt;p&gt;A Collection of iPhone &amp;amp; iPad Home Screens from some very talented designers, developers and tech writers. &lt;a href=&quot;#fnref:fn-first&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>James Stout</name></author><category term="iOS" /><category term="apps" /><summary type="html">My iPhone home screen.</summary></entry></feed>
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="podcasts" /><category term="overcast" /><category term="python" /><category term="OPML" /><summary type="html">The list of podcasts I listen to.</summary></entry></feed>
