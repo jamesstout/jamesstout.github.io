@@ -68,4 +68,9 @@ var store = [{
         "excerpt":"How to configure VS Code and Xdebug to debug PHP1 running in a Vagrant box. Finally: [Biggify]             What? No HTTPS PHP.net? Come on… &#8617;       ","categories": ["webdev"],
         "tags": ["vagrant","vscode","php","xdebug"],
         "url": "https://stouty.xyz/webdev/2018/07/14/vagrant-vscode-php-xdebug/",
+        "teaser":null},{
+        "title": "Reverse Engineering HKBN Speed Test for macOS",
+        "excerpt":"HKBN seem to no longer have a macOS app to test local broadband speeds, only Windows. They previously had an app called HKBNLocalSpeedTest. Sure you could just use speedtest.net, but I wondered if I could reverse engineer their old app? Alas I no longer have the app, but analysed it...","categories": ["macOS"],
+        "tags": ["HKBN","macOS","iperf","upnpc","bash","AppleScript","speedtest"],
+        "url": "https://stouty.xyz/macos/2018/08/18/hkbn/",
         "teaser":null}]
