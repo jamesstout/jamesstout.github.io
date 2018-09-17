@@ -21,9 +21,9 @@
     url: /tags/
   - title: "things"
     url: /things-i-use/
-  # - title: "Collections"
-  #   url: /collection-archive/
-  # - title: "External Link"
-  #   url: https://google.com
+  - title: "links"
+    url: /links/
+  - title: "snippets"
+    url: /snippets/
   - title: "sitemap"
     url: /sitemap.xml
