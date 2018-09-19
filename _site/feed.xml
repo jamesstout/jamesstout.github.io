@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2018-09-20T04:05:17+08:00</updated><id>https://stouty.xyz/</id><title type="html">stouty.xyz</title><subtitle>James Stout. CTO. iOS. Web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">asciinema</title><link href="https://stouty.xyz/macos/2018/09/20/asciinema/" rel="alternate" type="text/html" title="asciinema" /><published>2018-09-20T01:56:01+08:00</published><updated>2018-09-20T01:56:01+08:00</updated><id>https://stouty.xyz/macos/2018/09/20/asciinema</id><content type="html" xml:base="https://stouty.xyz/macos/2018/09/20/asciinema/">&lt;p&gt;I’ve been playing around with &lt;a href=&quot;https://asciinema.org/&quot;&gt;asciinema&lt;/a&gt;:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2018-09-20T04:14:03+08:00</updated><id>https://stouty.xyz/</id><title type="html">stouty.xyz</title><subtitle>James Stout. CTO. iOS. Web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">asciinema</title><link href="https://stouty.xyz/macos/2018/09/20/asciinema/" rel="alternate" type="text/html" title="asciinema" /><published>2018-09-20T01:56:01+08:00</published><updated>2018-09-20T01:56:01+08:00</updated><id>https://stouty.xyz/macos/2018/09/20/asciinema</id><content type="html" xml:base="https://stouty.xyz/macos/2018/09/20/asciinema/">&lt;p&gt;I’ve been playing around with &lt;a href=&quot;https://asciinema.org/&quot;&gt;asciinema&lt;/a&gt;:&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Record and share your terminal sessions, the right way.&lt;/p&gt;
@@ -17,8 +17,6 @@
 &lt;blockquote&gt;
   &lt;p&gt;Install ID is a random ID (UUID v4) generated locally when you run asciinema for the first time, and saved at $HOME/.config/asciinema/install-id. It’s purpose is to connect local machine with uploaded recordings, so they can later be associated with asciinema.org 15 account. This way we decouple uploading from account creation, allowing them to happen in any order.&lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;asciinema-player src=&quot;/assets/images/posts/asciinema/202045.cast&quot; cols=&quot;116&quot; rows=&quot;28&quot;&gt;&lt;/asciinema-player&gt;
 
 &lt;hr /&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
