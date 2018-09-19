@@ -73,4 +73,9 @@ var store = [{
         "excerpt":"HKBN seem to no longer have a macOS app to test local broadband speeds, only Windows. They previously had an app called HKBNLocalSpeedTest. Sure you could just use speedtest.net, but I wondered if I could reverse engineer their old app? Alas I no longer have the app, but analysed it...","categories": ["macOS"],
         "tags": ["HKBN","macOS","iperf","upnpc","bash","AppleScript","speedtest"],
         "url": "https://stouty.xyz/macos/2018/08/18/hkbn/",
+        "teaser":null},{
+        "title": "asciinema",
+        "excerpt":"I’ve been playing around with asciinema: Record and share your terminal sessions, the right way. Forget screen recording apps and blurry video. Enjoy a lightweight, purely text-based approach to terminal recording. It’s simple to install1 and use and has a few sharing and embedding options. Here’s me starting up a...","categories": ["macOS"],
+        "tags": ["terminal","macOS","bash"],
+        "url": "https://stouty.xyz/macos/2018/09/20/asciinema/",
         "teaser":null}]

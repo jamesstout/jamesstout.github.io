@@ -1,4 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2018-09-18T00:20:58+08:00</updated><id>https://stouty.xyz/</id><title type="html">stouty.xyz</title><subtitle>James Stout. CTO. iOS. Web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Reverse Engineering HKBN Speed Test for macOS</title><link href="https://stouty.xyz/macos/2018/08/18/hkbn/" rel="alternate" type="text/html" title="Reverse Engineering HKBN Speed Test for macOS" /><published>2018-08-18T17:29:01+08:00</published><updated>2018-08-18T17:29:01+08:00</updated><id>https://stouty.xyz/macos/2018/08/18/hkbn</id><content type="html" xml:base="https://stouty.xyz/macos/2018/08/18/hkbn/">&lt;p&gt;HKBN seem to no longer have a macOS app to test local broadband speeds, only &lt;a href=&quot;https://www.hkbn.net/new/en/speedtest.shtml&quot;&gt;Windows&lt;/a&gt;. They previously had an app called &lt;em&gt;HKBNLocalSpeedTest&lt;/em&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2018-09-20T04:05:17+08:00</updated><id>https://stouty.xyz/</id><title type="html">stouty.xyz</title><subtitle>James Stout. CTO. iOS. Web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">asciinema</title><link href="https://stouty.xyz/macos/2018/09/20/asciinema/" rel="alternate" type="text/html" title="asciinema" /><published>2018-09-20T01:56:01+08:00</published><updated>2018-09-20T01:56:01+08:00</updated><id>https://stouty.xyz/macos/2018/09/20/asciinema</id><content type="html" xml:base="https://stouty.xyz/macos/2018/09/20/asciinema/">&lt;p&gt;I’ve been playing around with &lt;a href=&quot;https://asciinema.org/&quot;&gt;asciinema&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Record and share your terminal sessions, the right way.&lt;/p&gt;
+
+  &lt;p&gt;Forget screen recording apps and blurry video. Enjoy a lightweight, purely text-based approach to terminal recording.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It’s simple to &lt;a href=&quot;https://asciinema.org/docs/installation&quot;&gt;install&lt;/a&gt;&lt;sup id=&quot;fnref:fn-req&quot;&gt;&lt;a href=&quot;#fn:fn-req&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; and &lt;a href=&quot;https://asciinema.org/docs/usage&quot;&gt;use&lt;/a&gt; and has a few &lt;a href=&quot;https://asciinema.org/docs/embedding&quot;&gt;sharing and embedding&lt;/a&gt; options.&lt;/p&gt;
+
+&lt;p&gt;Here’s me starting up a &lt;a href=&quot;https://www.vagrantup.com/&quot;&gt;Vagrant&lt;/a&gt; box:&lt;/p&gt;
+
+&lt;script src=&quot;https://asciinema.org/a/MEjWz4OBlLHalz4xuyTHkCaSH.js&quot; id=&quot;asciicast-MEjWz4OBlLHalz4xuyTHkCaSH&quot; async=&quot;&quot; data-preload=&quot;false&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;A nice feature is being able to record some casts, before creating an account, then later, if you create an account, your recordings&lt;sup id=&quot;fnref:fn-id&quot;&gt;&lt;a href=&quot;#fn:fn-id&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; associated with your account:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Install ID is a random ID (UUID v4) generated locally when you run asciinema for the first time, and saved at $HOME/.config/asciinema/install-id. It’s purpose is to connect local machine with uploaded recordings, so they can later be associated with asciinema.org 15 account. This way we decouple uploading from account creation, allowing them to happen in any order.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;asciinema-player src=&quot;/assets/images/posts/asciinema/202045.cast&quot; cols=&quot;116&quot; rows=&quot;28&quot;&gt;&lt;/asciinema-player&gt;
+
+&lt;hr /&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:fn-req&quot;&gt;
+      &lt;p&gt;Requires &lt;a href=&quot;https://www.python.org/&quot;&gt;Python 3&lt;/a&gt;, or you could use a &lt;a href=&quot;https://asciinema.org/docs/installation#running-in-docker-container&quot;&gt;Docker container&lt;/a&gt;. &lt;a href=&quot;#fnref:fn-req&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:fn-id&quot;&gt;
+      &lt;p&gt;From that specific machine. &lt;a href=&quot;#fnref:fn-id&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="terminal" /><category term="macOS" /><category term="bash" /><summary type="html">asciinema. Record and share your terminal sessions, the right way.</summary></entry><entry><title type="html">Reverse Engineering HKBN Speed Test for macOS</title><link href="https://stouty.xyz/macos/2018/08/18/hkbn/" rel="alternate" type="text/html" title="Reverse Engineering HKBN Speed Test for macOS" /><published>2018-08-18T17:29:01+08:00</published><updated>2018-08-18T17:29:01+08:00</updated><id>https://stouty.xyz/macos/2018/08/18/hkbn</id><content type="html" xml:base="https://stouty.xyz/macos/2018/08/18/hkbn/">&lt;p&gt;HKBN seem to no longer have a macOS app to test local broadband speeds, only &lt;a href=&quot;https://www.hkbn.net/new/en/speedtest.shtml&quot;&gt;Windows&lt;/a&gt;. They previously had an app called &lt;em&gt;HKBNLocalSpeedTest&lt;/em&gt;.&lt;/p&gt;
 
 &lt;p&gt;Sure you could just use &lt;a href=&quot;http://www.speedtest.net/&quot;&gt;speedtest.net&lt;/a&gt;, but I wondered if I could reverse engineer their old app?&lt;/p&gt;
 
@@ -388,48 +420,4 @@ Cellar        Homebrew      bin           include       man           pear      
 
 &lt;/div&gt;
 
-&lt;p&gt;[&lt;a href=&quot;https://www.dailydot.com/upstream/prince-estate-original-nothing-compares-2-u/&quot;&gt;Link&lt;/a&gt;]&lt;/p&gt;</content><author><name>James Stout</name></author><category term="music" /><category term="youtube" /><category term="prince" /><summary type="html">{% include video id=”cpGA0azFdCs” provider=”youtube” %}</summary></entry><entry><title type="html">Westworld: Eight Lingering Questions from Season 1</title><link href="https://stouty.xyz/links/2018/04/22/westworld-catchup/" rel="alternate" type="text/html" title="Westworld: Eight Lingering Questions from Season 1" /><published>2018-04-22T18:58:01+08:00</published><updated>2018-04-22T18:58:01+08:00</updated><id>https://stouty.xyz/links/2018/04/22/westworld-catchup</id><content type="html" xml:base="https://stouty.xyz/links/2018/04/22/westworld-catchup/"></content><author><name>James Stout</name></author><category term="link" /><summary type="html"></summary></entry><entry><title type="html">OPML to Markdown</title><link href="https://stouty.xyz/code/2018/04/22/opml-to-markdown/" rel="alternate" type="text/html" title="OPML to Markdown" /><published>2018-04-22T16:29:01+08:00</published><updated>2018-04-22T16:29:01+08:00</updated><id>https://stouty.xyz/code/2018/04/22/opml-to-markdown</id><content type="html" xml:base="https://stouty.xyz/code/2018/04/22/opml-to-markdown/">&lt;p&gt;When you export your podcast subscriptions from &lt;a href=&quot;https://overcast.fm/&quot;&gt;Overcast&lt;/a&gt;, you get an &lt;a href=&quot;https://en.wikipedia.org/wiki/OPML&quot;&gt;OPML&lt;/a&gt; file something like this:&lt;/p&gt;
-
-&lt;script src=&quot;https://gist.github.com/jamesstout/a4050fdfda4f1fad5d5637ff35293549.js&quot;&gt;&lt;/script&gt;
-
-&lt;div class=&quot;premonition warning&quot;&gt;&lt;div class=&quot;fa fa-exclamation-circle&quot;&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;p&gt;Note that the file contains usernames and passwords in the feed URL&lt;/p&gt;
-
-
-&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;I wanted to convert the OPML to a Markdown list. Something like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;htmlUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;RSS&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;(xmlUrl)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Well a little fancier, I wanted a &lt;a href=&quot;https://fontawesome.com/icons/rss-square?style=solid&quot;&gt;FontAwesome&lt;/a&gt; RSS SVG icon as the feed link:&lt;/p&gt;
-
-&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;htmlUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;style=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;color:#fa9b39&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;xmlURL&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sameAs&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;i&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fas fa-fw fa-rss-square&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;aria-hidden=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;true&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;I customized a &lt;a href=&quot;https://gist.github.com/domdavis/9988867&quot;&gt;Python script&lt;/a&gt; by Dom Davis to:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Output an unordered list instead of headers.&lt;/li&gt;
-  &lt;li&gt;Sort the list alphabetically.&lt;/li&gt;
-  &lt;li&gt;In addition to the title (&lt;code class=&quot;highlighter-rouge&quot;&gt;text&lt;/code&gt;)
-    &lt;ul&gt;
-      &lt;li&gt;extract the feed URL (&lt;code class=&quot;highlighter-rouge&quot;&gt;xmlUrl&lt;/code&gt;)&lt;/li&gt;
-      &lt;li&gt;and the podcast home page (&lt;code class=&quot;highlighter-rouge&quot;&gt;htmlUrl&lt;/code&gt;)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Strip username:password from feed URLs.&lt;/li&gt;
-  &lt;li&gt;Strip &lt;code class=&quot;highlighter-rouge&quot;&gt;(Ad-Free)&lt;/code&gt; from titles as they made each line too long.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;script src=&quot;https://gist.github.com/jamesstout/39405a465e94bde0c6478a1a1dcf64f4.js&quot;&gt;&lt;/script&gt;
-
-&lt;p&gt;This generates the Markdown for you to paste into your post:
-&lt;script src=&quot;https://gist.github.com/jamesstout/213b9376d740b8b2234d1e4a7f3025b3.js&quot;&gt;&lt;/script&gt;&lt;/p&gt;
-
-&lt;div class=&quot;premonition info&quot;&gt;&lt;div class=&quot;fa fa-info-circle&quot;&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;p&gt;To remove the real username:password from &lt;code class=&quot;highlighter-rouge&quot;&gt;opml2md.py&lt;/code&gt; before posting the gist, a little &lt;code class=&quot;highlighter-rouge&quot;&gt;sed&lt;/code&gt;:&lt;/p&gt;
-
-
-&lt;/div&gt;&lt;/div&gt;
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;s/passwd = .*/passwd = &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;username:password@&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&quot;&lt;/span&gt; opml2md.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>James Stout</name></author><category term="podcasts" /><category term="overcast" /><category term="python" /><category term="OPML" /><category term="markdown" /><summary type="html">How to convert OPML to Markdown.</summary></entry></feed>
+&lt;p&gt;[&lt;a href=&quot;https://www.dailydot.com/upstream/prince-estate-original-nothing-compares-2-u/&quot;&gt;Link&lt;/a&gt;]&lt;/p&gt;</content><author><name>James Stout</name></author><category term="music" /><category term="youtube" /><category term="prince" /><summary type="html">{% include video id=”cpGA0azFdCs” provider=”youtube” %}</summary></entry><entry><title type="html">Westworld: Eight Lingering Questions from Season 1</title><link href="https://stouty.xyz/links/2018/04/22/westworld-catchup/" rel="alternate" type="text/html" title="Westworld: Eight Lingering Questions from Season 1" /><published>2018-04-22T18:58:01+08:00</published><updated>2018-04-22T18:58:01+08:00</updated><id>https://stouty.xyz/links/2018/04/22/westworld-catchup</id><content type="html" xml:base="https://stouty.xyz/links/2018/04/22/westworld-catchup/"></content><author><name>James Stout</name></author><category term="link" /><summary type="html"></summary></entry></feed>

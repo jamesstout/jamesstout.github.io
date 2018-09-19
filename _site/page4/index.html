@@ -9,47 +9,47 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Adobe Shenanigans | stouty.xyz</title>
-<meta name="description" content="What on Earth are Adobe up to?">
+<!-- begin _includes/seo.html --><title>stouty.xyz &#124; Page 4</title>
+<meta name="description" content="James Stout. CTO. iOS. Web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather.">
 
 
 
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="stouty.xyz">
-<meta property="og:title" content="Adobe Shenanigans">
-<meta property="og:url" content="https://stouty.xyz/macos/2018/04/15/adobe-shenanigans/">
+<meta property="og:title" content="stouty.xyz">
+<meta property="og:url" content="https://stouty.xyz/page4/">
 
 
-  <meta property="og:description" content="What on Earth are Adobe up to?">
 
 
+  <meta property="og:image" content="https://stouty.xyz/assets/images/IMG_8719.jpg">
 
 
 
   <meta name="twitter:site" content="@stoutyhk">
-  <meta name="twitter:title" content="Adobe Shenanigans">
-  <meta name="twitter:description" content="What on Earth are Adobe up to?">
-  <meta name="twitter:url" content="https://stouty.xyz/macos/2018/04/15/adobe-shenanigans/">
+  <meta name="twitter:title" content="stouty.xyz">
+  <meta name="twitter:description" content="James Stout. CTO. iOS. Web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather.">
+  <meta name="twitter:url" content="https://stouty.xyz/page4/">
 
   
-    <meta name="twitter:card" content="summary">
-    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://stouty.xyz/assets/images/IMG_8719.jpg">
   
 
   
 
 
 
-  <meta property="article:published_time" content="2018-04-15T01:29:01+08:00">
 
 
 
 
 
+<link rel="canonical" href="https://stouty.xyz/page4/">
 
-<link rel="canonical" href="https://stouty.xyz/macos/2018/04/15/adobe-shenanigans/">
 
+  <link rel="prev" href="https://stouty.xyz/page3/">
 
 
 
@@ -152,7 +152,7 @@
 
   </head>
 
-  <body class="layout--single">
+  <body class="layout--home">
 
     <!--[if lt IE 9]>
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
@@ -225,6 +225,28 @@
 
     <div class="initial-content">
       
+  
+
+
+
+
+
+
+
+
+
+
+
+<div class="page__hero"
+  style=" "
+>
+  
+    <img src="/assets/images/IMG_8719.jpg" alt="Site header image - image of HK looking west from HK Island" class="page__hero-image lazyload blur-up">
+  
+  
+</div>
+
+
 
 
 
@@ -361,197 +383,23 @@
   </div>
 
 
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Adobe Shenanigans">
-    <meta itemprop="description" content="What on Earth are Adobe up to?">
-    <meta itemprop="datePublished" content="April 15, 2018">
+  <div class="archive">
     
-
-    <div class="page__inner-wrap">
-      
-        <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Adobe Shenanigans
-</h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  1 minute read
-</p>
-          
-        </header>
-      
-
-      <section class="page__content" itemprop="text">
-        
-        <p><em>What on Earth are Adobe up to?</em></p>
-
-<p>I found a random folder in my <a href="https://github.com/github/gitignore"><code class="highlighter-rouge">~/.gitignore-boilerplates</code></a> repo (created by <a href="https://github.com/simonwhitaker/gibo">gibo</a>):</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: ~/.gitignore-boilerplates on master
-<span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-ld</span> <span class="k">*</span>/
-drwxr-xr-x  10 james  staff   320 Apr 15 00:54 .git/
-drwxr-xr-x   3 james  staff    96 Mar 17 15:09 .github/
-drwxr-xr-x  61 james  staff  1952 Mar 17 15:09 Global/
-drwx------+  3 root   staff    96 Apr 15 00:39 Library/
-</code></pre></div></div>
-
-<p>The <code class="highlighter-rouge">Library</code> folder, created by <code class="highlighter-rouge">root</code> contains an Adobe log file:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-l</span> Library/Logs/AdobeDownload/<span class="k">*</span>
-<span class="nt">-rw-rw-rw-</span>@ 1 root  staff  5184 Mar 27 01:14 Library/Logs/AdobeDownload/DLM.log
-</code></pre></div></div>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cat </span>Library/Logs/AdobeDownload/DLM.log | <span class="nb">grep </span>extra
-
-Going to download the file at /Users/james/.extra/Adobe/AdobeGCClient/AdobeGCClient.zip
-Unable to create directory /Users/james/.extra/Adobe/AdobeGCClient/. Error is 512 and error domain is NSCocoaErrorDomain.
-The file “.extra” couldn’t be saved <span class="k">in </span>the folder “james”.
-failed to create a <span class="nb">dir</span> - /Users/james/.extra/Adobe/AdobeGCClient/ on <span class="nb">local </span>disk.
-</code></pre></div></div>
-
-<p>Eh? <code class="highlighter-rouge">.extra</code>? I already have a file named that in that location, hence the error. What’s it up to?</p>
-
-<p>I found another log file here <code class="highlighter-rouge">/Users/james/Library/Logs/AdobeDownload/DLM.log</code></p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| *******************start of Download****************
-| GDE Version is 9.0.0.4 (BuildVersion: 6.0; BuildDate: Wed Mar 04 2015 21:34:10 )
-| The file to be downloaded is http://agsupdate.adobe.com/osx/AGC_4_5_0_814_osx10_cef.zip
-| Going to download the file at /Users/james/Library/Application Support/ImageOptim/Adobe/AdobeGCClient/AdobeGCClient.zip
-| Preference: Client has set the preference for single stream download
-| **File download complete.**
-| *******************End****************
-</code></pre></div></div>
-
-<p>Eh? <code class="highlighter-rouge">.../ImageOptim/Adobe/AdobeGCClient/AdobeGCClient.zip</code></p>
-
-<p>So I went searching:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find /  <span class="nt">-name</span> AdobeGCClient <span class="nt">-print</span> 2&gt;/dev/null
-find ~  <span class="nt">-name</span> AdobeGCClient <span class="nt">-print</span> 2&gt;/dev/null
-</code></pre></div></div>
-
-<p>After a bit of <code class="highlighter-rouge">awk</code> and <code class="highlighter-rouge">uniq</code>, I found:</p>
-
-<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Adobe/AdobeGCClient/AdobeGCClient.app
-/Adobe/AdobeGCClient/AdobeGCClientNew.app
-/Adobe/AdobeGCClient/temp
-/Applications/Utilities/Adobe Application Manager/AdobeGCClient
-/Library/Application Support/Adobe/AdobeGCClient/AdobeGCClient.app
-/Library/QuickTime/DVCPROHDCodec.component/Adobe/AdobeGCClient/AdobeGCClient.app
-/Library/QuickTime/DVCPROHDCodec.component/Adobe/AdobeGCClient/AdobeGCClientNew.app
-/Users/james/Library/Application Support/Bartender/Adobe
-/Users/james/Library/Application Support/Dropbox/Adobe/AdobeGCClient/AdobeGCClient.app
-/Users/james/Library/Application Support/Dropbox/Adobe/AdobeGCClient/AdobeGCClientNew.app
-/Users/james/Library/Application Support/Google/Chrome/Default/Extensions/kbmfpngjjgdllneeigpgjifpgocmfgmb/Adobe/AdobeGCClient
-/Users/james/Library/Application Support/ImageOptim/Adobe/AdobeGCClient/AdobeGCClient.app
-/Users/james/Library/Application Support/ImageOptim/Adobe/AdobeGCClient/AdobeGCClientNew.app
-/Users/james/Library/Application Support/Quick Look/Adobe/AdobeGCClient/AdobeGCClient.app
-/Users/james/Library/Application Support/Quick Look/Adobe/AdobeGCClient/AdobeGCClientNew.app
-</code></pre></div></div>
-
-<p>Adobe apps and files in random places. They all look like this:</p>
-
-<p><img data-src="/assets/images/posts/adobe-shenanigans/Adobe-Screen-Shot.png" src="/assets/images/posts/adobe-shenanigans/Adobe-Screen-Shot-lq.png" class="lazyload blur-up" alt="macOS Finder screenshot" /></p>
-
-<p>I’ve deleted them all for now, no one else seems to have reported this when I search on Google.</p>
-
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
-    <span itemprop="keywords">
+      <h1 id="page-title" class="page__title"></h1>
     
-      
-      
-      <a href="/tags/#adobe" class="page__taxonomy-item" rel="tag">adobe</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#adobedownload" class="page__taxonomy-item" rel="tag">adobedownload</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#adobegcclient" class="page__taxonomy-item" rel="tag">adobegcclient</a>
-    
-    </span>
-  </p>
-
-
+    <h3 class="archive__subtitle">Recent Posts</h3>
 
 
   
 
 
-  
-  
-  
 
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/categories/#macos" class="page__taxonomy-item" rel="tag">macOS</a>
-    
-    </span>
-  </p>
-
-
-        
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-04-15T01:29:01+08:00">April 15, 2018</time></p>
-        
-      </footer>
-
-      
-
-      
-  <nav class="pagination">
-    
-      <a href="/automation/2018/04/04/hazel/" class="pagination--pager" title="Automate SHA Checksum Checks For Asuswrt-Merlin Firmware With Hazel
-">Previous</a>
-    
-    
-      <a href="/ios/2018/04/15/first-and-twenty/" class="pagination--pager" title="First and Twenty
-">Next</a>
-    
-  </nav>
-
-    </div>
-
-    
-  </article>
-
-  
-  
-    <div class="page__related">
-      <h4 class="page__related-title">You May Also Enjoy</h4>
-      <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
+<div class="list__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/macos/2018/09/20/asciinema/" rel="permalink">asciinema
+        <a href="/jekyll/2018/04/01/welcome-to-jekyll/" rel="permalink">Welcome to Jekyll!
 </a>
       
     </h2>
@@ -564,99 +412,67 @@ find ~  <span class="nt">-name</span> AdobeGCClient <span class="nt">-print</spa
   less than 1 minute read
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">asciinema. Record and share your terminal sessions, the right way.
-</p>
+    <p class="archive__item-excerpt" itemprop="description">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different wa...</p>
   </article>
 </div>
-        
-          
 
 
 
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/macos/2018/08/18/hkbn/" rel="permalink">Reverse Engineering HKBN Speed Test for macOS
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  2 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Reverse Engineered HKBN Speed Test for macOS.
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/webdev/2018/07/14/vagrant-vscode-php-xdebug/" rel="permalink">Debugging PHP with VS Code, Vagrant and Xdebug
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  less than 1 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Configure Xdebug, Visual Studio Code for a Vagrant VM
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/internet/2018/07/08/httpvshttps/" rel="permalink">HTTP vs HTTPS Test
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  less than 1 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">
-  Encrypted Websites Protect Our Privacy and are Significantly Faster.
-
-
-</p>
-  </article>
-</div>
-        
-      </div>
-    </div>
+<nav class="pagination">
   
-  
+  <ul>
+    
+    
+      
+        <li><a href="/page3/">Previous</a></li>
+      
+    
+
+    
+    
+      <li><a href="/">1</a></li>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+        
+        
+        
+        <li><a href="/page2/">2</a></li>
+      
+    
+      
+        
+        
+        
+        <li><a href="/page3/">3</a></li>
+      
+    
+
+    
+    
+
+    
+      <li><a href="#" class="disabled current">4</a></li>
+    
+
+    
+    
+      <li><a href="#" class="disabled"><span aria-hidden="true">Next</span></a></li>
+    
+  </ul>
+</nav>
+
+
+
+  </div>
 </div>
     </div>
 
