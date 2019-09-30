@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.4 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -12,6 +12,8 @@
 <!-- begin _includes/seo.html --><title>First and Twenty | stouty.xyz</title>
 <meta name="description" content="My iPhone home screen.">
 
+
+  <meta name="author" content="James Stout">
 
 
 <meta property="og:type" content="article">
@@ -38,6 +40,8 @@
   
 
   
+    <meta name="twitter:creator" content="@stoutyhk">
+  
 
 
 
@@ -53,9 +57,16 @@
 
 
 
-
-
-
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "stouty.xyz",
+      "url": "https://stouty.xyz/"
+    
+  }
+</script>
 
 
 
@@ -145,6 +156,14 @@
   </head>
 
   <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
 
     <!--[if lt IE 9]>
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
@@ -157,7 +176,10 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
-        <a class="site-title" href="/">stouty.xyz</a>
+        <a class="site-title" href="/">
+          stouty.xyz
+          
+        </a>
         <ul class="visible-links"><li class="masthead__menu-item">
               <a href="/about/" >about</a>
             </li><li class="masthead__menu-item">
@@ -215,7 +237,7 @@
     
     
       <p class="author__bio" itemprop="description">
-        CTO. iOS/Web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather
+        iOS/Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather
       </p>
     
   </div>
@@ -457,12 +479,12 @@
     
       <div class="search-content">
         <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
-    <div class="search-hits"></div></div>
+  <div class="search-hits"></div></div>
 
       </div>
     
 
-    <div class="page__footer">
+    <div id="footer" class="page__footer">
       <footer>
         <!-- start custom footer snippets -->
 

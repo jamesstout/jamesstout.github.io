@@ -78,4 +78,14 @@ var store = [{
         "excerpt":"I’ve been playing around with asciinema: Record and share your terminal sessions, the right way. Forget screen recording apps and blurry video. Enjoy a lightweight, purely text-based approach to terminal recording. It’s simple to install1 and use and has a few sharing and embedding options. Here’s me starting up a...","categories": ["macOS"],
         "tags": ["terminal","macOS","bash"],
         "url": "https://stouty.xyz/macos/2018/09/20/asciinema/",
+        "teaser":null},{
+        "title": "Dotfile",
+        "excerpt":"An excellent list of dotfile resources on GitHub. What are dotfiles? (I can’t believe I’m linking to Quora) In UNIX file systems, dotfiles are text-based configurations files that stores settings of almost every application, service and tool running on your system. These files control the behavior of applications from boot...","categories": ["unix"],
+        "tags": ["terminal","macOS","bash"],
+        "url": "https://stouty.xyz/unix/2019/09/30/dotfiles/",
+        "teaser":null},{
+        "title": "Nextcloud Installation Scripts",
+        "excerpt":"Some great shell scripts from Nextcloud.   :boom: #DropDropbox  ","categories": ["unix"],
+        "tags": ["terminal","bash","nextcloud"],
+        "url": "https://stouty.xyz/unix/2019/09/30/nextcloud-installation-scripts/",
         "teaser":null}]

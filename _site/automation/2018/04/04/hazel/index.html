@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.16.4 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.16.6 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -12,6 +12,8 @@
 <!-- begin _includes/seo.html --><title>Automate SHA Checksum Checks For Asuswrt-Merlin Firmware With Hazel | stouty.xyz</title>
 <meta name="description" content="Hazel, routers, firmware and checksums.">
 
+
+  <meta name="author" content="James Stout">
 
 
 <meta property="og:type" content="article">
@@ -38,6 +40,8 @@
   
 
   
+    <meta name="twitter:creator" content="@stoutyhk">
+  
 
 
 
@@ -53,9 +57,16 @@
 
 
 
-
-
-
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "stouty.xyz",
+      "url": "https://stouty.xyz/"
+    
+  }
+</script>
 
 
 
@@ -145,6 +156,14 @@
   </head>
 
   <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
 
     <!--[if lt IE 9]>
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
@@ -157,7 +176,10 @@
     <div class="masthead__menu">
       <nav id="site-nav" class="greedy-nav">
         
-        <a class="site-title" href="/">stouty.xyz</a>
+        <a class="site-title" href="/">
+          stouty.xyz
+          
+        </a>
         <ul class="visible-links"><li class="masthead__menu-item">
               <a href="/about/" >about</a>
             </li><li class="masthead__menu-item">
@@ -215,7 +237,7 @@
     
     
       <p class="author__bio" itemprop="description">
-        CTO. iOS/Web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather
+        iOS/Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather
       </p>
     
   </div>
@@ -452,8 +474,8 @@ logger <span class="s2">"Checking for shasum binaries"</span>
 
 </span><span class="nb">cd</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">||</span> <span class="nb">exit </span>0<span class="p">;</span>
 
-<span class="nv">firmwareFile</span><span class="o">=</span><span class="k">$(</span><span class="nb">ls</span> <span class="nt">--</span> <span class="k">*</span>.trx<span class="k">)</span>
-<span class="nv">sha256sumFile</span><span class="o">=</span><span class="k">$(</span><span class="nb">ls</span> <span class="nt">--</span> <span class="k">*</span>.sha256<span class="k">)</span>
+<span class="nv">firmwareFile</span><span class="o">=</span><span class="si">$(</span><span class="nb">ls</span> <span class="nt">--</span> <span class="k">*</span>.trx<span class="si">)</span>
+<span class="nv">sha256sumFile</span><span class="o">=</span><span class="si">$(</span><span class="nb">ls</span> <span class="nt">--</span> <span class="k">*</span>.sha256<span class="si">)</span>
 
 <span class="k">if</span> <span class="o">!</span> file_exists <span class="s2">"</span><span class="nv">$firmwareFile</span><span class="s2">"</span><span class="p">;</span> <span class="k">then</span>
   <span class="c"># must exit with zero so Hazel does't retry it</span>
@@ -471,15 +493,15 @@ logger <span class="s2">"Checking for shasum binaries"</span>
 
 <span class="c"># yes we could use shasum -a 256  -c sha256sum.sha256, but I don't think sha256deep has</span>
 <span class="c"># the same option, so we parse the file</span>
-<span class="nb">sha256sum</span><span class="o">=</span><span class="k">$(</span><span class="nb">awk</span> <span class="s1">'{print $1}'</span> <span class="s2">"</span><span class="nv">$sha256sumFile</span><span class="s2">"</span><span class="k">)</span>
-<span class="nv">firmwareFileFromSha256sumFile</span><span class="o">=</span><span class="k">$(</span><span class="nb">awk</span> <span class="s1">'{print $2}'</span> <span class="s2">"</span><span class="nv">$sha256sumFile</span><span class="s2">"</span><span class="k">)</span>
+<span class="nb">sha256sum</span><span class="o">=</span><span class="si">$(</span><span class="nb">awk</span> <span class="s1">'{print $1}'</span> <span class="s2">"</span><span class="nv">$sha256sumFile</span><span class="s2">"</span><span class="si">)</span>
+<span class="nv">firmwareFileFromSha256sumFile</span><span class="o">=</span><span class="si">$(</span><span class="nb">awk</span> <span class="s1">'{print $2}'</span> <span class="s2">"</span><span class="nv">$sha256sumFile</span><span class="s2">"</span><span class="si">)</span>
 
 <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$firmwareFileFromSha256sumFile</span><span class="s2">"</span> <span class="o">!=</span> <span class="s2">"</span><span class="nv">$firmwareFile</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
   </span>logger <span class="s2">"Filename mismatch: </span><span class="nv">$firmwareFileFromSha256sumFile</span><span class="s2"> != </span><span class="nv">$firmwareFile</span><span class="s2">"</span>
   <span class="nb">exit </span>0<span class="p">;</span>
 <span class="k">fi
 
-</span><span class="nv">sha256deepFromFirmware</span><span class="o">=</span><span class="k">$(</span><span class="nv">$cmd</span> <span class="s2">"</span><span class="nv">$firmwareFile</span><span class="s2">"</span> | <span class="nb">awk</span> <span class="s1">'{print $1}'</span><span class="k">)</span>
+</span><span class="nv">sha256deepFromFirmware</span><span class="o">=</span><span class="si">$(</span><span class="nv">$cmd</span> <span class="s2">"</span><span class="nv">$firmwareFile</span><span class="s2">"</span> | <span class="nb">awk</span> <span class="s1">'{print $1}'</span><span class="si">)</span>
 
 <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$sha256deepFromFirmware</span><span class="s2">"</span> <span class="o">!=</span> <span class="s2">"</span><span class="nv">$sha256sum</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
   </span>logger <span class="s2">"sha256deep mismatch: </span><span class="nv">$sha256deepFromFirmware</span><span class="s2"> != </span><span class="nv">$sha256sum</span><span class="s2"> set label to red"</span>
@@ -609,6 +631,62 @@ logger <span class="s2">"Checking for shasum binaries"</span>
     
     <h2 class="archive__item-title" itemprop="headline">
       
+        <a href="/unix/2019/09/30/nextcloud-installation-scripts/" rel="permalink">Nextcloud Installation Scripts
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Some great shell scripts from Nextcloud.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/unix/2019/09/30/dotfiles/" rel="permalink">Dotfile
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Dotfile resouces on GitHub.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
         <a href="/macos/2018/09/20/asciinema/" rel="permalink">asciinema
 </a>
       
@@ -656,65 +734,6 @@ logger <span class="s2">"Checking for shasum binaries"</span>
 </div>
 
         
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/webdev/2018/07/14/vagrant-vscode-php-xdebug/" rel="permalink">Debugging PHP with VS Code, Vagrant and Xdebug
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  less than 1 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Configure Xdebug, Visual Studio Code for a Vagrant VM
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/internet/2018/07/08/httpvshttps/" rel="permalink">HTTP vs HTTPS Test
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  less than 1 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">
-  Encrypted Websites Protect Our Privacy and are Significantly Faster.
-
-
-</p>
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -726,12 +745,12 @@ logger <span class="s2">"Checking for shasum binaries"</span>
     
       <div class="search-content">
         <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
-    <div class="search-hits"></div></div>
+  <div class="search-hits"></div></div>
 
       </div>
     
 
-    <div class="page__footer">
+    <div id="footer" class="page__footer">
       <footer>
         <!-- start custom footer snippets -->
 
