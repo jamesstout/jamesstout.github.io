@@ -13,5 +13,6 @@ group :jekyll_plugins do
     gem "jekyll-algolia"
     gem "jekyll-compose"
     gem "premonition", "~> 2.0.0"
+    gem "jemoji"
   end
 
