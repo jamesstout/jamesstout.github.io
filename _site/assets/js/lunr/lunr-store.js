@@ -79,7 +79,7 @@ var store = [{
         "tags": ["terminal","macOS","bash"],
         "url": "https://stouty.xyz/macos/2018/09/20/asciinema/",
         "teaser":null},{
-        "title": "Dotfile",
+        "title": "Dotfiles",
         "excerpt":"An excellent list of dotfile resources on GitHub. What are dotfiles? (I can’t believe I’m linking to Quora) In UNIX file systems, dotfiles are text-based configurations files that stores settings of almost every application, service and tool running on your system. These files control the behavior of applications from boot...","categories": ["unix"],
         "tags": ["terminal","macOS","bash"],
         "url": "https://stouty.xyz/unix/2019/09/30/dotfiles/",
