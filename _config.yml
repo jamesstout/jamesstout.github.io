@@ -4,7 +4,7 @@ minimal_mistakes_skin: "mint" # "air", "aqua", "contrast", "dark", "dirt", "neon
 name: &NAME "stouty.xyz"
 title: *NAME
 title_separator: "|"
-description: "James Stout. CTO. iOS. Web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather."
+description: "James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather."
 url: "https://stouty.xyz"
 
 search: true
@@ -56,7 +56,7 @@ twitter:
 author:
   name             : "James Stout"
   avatar           :  # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "CTO. iOS/Web developer. Flatliner. Tech, crypto, comedy, Hong Kong, #hcafc, smashing telly and, of course, the weather"
+  bio              : "iOS/Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather"
   location         : "Hong Kong"
   email            : 
   # uri              : https://www.zoooot.xyz
