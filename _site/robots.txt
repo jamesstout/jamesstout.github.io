@@ -8,6 +8,5 @@ Disallow: /
 
 User-agent: *
 Disallow: /assets
-Disallow: /piwik
 Allow: sitemap*
 Sitemap: https://stouty.xyz/sitemap.xml

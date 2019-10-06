@@ -1,7 +1,6 @@
 /misc/notes.txt
 /.sass-cache
 .jekyll-metadata
-_site/piwik
 ### Code ###
 .vscode/*
 !.vscode/settings.json
