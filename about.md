@@ -6,12 +6,7 @@ author_profile: true
 header:
     image: /assets/images/IMG_8719.jpg
 ---
-
-<iframe
-        style="border: 0; height: 200px; width: 600px;"
-        src="https://stouty.xyz/piwik/index.php?module=CoreAdminHome&action=optOut&language=en&backgroundColor=&fontColor=&fontSize=&fontFamily="
-        ></iframe>
-        
+    
 Hi, I'm James - an English guy living in Hong Kong - into technology, photos, comedy, smashing telly, Apple, iOS/Mac development and, of course, the weather.
 
 I'm on [Twitter][1] for day to day stuff and links. I sometimes post photos to [Instagram][3].
