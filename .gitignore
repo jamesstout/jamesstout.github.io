@@ -1,4 +1,5 @@
 /misc/notes.txt
+_site/.well-known/*
 /.sass-cache
 .jekyll-metadata
 ### Code ###
