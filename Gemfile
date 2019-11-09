@@ -1,7 +1,7 @@
 # ./Gemfile
 source 'https://rubygems.org'
 gem "jekyll", "~> 3.5"
-gem 'ffi', '1.9.21'
+gem "ffi", ">= 1.9.24"
 gem "minimal-mistakes-jekyll"
 
 group :jekyll_plugins do

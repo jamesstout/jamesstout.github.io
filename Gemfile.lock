@@ -23,7 +23,7 @@ GEM
     eventmachine (1.2.7)
     faraday (0.17.0)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.21)
+    ffi (1.11.1)
     filesize (0.2.0)
     forwardable-extended (2.6.0)
     gemoji (3.0.1)
@@ -133,7 +133,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ffi (= 1.9.21)
+  ffi (>= 1.9.24)
   jekyll (~> 3.5)
   jekyll-algolia
   jekyll-compose
