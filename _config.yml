@@ -124,7 +124,7 @@ keep_files:
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
-
+remote_theme: jamesstout/jamesstout.github.io
 # Conversion
 markdown: kramdown
 highlighter: rouge
@@ -192,6 +192,7 @@ whitelist:
   - jekyll-feed
   - jemoji
   - premonition
+  - jekyll-remote-theme
 
 # HTML Compression
 # - http://jch.penibelst.de/

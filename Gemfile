@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem "jekyll", "~> 3.5"
 gem "ffi", ">= 1.9.24"
 gem "minimal-mistakes-jekyll"
+gem "jekyll-remote-theme"
 
 group :jekyll_plugins do
     gem "jekyll-feed"
