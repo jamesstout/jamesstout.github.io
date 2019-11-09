@@ -233,6 +233,14 @@
       </li>
     {% endif %}
 
+    {% if author.mastodon %}
+    <li>
+      <a rel="me" href="{{ author.mastodon }}" itemprop="sameAs">
+        <i class="fab fa-fw fa-mastodon" aria-hidden="true"></i> Mastodon
+      </a>
+    </li>
+    {% endif %}   
+
       {% if author.weibo %}
         <li>
           <a href="https://www.weibo.com/{{ author.weibo }}" itemprop="sameAs">
