@@ -41,7 +41,7 @@ Applications, hardware, products and services that I use[^fn-update].
 * [Fantastical][16] - calendar.
 * [Coda 2][17] - text editor + file transfer + svn + css + terminal + books + more.
 * [Sublime Text 2][21] - a hardcore text editor.
-* [Byword][22] - a simple text editor.
+* ~~[Byword][22] - a simple text editor.~~
 * [Transmit 5][23] - FTP client.
 * [Tweetbot][25] - Twitter client.
 * [AppCleaner][27] - app uninstaller.
@@ -53,7 +53,7 @@ Applications, hardware, products and services that I use[^fn-update].
 * [XLD][35] - lossless decoder.
 * [DaisyDisk][36] - See what takes up your disk space.
 * [Pixelmator][38] - image editing.
-* [Drive Genius 5][40] - defrag etc.
+* ~~[Drive Genius 5][40] - defrag etc.~~
 * [Battery Health][41] - check your laptop battery.
 * [Flare][42] - add filters to photos.
 * [Adium][43] - multi-protocol instant messaging client.
@@ -74,11 +74,11 @@ Applications, hardware, products and services that I use[^fn-update].
 * [Boom][67] - volume booster and system-wide equalizer
 * [FileBot][68] - for renaming your TV shows etc.
 * [GeekTool][69] - for geeking out your [desktop][70].
-* [Radium][72] - an internet radio player.
+* ~~[Radium][72] - an internet radio player.~~
 * [OnyX][73] - an all-in-one system maintenance tool and optimiser.
 * [MailSteward][74] - email archiver.
 * [CronniX][75] - crontab editor.
-* [GrandPerspective][76] - graphically shows the disk usage within a file system. I use it to no-hard-links filter scan my Time Machine backup disk to see what just changed.
+* ~~[GrandPerspective][76] - graphically shows the disk usage within a file system. I use it to no-hard-links filter scan my Time Machine backup disk to see what just changed.~~
 * [Hex Fiend][78] - a hex editor. Fast.
 * [Linkinus][79] - IRC client.
 * [HandBrake][80] - a video transcoder.
@@ -245,15 +245,15 @@ See my [Updated First & Twenty][88] for my iPhone home screen.
 * [iPhone][132] 4S 16GB - for the moment, need a 64GB.
 * iPad (1st generation, 16GB, WiFi)
 * [iPad][133] (3rd generation, 16GB, WiFi)
-* [Apple 30-inch Cinema HD Display][134]
+* ~~[Apple 30-inch Cinema HD Display][134]~~
 * [Shure SE535][135] Headphones
 * [Apple Magic Trackpad][136]
-* [Canon EOS 5D Mark II][137]
-* [Apple Airport Extreme][138]
+* ~~[Canon EOS 5D Mark II][137]~~
+* ~~[Apple Airport Extreme][138]~~
 * Western Digital external HDD
-* [OpenSolaris][139] box with 9TB [ZFS][140] storage in [RAID-Z][141] configuration.
-* [Popcorn Hour A–300][142] - Networked Media Jukebox for playing videos etc.
-* [Mophie Juice Pack Air][143]
+* ~~[OpenSolaris][139] box with 9TB [ZFS][140] storage in [RAID-Z][141] configuration.~~
+* ~~[Popcorn Hour A–300][142] - Networked Media Jukebox for playing videos etc.~~
+* ~~[Mophie Juice Pack Air][143]~~
 
  [129]: http://www.apple.com/imac/
  [130]: http://www.macrumors.com/2011/06/15/27-inch-imac-core-i7-with-ssd-is-fastest-mac-ever/
