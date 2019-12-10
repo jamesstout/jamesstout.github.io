@@ -37,11 +37,11 @@ Love [Docker](https://www.docker.com/) and have a few repos on [Docker Hub](http
 e.g. [docker-phpservermonitor-nginx](https://hub.docker.com/r/stoutyhk/docker-phpservermonitor-nginx/) - source [here](https://bitbucket.org/stouty/docker-phpservermonitor-nginx/src).
 
    [1]: https://twitter.com/stoutyhk
-   [2]: https://alpha.app.net/stouty (alpha stouty link)
-   [3]: http://instagram.com/stouty (Instagram)
-   [4]: https://itunes.apple.com/hk/app/hkwarnings/id370901118?mt=8 (HKWarnings AppStore Link)
+   [2]: https://alpha.app.net/stouty
+   [3]: https://instagram.com/stouty
+   [4]: https://itunes.apple.com/hk/app/hkwarnings/id370901118?mt=8 
    [5]: https://itunes.apple.com/us/app/id594038629?mt=8&partnerId=30&siteID=4M*lvL2TS6Q
-   [6]: http://tiberius-hk.com/ (iphone dev blog)
+   [6]: https://hkwarnings.com/
    [7]: https://github.com/jamesstout
    [8]: https://github.com/jamesstout/fail2ban-0.8.4-OpenSolaris
    [9]: https://github.com/jamesstout/Alfred2-Workflows
