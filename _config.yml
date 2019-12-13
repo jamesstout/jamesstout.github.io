@@ -155,7 +155,7 @@ kramdown:
 # Sass/SCSS
 sass:
   sass_dir: _sass
-  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 
 
 # Outputting
@@ -182,6 +182,7 @@ plugins:
   - jekyll-feed
   - jemoji
   - premonition
+  - jekyll-include-cache
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -193,6 +194,7 @@ whitelist:
   - jemoji
   - premonition
   - jekyll-remote-theme
+  - jekyll-include-cache
 
 # HTML Compression
 # - http://jch.penibelst.de/

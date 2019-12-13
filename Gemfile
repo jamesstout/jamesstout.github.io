@@ -1,9 +1,10 @@
 # ./Gemfile
 source 'https://rubygems.org'
-gem "jekyll", "~> 3.5"
+gem "jekyll", "~> 3.6"
 gem "ffi", ">= 1.9.24"
 gem "minimal-mistakes-jekyll"
 gem "jekyll-remote-theme"
+gem "jekyll-include-cache"
 
 group :jekyll_plugins do
     gem "jekyll-feed"
