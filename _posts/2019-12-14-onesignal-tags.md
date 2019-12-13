@@ -1,10 +1,11 @@
 ---
 layout: single
 title: Managing OneSignal Tags
-date: 2019-12-10 14:16:59 +0800
+date: 2019-12-14 09:16:59 +0800
 categories: unix iOS 
-tags: onesignal tagging push notifications php ios
+tags: [onesignal, tagging, push notifications, php, ios]
 excerpt: "Methods to delete OneSignal tags."
+published: false
 ---
 
 I use [OneSignal](https://onesignal.com/) to send push notifications to my iOS app [HKWarnings](https://itunes.apple.com/hk/app/hkwarnings/id370901118?mt=8). It's great, fast and has a very active open source community on [GitHub](https://github.com/OneSignal/OneSignal-iOS-SDK), even I've [contributed](https://github.com/OneSignal/OneSignal-iOS-SDK/commit/4c1fb7b899b457fb050c95c24fef7cde1998c1ff).

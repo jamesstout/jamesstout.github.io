@@ -231,7 +231,7 @@
   
 
 
-<div itemscope itemtype="http://schema.org/Person">
+<div itemscope itemtype="https://schema.org/Person">
 
   
 
@@ -240,9 +240,10 @@
       <h3 class="author__name" itemprop="name">James Stout</h3>
     
     
-      <p class="author__bio" itemprop="description">
-        iOS/Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather
-      </p>
+      <div class="author__bio" itemprop="description">
+        <p>iOS/Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather</p>
+
+      </div>
     
   </div>
 
@@ -250,7 +251,7 @@
     <button class="btn btn--inverse">Follow</button>
     <ul class="author__urls social-icons">
       
-        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
           <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Hong Kong</span>
         </li>
       
@@ -260,8 +261,10 @@
       
 
       
+
+      
         <li>
-          <a href="https://keybase.io/stouty" itemprop="sameAs">
+          <a href="https://keybase.io/stouty" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fas fa-fw fa-key" aria-hidden="true"></i> Keybase
           </a>
         </li>
@@ -269,7 +272,7 @@
 
       
         <li>
-          <a href="https://twitter.com/stoutyhk" itemprop="sameAs">
+          <a href="https://twitter.com/stoutyhk" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
           </a>
         </li>
@@ -289,7 +292,7 @@
 
       
         <li>
-          <a href="https://bitbucket.org/stouty" itemprop="sameAs">
+          <a href="https://bitbucket.org/stouty" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket
           </a>
         </li>
@@ -297,7 +300,7 @@
 
       
         <li>
-          <a href="https://github.com/jamesstout" itemprop="sameAs">
+          <a href="https://github.com/jamesstout" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
           </a>
         </li>
@@ -309,7 +312,7 @@
 
       
         <li>
-          <a href="https://last.fm/user/stoutyhk" itemprop="sameAs">
+          <a href="https://last.fm/user/stoutyhk" itemprop="sameAs" rel="nofollow noopener noreferrer">
             <i class="fab fa-fw fa-lastfm-square" aria-hidden="true"></i> Last.fm
           </a>
         </li>
@@ -384,7 +387,7 @@
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/unix/ios/2019/12/10/onesignal-tags/" rel="permalink">Managing OneSignal Tags
+        <a href="/apple/hardware/2019/12/13/mac-pro/" rel="permalink">Mac Pro Pricing
 </a>
       
     </h2>
@@ -394,11 +397,12 @@
 
 
 
-  3 minute read
+  less than 1 minute read
 
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">Methods to delete OneSignal tags.
+    <p class="archive__item-excerpt" itemprop="description">Back in June 2019, Apple announced the new Mac Pro:
+
 </p>
   </article>
 </div>
@@ -609,7 +613,9 @@
     
   <script defer src="/assets/files/lazysizes.min.js"></script>
   <script defer src="/assets/js/main.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+  <!-- <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+  <script defer src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
 
 
 <!-- Including InstantSearch.js library and styling -->
@@ -690,6 +696,8 @@
 
   gtag('config', 'UA-121620384-1', { 'anonymize_ip': false});
 </script>
+
+
 
 
 
