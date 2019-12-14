@@ -93,4 +93,9 @@ var store = [{
         "excerpt":"Back in June 2019, Apple announced the new Mac Pro: Designed for maximum performance, expansion and configurability, the all-new Mac Pro features workstation-class Xeon processors up to 28 cores, a high-performance memory system with a massive 1.5TB capacity, eight PCIe expansion slots and a graphics architecture featuring the world’s most...","categories": ["apple","hardware"],
         "tags": ["apple","Mac Pro","iMac Pro","Pro Display XDR"],
         "url": "https://stouty.xyz/apple/hardware/2019/12/13/mac-pro/",
+        "teaser":null},{
+        "title": "Managing OneSignal Tags",
+        "excerpt":"I use OneSignal to send push notifications to my iOS app HKWarnings. It’s great, fast and has a very active open source community on GitHub, even I’ve contributed. Anyway, it’s been free for about 5(?) years, but every startup eventually needs to make money, so they recently announced paid plans...","categories": ["unix","iOS"],
+        "tags": ["onesignal","tagging","push notifications","php","ios"],
+        "url": "https://stouty.xyz/unix/ios/2019/12/14/onesignal-tags/",
         "teaser":null}]
