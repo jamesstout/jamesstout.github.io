@@ -53,7 +53,7 @@ curl --include \
 
 This requires all the devices and tags. You can use the [API](https://documentation.onesignal.com/reference#section-example-code-csv-export), or export from the Audience view to get a CSV file with all the devices.
 
-I used this PHP script to parse the CSV, delete tags I didn't want, and keep those I wanted to keep.
+I used this PHP script to parse the CSV, delete tags I didn't want, and keep those I wanted to keep. Note: edit the CSV and keep only the player_id and tags columns.
 
 ````php
 <?php
