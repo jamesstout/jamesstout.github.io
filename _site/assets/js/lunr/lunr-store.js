@@ -103,4 +103,9 @@ var store = [{
         "excerpt":"Your yearly reminder that A Night At The Hip-Hopera by The Kleptones is available in FLAC format.   Lay back and hit the playback:   /assets/images/posts/a-night-at-the-hip-hopera/layback2.mp3  ","categories": ["music"],
         "tags": ["kleptones","flac"],
         "url": "https://stouty.xyz/music/2019/12/14/a-night-at-the-hip-hopera/",
+        "teaser":null},{
+        "title": "Automatically exclude development dependencies from Apple Time Machine backups",
+        "excerpt":"Asimov is a very handy tool from Steve Grunwell that scans your home directory for development dependencies for Node, CocoaPods etc, then excludes them from Time Machine backups.  ","categories": ["macOS"],
+        "tags": ["Time Machine"],
+        "url": "https://stouty.xyz/macos/2019/12/14/asimov/",
         "teaser":null}]
