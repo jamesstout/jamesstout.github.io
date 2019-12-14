@@ -98,4 +98,9 @@ var store = [{
         "excerpt":"I use OneSignal to send push notifications to my iOS app HKWarnings. It’s great, fast and has a very active open source community on GitHub, even I’ve contributed. Anyway, it’s been free for about 5(?) years, but every startup eventually needs to make money, so they recently announced paid plans...","categories": ["unix","iOS"],
         "tags": ["onesignal","tagging","push notifications","php","ios"],
         "url": "https://stouty.xyz/unix/ios/2019/12/14/onesignal-tags/",
+        "teaser":null},{
+        "title": "A Night At The Hip-Hopera",
+        "excerpt":"Your yearly reminder that A Night At The Hip-Hopera by The Kleptones is available in FLAC format.   Lay back and hit the playback:   /assets/images/posts/a-night-at-the-hip-hopera/layback2.mp3  ","categories": ["music"],
+        "tags": ["kleptones","flac"],
+        "url": "https://stouty.xyz/music/2019/12/14/a-night-at-the-hip-hopera/",
         "teaser":null}]
