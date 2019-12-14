@@ -40,12 +40,13 @@ Applications, hardware, products and services that I use[^fn-update].
 * [Alfred][15] - app launcher and more.
 * [Fantastical][16] - calendar.
 * [Coda 2][17] - text editor + file transfer + svn + css + terminal + books + more.
-* [Sublime Text 2][21] - a hardcore text editor.
+* [Sublime Text 3][21] - a hardcore text editor.
 * ~~[Byword][22] - a simple text editor.~~
+* [TextMate][20] - a powerful and customizable text editor
 * [Transmit 5][23] - FTP client.
 * [Tweetbot][25] - Twitter client.
 * [AppCleaner][27] - app uninstaller.
-* [AppFresh][29] - app updates.
+* ~~[AppFresh][29] - app updates.~~
 * [VMware Fusion][31] - to run Windows XP/Ubuntu/Moutain Lion.
 * [Sequel Pro][32] - MySQL database management/query.
 * [VLC Player][33] - media player. Plays everything.
@@ -65,13 +66,13 @@ Applications, hardware, products and services that I use[^fn-update].
 * [Marked][52] - [Markdown][53] preview.
 * [VideoMonkey][54] - video encoding.
 * [iStat Menus][55] - system monitoring.
-* [Versions][57] - a Subversion client. [SourceTree][58] - client for Git and Mercurial version control systems. [Kaleidoscope 2][59] - file comparison app. [Kaleidoscope v2.0][60] - a great update.
+* [Versions][57] - a Subversion client. [Tower][58] - client for Git. [Kaleidoscope 2][59] - file comparison app. [Kaleidoscope v2.0][60] - a great update.
 * [Things][61] - a task manager.
 * [Unclutter][63] - a neat clipboard, file storage area, and notepad - all in one.
 * [Soulver][64] - a better calculator.
 * [Memory Clean][65] - I thought it was a gimmick - but it really works. Frees up that inactive RAM.
 * [xScope][66] - for measuring pixels and stuff.
-* [Boom][67] - volume booster and system-wide equalizer
+* [Boom3D][67] - volume booster and system-wide equalizer
 * [FileBot][68] - for renaming your TV shows etc.
 * [GeekTool][69] - for geeking out your [desktop][70].
 * ~~[Radium][72] - an internet radio player.~~
@@ -91,15 +92,15 @@ Applications, hardware, products and services that I use[^fn-update].
  [10]: https://itunes.apple.com/us/app/1password-password-manager/id443987910?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [11]: https://itunes.apple.com/us/app/unison/id411074413?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [12]: https://itunes.apple.com/us/app/yojimbo/id404581200?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
- [13]: http://shawnblanc.net/2009/09/yojimbo-and-anything-buckets/
- [14]: http://smilesoftware.com/TextExpander/index.html
- [15]: http://www.alfredapp.com/
+ [13]: https://shawnblanc.net/2009/09/yojimbo-and-anything-buckets/
+ [14]: https://textexpander.com/
+ [15]: https://www.alfredapp.com/
  [16]: https://itunes.apple.com/us/app/fantastical/id435003921?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [17]: https://itunes.apple.com/us/app/coda-2/id499340368?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [18]: https://itunes.apple.com/us/app/reeder/id439845554?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [19]: http://feedafever.com/
- [20]: http://macromates.com/
- [21]: http://www.sublimetext.com/2
+ [20]: https://macromates.com/
+ [21]: https://www.sublimetext.com/
  [22]: https://itunes.apple.com/us/app/byword/id420212497?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [23]: https://itunes.apple.com/us/app/transmit/id403388562?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [24]: https://itunes.apple.com/us/app/echofon-for-twitter/id403830270?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
@@ -108,12 +109,12 @@ Applications, hardware, products and services that I use[^fn-update].
  [27]: http://www.freemacsoft.net/appcleaner/
  [28]: http://www.ideaswarm.com/AppViz2.html
  [29]: http://metaquark.de/appfresh/mac
- [30]: http://gp.home.xs4all.nl/Site/MacPAR_deLuxe.html
- [31]: http://www.vmware.com/products/fusion/overview.html
+ [30]: https://gp.home.xs4all.nl/Site/MacPAR_deLuxe.html
+ [31]: https://www.vmware.com/products/fusion.html
  [32]: http://www.sequelpro.com/
- [33]: http://www.videolan.org/vlc/
- [34]: http://www.transmissionbt.com/
- [35]: http://tmkk.undo.jp/xld/index_e.html
+ [33]: https://www.videolan.org/vlc/
+ [34]: https://www.transmissionbt.com/
+ [35]: https://tmkk.undo.jp/xld/index_e.html
  [36]: https://itunes.apple.com/us/app/daisydisk/id411643860?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [37]: https://itunes.apple.com/us/app/growl/id467939042?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [38]: https://itunes.apple.com/us/app/pixelmator/id407963104?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
@@ -121,51 +122,51 @@ Applications, hardware, products and services that I use[^fn-update].
  [40]: http://www.prosofteng.com/products/drive_genius.php
  [41]: https://itunes.apple.com/us/app/battery-health/id490192174?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [42]: https://itunes.apple.com/us/app/flare/id419917767?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
- [43]: http://adium.im/
+ [43]: https://adium.im/
  [44]: https://itunes.apple.com/us/app/evernote/id406056744?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
- [45]: http://brettterpstra.com/projects/nvalt/
+ [45]: https://brettterpstra.com/projects/nvalt/
  [46]: https://itunes.apple.com/us/app/day-one/id422304217?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [47]: https://itunes.apple.com/us/app/worml/id463103644?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [48]: https://itunes.apple.com/us/app/favs/id436961703?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
- [49]: http://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html
- [50]: http://www.econtechnologies.com/pages/cs/chrono_overview.html
+ [49]: https://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html
+ [50]: https://www.econtechnologies.com/chronosync/overview.html
  [51]: https://itunes.apple.com/us/app/rubbernet/id425980801?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [52]: https://itunes.apple.com/us/app/marked/id448925439?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
- [53]: http://daringfireball.net/projects/markdown/syntax
+ [53]: https://daringfireball.net/projects/markdown/syntax
  [54]: http://videomonkey.org/
- [55]: http://bjango.com/mac/istatmenus/
+ [55]: https://bjango.com/mac/istatmenus/
  [56]: http://www.pixiapps.com/ecouteosx/
- [57]: http://versionsapp.com/
- [58]: http://www.sourcetreeapp.com/
+ [57]: https://versionsapp.com/
+ [58]: https://www.git-tower.com/mac
  [59]: https://itunes.apple.com/us/app/kaleidoscope/id587512244?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
- [60]: http://zoooot.com/1246/kaleidoscope-2
+ [60]: https://web.archive.org/web/20150825011237/http://zoooot.com/1246/kaleidoscope-2
  [61]: https://itunes.apple.com/us/app/things/id407951449?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [62]: https://itunes.apple.com/us/app/sticky-notifications/id552377168?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [63]: https://itunes.apple.com/us/app/unclutter/id577085396?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [64]: https://itunes.apple.com/us/app/soulver/id413965349?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [65]: https://itunes.apple.com/us/app/memory-clean/id451444120?mt=12
  [66]: https://itunes.apple.com/us/app/xscope/id447661441?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
- [67]: https://itunes.apple.com/us/app/boom/id415312377?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
- [68]: http://filebot.sourceforge.net/
+ [67]: https://apps.apple.com/hk/app/boom3d-volume-booster-and-eq/id1233048948?l=en&mt=12
+ [68]: https://www.filebot.net/
  [69]: https://itunes.apple.com/us/app/geektool/id456877552?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
- [70]: http://zoooot.com/things-i-use/desktop2
+ [70]: https://stouty.xyz/2012-desktop/
  [71]: http://www.picturecode.com/index.php
  [72]: https://itunes.apple.com/us/app/radium/id413215890?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [73]: http://www.onyxmac.com/
  [74]: https://itunes.apple.com/us/app/mailstewardapp/id412878864?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
- [75]: http://code.google.com/p/cronnix/
+ [75]: https://code.google.com/archive/p/cronnix/
  [76]: http://grandperspectiv.sourceforge.net/
  [77]: http://mac.github.com/
  [78]: http://ridiculousfish.com/hexfiend/
  [79]: https://itunes.apple.com/us/app/linkinus/id402390998?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
- [80]: http://handbrake.fr/
+ [80]: https://handbrake.fr/
  [81]: https://itunes.apple.com/us/app/codebox/id412536790?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
- [82]: http://www.noodlesoft.com/hazel.php
+ [82]: https://www.noodlesoft.com/
  [83]: http://www.macosxscreencasts.com/tutorial/hazel-tutorial/
  [84]: https://itunes.apple.com/us/app/marsedit-blog-editor-for-wordpress/id402376225?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [85]: https://itunes.apple.com/us/app/aperture/id408981426?mt=12&partnerId=30&siteID=4M*lvL2TS6Q
  [86]: http://sickbeard.com
- [87]: http://sabnzbd.org
+ [87]: https://sabnzbd.org
 
 **iOS Software**
 
