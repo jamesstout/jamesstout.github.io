@@ -532,6 +532,61 @@
 </code></pre></div></div>
 <p>For 35,000+ devices, it took around 4 hours, but now my devices have less than 10 tags.</p>
 
+<p>On the iOS side, I did two things:</p>
+
+<h3 id="clear-out-old-tags-on-startup">Clear out old tags on startup</h3>
+<div class="language-objective_c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">cleanUpOldTags</span> <span class="p">{</span>
+
+    <span class="n">BOOL</span> <span class="n">clean</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">([</span><span class="n">_defaults</span><span class="p">.</span><span class="n">dictionaryRepresentation</span><span class="p">.</span><span class="n">allKeys</span> <span class="nf">containsObject</span><span class="p">:</span><span class="n">kReCleanedAllTags</span><span class="p">]){</span>
+        <span class="n">clean</span> <span class="o">=</span> <span class="p">[</span><span class="n">_defaults</span> <span class="nf">boolForKey</span><span class="p">:</span><span class="n">kReCleanedAllTags</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">clean</span> <span class="o">==</span> <span class="nb">NO</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">NSArray</span> <span class="o">*</span><span class="n">tagsToClean</span> <span class="o">=</span>  <span class="p">@[</span><span class="s">@"ParseObjectId"</span><span class="p">,</span>
+                                  <span class="s">@"installationId"</span><span class="p">,</span>
+                                  <span class="s">@"device"</span><span class="p">,</span>
+                                  <span class="s">@"apnsEnv"</span><span class="p">,</span>
+                                  <span class="s">@"is_test"</span><span class="p">,</span>
+                                  <span class="s">@"isChinese"</span><span class="p">,</span>
+                                  <span class="s">@"appVersion"</span><span class="p">,</span>
+                                  <span class="s">@"kPushEnabled"</span><span class="p">,</span>
+                                  <span class="s">@"systemVersion"</span><span class="p">,</span>
+                                  <span class="s">@"oneSignalSDKVersion"</span><span class="p">,</span>
+                                  <span class="s">@"kMigratedToOneSignal"</span><span class="p">,</span>
+                                  <span class="s">@"KREMIGRATEDTOONESIGNAL"</span><span class="p">,</span>
+                                  <span class="s">@"isRemoveAdsPurchased"</span><span class="p">,</span>
+                                  <span class="s">@"locale"</span><span class="p">,</span>
+                                  <span class="s">@"UDID"</span><span class="p">,</span>
+                                  <span class="s">@"deviceToken"</span><span class="p">,</span>
+                                  <span class="s">@"systemLang"</span><span class="p">,</span>
+                                  <span class="s">@"kMigratedToOneSignalWithDefaultPlist"</span>
+                                  <span class="p">];</span>
+
+        <span class="p">[</span><span class="n">OneSignal</span> <span class="nf">deleteTags</span><span class="p">:</span><span class="n">tagsToClean</span> <span class="nf">onSuccess</span><span class="p">:</span><span class="o">^</span><span class="p">(</span><span class="n">NSDictionary</span> <span class="o">*</span><span class="n">results2</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">CLS_LOG</span><span class="p">(</span><span class="s">@"All tags deleted."</span><span class="p">);</span>
+            <span class="p">[</span><span class="n">self</span><span class="o">-&gt;</span><span class="n">_defaults</span> <span class="nf">setBool</span><span class="p">:</span><span class="nb">YES</span> <span class="nf">forKey</span><span class="p">:</span><span class="n">kReCleanedAllTags</span><span class="p">];</span>
+        <span class="p">}</span> <span class="n">onFailure</span><span class="o">:^</span><span class="p">(</span><span class="n">NSError</span> <span class="o">*</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">CLS_LOG</span><span class="p">(</span><span class="s">@"Error deleting all tags: %@"</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+        <span class="p">}];</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="n">CLS_LOG</span><span class="p">(</span><span class="s">@"Already cleaned up all tags"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="ensure-users-can-only-opt-out-of-a-maximum-of-10-warnings">Ensure users can only opt-out of a maximum of 10 warnings</h3>
+<div class="language-objective_c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">if</span><span class="p">(</span><span class="n">optOutCount</span> <span class="o">&gt;=</span> <span class="n">kMaxNumOfOptOuts</span><span class="p">){</span>
+
+    <span class="c1">// show alert</span>
+    <span class="p">[</span><span class="n">Utilities</span> <span class="nf">showAlert</span><span class="p">:</span> <span class="n">NSLocalizedString</span><span class="p">(</span> <span class="s">@"Sorry"</span><span class="p">,</span> <span class="s">@"Sorry"</span><span class="p">)</span>
+                 <span class="nl">message:</span> <span class="n">NSLocalizedString</span><span class="p">(</span> <span class="s">@"You can only deselect a maximum of 10 warnings."</span><span class="p">,</span> <span class="s">@"You can deselct a maximum of 10 warnings"</span><span class="p">)];</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
 <hr />
 <div class="footnotes">
   <ol>

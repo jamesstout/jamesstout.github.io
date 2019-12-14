@@ -167,6 +167,63 @@ echo "max: $maxNO \n";
 ````
 For 35,000+ devices, it took around 4 hours, but now my devices have less than 10 tags.
 
+On the iOS side, I did two things:
+
+### Clear out old tags on startup
+````objective_c
+- (void)cleanUpOldTags {
+
+    BOOL clean = NO;
+
+    if([_defaults.dictionaryRepresentation.allKeys containsObject:kReCleanedAllTags]){
+        clean = [_defaults boolForKey:kReCleanedAllTags];
+    }
+
+    if(clean == NO) {
+
+        NSArray *tagsToClean =  @[@"ParseObjectId",
+                                  @"installationId",
+                                  @"device",
+                                  @"apnsEnv",
+                                  @"is_test",
+                                  @"isChinese",
+                                  @"appVersion",
+                                  @"kPushEnabled",
+                                  @"systemVersion",
+                                  @"oneSignalSDKVersion",
+                                  @"kMigratedToOneSignal",
+                                  @"KREMIGRATEDTOONESIGNAL",
+                                  @"isRemoveAdsPurchased",
+                                  @"locale",
+                                  @"UDID",
+                                  @"deviceToken",
+                                  @"systemLang",
+                                  @"kMigratedToOneSignalWithDefaultPlist"
+                                  ];
+
+        [OneSignal deleteTags:tagsToClean onSuccess:^(NSDictionary *results2) {
+            CLS_LOG(@"All tags deleted.");
+            [self->_defaults setBool:YES forKey:kReCleanedAllTags];
+        } onFailure:^(NSError *error) {
+            CLS_LOG(@"Error deleting all tags: %@", error);
+        }];
+    }
+    else {
+        CLS_LOG(@"Already cleaned up all tags");
+    }
+}
+````
+
+### Ensure users can only opt-out of a maximum of 10 warnings
+````objective_c
+ if(optOutCount >= kMaxNumOfOptOuts){
+
+    // show alert
+    [Utilities showAlert: NSLocalizedString( @"Sorry", @"Sorry")
+                 message: NSLocalizedString( @"You can only deselect a maximum of 10 warnings.", @"You can deselct a maximum of 10 warnings")];
+}
+````
+
 [^fn-optout]: There are 21 possible warnings issued by the HKO, people can opt out of certain warnings. If they do, I set a tag on the device in OneSignal.
 
 ***
