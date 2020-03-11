@@ -1,4 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-03-02T01:26:05+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Automatically exclude development dependencies from Apple Time Machine backups</title><link href="https://stouty.xyz/macos/2019/12/14/asimov/" rel="alternate" type="text/html" title="Automatically exclude development dependencies from Apple Time Machine backups" /><published>2019-12-14T21:02:40+08:00</published><updated>2019-12-14T21:02:40+08:00</updated><id>https://stouty.xyz/macos/2019/12/14/asimov</id><content type="html" xml:base="https://stouty.xyz/macos/2019/12/14/asimov/">&lt;p&gt;&lt;a href=&quot;https://github.com/stevegrunwell/asimov&quot;&gt;Asimov&lt;/a&gt; is a very handy tool from &lt;a href=&quot;https://github.com/stevegrunwell&quot;&gt;Steve Grunwell&lt;/a&gt; that scans your home directory for development dependencies for &lt;a href=&quot;https://nodejs.org/&quot;&gt;Node&lt;/a&gt;, &lt;a href=&quot;https://cocoapods.org/&quot;&gt;CocoaPods&lt;/a&gt; etc, then excludes them from Time Machine backups.&lt;/p&gt;</content><author><name>James Stout</name></author><category term="Time Machine" /><summary type="html">Asimov is a very handy tool from Steve Grunwell that scans your home directory for development dependencies for Node, CocoaPods etc, then excludes them from Time Machine backups.</summary></entry><entry><title type="html">A Night At The Hip-Hopera</title><link href="https://stouty.xyz/music/2019/12/14/a-night-at-the-hip-hopera/" rel="alternate" type="text/html" title="A Night At The Hip-Hopera" /><published>2019-12-14T16:33:53+08:00</published><updated>2019-12-14T16:33:53+08:00</updated><id>https://stouty.xyz/music/2019/12/14/a-night-at-the-hip-hopera</id><content type="html" xml:base="https://stouty.xyz/music/2019/12/14/a-night-at-the-hip-hopera/">&lt;p&gt;Your yearly reminder that &lt;a href=&quot;https://www.kleptones.com/pages/downloads_hiphopera.html&quot;&gt;A Night At The Hip-Hopera&lt;/a&gt; by &lt;a href=&quot;https://www.kleptones.com/index.html&quot;&gt;The Kleptones&lt;/a&gt; is available in &lt;a href=&quot;https://www.kleptones.com/music/qhh/Hip-Hopera_flac.zip&quot;&gt;FLAC&lt;/a&gt; format.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-03-11T20:06:00+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Gitea - Git with a cup of tea</title><link href="https://stouty.xyz/git/2020/03/11/gitea/" rel="alternate" type="text/html" title="Gitea - Git with a cup of tea" /><published>2020-03-11T17:05:55+08:00</published><updated>2020-03-11T17:05:55+08:00</updated><id>https://stouty.xyz/git/2020/03/11/gitea</id><content type="html" xml:base="https://stouty.xyz/git/2020/03/11/gitea/">&lt;p&gt;&lt;a href=&quot;https://gitea.io/&quot;&gt;Gitea&lt;/a&gt; is a painless self-hosted Git service. It’s a community managed lightweight code hosting solution written in Go, similar to GitHub, Bitbucket, and GitLab.&lt;sup id=&quot;fnref:fn-gitea&quot;&gt;&lt;a href=&quot;#fn:fn-gitea&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve used GitHub - code on someone else’s server.&lt;sup id=&quot;fnref:fn-cloud&quot;&gt;&lt;a href=&quot;#fn:fn-cloud&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+
+&lt;p&gt;I’ve used Bitbucket - ditto.&lt;/p&gt;
+
+&lt;p&gt;I’ve used GitLab on my &lt;a href=&quot;https://global.download.synology.com/download/Document/Hardware/DataSheet/DiskStation/17-year/DS1817+/enu/Synology_DS1817_Plus_Data_Sheet_enu.pdf&quot;&gt;NAS&lt;/a&gt; in a &lt;a href=&quot;https://www.synology.com/en-global/dsm/feature/docker&quot;&gt;Docker container&lt;/a&gt; - but what a faff. GitLab is a beast.&lt;/p&gt;
+
+&lt;p&gt;Then I discovered Gitea, with all the &lt;a href=&quot;https://docs.gitea.io/en-us/#features&quot;&gt;features&lt;/a&gt; I need, in a blazingly fast package.&lt;/p&gt;
+
+&lt;p&gt;Here’s a &lt;a href=&quot;https://docs.gitea.io/en-us/comparison/&quot;&gt;comparison table&lt;/a&gt; with the other self hosted options:&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/gitea/gitea-general.png&quot; src=&quot;/assets/images/posts/gitea/gitea-general-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;gitea general functionality comparison&quot; /&gt;
+&lt;span style=&quot;font-size: 0.6em;&quot;&gt;&lt;a href=&quot;/assets/images/posts/gitea/gitea-general.png&quot;&gt;[Biggify]&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/gitea/gitea-code.png&quot; src=&quot;/assets/images/posts/gitea/gitea-code-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;gitea code functionality comparison&quot; /&gt;
+&lt;span style=&quot;font-size: 0.6em;&quot;&gt;&lt;a href=&quot;/assets/images/posts/gitea/gitea-code.png&quot;&gt;[Biggify]&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;You can try out a Gitea demo &lt;a href=&quot;https://try.gitea.io/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I opted to host on a subdomain of stouty.xyz with a &lt;a href=&quot;https://www.postgresql.org/&quot;&gt;Postgres&lt;/a&gt; database, and the &lt;a href=&quot;https://docs.gitea.io/en-us/install-from-binary/&quot;&gt;binary install&lt;/a&gt;, running behind &lt;a href=&quot;https://docs.gitea.io/en-us/reverse-proxies/&quot;&gt;nginx&lt;/a&gt; over HTTPS of &lt;a href=&quot;https://www.troyhunt.com/the-6-step-happy-path-to-https/&quot;&gt;course&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;My nginx config wasn’t as straightforward as in the Gitea docs, as I wanted to enforce HTTPS and use Let’s Encrypt for SSL certificates. I needed to set a few &lt;code class=&quot;highlighter-rouge&quot;&gt;proxy_set_header&lt;/code&gt; options. A snippet of my conf is below:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/jamesstout/fb4ac8b87dd00eee0e18c59b95da889b.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;And here it is…&lt;/p&gt;
+
+&lt;h3 id=&quot;dashboard&quot;&gt;Dashboard&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/gitea/dashboard.png&quot; src=&quot;/assets/images/posts/gitea/dashboard-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;gitea dashboard&quot; /&gt;
+&lt;span style=&quot;font-size: 0.6em;&quot;&gt;&lt;a href=&quot;/assets/images/posts/gitea/dashboard.png&quot;&gt;[Biggify]&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;repo-view&quot;&gt;Repo View&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/gitea/repo-view.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;gitea repo-view&quot; /&gt;
+&lt;span style=&quot;font-size: 0.6em;&quot;&gt;&lt;a href=&quot;/assets/images/posts/gitea/repo-view.png&quot;&gt;[Biggify]&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;commit-diff&quot;&gt;Commit Diff&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/gitea/commit-diff.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;gitea commit-diff&quot; /&gt;
+&lt;span style=&quot;font-size: 0.6em;&quot;&gt;&lt;a href=&quot;/assets/images/posts/gitea/commit-diff.png&quot;&gt;[Biggify]&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;In the above commit, I’m fixing my use of &lt;code class=&quot;highlighter-rouge&quot;&gt;[NSData description]&lt;/code&gt;. &lt;a href=&quot;https://mjtsai.com/blog/2019/09/17/breaking-the-nsdata-description-contract/&quot;&gt;iOS 13 changed the format of descriptions&lt;/a&gt; for Foundation objects, including NSData:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Was Apple irresponsible in making this particular change?
+No, not really — developers shouldn’t have relied on a specific format for an object’s &lt;a href=&quot;https://developer.apple.com/documentation/objectivec/1418956-nsobject/1418746-description?language=objc&quot;&gt;description&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In conclusion, I’m very happy to have found Gitea. Oh, and if you want to migrate from GitHub, Bitbucket, or GitLab, they have automated migration tools:&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/gitea/migration.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;gitea migration&quot; /&gt;
+&lt;span style=&quot;font-size: 0.6em;&quot;&gt;&lt;a href=&quot;/assets/images/posts/gitea/migration.png&quot;&gt;[Biggify]&lt;/a&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Might be time to learn &lt;a href=&quot;https://golang.org/&quot;&gt;Go&lt;/a&gt; and see if I can &lt;a href=&quot;https://github.com/go-gitea/gitea&quot;&gt;contribute&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:fn-gitea&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://docs.gitea.io/en-us/#what-is-gitea&quot;&gt;source&lt;/a&gt; &lt;a href=&quot;#fnref:fn-gitea&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:fn-cloud&quot;&gt;
+      &lt;p&gt;Definition of “The Cloud” &lt;a href=&quot;#fnref:fn-cloud&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="git" /><category term="GitHub" /><category term="GitLab" /><category term="self-hosted" /><category term="Go" /><summary type="html">Gitea - Git with a cup of tea. A painless self-hosted Git service.</summary></entry><entry><title type="html">Automatically exclude development dependencies from Apple Time Machine backups</title><link href="https://stouty.xyz/macos/2019/12/14/asimov/" rel="alternate" type="text/html" title="Automatically exclude development dependencies from Apple Time Machine backups" /><published>2019-12-14T21:02:40+08:00</published><updated>2019-12-14T21:02:40+08:00</updated><id>https://stouty.xyz/macos/2019/12/14/asimov</id><content type="html" xml:base="https://stouty.xyz/macos/2019/12/14/asimov/">&lt;p&gt;&lt;a href=&quot;https://github.com/stevegrunwell/asimov&quot;&gt;Asimov&lt;/a&gt; is a very handy tool from &lt;a href=&quot;https://github.com/stevegrunwell&quot;&gt;Steve Grunwell&lt;/a&gt; that scans your home directory for development dependencies for &lt;a href=&quot;https://nodejs.org/&quot;&gt;Node&lt;/a&gt;, &lt;a href=&quot;https://cocoapods.org/&quot;&gt;CocoaPods&lt;/a&gt; etc, then excludes them from Time Machine backups.&lt;/p&gt;</content><author><name>James Stout</name></author><category term="Time Machine" /><summary type="html">Asimov is a very handy tool from Steve Grunwell that scans your home directory for development dependencies for Node, CocoaPods etc, then excludes them from Time Machine backups.</summary></entry><entry><title type="html">A Night At The Hip-Hopera</title><link href="https://stouty.xyz/music/2019/12/14/a-night-at-the-hip-hopera/" rel="alternate" type="text/html" title="A Night At The Hip-Hopera" /><published>2019-12-14T16:33:53+08:00</published><updated>2019-12-14T16:33:53+08:00</updated><id>https://stouty.xyz/music/2019/12/14/a-night-at-the-hip-hopera</id><content type="html" xml:base="https://stouty.xyz/music/2019/12/14/a-night-at-the-hip-hopera/">&lt;p&gt;Your yearly reminder that &lt;a href=&quot;https://www.kleptones.com/pages/downloads_hiphopera.html&quot;&gt;A Night At The Hip-Hopera&lt;/a&gt; by &lt;a href=&quot;https://www.kleptones.com/index.html&quot;&gt;The Kleptones&lt;/a&gt; is available in &lt;a href=&quot;https://www.kleptones.com/music/qhh/Hip-Hopera_flac.zip&quot;&gt;FLAC&lt;/a&gt; format.&lt;/p&gt;
 
 &lt;p&gt;Lay back and hit the playback:&lt;/p&gt;
 
@@ -694,10 +759,4 @@ killall Safari
       &lt;p&gt;What? No HTTPS PHP.net? &lt;a href=&quot;https://httpsiseasy.com/&quot;&gt;Come on&lt;/a&gt;… &lt;a href=&quot;#fnref:fn-https&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>James Stout</name></author><category term="vagrant" /><category term="vscode" /><category term="php" /><category term="xdebug" /><summary type="html">Configure Xdebug, Visual Studio Code for a Vagrant VM</summary></entry><entry><title type="html">HTTP vs HTTPS Test</title><link href="https://stouty.xyz/internet/2018/07/08/httpvshttps/" rel="alternate" type="text/html" title="HTTP vs HTTPS Test" /><published>2018-07-08T10:37:01+08:00</published><updated>2018-07-08T10:37:01+08:00</updated><id>https://stouty.xyz/internet/2018/07/08/httpvshttps</id><content type="html" xml:base="https://stouty.xyz/internet/2018/07/08/httpvshttps/">&lt;blockquote&gt;
-  &lt;p&gt;Encrypted Websites Protect Our Privacy and are Significantly Faster.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.httpvshttps.com/&quot;&gt;HTTP vs HTTPS Test&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/httpvshttps/httpvshttps.png&quot; src=&quot;/assets/images/posts/httpvshttps/httpvshttps-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;httpvshttps screenshot&quot; /&gt;&lt;/p&gt;</content><author><name>James Stout</name></author><category term="https" /><summary type="html">Encrypted Websites Protect Our Privacy and are Significantly Faster.</summary></entry></feed>
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="vagrant" /><category term="vscode" /><category term="php" /><category term="xdebug" /><summary type="html">Configure Xdebug, Visual Studio Code for a Vagrant VM</summary></entry></feed>

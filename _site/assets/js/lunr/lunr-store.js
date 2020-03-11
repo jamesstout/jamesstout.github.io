@@ -108,4 +108,9 @@ var store = [{
         "excerpt":"Asimov is a very handy tool from Steve Grunwell that scans your home directory for development dependencies for Node, CocoaPods etc, then excludes them from Time Machine backups.  ","categories": ["macOS"],
         "tags": ["Time Machine"],
         "url": "https://stouty.xyz/macos/2019/12/14/asimov/",
+        "teaser":null},{
+        "title": "Gitea - Git with a cup of tea",
+        "excerpt":"Gitea is a painless self-hosted Git service. It’s a community managed lightweight code hosting solution written in Go, similar to GitHub, Bitbucket, and GitLab.1 I’ve used GitHub - code on someone else’s server.2 I’ve used Bitbucket - ditto. I’ve used GitLab on my NAS in a Docker container - but...","categories": ["git"],
+        "tags": ["git","GitHub","GitLab","self-hosted","Go"],
+        "url": "https://stouty.xyz/git/2020/03/11/gitea/",
         "teaser":null}]
