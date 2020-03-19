@@ -10,3 +10,4 @@ _site/.well-known/*
 !.vscode/extensions.json
 /_site/ghost_export.json
 /_plugins/jekylltoghost.rb
+/.jekyll-cache

@@ -1,8 +1,8 @@
 # ./Gemfile
 source 'https://rubygems.org'
-gem "jekyll", "~> 3.6"
-gem "ffi", ">= 1.9.24"
-gem "minimal-mistakes-jekyll"
+gem 'jekyll', '~> 4.0'
+gem 'ffi', '~> 1.12', '>= 1.12.2'
+gem 'minimal-mistakes-jekyll', '~> 4.19', '>= 4.19.1'
 gem "jekyll-remote-theme"
 gem "jekyll-include-cache"
 gem "faraday", '~> 0.15', '< 0.17'
