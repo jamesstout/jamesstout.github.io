@@ -136,4 +136,16 @@ var store = [{
         "tags": ["git","GitHub","GitLab","self-hosted","Go"],
         "url": "https://stouty.xyz/git/2020/03/11/gitea/",
         "teaser": null
+      },{
+        "title": "Zoom for Mac Entitlements",
+        "excerpt":"Zoom for macOS versions &lt; v4.6.9 had a very dodgy installer, detailed extensively by Patrick Wardle and by Felix Seele. The app itself had entitlements to circumvent the hardened runtime on the Mac: Per Patrick: However the com.apple.security.cs.disable-library-validation entitlement is interesting. In short it tells macOS, “hey, yah I still...","categories": ["macOS"],
+        "tags": ["macOS","Zoom","security"],
+        "url": "https://stouty.xyz/macos/2020/04/05/zoom/",
+        "teaser": null
+      },{
+        "title": "Recovering iTunes Playlists",
+        "excerpt":"I moved my iTunes Music folder to a new disc, I don’t think I did it properly, so all my playlists were empty, the tracks in the exported playlist XML had new IDs and locations. There might be a way to recover using iTunes, but with a 250GB library, it’s...","categories": ["iTunes"],
+        "tags": ["iTunes","PHP","playlists"],
+        "url": "https://stouty.xyz/itunes/2020/04/06/itunes-playlist-recovery/",
+        "teaser": null
       }]
