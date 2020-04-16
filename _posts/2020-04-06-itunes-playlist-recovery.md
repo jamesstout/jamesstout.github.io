@@ -34,9 +34,9 @@ public function getIDAndLocation($trackID, $trackName, $totalTime, $artist, $alb
 
     foreach ( $this->_tracks as $track ) {
       // match on as much as possible
-      if( $track->Name == $trackName && 
-        (is_null($totalTime) == false && $track->Total_Time == $totalTime) && 
-        (is_null($artist) == false && $track->Artist == $artist) && 
+      if( $track->Name == $trackName &&  
+        (is_null($totalTime) == false && $track->Total_Time == $totalTime) &&  
+        (is_null($artist) == false && $track->Artist == $artist) &&  
         (is_null($album) == false && $track->Album == $album)
         ){
           return array($track->Track_ID, $track->Location);
@@ -46,14 +46,14 @@ public function getIDAndLocation($trackID, $trackName, $totalTime, $artist, $alb
       $potentialMatch[$trackName]["TotalTime"] = $totalTime;
       $potentialMatch[$trackName]["Artist"] = (is_null($artist) == false ? $artist : "NO ARTIST");
       $potentialMatch[$trackName]["Album"] = (is_null($album) == false ? $album : "NO ALBUM");
-      
+
       // tmp vars
       $tmpArtist = (isset($track->Artist) == true ? $track->Artist : "NO ARTIST");
       $tmpAlbum = (isset($track->Album) == true ? $track->Album : "NO ALBUM");
-      
+
       // if track name, total time and artist match, grab the details
       if ($track->Total_Time == $totalTime && $track->Name == $trackName && is_null($artist) == false && $tmpArtist == $artist) {
- 
+
           $match++;
 
           $potentialMatch[$trackName]['Match'][$match]["Type"] = "Name_TotalTime";
@@ -72,7 +72,7 @@ public function getIDAndLocation($trackID, $trackName, $totalTime, $artist, $alb
       $tmpTrackID="";
       $tmpLocation="";
       $tmpAlbum="";
-      
+
       // choose best
       // we know name, time and artist match
       // choose first with an album?
@@ -101,7 +101,7 @@ public function getIDAndLocation($trackID, $trackName, $totalTime, $artist, $alb
     }
 
     // could exit or log error here...
-    echo "could not match: [$trackName], [$totalTime], [$artist], [$album]\n";    
+    echo "could not match: [$trackName], [$totalTime], [$artist], [$album]\n";
     return array(null, null);
   }
   ```
@@ -133,7 +133,7 @@ $newLibrary = new iTunesLibrary($newiTunesFileGZ, false);
 
 foreach ($oldLibrary->getPlaylists() as $playlist) {
 
-    $time_start = microtime(true); 
+    $time_start = microtime(true);
 
     if (count($playlist->tracks)>0 && count($playlist->tracks) < $trackLimit) {
 
