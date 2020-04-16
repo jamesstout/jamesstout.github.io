@@ -148,4 +148,10 @@ var store = [{
         "tags": ["iTunes","PHP","playlists"],
         "url": "https://stouty.xyz/itunes/2020/04/06/itunes-playlist-recovery/",
         "teaser": null
+      },{
+        "title": "Finding duplicate files",
+        "excerpt":"I’ve been using PhotoSync to automatically transfer any new photos from my iPhone to my NAS. It’s a pretty wonderful app, here’s the NAS part: Securely backup photos &amp; videos directly from your iPhone, iPad and Android devices to any NAS, remote server or personal cloud over (S)FTP, SMB or...","categories": ["unix"],
+        "tags": ["duplicates","unix","fdupes","fslint","find","photo sync","NAS"],
+        "url": "https://stouty.xyz/unix/2020/04/16/dupes/",
+        "teaser": null
       }]

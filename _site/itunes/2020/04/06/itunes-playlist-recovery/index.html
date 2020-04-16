@@ -400,9 +400,9 @@
 
     <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_tracks</span> <span class="k">as</span> <span class="nv">$track</span> <span class="p">)</span> <span class="p">{</span>
       <span class="c1">// match on as much as possible</span>
-      <span class="k">if</span><span class="p">(</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Name</span> <span class="o">==</span> <span class="nv">$trackName</span> <span class="o">&amp;&amp;</span> 
-        <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$totalTime</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Total_Time</span> <span class="o">==</span> <span class="nv">$totalTime</span><span class="p">)</span> <span class="o">&amp;&amp;</span> 
-        <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$artist</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Artist</span> <span class="o">==</span> <span class="nv">$artist</span><span class="p">)</span> <span class="o">&amp;&amp;</span> 
+      <span class="k">if</span><span class="p">(</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Name</span> <span class="o">==</span> <span class="nv">$trackName</span> <span class="o">&amp;&amp;</span>  
+        <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$totalTime</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Total_Time</span> <span class="o">==</span> <span class="nv">$totalTime</span><span class="p">)</span> <span class="o">&amp;&amp;</span>  
+        <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$artist</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Artist</span> <span class="o">==</span> <span class="nv">$artist</span><span class="p">)</span> <span class="o">&amp;&amp;</span>  
         <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$album</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Album</span> <span class="o">==</span> <span class="nv">$album</span><span class="p">)</span>
         <span class="p">){</span>
           <span class="k">return</span> <span class="k">array</span><span class="p">(</span><span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Track_ID</span><span class="p">,</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Location</span><span class="p">);</span>
@@ -412,14 +412,14 @@
       <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s2">"TotalTime"</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$totalTime</span><span class="p">;</span>
       <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s2">"Artist"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$artist</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">?</span> <span class="nv">$artist</span> <span class="o">:</span> <span class="s2">"NO ARTIST"</span><span class="p">);</span>
       <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s2">"Album"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$album</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">?</span> <span class="nv">$album</span> <span class="o">:</span> <span class="s2">"NO ALBUM"</span><span class="p">);</span>
-      
+
       <span class="c1">// tmp vars</span>
       <span class="nv">$tmpArtist</span> <span class="o">=</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Artist</span><span class="p">)</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">?</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Artist</span> <span class="o">:</span> <span class="s2">"NO ARTIST"</span><span class="p">);</span>
       <span class="nv">$tmpAlbum</span> <span class="o">=</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Album</span><span class="p">)</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">?</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Album</span> <span class="o">:</span> <span class="s2">"NO ALBUM"</span><span class="p">);</span>
-      
+
       <span class="c1">// if track name, total time and artist match, grab the details</span>
       <span class="k">if</span> <span class="p">(</span><span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Total_Time</span> <span class="o">==</span> <span class="nv">$totalTime</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Name</span> <span class="o">==</span> <span class="nv">$trackName</span> <span class="o">&amp;&amp;</span> <span class="nb">is_null</span><span class="p">(</span><span class="nv">$artist</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$tmpArtist</span> <span class="o">==</span> <span class="nv">$artist</span><span class="p">)</span> <span class="p">{</span>
- 
+
           <span class="nv">$match</span><span class="o">++</span><span class="p">;</span>
 
           <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s1">'Match'</span><span class="p">][</span><span class="nv">$match</span><span class="p">][</span><span class="s2">"Type"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Name_TotalTime"</span><span class="p">;</span>
@@ -438,7 +438,7 @@
       <span class="nv">$tmpTrackID</span><span class="o">=</span><span class="s2">""</span><span class="p">;</span>
       <span class="nv">$tmpLocation</span><span class="o">=</span><span class="s2">""</span><span class="p">;</span>
       <span class="nv">$tmpAlbum</span><span class="o">=</span><span class="s2">""</span><span class="p">;</span>
-      
+
       <span class="c1">// choose best</span>
       <span class="c1">// we know name, time and artist match</span>
       <span class="c1">// choose first with an album?</span>
@@ -467,7 +467,7 @@
     <span class="p">}</span>
 
     <span class="c1">// could exit or log error here...</span>
-    <span class="k">echo</span> <span class="s2">"could not match: [</span><span class="nv">$trackName</span><span class="s2">], [</span><span class="nv">$totalTime</span><span class="s2">], [</span><span class="nv">$artist</span><span class="s2">], [</span><span class="nv">$album</span><span class="s2">]</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>    
+    <span class="k">echo</span> <span class="s2">"could not match: [</span><span class="nv">$trackName</span><span class="s2">], [</span><span class="nv">$totalTime</span><span class="s2">], [</span><span class="nv">$artist</span><span class="s2">], [</span><span class="nv">$album</span><span class="s2">]</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
     <span class="k">return</span> <span class="k">array</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
   <span class="p">}</span>
 </code></pre></div></div>
@@ -498,7 +498,7 @@
 
 <span class="k">foreach</span> <span class="p">(</span><span class="nv">$oldLibrary</span><span class="o">-&gt;</span><span class="na">getPlaylists</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$playlist</span><span class="p">)</span> <span class="p">{</span>
 
-    <span class="nv">$time_start</span> <span class="o">=</span> <span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span> 
+    <span class="nv">$time_start</span> <span class="o">=</span> <span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$playlist</span><span class="o">-&gt;</span><span class="na">tracks</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$playlist</span><span class="o">-&gt;</span><span class="na">tracks</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nv">$trackLimit</span><span class="p">)</span> <span class="p">{</span>
 
@@ -598,7 +598,8 @@
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/unix/2020/04/16/dupes/" class="pagination--pager" title="Finding duplicate files
+">Next</a>
     
   </nav>
 
@@ -612,6 +613,35 @@
     <div class="page__related">
       <h4 class="page__related-title">You May Also Enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/unix/2020/04/16/dupes/" rel="permalink">Finding duplicate files
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Testing different tools to find duplicate files on Linux/macOS.
+</p>
+  </article>
+</div>
+
         
           
 
@@ -695,35 +725,6 @@
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Asimov is a very handy tool from Steve Grunwell that scans your home directory for development dependencies for Node, CocoaPods etc, then excludes them from ...</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/music/2019/12/14/a-night-at-the-hip-hopera/" rel="permalink">A Night At The Hip-Hopera
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  less than 1 minute read
-
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Your yearly reminder that A Night At The Hip-Hopera by The Kleptones is available in FLAC format.
-</p>
   </article>
 </div>
 
