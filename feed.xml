@@ -1,0 +1,1550 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-05-11T02:29:14+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">A Quick Update on Zoom Code Signing</title><link href="https://stouty.xyz/macos/2020/05/11/zoom-update/" rel="alternate" type="text/html" title="A Quick Update on Zoom Code Signing" /><published>2020-05-11T00:32:38+08:00</published><updated>2020-05-11T00:32:38+08:00</updated><id>https://stouty.xyz/macos/2020/05/11/zoom-update</id><content type="html" xml:base="https://stouty.xyz/macos/2020/05/11/zoom-update/">&lt;p&gt;A quick update to my previous post on &lt;a href=&quot;https://stouty.xyz/macos/2020/04/05/zoom/&quot;&gt;Zoom security&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Per &lt;a href=&quot;https://twitter.com/scotteh/&quot;&gt;@scotteh&lt;/a&gt; and @&lt;a href=&quot;https://twitter.com/patrickwardle/&quot;&gt;patrickwardle&lt;/a&gt;, you can still unsign the app and load any dylibs you like:
+&lt;!-- markdownlint-disable MD034 --&gt;&lt;/p&gt;
+&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Sure!&lt;br /&gt;a) Unsign (via --remove-signature)&lt;br /&gt;b) Load any dylibs 🤭&lt;br /&gt;&lt;br /&gt;e.g.&lt;br /&gt;DYLD_INSERT_LIBRARIES=zoomzoom.dylib  /Applications/zoomzoom.us .app/Contents/MacOS/zoom.us &lt;br /&gt;&lt;br /&gt;You&amp;#39;ll have to (re)grant access to mic/webcam and notarization would be an issue if you (re)distribute though... &lt;a href=&quot;https://t.co/RReUqvXF6S&quot;&gt;pic.twitter.com/RReUqvXF6S&lt;/a&gt;&lt;/p&gt;&amp;mdash; patrick wardle (@patrickwardle) &lt;a href=&quot;https://twitter.com/patrickwardle/status/1250684302049726464?ref_src=twsrc%5Etfw&quot;&gt;April 16, 2020&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;/div&gt;
+&lt;!-- markdownlint-enable MD034 --&gt;
+
+&lt;p&gt;Maybe I don’t understand &lt;a href=&quot;https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Procedures/Procedures.html&quot;&gt;code signing&lt;/a&gt;, &lt;a href=&quot;https://www.manpagez.com/man/8/spctl/&quot;&gt;spctl&lt;/a&gt; or &lt;a href=&quot;https://en.wikipedia.org/wiki/Gatekeeper_(macOS)#Execution&quot;&gt;Gatekeeper&lt;/a&gt; well enough.&lt;/p&gt;
+
+&lt;p&gt;Gatekeeper is on, &lt;code class=&quot;highlighter-rouge&quot;&gt;spctl&lt;/code&gt; says rejected, but Zoom still opens after removing the signature… 🧐&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;spctl &lt;span class=&quot;nt&quot;&gt;--status&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
+assessments enabled
+developer &lt;span class=&quot;nb&quot;&gt;id &lt;/span&gt;enabled
+
+james@Jamess-iMac: ~
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;spctl &lt;span class=&quot;nt&quot;&gt;--assess&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--verbose&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4 /Applications/zoom.us.app/
+/Applications/zoom.us.app/: accepted
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Developer ID
+
+james@Jamess-iMac: ~
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;codesign &lt;span class=&quot;nt&quot;&gt;--remove-signature&lt;/span&gt; /Applications/zoom.us.app/
+
+james@Jamess-iMac: ~
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;spctl &lt;span class=&quot;nt&quot;&gt;--assess&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--verbose&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;4 /Applications/zoom.us.app/
+/Applications/zoom.us.app/: rejected
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;no usable signature
+
+james@Jamess-iMac: ~
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;o /Applications/zoom.us.app/
+
+james@Jamess-iMac: ~
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$?&lt;/span&gt;
+0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>James Stout</name></author><category term="macOS" /><category term="Zoom" /><category term="security" /><category term="code signing" /><category term="spctl" /><summary type="html">A quick update on Zoom code signing.</summary></entry><entry><title type="html">Compress-Upload-CocoaLumberjack - My First CocoaPod</title><link href="https://stouty.xyz/ios/2020/05/09/compress-upload-cocoalumberjack/" rel="alternate" type="text/html" title="Compress-Upload-CocoaLumberjack - My First CocoaPod" /><published>2020-05-09T23:09:06+08:00</published><updated>2020-05-09T23:09:06+08:00</updated><id>https://stouty.xyz/ios/2020/05/09/compress-upload-cocoalumberjack</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/09/compress-upload-cocoalumberjack/">&lt;p&gt;I just published my first CocoaPod: &lt;a href=&quot;https://cocoapods.org/pods/Compress-Upload-CocoaLumberjack&quot;&gt;Compress-Upload-CocoaLumberjack&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Remote logging via NSURLSession transfer to upload compressed CocoaLumberjack logs to an HTTP server.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pod trunk me
+  - Name:     James Stout
+  - Email:    stoutyhk@gmail.com
+  - Since:    May 7th, 20:14
+  - Pods:
+    - Compress-Upload-CocoaLumberjack
+  - Sessions:
+    - May 7th, 20:14 - September 14th, 21:44. IP: 203.218.233.190 Description: imac
+
+james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pod search Compress-Upload-CocoaLumberjack 2&amp;gt; /dev/null
+
+-&amp;gt; Compress-Upload-CocoaLumberjack &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1.2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+   Remote logging via NSURLSession transfer to upload compressed CocoaLumberjack logs to an HTTP server.
+   pod &lt;span class=&quot;s1&quot;&gt;'Compress-Upload-CocoaLumberjack'&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 0.1.2'&lt;/span&gt;
+   - Homepage: https://github.com/jamesstout/Compress-Upload-CocoaLumberjack
+   - Source:   https://github.com/jamesstout/Compress-Upload-CocoaLumberjack.git
+   - Versions: 0.1.2, 0.1.1, 0.1.0 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;Specs repo]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The rationale for creating this Pod was that the &lt;a href=&quot;https://github.com/CocoaLumberjack/CocoaLumberjack/tree/master/Demos/LogFileCompressor&quot;&gt;demo log file compression project&lt;/a&gt; in &lt;a href=&quot;https://github.com/CocoaLumberjack/CocoaLumberjack&quot;&gt;CocoaLumberjack&lt;/a&gt; just zips archived files, and &lt;a href=&quot;https://github.com/pushd/BackgroundUpload-CocoaLumberjack&quot;&gt;BackgroundUpload-CocoaLumberjack&lt;/a&gt; only uploads uncompressed log files. I wanted to compress, and then upload, to save space and bandwidth.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;So first things first, thank you to &lt;a href=&quot;https://github.com/pushd&quot;&gt;pushd&lt;/a&gt; and &lt;a href=&quot;https://cocoalumberjack.github.io/&quot;&gt;CocoaLumberjack&lt;/a&gt; for their work, inspiration, examples and permissive licenses. This wouldn’t exist without them.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;CocoaLumberjack is  a fast &amp;amp; simple, yet powerful &amp;amp; flexible logging framework&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;h2 id=&quot;lumberjack-is-fast--simple-yet-powerful--flexible&quot;&gt;Lumberjack is Fast &amp;amp; Simple, yet Powerful &amp;amp; Flexible.&lt;/h2&gt;
+  &lt;p&gt;It is similar in concept to other popular logging frameworks such as log4j, yet is designed specifically for Objective-C, and takes advantage of features such as multi-threading, grand central dispatch (if available), lockless atomic operations, and the dynamic nature of the Objective-C runtime.&lt;/p&gt;
+
+  &lt;h2 id=&quot;lumberjack-is-fast&quot;&gt;Lumberjack is Fast&lt;/h2&gt;
+  &lt;p&gt;In most cases it is an order of magnitude faster than NSLog.&lt;/p&gt;
+
+  &lt;h2 id=&quot;lumberjack-is-powerful&quot;&gt;Lumberjack is Powerful&lt;/h2&gt;
+  &lt;p&gt;One log statement can be sent to multiple loggers, meaning you can log to a file and the console simultaneously. Want more? Create your own loggers (it’s easy) and send your log statements over the network. Or to a database or distributed file system. The sky is the limit.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://github.com/CocoaLumberjack/CocoaLumberjack/blob/master/Documentation/Performance.md&quot;&gt;benchmarks&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The default philosophy for asynchronous logging is very simple:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Log messages with errors should be executed synchronously.&lt;/li&gt;
+  &lt;li&gt;All other log messages, such as debug output, are executed asynchronously.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Getting started is simple. This will add a pair of “loggers” and your log statements will be sent to the Console.app and the Xcode console (just like a normal &lt;code class=&quot;highlighter-rouge&quot;&gt;NSLog&lt;/code&gt;).&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define LOG_LEVEL_DEF ddLogLevel
+#import &amp;lt;CocoaLumberjack/CocoaLumberjack.h&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDLog&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDOSLogger&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sharedInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To add another logger, one that writes to a file:&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;DDFileLogger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDFileLogger&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rollingFrequency&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 24 hour rolling&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logFileManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maximumNumberOfLogFiles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDLog&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That’s a fairly standard log file setup, with one file per day, for a week. After a week, the oldest file is deleted.&lt;/p&gt;
+
+&lt;p&gt;Then to log, just convert your &lt;code class=&quot;highlighter-rouge&quot;&gt;NSLog&lt;/code&gt; calls:&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Convert from this:&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;NSLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;Broken sprocket detected!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;NSLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;User selected file:%@ withSize:%u&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// To this:&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;DDLogError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;Broken sprocket detected!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;DDLogVerbose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;User selected file:%@ withSize:%u&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;filePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileSize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Those logs will be set to the console, and to the log file.&lt;/p&gt;
+
+&lt;p&gt;If you make the &lt;code class=&quot;highlighter-rouge&quot;&gt;logFileManager&lt;/code&gt; a &lt;code class=&quot;highlighter-rouge&quot;&gt;CompressingLogFileManager&lt;/code&gt;, per the LogFileCompressor demo project mentioned above, your setup looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;CompressingLogFileManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logFileManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CompressingLogFileManager&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDFileLogger&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initWithLogFileManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logFileManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 1kB and 1 min, just to demo quick rolling/compressing&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maximumFileSize&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 1 KB&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rollingFrequency&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 1 Minute&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logFileManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maximumNumberOfLogFiles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDLog&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDOSLogger&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sharedInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDLog&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;With this setup, your log file is ‘archived’ and then compressed to a &lt;code class=&quot;highlighter-rouge&quot;&gt;.gz&lt;/code&gt; file. After a while, the log folder looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/compress-upload-cocoalumberjack/log-folder.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/compress-upload-cocoalumberjack/log-folder.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;log-folder&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Seems the &lt;code class=&quot;highlighter-rouge&quot;&gt;.gz&lt;/code&gt; files are excluded from the deletion based on &lt;code class=&quot;highlighter-rouge&quot;&gt;maximumNumberOfLogFiles&lt;/code&gt;, so the folder would just fill up, I think.&lt;/p&gt;
+
+&lt;p&gt;I deal with this in Compress-Upload-CocoaLumberjack. To set up Compress-Upload-CocoaLumberjack, you need an HTTP(S) server with an endpoint that accepts the log files, then instantiate the logger with your URL:&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// change the URL to your domain/endpoint&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;NSMutableURLRequest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSMutableURLRequest&lt;/span&gt;
+                                    &lt;span class=&quot;nl&quot;&gt;requestWithURL:&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSURL&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;URLWithString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;http://localhost:3000/log&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setHTTPMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;POST&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;logFileManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CompressingAndUploadingLogFileManager&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initWithUploadRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDFileLogger&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initWithLogFileManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logFileManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// set to 1 min and 1kB so they roll quickly&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maximumFileSize&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 1 KB&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rollingFrequency&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;   &lt;span class=&quot;mi&quot;&gt;60&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 1 Minute&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logFileManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maximumNumberOfLogFiles&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDLog&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDOSLogger&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sharedInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDLog&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The compression behaviour is the same as in LogFileCompressor, except in &lt;code class=&quot;highlighter-rouge&quot;&gt;compressionDidSucceed&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#pragma mark - compressionDidSucceed
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;compressionDidSucceed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDLogFileInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;logFile&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;NSLogVerbose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;CompressingAndUploadingLogFileManager: compressionDidSucceed: %@&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  
+    &lt;span class=&quot;c1&quot;&gt;// at this point we want to upload logFile, if the dontUpload flag isn't set&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;doUpload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;uploadArchivedFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isCompressing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;compressNextLogFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;uploadArchivedFile&lt;/code&gt; eventually calls:&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;uploadLogFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;logFilePath&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;NSMutableURLRequest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uploadRequest&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;mutableCopy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logFilePath&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringByAddingPercentEncodingWithAllowedCharacters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSCharacterSet&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;URLHostAllowedCharacterSet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;forHTTPHeaderField&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;X-BackgroundUpload-File&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// added extra header to identify upload&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIDevice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;currentDevice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;identifierForVendor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UUIDString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;stringByAddingPercentEncodingWithAllowedCharacters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSCharacterSet&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;URLHostAllowedCharacterSet&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;forHTTPHeaderField&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;X-BackgroundUpload-File-UUID&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+  
+    &lt;span class=&quot;n&quot;&gt;NSURLSessionTask&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;session&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;uploadTaskWithRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fromFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSURL&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fileURLWithPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logFilePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;taskDescription&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;logFilePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;task&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;resume&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delegate&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;respondsToSelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;@selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;attemptingUploadForFilePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:)])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delegate&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;attemptingUploadForFilePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logFilePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;X-BackgroundUpload-File&lt;/code&gt; contains the filename. I added &lt;code class=&quot;highlighter-rouge&quot;&gt;X-BackgroundUpload-File-UUID&lt;/code&gt; to anonymously identify each device so I could separate the log files on the server-side, and do a few security checks.&lt;/p&gt;
+
+&lt;p&gt;I’m not going to publish the server code, as I’m pretty sure it has some vulnerabilities! Something like this, in PHP:&lt;/p&gt;
+
+&lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hhud&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;  &lt;span class=&quot;nb&quot;&gt;isset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;rawurldecode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$var&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;$request_body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file_get_contents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'php://input'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$request_body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// do some checks and validation on input&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$fullFileName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hhud&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_SERVER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;HTTP_X_BACKGROUNDUPLOAD_FILE&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// File path to save file&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$filePath&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'xxxxx/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$fileName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;$fileDir&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'xxxxx/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$fullFileName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$fileName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;basename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$fullFileName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$fileName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;preg_replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/\s+/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'-'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$fileName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$filePath&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$filePath&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$fileDir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$filePath&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$fileName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Write the request body to file&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;file_put_contents&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$request_body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;FALSE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;nv&quot;&gt;$serverDeets&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;var_export&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_SERVER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Exception&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Failed to write to file:&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\n\$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;_SERVER was:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$serverDeets&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;http_response_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;http_response_code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To deal with old compressed files in the logs directory, I added &lt;code class=&quot;highlighter-rouge&quot;&gt;uploadOldCompressedLogFiles&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;CompressingAndUploadingLogFileManager init&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uploadOldCompressedLogFiles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;doUpload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;NSArray&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unsortedLogFileInfos&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;unsortedLogFileInfosGZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDLogFileInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileInfo&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unsortedLogFileInfos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;NSLogVerbose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;CompressingAndUploadingLogFileManager: fileInfo: %@&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isArchived&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;NSLogVerbose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;is Archived, uploading...&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;uploadArchivedFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You might have spotted that there’s a property on the LogFileManager that you can set to prevent uploads (it defaults to &lt;code class=&quot;highlighter-rouge&quot;&gt;YES&lt;/code&gt;). To stop uploading, simply set to &lt;code class=&quot;highlighter-rouge&quot;&gt;NO&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;logFileManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;doUpload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In my &lt;a href=&quot;https://apps.apple.com/us/app/hkwarnings/id370901118#?platform=ipad&quot;&gt;HKWarnings app&lt;/a&gt;, I can set this flag from my server, enabling me to remotely switch log file uploading on and off.&lt;/p&gt;
+
+&lt;p&gt;On the server, I end up with folders full of gzipped log files:&lt;/p&gt;
+
+&lt;figure class=&quot;half &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/posts/compress-upload-cocoalumberjack/logs.png&quot; title=&quot;Log files&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/compress-upload-cocoalumberjack/logs-th.png&quot; alt=&quot;Log files&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/compress-upload-cocoalumberjack/tree.png&quot; title=&quot;Log tree&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/compress-upload-cocoalumberjack/tree-th.png&quot; alt=&quot;Log tree&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;p&gt;I take a copy, unzip and &lt;code class=&quot;highlighter-rouge&quot;&gt;grep&lt;/code&gt; the logs for insights. For example, this lists debug lines and orders them by the number of times they occur:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;egrep &lt;span class=&quot;s1&quot;&gt;'\[\D\]'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.log | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Po&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' \[.*'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/^ *//g'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;uniq&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1182 [D] [Warning -[Warning isItNight]][Line 1619] in isItNight
+1343 [D] [WarningViewController3 -[WarningViewController3 showLabel]][Line 2152] have not purchased ads
+1361 [D] [NSMutableString+HKWUtilities -[NSMutableString(HKWUtilities) hkw_base64EncodedURLQueryString:]][Line 14] encQueryString is []
+1377 [D] [WarningViewController3 -[WarningViewController3 showLabel]][Line 2136] In showLabel
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So I can see I should make sure these are performant:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;isItNight&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;hkw_base64EncodedURLQueryString&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In fact I’ve already released a version where &lt;code class=&quot;highlighter-rouge&quot;&gt;hkw_base64EncodedURLQueryString&lt;/code&gt; is 66% faster and &lt;code class=&quot;highlighter-rouge&quot;&gt;isItNight&lt;/code&gt; is ~30% faster:&lt;/p&gt;
+
+&lt;figure class=&quot;half &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/posts/compress-upload-cocoalumberjack/isitnight.png&quot; title=&quot;Is it night test&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/compress-upload-cocoalumberjack/isitnight-th.png&quot; alt=&quot;Is it night test&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/compress-upload-cocoalumberjack/isitnight2.png&quot; title=&quot;Is it night 2 tests&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/compress-upload-cocoalumberjack/isitnight2-th.png&quot; alt=&quot;Is it night 2 tests&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;p&gt;Final test to check the output of the new version matches the old version:&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;testisItNight_isItNight2&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Warning&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;warning&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Warning&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;BOOL&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isitNight2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;warning&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isItNight2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;BOOL&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isitNight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;warning&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isItNight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isitNight2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isitNight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>James Stout</name></author><category term="CocoaLumberjack" /><category term="logging" /><category term="remote logging" /><category term="compression" /><category term="CocoaPods" /><category term="pod" /><summary type="html">My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack.</summary></entry><entry><title type="html">Nextcloud Sync Client for Docker</title><link href="https://stouty.xyz/nextcloud/2020/05/08/nextcloud-sync/" rel="alternate" type="text/html" title="Nextcloud Sync Client for Docker" /><published>2020-05-08T22:27:27+08:00</published><updated>2020-05-08T22:27:27+08:00</updated><id>https://stouty.xyz/nextcloud/2020/05/08/nextcloud-sync</id><content type="html" xml:base="https://stouty.xyz/nextcloud/2020/05/08/nextcloud-sync/">&lt;p&gt;I’ve found the ‘native’ macOS Nextcloud client to be a bit flakey. It’s all &lt;a href=&quot;https://www.qt.io/&quot;&gt;Qt&lt;/a&gt; and &lt;a href=&quot;https://github.com/nextcloud/desktop/search?l=c%2B%2B&quot;&gt;C++&lt;/a&gt; and times out all the time.&lt;/p&gt;
+
+&lt;p&gt;I’m trying to replace Dropbox on my Mac, as they get up to all sorts of &lt;a href=&quot;https://applehelpwriter.com/2016/07/28/revealing-dropboxs-dirty-little-security-hack/&quot;&gt;scummy&lt;/a&gt; &lt;a href=&quot;https://applehelpwriter.com/2016/08/29/discovering-how-dropbox-hacks-your-mac/&quot;&gt;behaviour&lt;/a&gt;, but it’s a little harder than expected.&lt;/p&gt;
+
+&lt;p&gt;I mentioned in an earlier post that I &lt;a href=&quot;https://stouty.xyz/unix/2020/04/16/dupes/&quot;&gt;sync my photos to my NAS&lt;/a&gt;, then sync to Nextcloud via their &lt;a href=&quot;https://docs.nextcloud.com/desktop/2.6/advancedusage.html#nextcloud-command-line-client&quot;&gt;command line client&lt;/a&gt;, running in a &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; &lt;a href=&quot;https://www.docker.com/resources/what-container&quot;&gt;container&lt;/a&gt;. I run all my containers on my Synology NAS using their &lt;a href=&quot;https://www.synology.com/en-global/dsm/feature/docker&quot;&gt;Docker package&lt;/a&gt;:&lt;/p&gt;
+
+&lt;figure class=&quot;third &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/posts/nextcloud-sync/containers.png&quot; title=&quot;Docker containers&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/nextcloud-sync/containers-th.png&quot; alt=&quot;Docker containers&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/nextcloud-sync/containers2.png&quot; title=&quot;Docker containers&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/nextcloud-sync/containers2-th.png&quot; alt=&quot;Docker containers&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/nextcloud-sync/images.png&quot; title=&quot;Docker images&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/nextcloud-sync/images-th.png&quot; alt=&quot;Docker images&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;p&gt;In the last screenshot there you can see my image: &lt;a href=&quot;https://registry.hub.docker.com/r/stoutyhk/nextcloud-client/&quot;&gt;stoutyhk/nextcloud-client&lt;/a&gt;. It’s based on the image from &lt;a href=&quot;https://github.com/juanitomint/nextcloud-client-docker&quot;&gt;juanitomint&lt;/a&gt;, with some &lt;a href=&quot;https://github.com/jamesstout/nextcloud-client-docker/commit/c6184018dcc46289cbbb59060c63870814710e59&quot;&gt;small tweaks&lt;/a&gt; to add functionality to exclude certain folders and to set folders for selective sync. I also slightly tweaked how the arguments to the client are constructed and exposed the &lt;code class=&quot;highlighter-rouge&quot;&gt;media&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;config&lt;/code&gt; folders.&lt;/p&gt;
+
+&lt;figure class=&quot;half &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/posts/nextcloud-sync/Dockerfile.png&quot; title=&quot;Dockerfile&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/nextcloud-sync/Dockerfile-th.png&quot; alt=&quot;Dockerfile&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/nextcloud-sync/run.png&quot; title=&quot;run.sh&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/nextcloud-sync/run-th.png&quot; alt=&quot;run.sh&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;p&gt;The config folder can contain files named:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;exclude&lt;/code&gt; - this contains files/folders/patterns that you don’t want to sync&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;unsyncedfolders&lt;/code&gt; - contains the list of un-synced remote folders (selective sync)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For example, I want to exclude syncing the Synology-generated metadata &lt;a href=&quot;https://www.reddit.com/r/synology/comments/an4a4l/modern_solution_to_stopping_the_generation_of/&quot;&gt;@eaDir&lt;/a&gt; directories to my server:&lt;/p&gt;
+
+&lt;p&gt;So I have a config directory containing an &lt;code class=&quot;highlighter-rouge&quot;&gt;exclude&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/nextcloud-sync/config.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/nextcloud-sync/config.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;config folder screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Containing:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/nextcloud-sync/exclude.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/nextcloud-sync/exclude.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;exclude file screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Additionally, on my server there are folders that I do not want to sync down to my NAS. So those folders go in the &lt;code class=&quot;highlighter-rouge&quot;&gt;unsyncedfolders&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/nextcloud-sync/unsyncedfolders.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/nextcloud-sync/unsyncedfolders.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;unsyncedfolders file screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;So you download the image, launch and set the &lt;a href=&quot;https://docs.docker.com/storage/volumes/&quot;&gt;volumes&lt;/a&gt; and environment variables, and start it up:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/nextcloud-sync/nc-docker-settings.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/nextcloud-sync/nc-docker-settings.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;nc-docker-settings screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;From the command line this would be something like:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--rm&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; some_named_volume:/media/nextcloud &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; some_config_volume:/config &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;NC_USER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$username&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;NC_PASS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$password&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;NC_URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$server_url&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  stoutyhk/nextcloud-client
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The Dockerfile CMD is run.sh, a script that parses the arguments to construct the nextcloudcmd command. For my setup it’s this:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/bin/su -s /bin/ash &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$USER&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -c 'nextcloudcmd --exclude /config/exclude &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
+--unsyncedfolders /config/unsyncedfolders --max-sync-retries 6 &lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;
+--non-interactive -u &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NC_USER&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -p &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NC_PASS&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; /media/nextcloud &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NC_URL&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;'&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This simply runs in a &lt;a href=&quot;https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_09_02.html&quot;&gt;while true loop&lt;/a&gt;, sleeping for 500s after it syncs and then checking if it needs to sync again after 500s.&lt;/p&gt;
+
+&lt;p&gt;It’s very stable, hasn’t crashed or timed out yet. I highly recommend this method vs the native macOS client.&lt;/p&gt;
+
+&lt;p&gt;Going full No Dropbox would mean syncing further folders and mounting them on my Mac. That’s up next.&lt;/p&gt;
+
+&lt;p&gt;BTW, building and tweaking this is very simple. The &lt;a href=&quot;https://docs.docker.com/engine/reference/builder/&quot;&gt;Dockerfile&lt;/a&gt; describes what to do:&lt;/p&gt;
+
+&lt;p&gt;Build image based on &lt;a href=&quot;https://www.alpinelinux.org/&quot;&gt;Alpine&lt;/a&gt; (a tiny, 2.7MB, version of Linux):&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;FROM alpine:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Set some ARGS and ENVS:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ARG USER=ncsync
+ARG GROUP=users
+ARG USER_UID=1000
+ARG USER_GID=100
+
+ENV USER=$USER \
+    GROUP=$GROUP \
+    USER_UID=$USER_UID \
+    USER_GID=$USER_GID \
+    NC_USER=username \
+    NC_PASS=password \
+    NC_INTERVAL=500 \
+    NC_URL=&quot;&quot; \
+    NC_TRUST_CERT=false \
+    NC_SILENT=false \
+    NC_EXIT=false   \
+    NC_HIDDEN=false \
+    NC_MAX_SYNC_RETRIES=3
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create user/group:&lt;/p&gt;
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;RUN adduser -G $GROUP -D -u $USER_UID $USER
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Update repositories and install nextcloud-client:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;RUN apk update &amp;amp;&amp;amp; apk add nextcloud-client &amp;amp;&amp;amp; rm -rf /etc/apk/cache
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Add run script and expose volumes:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ADD run.sh /usr/bin/run.sh
+VOLUME [ &quot;/media/nextcloud&quot; ]
+VOLUME [ &quot;/config&quot; ]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, execute the command:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;CMD /usr/bin/run.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The build command to build the image is:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker build &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--build-arg&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;VCS_REF&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;git rev-parse &lt;span class=&quot;nt&quot;&gt;--short&lt;/span&gt; HEAD&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;--build-arg&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;BUILD_DATE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; +&lt;span class=&quot;s2&quot;&gt;&quot;%Y-%m-%dT%H:%M:%SZ&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; stoutyhk/nextcloud-client &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;tee &lt;/span&gt;build.log
+docker images stoutyhk/nextcloud-client
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can see my current image is the one from DockerHub:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/nextcloud-sync/docker-ps.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/nextcloud-sync/docker-ps.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;docker-ps screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The build output:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@dusky2: /volume1/homes/james/src/nextcloud-client-docker on master[!?]
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./build.sh
+Sending build context to Docker daemon  28.67kB
+Step 1/19 : FROM alpine:latest
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; a187dde48cd2
+Step 2/19 : LABEL &lt;span class=&quot;nv&quot;&gt;maintainer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;stoutyhk&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;0.1&quot;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;nextcloud sync client&quot;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;d7bcd965c0d4
+Removing intermediate container d7bcd965c0d4
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; b6a1c94582c9
+Step 3/19 : LABEL based-on&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://github.com/juanitomint/nextcloud-client-docker&quot;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;fba05915652c
+Removing intermediate container fba05915652c
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 92e4f3b6aba1
+Step 4/19 : LABEL &lt;span class=&quot;nv&quot;&gt;repo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://github.com/jamesstout/nextcloud-client-docker&quot;&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;63258ff88545
+Removing intermediate container 63258ff88545
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 07233dc234c6
+Step 5/19 : ARG VCS_REF
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;f03e352100f4
+Removing intermediate container f03e352100f4
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 172784412e92
+Step 6/19 : ARG BUILD_DATE
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;80600d7575e4
+Removing intermediate container 80600d7575e4
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 77bc2f5d481a
+Step 7/19 : LABEL vcs-ref&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$VCS_REF&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;c58cdd8b58f6
+Removing intermediate container c58cdd8b58f6
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 2e598c72729a
+Step 8/19 : LABEL build-date&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$BUILD_DATE&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;d51c564b1354
+Removing intermediate container d51c564b1354
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 2cf77c7ccd0f
+Step 9/19 : ARG &lt;span class=&quot;nv&quot;&gt;USER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ncsync
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;10c452b72d23
+Removing intermediate container 10c452b72d23
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 62d6402dfe64
+Step 10/19 : ARG &lt;span class=&quot;nv&quot;&gt;GROUP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;users&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;2c7c84cca017
+Removing intermediate container 2c7c84cca017
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 32af7f7e31a6
+Step 11/19 : ARG &lt;span class=&quot;nv&quot;&gt;USER_UID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1000
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;a76b14779d6e
+Removing intermediate container a76b14779d6e
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; d16b1dc7fda7
+Step 12/19 : ARG &lt;span class=&quot;nv&quot;&gt;USER_GID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;100
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;16a3579c0537
+Removing intermediate container 16a3579c0537
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; b06b174ac1cb
+Step 13/19 : ENV &lt;span class=&quot;nv&quot;&gt;USER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$USER&lt;/span&gt;     &lt;span class=&quot;nv&quot;&gt;GROUP&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$GROUP&lt;/span&gt;     &lt;span class=&quot;nv&quot;&gt;USER_UID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$USER_UID&lt;/span&gt;     &lt;span class=&quot;nv&quot;&gt;USER_GID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$USER_GID&lt;/span&gt;     &lt;span class=&quot;nv&quot;&gt;NC_USER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;username     &lt;span class=&quot;nv&quot;&gt;NC_PASS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;password     &lt;span class=&quot;nv&quot;&gt;NC_INTERVAL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;500     &lt;span class=&quot;nv&quot;&gt;NC_URL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;     &lt;span class=&quot;nv&quot;&gt;NC_TRUST_CERT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false     &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;NC_SILENT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false     &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;NC_EXIT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false       &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;NC_HIDDEN&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;false     &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;NC_MAX_SYNC_RETRIES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;3
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;85c579929ce1
+Removing intermediate container 85c579929ce1
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 82c168659c42
+Step 14/19 : RUN adduser &lt;span class=&quot;nt&quot;&gt;-G&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$GROUP&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-D&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$USER_UID&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$USER&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;84755af084c9
+Removing intermediate container 84755af084c9
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 9888ccca2dcc
+Step 15/19 : RUN apk update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; apk add nextcloud-client &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; /etc/apk/cache
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;702eef96b765
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.11/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.11/community/x86_64/APKINDEX.tar.gz
+v3.11.6-32-g9ddc349524 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;http://dl-cdn.alpinelinux.org/alpine/v3.11/main]
+v3.11.6-28-g4b76c8208f &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;http://dl-cdn.alpinelinux.org/alpine/v3.11/community]
+OK: 11273 distinct packages available
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1/95&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Installing dbus-libs &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1.12.16-r2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2/95&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Installing libgcc &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;9.2.0-r4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3/95&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Installing libffi &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.2.1-r6&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-----8&lt;/span&gt;&amp;lt;&lt;span class=&quot;nt&quot;&gt;---snip---8&lt;/span&gt;&amp;lt;&lt;span class=&quot;nt&quot;&gt;----&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;95/95&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Installing nextcloud-client &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2.6.1-r0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+^@Executing busybox-1.31.1-r9.trigger
+OK: 300 MiB &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;109 packages
+Removing intermediate container 702eef96b765
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 3147165b6612
+Step 16/19 : ADD run.sh /usr/bin/run.sh
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 11a9c630e797
+Step 17/19 : VOLUME &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/media/nextcloud&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;69454b15f6b6
+Removing intermediate container 69454b15f6b6
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; af98dc485510
+Step 18/19 : VOLUME &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/config&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;94ac262e01a9
+Removing intermediate container 94ac262e01a9
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; b964f6b7c97c
+Step 19/19 : CMD /usr/bin/run.sh
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Running &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;942c9ddf5ddd
+Removing intermediate container 942c9ddf5ddd
+ &lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; aa064981bb5b
+Successfully built aa064981bb5b
+Successfully tagged stoutyhk/nextcloud-client:latest
+
+real	5m50.592s
+user	0m0.096s
+sys	0m0.047s
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+stoutyhk/nextcloud-client   latest              aa064981bb5b        1 second ago        311MB
+stoutyhk/nextcloud-client   &amp;lt;none&amp;gt;              6ca8291dece4        3 weeks ago         311MB
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can see the &lt;code class=&quot;highlighter-rouge&quot;&gt;latest&lt;/code&gt; tag is now pointing to image &lt;code class=&quot;highlighter-rouge&quot;&gt;aa064981bb5b&lt;/code&gt;. To update, you export the settings, stop the container, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker rm stoutyhk-nextcloud-client&lt;/code&gt;, then import the settings and launch the new image:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/nextcloud-sync/new-image.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/nextcloud-sync/new-image.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;new-image screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Spot of housekeeping:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@dusky2: /usr/local/bin
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;image &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;docker images &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;dangling=true&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;stouty | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-vE&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'IMAGE'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{ print $3 }'&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do
+    &lt;/span&gt;docker rmi &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$image&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done
+&lt;/span&gt;Untagged: stoutyhk/nextcloud-client@sha256:024ba23cc5e182aedb3d30df1bc4e31127fe21f94b35aed55804989b8e154a98
+Deleted: sha256:6ca8291dece42c3dda0cf2b6601e0ff1180cf854909b5f3474710ca84babaf04
+Deleted: sha256:be8054c4d017455ca6b4afd7e00fb7da03e58beae4a3705575aabcff8af23fb9
+Deleted: sha256:c9eae4086cf6c94c60590bb909fbffa90f166371d9c13a53a4a988d48747cdcc
+Deleted: sha256:688a57e452c154219a34c88e18ec695ef3a15ce4a1d4f73875d56ff40a8a6de6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;I have a script that runs weekly to automate pulling of new images:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/jamesstout/c19c227d1ac7dd37108ecbbf5c52eea7.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;I then need to do the export, rm, import manually as I haven’t figured out how to automate that with Synology Docker package yet.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/wagoodman/dive&quot;&gt;Dive&lt;/a&gt; is a nice tool for examining Docker &lt;a href=&quot;https://docs.docker.com/storage/storagedriver/#images-and-layers&quot;&gt;images and layers&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can see what each command in the Dockerfile does to the image. It also gives you an image efficiency estimate:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Image Efficiency&lt;/p&gt;
+
+  &lt;p&gt;The lower left pane shows basic layer info and an experimental metric that will guess how much wasted space your image contains. This might be from duplicating files across layers, moving files across layers, or not fully removing files. Both a percentage “score” and total wasted file space is provided.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Mine is fairly good:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Total Image size: 311MB
+Potential wasted space: 179kB
+Image efficiency score: 99 %
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Here’s a look at &lt;code class=&quot;highlighter-rouge&quot;&gt;dive&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://asciinema.org/a/2xQFxw4LdqjYuh9cc7WEv4Xc7&quot;&gt;&lt;img src=&quot;https://asciinema.org/a/2xQFxw4LdqjYuh9cc7WEv4Xc7.svg&quot; alt=&quot;asciicast&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>James Stout</name></author><category term="Nextcloud" /><category term="Docker" /><category term="NAS" /><category term="Synology" /><category term="docker build" /><category term="sync" /><category term="Dockerfile" /><category term="docker images" /><category term="dive" /><category term="docker layers" /><summary type="html">Syncing to Nextcloud from a Docker container, and how to build that container.</summary></entry><entry><title type="html">HKWarnings v5.0.0</title><link href="https://stouty.xyz/ios/2020/05/04/hkwarnings/" rel="alternate" type="text/html" title="HKWarnings v5.0.0" /><published>2020-05-04T23:40:49+08:00</published><updated>2020-05-04T23:40:49+08:00</updated><id>https://stouty.xyz/ios/2020/05/04/hkwarnings</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/04/hkwarnings/">&lt;p&gt;When I initially made HKWarnings &lt;a href=&quot;https://help.apple.com/xcode/mac/current/#/deve69552ee5&quot;&gt;universal&lt;/a&gt; and added an iPad interface, I based the interface on a &lt;a href=&quot;https://developer.apple.com/library/archive/samplecode/MultipleDetailViews/Introduction/Intro.html&quot;&gt;MultipleDetailViews&lt;/a&gt; demo from Apple. That version is updated, I used the older code from &lt;a href=&quot;https://developer.apple.com/library/archive/samplecode/MultipleDetailViews/History/History.html#//apple_ref/doc/uid/DTS40009775-RevisionHistory-DontLinkElementID_1&quot;&gt;2010&lt;/a&gt;, so it’s 10 years old and built for iOS 3.2.&lt;/p&gt;
+
+&lt;p&gt;Architecturally, there’s a Master ViewController that displays multiple different Detail ViewControllers.&lt;/p&gt;
+
+&lt;p&gt;The Master ViewController is a TableView that’s usually hidden:&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/hkwarnings/master.png&quot; class=&quot;lazyload blur-up align-center&quot; alt=&quot;master vc&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s used to choose one of many Detail VCs:&lt;/p&gt;
+
+&lt;figure class=&quot;third &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/Four-Warning.png&quot; title=&quot;Four Warnings&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/Four-Warning-th.png&quot; alt=&quot;Four Warnings&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/Deets-Warning.png&quot; title=&quot;Warning Details&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/Deets-Warning-th.png&quot; alt=&quot;Warning Details&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/Radar.png&quot; title=&quot;Radar&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/Radar-th.png&quot; alt=&quot;Radar&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/Sat.png&quot; title=&quot;Sat&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/Sat-th.png&quot; alt=&quot;Sat&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/TC-Warning.png&quot; title=&quot;Typhoon&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/TC-Warning-th.png&quot; alt=&quot;Typhoon&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/Warnings-History.png&quot; title=&quot;Warnings-History&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/Warnings-History-th.png&quot; alt=&quot;Warnings-History&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/Weather-Images.png&quot; title=&quot;Weather Images&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/Weather-Images-th.png&quot; alt=&quot;Weather Images&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/Weather-Image.png&quot; title=&quot;Weather Image&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/Weather-Image-th.png&quot; alt=&quot;Weather Image&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/Deets-Warning-Screen-CN.png&quot; title=&quot;Warning Details Chinese&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/Deets-Warning-Screen-CN-th.png&quot; alt=&quot;Warning Details Chinese&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+    &lt;figcaption&gt;Click a row in the Master table and the selected Detail VC loads.
+&lt;/figcaption&gt;
+  
+&lt;/figure&gt;
+
+&lt;p&gt;Anyway, this 10 year old code has survived &lt;a href=&quot;https://en.wikipedia.org/wiki/IOS_version_history&quot;&gt;9 OS updates&lt;/a&gt;, but finally, on iOS 13, it no longer works. The code below that switches the Detail VC and hides the Master &lt;em&gt;is&lt;/em&gt; called, but the &lt;code class=&quot;highlighter-rouge&quot;&gt;UIPopoverController&lt;/code&gt; is always &lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;splitViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UISplitViewController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;svc&lt;/span&gt;
+     &lt;span class=&quot;nf&quot;&gt;willHideViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIViewController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;aViewController&lt;/span&gt;
+          &lt;span class=&quot;nf&quot;&gt;withBarButtonItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIBarButtonItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;barButtonItem&lt;/span&gt;
+       &lt;span class=&quot;nf&quot;&gt;forPopoverController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIPopoverController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;pc&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Keep references to the popover controller and the popover button,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// and tell the detail view controller to show the button.&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;barButtonItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;title&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;NSLocalizedString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;Menu&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Menu&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;popoverController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rootPopoverButtonItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;barButtonItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;UIViewController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SubstitutableDetailViewController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;detailViewController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;splitViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;viewControllers&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;objectAtIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;detailViewController&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;showRootPopoverButtonItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rootPopoverButtonItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;splitViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UISplitViewController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;svc&lt;/span&gt;
+     &lt;span class=&quot;nf&quot;&gt;willShowViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIViewController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;aViewController&lt;/span&gt;
+  &lt;span class=&quot;nf&quot;&gt;invalidatingBarButtonItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIBarButtonItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;barButtonItem&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Nil out references to the popover controller and the popover button,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// and tell the detail view controller to hide the button.&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;UIViewController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SubstitutableDetailViewController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;detailViewController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;splitViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;viewControllers&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;objectAtIndex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;detailViewController&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;invalidateRootPopoverButtonItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rootPopoverButtonItem&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;popoverController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rootPopoverButtonItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Nothing I tried could make it work. There are not too many other people searching for an answer on Stackoverflow. I started a major rewrite based on the stock Xcode Master-Detail project:&lt;/p&gt;
+
+&lt;figure class=&quot;half &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/master-detail.png&quot; title=&quot;Four Warning&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/master-detail-th.png&quot; alt=&quot;Four Warnings&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/master-detail-code.png&quot; title=&quot;Warning Details&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/master-detail-code-th.png&quot; alt=&quot;Warning Details&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;p&gt;But it’s all &lt;a href=&quot;https://developer.apple.com/library/archive/documentation/ToolsLanguages/Conceptual/Xcode_Overview/DesigningwithStoryboards.html#//apple_ref/doc/uid/TP40010215-CH43-SW1&quot;&gt;Storyboards, scenes and segues&lt;/a&gt;. I’m not a fan. I soon had a huge mess of a main storyboard. I prefer to do things &lt;a href=&quot;https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-code&quot;&gt;programmatically&lt;/a&gt;, well, a mix of code and &lt;a href=&quot;http://www.monobjc.net/xib-file-format.html&quot;&gt;xibs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Eventually I found &lt;a href=&quot;https://github.com/mutualmobile/MMDrawerController&quot;&gt;MMDrawerController&lt;/a&gt;, it’s also fairly old code (targets iOS 7), but I quickly built a working prototype that worked on iOS 13.&lt;/p&gt;
+
+&lt;p&gt;It took a few days, but I have just released &lt;a href=&quot;https://apps.apple.com/us/app/hkwarnings/id370901118#?platform=ipad&quot;&gt;v5.0.0 of HKWarnings&lt;/a&gt;, using the new side drawer.&lt;/p&gt;
+
+&lt;h2 id=&quot;code-changes&quot;&gt;Code Changes&lt;/h2&gt;
+
+&lt;p&gt;178 files were changed:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/hkwarnings/changes.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/hkwarnings/changes.png&quot; src=&quot;/assets/images/posts/hkwarnings/changes-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Git files changes screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Lines changed:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Projects/iPhone Apps/HKWarnings on 5.0.1[!?&lt;span class=&quot;nv&quot;&gt;$]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;git log &lt;span class=&quot;nt&quot;&gt;--numstat&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--pretty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;%H&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--author&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;James Stout&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; b318bae1 bc535bb7 | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; Pods | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; Carthage &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'NF==3 {plus+=$1; minus+=$2} END {printf(&quot;+%d, -%d\n&quot;, plus, minus)}'&lt;/span&gt;
++183978, &lt;span class=&quot;nt&quot;&gt;-119453&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;+183978, -119453&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;BTW, that command takes a &lt;em&gt;quite&lt;/em&gt; a while:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Projects/iPhone Apps/HKWarnings on 5.0.1[!?&lt;span class=&quot;nv&quot;&gt;$]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;time &lt;/span&gt;git log &lt;span class=&quot;nt&quot;&gt;--numstat&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--pretty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;%H&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--author&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;James Stout&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; b318bae1 bc535bb7 | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; Pods | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; Carthage &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'NF==3 {plus+=$1; minus+=$2} END {printf(&quot;+%d, -%d\n&quot;, plus, minus)}'&lt;/span&gt;
++183978, &lt;span class=&quot;nt&quot;&gt;-119453&lt;/span&gt;
+
+real	0m40.285s
+user	0m35.363s
+sys	0m4.840s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;some-stats&quot;&gt;Some Stats&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/AlDanial/cloc/&quot;&gt;cloc&lt;/a&gt; output, excluding Pods:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Projects/iPhone Apps/HKWarnings on 5.0.1[!?&lt;span class=&quot;nv&quot;&gt;$]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cloc &lt;span class=&quot;nt&quot;&gt;--ignored&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ignored.txt &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--exclude-dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Pods,HKWeatherWarningsTabs.xcodeproj,HKWeatherWarningsTabs.xcworkspace &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--exclude-ext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;entitlements,plist,strings,xcodeproj &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--report-file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;cloc-report3.txt &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+     394 text files.
+     380 unique files.
+Wrote ignored.txt
+      44 files ignored.
+Wrote cloc-report3.txt
+
+github.com/AlDanial/cloc v 1.84  &lt;span class=&quot;nv&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0.40 s &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;873.2 files/s, 133349.8 lines/s&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--------------------------------------------------------------------------------&lt;/span&gt;
+Language                      files          blank        comment           code
+&lt;span class=&quot;nt&quot;&gt;--------------------------------------------------------------------------------&lt;/span&gt;
+Objective C                      91          11963           5279          20095
+XML                              41            105              5           3536
+Bourne Shell                     12             83             80           3522
+JSON                             99              1              0           3227
+C/C++ Header                     96           1073           1060           2157
+Swift                             2            108             40            448
+HTML                              1             19              0            420
+Bourne Again Shell                7             44             11            146
+Perl                              1             21            121             30
+YAML                              1              0              0              7
+&lt;span class=&quot;nt&quot;&gt;--------------------------------------------------------------------------------&lt;/span&gt;
+SUM:                            351          13417           6596          33588
+&lt;span class=&quot;nt&quot;&gt;--------------------------------------------------------------------------------&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Including Pods:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Projects/iPhone Apps/HKWarnings on 5.0.1[!?&lt;span class=&quot;nv&quot;&gt;$]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cloc &lt;span class=&quot;nt&quot;&gt;--ignored&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ignored.txt &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--exclude-dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;HKWeatherWarningsTabs.xcodeproj,HKWeatherWarningsTabs.xcworkspace &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--exclude-ext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;entitlements,plist,strings,xcodeproj &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--report-file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;cloc-inc-pods-report3.txt &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+    1645 text files.
+    1101 unique files.
+Wrote ignored.txt
+     697 files ignored.
+Wrote cloc-inc-pods-report3.txt
+
+github.com/AlDanial/cloc v 1.84  &lt;span class=&quot;nv&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1.25 s &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;758.6 files/s, 101853.4 lines/s&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--------------------------------------------------------------------------------&lt;/span&gt;
+Language                      files          blank        comment           code
+&lt;span class=&quot;nt&quot;&gt;--------------------------------------------------------------------------------&lt;/span&gt;
+Objective C                     303          18922          11355          48001
+C/C++ Header                    443           5716          14128           9569
+Bourne Shell                     15            124            149           3804
+XML                              41            105              5           3536
+Markdown                         32           1410              0           3449
+JSON                            100              1              0           3255
+C                                 3            379            261           1834
+Swift                             2            108             40            448
+HTML                              1             19              0            420
+Bourne Again Shell                7             44             11            146
+Perl                              1             21            121             30
+YAML                              1              0              0              7
+&lt;span class=&quot;nt&quot;&gt;--------------------------------------------------------------------------------&lt;/span&gt;
+SUM:                            949          26849          26070          74499
+&lt;span class=&quot;nt&quot;&gt;--------------------------------------------------------------------------------&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;For reference, these are the &lt;a href=&quot;https://cocoapods.org/&quot;&gt;Pods&lt;/a&gt; I use:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;n&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'https://github.com/CocoaPods/Specs.git'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'https://github.com/jamesstout/Specs.git'&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;platform&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:ios&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'11.0'&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:HKWeatherWarningsTabs&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'OneSignal'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Fabric'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Crashlytics'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt;  3.12'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'MBProgressHUD'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:git&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'https://github.com/jamesstout/MBProgressHUD.git'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:branch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'pre-iOS13'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'StandardPaths'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'SDWebImage'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 4.3'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'SDWebImage/GIF'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'SAMCategories'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'TSMarkdownParser'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 2.1'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'PureLayout'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'FlatUIKit'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'KVOController'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'DTTJailbreakDetection'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'OHAttributedStringAdditions'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'JSQSystemSoundPlayer'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Google-Mobile-Ads-SDK'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'NYTPhotoViewer'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 1.2.0'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'DateTools'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'HVTableView'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'CocoaLumberjack'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 3.6.1'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'CompressingAndUploadingLogFileManager'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'GZIP'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 1.3.0'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'MMDrawerController'&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:HKWarningsTests&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;inherit!&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:search_paths&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Expecta'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'~&amp;gt; 1.0'&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;significant-pods&quot;&gt;Significant Pods&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.onesignal.com/&quot;&gt;OneSignal&lt;/a&gt; - for push notifications.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://fabric.io/&quot;&gt;Fabric/Crashlytics&lt;/a&gt; - for crash reporting, moving to &lt;a href=&quot;https://firebase.google.com/&quot;&gt;Firebase&lt;/a&gt; soon.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/matej/MBProgressHUD&quot;&gt;MBProgressHUD&lt;/a&gt; - an iOS activity indicator view, but pointing to a branch on my fork, so it &lt;a href=&quot;https://github.com/jamesstout/MBProgressHUD/commit/c013d38c2dee75f52245290c394c23a68c15d506&quot;&gt;compiles on iOS 12.1&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/SDWebImage/SDWebImage&quot;&gt;SDWebImage&lt;/a&gt; - an asynchronous image downloader with cache support.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/PureLayout/PureLayout&quot;&gt;PureLayout&lt;/a&gt; - API for iOS &amp;amp; OS X Auto Layout. None of that &lt;a href=&quot;https://developer.apple.com/xcode/interface-builder/&quot;&gt;IB&lt;/a&gt; rubbish.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/CocoaLumberjack/CocoaLumberjack&quot;&gt;CocoaLumberjack&lt;/a&gt; - a fast &amp;amp; simple, yet powerful &amp;amp; flexible logging framework.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jamesstout/CompressingAndUploadingLogFileManager&quot;&gt;CompressingAndUploadingLogFileManager&lt;/a&gt; - my, as yet unpublished&lt;sup id=&quot;fnref:fn-repo&quot;&gt;&lt;a href=&quot;#fn:fn-repo&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; library, that compresses log files and then uploads them to an HTTP server for examination, stats etc.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/nicklockwood/GZIP&quot;&gt;GZIP&lt;/a&gt; - to unzip &lt;code class=&quot;highlighter-rouge&quot;&gt;.gz&lt;/code&gt; files. To &lt;a href=&quot;https://developer.apple.com/documentation/xcode/reducing_your_app_s_size/doing_basic_optimization_to_reduce_your_app_s_size?language=objc&quot;&gt;reduce package size&lt;/a&gt; I zip some text files. See below.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/laptobbe/TSMarkdownParser&quot;&gt;TSMarkdownParser&lt;/a&gt; - a markdown to NSAttributedString parser. I use it to display the &lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/wiki/Acknowledgements&quot;&gt;acknowledgements&lt;/a&gt; Markdown created by the &lt;code class=&quot;highlighter-rouge&quot;&gt;pod install&lt;/code&gt; command. Again, see below.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In my Podfile, I have a &lt;code class=&quot;highlighter-rouge&quot;&gt;post_install&lt;/code&gt; hook that does various things, including, copying the acknowledgements &lt;code class=&quot;highlighter-rouge&quot;&gt;plist&lt;/code&gt; to the Settings bundle, and the Markdown to a text file that I then compress.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fileutils'&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;FileUtils&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cp_r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Pods/Target Support Files/Pods-HKWeatherWarningsTabs/Pods-HKWeatherWarningsTabs-acknowledgements.plist'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Settings.bundle/Acknowledgements.plist'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:remove_destination&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;FileUtils&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cp_r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Pods/Target Support Files/Pods-HKWeatherWarningsTabs/Pods-HKWeatherWarningsTabs-acknowledgements.markdown'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Acknowledgements.txt'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:remove_destination&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'zlib'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;zipped&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Acknowledgements.txt.gz&quot;&lt;/span&gt;
+  
+&lt;span class=&quot;no&quot;&gt;Zlib&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;GzipWriter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zipped&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gz&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;gz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;write&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;binread&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Acknowledgements.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In the app code to display the Markdown, I first unzip, then parse:&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;NSFileManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSFileManager&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;defaultManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pathGZ&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fm&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;pathForResource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;Acknowledgements.txt.gz&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fm&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fileExistsAtPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pathGZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;NSData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zippedContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSData&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dataWithContentsOfFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pathGZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;NSData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unZippedContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zippedContent&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isGzippedData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]){&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;DDLogDebug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;Data is zipped&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;unZippedContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zippedContent&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;gunzippedData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initWithData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unZippedContent&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSUTF8StringEncoding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;DDLogError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;Acknowledgements.txt.gz is not zipped&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;@&quot;ERROR&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;DDLogDebug&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;content is %@&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TSMarkdownParser&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;standardParser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;NSAttributedString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;attributedStringFromMarkdown&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;_textView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attributedText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Saves about 47kB&lt;sup id=&quot;fnref:fn-gz&quot;&gt;&lt;a href=&quot;#fn:fn-gz&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/hkwarnings/gz.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/hkwarnings/gz.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;gzipped ack file&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I do this so that I can display the acknowledgements in the app, and in the OS Settings app:&lt;/p&gt;
+
+&lt;figure class=&quot;third &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/ack-inapp.png&quot; title=&quot;acknowledgements in-app&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/ack-inapp-th.png&quot; alt=&quot;ack-inapp.png&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/ack-settings.png&quot; title=&quot;acknowledgements in setting&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/ack-settings-th.png&quot; alt=&quot;acknowledgements in settings&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/hkwarnings/ack-settings-1.png&quot; title=&quot;acknowledgements in setting&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/hkwarnings/ack-settings-1-th.png&quot; alt=&quot;acknowledgements in settings&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;p&gt;Anyway, here’s v5.0.0 (click through to view the video):&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://cloud.stouty.xyz/s/ZKmpfo6pC8JTQ8r&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/hkwarnings/HKWarnings.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;HKWarnings.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:fn-repo&quot;&gt;
+      &lt;p&gt;See that private Spec source in the &lt;a href=&quot;https://guides.cocoapods.org/using/the-podfile.html&quot;&gt;Podfile&lt;/a&gt;? &lt;code class=&quot;highlighter-rouge&quot;&gt;source 'https://github.com/jamesstout/Specs.git'&lt;/code&gt; &lt;a href=&quot;#fnref:fn-repo&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:fn-gz&quot;&gt;
+      &lt;p&gt;Well, about 30kB as the GZIP library is about 17kB. &lt;a href=&quot;#fnref:fn-gz&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="iOS" /><category term="HKWarnings" /><category term="Xcode" /><category term="iPad" /><category term="UISplitViewController" /><summary type="html">Fixing 10 year old code to build HKWarnings v5.0.0.</summary></entry><entry><title type="html">Update to MobileDevice.framework on macOS Breaks Old GarageBand</title><link href="https://stouty.xyz/macos/2020/04/29/mobile-device/" rel="alternate" type="text/html" title="Update to MobileDevice.framework on macOS Breaks Old GarageBand" /><published>2020-04-29T19:31:05+08:00</published><updated>2020-04-29T19:31:05+08:00</updated><id>https://stouty.xyz/macos/2020/04/29/mobile-device</id><content type="html" xml:base="https://stouty.xyz/macos/2020/04/29/mobile-device/">&lt;p&gt;My old iMac isn’t supported by Mojave or Catalina, so I’m still on High Sierra. Whenever I update to a new iOS version, I get a &lt;a href=&quot;https://ios.gadgethacks.com/how-to/fix-software-update-is-required-connect-your-iphone-warning-your-mac-0185898/&quot;&gt;prompt from iTunes&lt;/a&gt; saying &lt;em&gt;A Software Update Is Required to Connect to Your iPhone&lt;/em&gt;, and I just blindly install.&lt;/p&gt;
+
+&lt;p&gt;However, the latest install seems to have broken GarageBand.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/mobile-device/problem.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/mobile-device/problem.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;GarageBand Problem&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Running from the command line:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: /Applications/GarageBand.app/Contents/MacOS
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./GarageBand
+dyld: Library not loaded: /System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice
+  Referenced from: /System/Library/Frameworks/CoreAudioKit.framework/Versions/A/CoreAudioKit
+  Reason: no suitable image found.  Did find:
+	/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice: mach-o, but wrong architecture
+	/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice: &lt;span class=&quot;nb&quot;&gt;stat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; failed with &lt;span class=&quot;nv&quot;&gt;errno&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;45
+	/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A/MobileDevice: mach-o, but wrong architecture
+Abort &lt;span class=&quot;nb&quot;&gt;trap&lt;/span&gt;: 6
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Hmmm, let’s check out MobileDevice:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: /System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;file MobileDevice
+MobileDevice: Mach-O 64-bit dynamically linked shared library x86_64
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;64-bit only. And updated recently:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/mobile-device/md.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/mobile-device/md.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;MobileDevice file listing&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For some confusion:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;arch
+&lt;/span&gt;i386
+
+james@Jamess-iMac: ~
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;uname&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt;
+x86_64
+
+james@Jamess-iMac: ~
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;uname&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt;
+i386
+
+james@Jamess-iMac: ~
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;machine
+i486
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Anyway, my old version of GarageBand:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;/usr/bin/file &lt;span class=&quot;s1&quot;&gt;'/Applications/GarageBand.app/Contents/MacOS/GarageBand'&lt;/span&gt;
+/Applications/GarageBand.app/Contents/MacOS/GarageBand: Mach-O executable i386
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Hmmm, only 32-bit Intel code.&lt;/p&gt;
+
+&lt;p&gt;I have a clone of my drive from before the update, let’s check out MobileDevice from back then:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: /Volumes/CCC/System/Library/PrivateFrameworks/MobileDevice.framework/Versions/A
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;file MobileDevice
+MobileDevice: Mach-O universal binary with 2 architectures: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;i386:Mach-O dynamically linked shared library i386] &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;x86_64]
+MobileDevice &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;architecture i386&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:	Mach-O dynamically linked shared library i386
+MobileDevice &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;architecture x86_64&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:	Mach-O 64-bit dynamically linked shared library x86_64
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Built for both archs…&lt;/p&gt;
+
+&lt;p&gt;Sooooo, I could fiddle with &lt;code class=&quot;highlighter-rouge&quot;&gt;csrutil&lt;/code&gt; and &lt;a href=&quot;https://forums.creativecow.net/thread/19/897177#897188&quot;&gt;replace the new framework with the one from my clone&lt;/a&gt;, or, see if there’s an update. No update has ever shown up in the App Store for GarageBand, but it turns out there is one:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/mobile-device/gb-update.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/mobile-device/gb-update.png&quot; src=&quot;/assets/images/posts/mobile-device/gb-update-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;GarageBand update&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;After the update:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: /Applications/GarageBand.app/Contents/MacOS
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;file GarageBand
+GarageBand: Mach-O 64-bit executable x86_64
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;And it works:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/mobile-device/new-gb.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/mobile-device/new-gb.png&quot; src=&quot;/assets/images/posts/mobile-device/new-gb-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;GarageBand latest version running&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Um, if you want to check out the song I recorded, here’s a preview:&lt;/p&gt;
+
+&lt;p&gt;/assets/images/posts/mobile-device/shallow-preview.mp3&lt;/p&gt;</content><author><name>James Stout</name></author><category term="macOS" /><category term="iTunes" /><category term="GarageBand" /><category term="MobileDevice.framework" /><summary type="html">iTunes update breaks GarageBand.</summary></entry><entry><title type="html">Using Git to Deploy a Static Website</title><link href="https://stouty.xyz/webdev/2020/04/28/git-deploy/" rel="alternate" type="text/html" title="Using Git to Deploy a Static Website" /><published>2020-04-28T23:02:33+08:00</published><updated>2020-04-28T23:02:33+08:00</updated><id>https://stouty.xyz/webdev/2020/04/28/git-deploy</id><content type="html" xml:base="https://stouty.xyz/webdev/2020/04/28/git-deploy/">&lt;p&gt;This site is &lt;a href=&quot;https://en.wikipedia.org/wiki/Static_web_page#Advantages_of_a_static_website&quot;&gt;static&lt;/a&gt;, built using &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; and the &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/&quot;&gt;Minimal Mistakes&lt;/a&gt; theme.&lt;/p&gt;
+
+&lt;p&gt;Once you have it set up, a new post is as simple as writing a new Markdown file, like this one, with the correct &lt;a href=&quot;https://jekyllrb.com/docs/front-matter/&quot;&gt;Front Matter&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/git-deploy/md.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/git-deploy/md.png&quot; src=&quot;/assets/images/posts/git-deploy/md-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Markdown file screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Then building:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Projects/jamesstout.github.io on master[!?&lt;span class=&quot;nv&quot;&gt;$]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ JEKYLL_ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;production bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll build 2&amp;gt; /dev/null
+Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
+            Source: /Users/james/Projects/jamesstout.github.io
+       Destination: /Users/james/Projects/jamesstout.github.io/_site
+ Incremental build: disabled. Enable with &lt;span class=&quot;nt&quot;&gt;--incremental&lt;/span&gt;
+      Generating...
+       Jekyll Feed: Generating feed &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;posts
+                    &lt;span class=&quot;k&quot;&gt;done in &lt;/span&gt;1.531 seconds.
+ Auto-regeneration: disabled. Use &lt;span class=&quot;nt&quot;&gt;--watch&lt;/span&gt; to enable.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Generating the new &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/git-deploy/gs.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/git-deploy/gs.png&quot; src=&quot;/assets/images/posts/git-deploy/gs-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Git status screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The Git repo for this site has the usual &lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt; &lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes&quot;&gt;remote&lt;/a&gt;, but also a remote named &lt;code class=&quot;highlighter-rouge&quot;&gt;deploy&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Projects/jamesstout.github.io/.git
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;config
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;core]
+	repositoryformatversion &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0
+	filemode &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true
+	&lt;/span&gt;bare &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false
+	&lt;/span&gt;logallrefupdates &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true
+	&lt;/span&gt;ignorecase &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;submodule]
+	active &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;remote &lt;span class=&quot;s2&quot;&gt;&quot;origin&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+	url &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; https://jamesstout@github.com/jamesstout/jamesstout.github.io.git
+	fetch &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; +refs/heads/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;:refs/remotes/origin/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+	sslVerify &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;branch &lt;span class=&quot;s2&quot;&gt;&quot;master&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+	remote &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; origin
+	merge &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; refs/heads/master
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;remote &lt;span class=&quot;s2&quot;&gt;&quot;deploy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+	url &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; xxxxx@111.111.111.111:/usr/src/stouty.git
+	fetch &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; +refs/heads/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;:refs/remotes/deploy/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;deploy&lt;/code&gt; remote is a &lt;a href=&quot;https://mijingo.com/blog/what-is-a-bare-git-repository&quot;&gt;bare&lt;/a&gt; git repository on the Web server, that simply receives the latest git objects. There’s no working tree:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@hkwarnings: /usr/src/stouty.git
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls
+&lt;/span&gt;HEAD  branches  config  description  hooks  info  objects  packed-refs  refs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;However, it’s configured with a &lt;a href=&quot;https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_code_post_receive_code&quot;&gt;post-receive&lt;/a&gt; Git hook:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;These scripts run before and after pushes to the server.&lt;/p&gt;
+
+  &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;post-receive&lt;/code&gt; hook runs after the entire process is completed and can be used to update other services or notify users.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I have it configured to change directory to the Web &lt;a href=&quot;https://nginx.org/en/docs/http/ngx_http_core_module.html#root&quot;&gt;root&lt;/a&gt;, which is also a Git repo, with the same &lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt; as the working repo on my local machine, and simply execute &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull&lt;/code&gt;&lt;sup id=&quot;fnref:fn-certbot&quot;&gt;&lt;a href=&quot;#fn:fn-certbot&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@hkwarnings: /usr/src/stouty.git/hooks
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;post-receive
+&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;unset &lt;/span&gt;GIT_DIR &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /var/www/html/stouty.xyz/ &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git pull
+&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/var/www/html/stouty.xyz/_site/.well-known/acme-challenge&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-vp&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;/var/www/html/stouty.xyz/_site/.well-known/acme-challenge&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chown&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; james:www-data &lt;span class=&quot;s2&quot;&gt;&quot;/var/www/html/stouty.xyz/_site/.well-known/acme-challenge&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chown&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; james:www-data &lt;span class=&quot;s2&quot;&gt;&quot;/var/www/html/stouty.xyz/_site/.well-known&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The deployment process is:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Commit changed files to local repo.&lt;/li&gt;
+  &lt;li&gt;Push to origin.&lt;/li&gt;
+  &lt;li&gt;Push to deploy.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That’s it.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:fn-certbot&quot;&gt;
+      &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;.well-known/acme-challenge&lt;/code&gt; is just to ensure the directory exists for Certbot challenges during certificate renewal. &lt;a href=&quot;#fnref:fn-certbot&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="git" /><category term="Jekyll" /><category term="git hooks" /><category term="deployment" /><summary type="html">How to use Git hooks to deploy a static site.</summary></entry><entry><title type="html">Does My Site Need HTTPS?</title><link href="https://stouty.xyz/internet/2020/04/28/ssl/" rel="alternate" type="text/html" title="Does My Site Need HTTPS?" /><published>2020-04-28T22:19:46+08:00</published><updated>2020-04-28T22:19:46+08:00</updated><id>https://stouty.xyz/internet/2020/04/28/ssl</id><content type="html" xml:base="https://stouty.xyz/internet/2020/04/28/ssl/">&lt;p&gt;&lt;a href=&quot;https://doesmysiteneedhttps.com/&quot;&gt;Does My Site Need HTTPS?&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Yes, yes it does. Also see: &lt;a href=&quot;https://istlsfastyet.com/&quot;&gt;istlsfastyet.com&lt;/a&gt; and &lt;a href=&quot;https://dassur.ma/things/h2setup/&quot;&gt;h2setup&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I run a few sites, all over HTTPS, using SSL/TLS certificates from &lt;a href=&quot;https://letsencrypt.org/about/&quot;&gt;Let’s Encrypt&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://stouty.xyz/&quot;&gt;stouty.xyz&lt;/a&gt; - this site.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://git.stouty.xyz/&quot;&gt;git.stouty.xyz&lt;/a&gt; - my painless, self-hosted &lt;a href=&quot;https://stouty.xyz/git/2020/03/11/gitea/&quot;&gt;Git service&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://cloud.stouty.xyz/&quot;&gt;cloud.stouty.xyz&lt;/a&gt; - my self-hosted &lt;a href=&quot;https://nextcloud.com/athome/&quot;&gt;Nextcloud&lt;/a&gt; instance.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.hkwarnings.com/&quot;&gt;hkwarnings.com&lt;/a&gt; - blog and server for &lt;a href=&quot;https://apps.apple.com/us/app/hkwarnings/id370901118&quot;&gt;HKWarnings&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;They all get an A+ score on the &lt;a href=&quot;https://www.ssllabs.com/ssltest/&quot;&gt;Qualys SSL Lab test&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Certificates are renewed using &lt;a href=&quot;https://certbot.eff.org/&quot;&gt;Certbot&lt;/a&gt;, configured with the help of &lt;a href=&quot;https://www.digitalocean.com/community/tools/nginx&quot;&gt;nginxconfig.io&lt;/a&gt;, and protected from bad bots by &lt;a href=&quot;https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker&quot;&gt;The Ultimate Nginx Bad Bot Blocker&lt;/a&gt;.&lt;/p&gt;</content><author><name>James Stout</name></author><category term="HTTPS" /><category term="SSL" /><category term="web servers" /><summary type="html">HTTPS and SSL info.</summary></entry><entry><title type="html">Synology DSM 6.2.3 Update</title><link href="https://stouty.xyz/synology/2020/04/28/dsm/" rel="alternate" type="text/html" title="Synology DSM 6.2.3 Update" /><published>2020-04-28T19:15:38+08:00</published><updated>2020-04-28T19:15:38+08:00</updated><id>https://stouty.xyz/synology/2020/04/28/dsm</id><content type="html" xml:base="https://stouty.xyz/synology/2020/04/28/dsm/">&lt;p&gt;I was thinking that there hadn’t been a &lt;a href=&quot;https://en.wikipedia.org/wiki/Synology#Synology_DiskStation_Manager_(DSM)&quot;&gt;DSM&lt;/a&gt; upgrade for my &lt;a href=&quot;https://www.storagereview.com/review/synology-diskstation-ds1817-nas-review&quot;&gt;DS1817+&lt;/a&gt; for a while. I check the update screen quite often:&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/dsm/dsm6.2.3.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;synology DSM update screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;v6.2.2-24922-6 was released on 17th March 2020. Anyway, my system still says there is no new update. However, the release notes page says there is a new version, &lt;a href=&quot;https://www.synology.com/en-global/releaseNote/DS1817+#6.2.3-25423&quot;&gt;6.2.3-25423&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Lots of changes/fixes for a point release. A highlight:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Added support for Let’s Encrypt wildcard certificates for Synology DDNS.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I wanted it. But how to get it?&lt;/p&gt;
+
+&lt;p&gt;Well, there’s the &lt;a href=&quot;https://archive.synology.com/download/DSM/release/6.2.3/25423/&quot;&gt;Synology download archive&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Download the &lt;code class=&quot;highlighter-rouge&quot;&gt;pat&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;md5&lt;/code&gt; files for your model.&lt;/p&gt;
+
+&lt;p&gt;Check the md5 checksum:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Downloads
+&lt;span class=&quot;nv&quot;&gt;$ DLSUM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;md5 DSM_DS1817+_25423.pat | &lt;span class=&quot;nb&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'='&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f2&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{$1=$1};1'&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+
+james@Jamess-iMac: ~/Downloads
+&lt;span class=&quot;nv&quot;&gt;$ SERVERSUM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;DSM_DS1817+_25423.pat.md5.txt&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+
+james@Jamess-iMac: ~/Downloads
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$SERVERSUM&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DLSUM&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;md5 match&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fi
+&lt;/span&gt;md5 match
+
+james@Jamess-iMac: ~/Downloads
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$SERVERSUM&lt;/span&gt;
+3a168ad3e914cd48fc3cda2461f86f3e
+
+james@Jamess-iMac: ~/Downloads
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$DLSUM&lt;/span&gt;
+3a168ad3e914cd48fc3cda2461f86f3e
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Shutdown any services and docker containers. Log out of any &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh&lt;/code&gt; sessions and unmount any shared folders.&lt;/p&gt;
+
+&lt;p&gt;Click “Manual DSM Update” and select your &lt;code class=&quot;highlighter-rouge&quot;&gt;pat&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/dsm/dsm-manual.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Manual Synology DSM update screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Click “Yes”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/dsm/dsm-warning.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Manual Synology DSM update warning screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then wait, with 🤞…&lt;/p&gt;
+
+&lt;p&gt;For me it took about 5 minutes, then some time updating various packages.&lt;/p&gt;
+
+&lt;p&gt;Updated fine:&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/dsm/dsm-updated.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Synology DSM info screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And all my docker containers started just fine:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/dsm/dockers.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/dsm/dockers.png&quot; src=&quot;/assets/images/posts/dsm/dockers-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Dockers running&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>James Stout</name></author><category term="synology" /><category term="DSM 6.2.3" /><category term="NAS" /><summary type="html">Manually updating Synology NAS to DSM 6.2.3.</summary></entry><entry><title type="html">Live Lounge Allstars - Times Like These</title><link href="https://stouty.xyz/music/2020/04/25/times-like-these/" rel="alternate" type="text/html" title="Live Lounge Allstars - Times Like These" /><published>2020-04-25T20:07:23+08:00</published><updated>2020-04-25T20:07:23+08:00</updated><id>https://stouty.xyz/music/2020/04/25/times-like-these</id><content type="html" xml:base="https://stouty.xyz/music/2020/04/25/times-like-these/">&lt;!-- Courtesy of embedresponsively.com //--&gt;
+&lt;div class=&quot;responsive-video-container&quot;&gt;
+
+  &lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/7GElP4YdrBE&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="music" /><category term="youtube" /><category term="foo fighters" /><summary type="html"></summary></entry><entry><title type="html">Finding duplicate files</title><link href="https://stouty.xyz/unix/2020/04/16/dupes/" rel="alternate" type="text/html" title="Finding duplicate files" /><published>2020-04-16T19:39:39+08:00</published><updated>2020-04-16T19:39:39+08:00</updated><id>https://stouty.xyz/unix/2020/04/16/dupes</id><content type="html" xml:base="https://stouty.xyz/unix/2020/04/16/dupes/">&lt;p&gt;I’ve been using &lt;a href=&quot;https://www.photosync-app.com/home.html&quot;&gt;PhotoSync&lt;/a&gt; to automatically transfer any new photos from my iPhone to my NAS. It’s a pretty wonderful app, here’s the NAS &lt;a href=&quot;https://www.photosync-app.com/home.html#nas-features&quot;&gt;part&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Securely backup photos &amp;amp; videos directly from your iPhone, iPad and Android devices to any NAS, remote server or personal cloud over (S)FTP, SMB or WebDAV.&lt;/p&gt;
+
+  &lt;p&gt;You can also download and view photos &amp;amp; videos on (S)FTP, SMB and WebDAV servers.
+PhotoSync works seamlessly with all major NAS storage devices, servers and personal cloud services.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I have it set up so that it kicks off Autotransfer whenever my device connects to my home WiFi network.&lt;/p&gt;
+
+&lt;p&gt;It syncs to a folder that is then again synced to my &lt;a href=&quot;https://nextcloud.com/athome/&quot;&gt;Nextcloud&lt;/a&gt; server using a &lt;a href=&quot;https://github.com/jamesstout/nextcloud-client-docker&quot;&gt;Docker container&lt;/a&gt; I adapted. It all works fine. Except…&lt;/p&gt;
+
+&lt;p&gt;The way I had PhotoSync configured meant that every time I changed iPhone, it synced everything again to a new subfolder with the name of the new device. So I have a tree looking like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@dusky2: /volume1/docker/nextcloud/media/iPhoneSync
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;tree &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-I&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'*eaDir'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; James&lt;span class=&quot;s1&quot;&gt;'s iPhone 8
+    |-- CABG
+    |-- Camera Roll
+    |-- deGeo'&lt;/span&gt;d Photos
+    |-- Dropbox
+    |-- Dubsmash
+    |-- Instagram
+    |-- James&lt;span class=&quot;s1&quot;&gt;'s iPhone 8
+    |   |-- Adobe Capture
+    |   |-- Camera Roll
+    |   |-- Dropbox
+    |   |-- RAW
+    |   `-- WhatsApp
+    |-- James'&lt;/span&gt;s iPhone XS
+    |   |-- Camera Roll
+    |   |-- Dropbox
+    |   |-- James&lt;span class=&quot;s1&quot;&gt;'s iPhone 11 Pro
+    |   |   |-- Adobe Capture
+    |   |   |-- Dropbox
+    |   |   |-- My Photo Stream
+    |   |   |-- PSExpress
+    |   |   |-- Recents
+    |   |   |   `-- James'&lt;/span&gt;s iPhone 11 Pro
+    |   |   |       |-- Dropbox
+    |   |   |       |-- Nextcloud
+    |   |   |       |-- Recents
+    |   |   |       |-- Telegram
+    |   |   |       |-- Twitter
+    |   |   |       &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; WhatsApp
+    |   |   |-- Snapchat
+    |   |   |-- Telegram
+    |   |   |-- Twitter
+    |   |   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; WhatsApp
+    |   |-- James&lt;span class=&quot;s1&quot;&gt;'s iPhone XS
+    |   |   |-- Camera Roll
+    |   |   |-- Snapchat
+    |   |   |-- Telegram
+    |   |   |-- Twitter
+    |   |   `-- WhatsApp
+    |   |-- Josh'&lt;/span&gt;s handiwork
+    |   |-- Telegram
+    |   |-- Twitter
+    |   &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; WhatsApp
+    |-- Josh&lt;span class=&quot;s1&quot;&gt;'s handiwork
+    |-- Skype
+    |-- Twitter
+    `-- WhatsApp
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Duplicate directories, duplicate device names, also, in iOS 13, &lt;a href=&quot;https://appletoolbox.com/where-is-camera-roll-in-ios-13-and-ipados/#Changes_to_your_Apple_device8217s_camera_roll&quot;&gt;Camera Roll changed to Recents&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A bit of a mess. 63 directories, 24590 files.&lt;/p&gt;
+
+&lt;p&gt;I wanted to know if any files were duplicates. I have some Mac apps like &lt;a href=&quot;https://apps.apple.com/hk/app/duplicates-finder-find-review-and-remove-duplicates/id1101010407?l=en&amp;amp;mt=12&quot;&gt;Duplicates Finder&lt;/a&gt; and &lt;a href=&quot;https://fiplab.com/apps/duplicate-detective-2-for-mac&quot;&gt;Duplicate Detective 2&lt;/a&gt;, but wondered if there were any Unix tools I could try as well.&lt;/p&gt;
+
+&lt;p&gt;Straight to &lt;a href=&quot;https://unix.stackexchange.com/questions/71176/find-duplicate-files&quot;&gt;StackOverflow&lt;/a&gt;, which provided many methods:&lt;/p&gt;
+
+&lt;h2 id=&quot;find&quot;&gt;find&lt;sup id=&quot;fnref:fn-find&quot;&gt;&lt;a href=&quot;#fn:fn-find&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-empty&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-type&lt;/span&gt; f &lt;span class=&quot;nt&quot;&gt;-exec&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;md5sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; + | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;uniq&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-w32&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-dD&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-type&lt;/span&gt; f &lt;span class=&quot;nt&quot;&gt;-exec&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;md5sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; md5sums
+&lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{print $1}'&lt;/span&gt; md5sums | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;uniq&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; dupes
+&lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; d&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;---&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$d&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; md5sums | &lt;span class=&quot;nb&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; 2-&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt; &amp;lt; dupes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-type&lt;/span&gt; f &lt;span class=&quot;nt&quot;&gt;-exec&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;md5sum&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{}'&lt;/span&gt; + | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;uniq&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--all-repeated&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;--check-chars&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;32 | &lt;span class=&quot;nb&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--characters&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;35-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;fdupes&quot;&gt;fdupes&lt;sup id=&quot;fnref:fn-fdupes&quot;&gt;&lt;a href=&quot;#fn:fn-fdupes&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fdupes &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;fdupes &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; | &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; file&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;du&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;fslint&quot;&gt;fslint&lt;sup id=&quot;fnref:fn-fslint&quot;&gt;&lt;a href=&quot;#fn:fn-fslint&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/share/fslint/fslint &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./fslint /path/to/directory
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/share/fslint/fslint &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; findup &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--summary&lt;/span&gt; /path/to/directory
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Amazingly, none of them found dupes in my iPhoneSync folder&lt;/strong&gt;. So that’s good.&lt;/p&gt;
+
+&lt;p&gt;They did, however, find dupes in my Photos folder:&lt;/p&gt;
+
+&lt;h3 id=&quot;find-1&quot;&gt;find&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@cloud: /mnt/volume_nc/data/james/files/Photos
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-empty&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-type&lt;/span&gt; f &lt;span class=&quot;nt&quot;&gt;-exec&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;md5sum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; + | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;uniq&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-w32&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-dD&lt;/span&gt;
+0aadc1b11a8407b295008e6c9d22fc3e  ./iPhone/2015/02/Photo-27-02-2015 03-57-55-9189.jpg
+0aadc1b11a8407b295008e6c9d22fc3e  ./iPhone/2015/02/Photo-27-02-2015-03-57-55-9189.jpg
+0acd0d5b0c01c4bee9afe9176073b4fa  ./iPhone/2014/05/Photo-02-05-2014-01-01-36-5396.jpg
+0acd0d5b0c01c4bee9afe9176073b4fa  ./iPhone/2014/05/Photo-02-05-2014-01-02-44-5398.jpg
+1212fb3e6490ddfb066e6c556bc392b4  ./iPhone/2020/02/Photo-10-02-2020-06-12-40-8979.jpg
+1212fb3e6490ddfb066e6c556bc392b4  ./iPhone/2020/02/Photo-10-02-2020-07-38-06-8981.jpg
+155754a324daff68c8daed1044328a16  ./iPhone/2014/07/Photo-19-07-2014-09-58-33-6798.jpg
+155754a324daff68c8daed1044328a16  ./iPhone/2014/07/Photo-21-07-2014-06-12-52-6824.jpg
+1a82cddba43617c75d9b686002db7cb6  ./iPhone/2013/09/Photo-08-09-2013-07-28-53-2276.jpg
+1a82cddba43617c75d9b686002db7cb6  ./iPhone/2013/09/Photo-08-09-2013-07-37-27-2278.jpg
+2faf11e6b5c80f09fccf957c8dd2f95a  ./iPhone/2014/03/Photo-29-03-2014-09-35-58-4868.jpg
+2faf11e6b5c80f09fccf957c8dd2f95a  ./iPhone/2014/03/Photo-29-03-2014-09-42-29-4870.jpg
+459acd94c6128d60d16341a815c7d6e5  ./iPhone/2014/03/Photo-29-03-2014-02-47-45-4865.jpg
+459acd94c6128d60d16341a815c7d6e5  ./iPhone/2014/03/Photo-29-03-2014-09-36-14-4869.jpg
+5573dac4e8a2447dd4080374820a951b  ./iPhone/2014/03/Photo-07-03-2014-05-09-07-4544.jpg
+5573dac4e8a2447dd4080374820a951b  ./iPhone/2014/03/Photo-07-03-2014-05-11-11-4545.jpg
+5ee8ed449af66395f11021da4c7f5e65  ./iPhone/2015/03/Photo-03-03-2015 05-08-17-9238.jpg
+5ee8ed449af66395f11021da4c7f5e65  ./iPhone/2015/03/Photo-24-03-2015 11-16-35-9597.jpg
+634ad569036b9afb05692d330453f598  ./iPhone/2020/02/Photo-05-02-2020-06-33-35-8879.jpg
+634ad569036b9afb05692d330453f598  ./iPhone/2020/02/Photo-06-02-2020-10-47-00-8888.jpg
+75994932717b5a0eb9d1c9e5e096205e  ./iPhone/2011/04/Photo-15-04-2011-01-16-11-2990.png
+75994932717b5a0eb9d1c9e5e096205e  ./iPhone/2011/07/Photo-21-07-2011-09-16-29-4039.png
+896c522d3c4972a01abc35c91993b959  ./iPhone/2020/03/Photo-03-03-2020-09-13-17-9198.jpeg
+896c522d3c4972a01abc35c91993b959  ./iPhone/2020/03/Photo-03-03-2020-09-13-17-9283.jpeg
+8e5a153ee2e61eacca6ae04d790620d6  ./iPhone/2014/04/Photo-01-04-2014-02-18-24-4946.jpg
+8e5a153ee2e61eacca6ae04d790620d6  ./iPhone/2014/04/Photo-01-04-2014-03-25-45-4955.jpg
+95d066c26fdf046f272939ae9606e7c5  ./iPhone/2014/02/Photo-04-02-2014-02-09-43-4341.jpg
+95d066c26fdf046f272939ae9606e7c5  ./iPhone/2014/02/Photo-08-02-2014-01-13-46-4364.jpg
+a389e5ab5d8752884680dd7ea31ac1c3  ./iPhone/2014/05/Photo-21-05-2014-06-19-27-5844.jpg
+a389e5ab5d8752884680dd7ea31ac1c3  ./iPhone/2014/05/Photo-24-05-2014-03-55-02-5891.jpg
+aa37f32c86a4206739d38922544717dd  ./iPhone/2014/05/Photo-02-05-2014-01-01-37-5397.jpg
+aa37f32c86a4206739d38922544717dd  ./iPhone/2014/05/Photo-02-05-2014-01-02-45-5399.jpg
+b278f87efe7381facf3fd4dd75def8e9  ./iPhone/2014/08/Photo-05-08-2014-03-44-27-7051.jpg
+b278f87efe7381facf3fd4dd75def8e9  ./iPhone/2014/08/Photo-05-08-2014-03-54-09-7056.jpg
+b27e3d78a9c419147b9d7feb387f4ec9  ./iPhone/2014/08/Photo-09-08-2014-12-29-52-7143.jpg
+b27e3d78a9c419147b9d7feb387f4ec9  ./iPhone/2014/09/Photo-04-09-2014-10-28-17-7449.jpg
+dd7025344bd32d7433b16d99ce5c846e  ./iPhone/2014/04/Photo-04-04-2014-07-40-58-4998.jpg
+dd7025344bd32d7433b16d99ce5c846e  ./iPhone/2014/04/Photo-05-04-2014-09-35-52-5031.jpg
+e5df162f9f04c0de281bd2f5692dfffe  ./iPhone/2013/12/Photo-31-12-2013-08-26-39-4052.jpg
+e5df162f9f04c0de281bd2f5692dfffe  ./iPhone/2013/12/Photo-31-12-2013-08-35-05-4054.jpg
+fcbecc72fd2540829a4359a3ac620191  ./2020/03/Video-20-03-2020-06-53-01-9363.mp4
+fcbecc72fd2540829a4359a3ac620191  ./2020/03/Video-21-03-2020-08-29-08-9370.mp4
+ff846d763f428049dcb1b2615f9ee500  ./iPhone/2015/03/Photo-28-03-2015 04-01-07-9655.jpg
+ff846d763f428049dcb1b2615f9ee500  ./iPhone/2015/03/Photo-28-03-2015 07-26-49-9657.jpg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;22 dupes found.&lt;/p&gt;
+
+&lt;h3 id=&quot;fdupes-1&quot;&gt;fdupes&lt;/h3&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@cloud: /mnt/volume_nc/data/james/files/Photos
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;fdupes &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; | &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;while &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;IFS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; file&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;         &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;du&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt;
+
+&amp;lt;snip&amp;gt;
+64  ./iPhone/2015/03/Photo-03-03-2015 05-08-17-9238.jpg
+64  ./iPhone/2015/03/Photo-24-03-2015 11-16-35-9597.jpg
+80  ./iPhone/2014/05/Photo-02-05-2014-01-01-37-5397.jpg
+80  ./iPhone/2014/05/Photo-02-05-2014-01-02-45-5399.jpg
+84  ./iPhone/2014/02/Photo-04-02-2014-02-09-43-4341.jpg
+84  ./iPhone/2014/02/Photo-08-02-2014-01-13-46-4364.jpg
+88  ./iPhone/2014/04/Photo-01-04-2014-02-18-24-4946.jpg
+88  ./iPhone/2014/04/Photo-01-04-2014-03-25-45-4955.jpg
+92  ./iPhone/2014/05/Photo-02-05-2014-01-01-36-5396.jpg
+92  ./iPhone/2014/05/Photo-02-05-2014-01-02-44-5398.jpg
+96  ./iPhone/2014/03/Photo-29-03-2014-09-35-58-4868.jpg
+96  ./iPhone/2014/03/Photo-29-03-2014-09-42-29-4870.jpg
+100 ./iPhone/2014/04/Photo-04-04-2014-07-40-58-4998.jpg
+100 ./iPhone/2014/04/Photo-05-04-2014-09-35-52-5031.jpg
+108 ./iPhone/2014/05/Photo-21-05-2014-06-19-27-5844.jpg
+108 ./iPhone/2014/05/Photo-24-05-2014-03-55-02-5891.jpg
+108 ./iPhone/2014/08/Photo-09-08-2014-12-29-52-7143.jpg
+108 ./iPhone/2014/09/Photo-04-09-2014-10-28-17-7449.jpg
+108 ./iPhone/2020/02/Photo-10-02-2020-06-12-40-8979.jpg
+108 ./iPhone/2020/02/Photo-10-02-2020-07-38-06-8981.jpg
+112 ./iPhone/2014/08/Photo-05-08-2014-03-44-27-7051.jpg
+112 ./iPhone/2014/08/Photo-05-08-2014-03-54-09-7056.jpg
+116 ./iPhone/2014/03/Photo-29-03-2014-02-47-45-4865.jpg
+116 ./iPhone/2014/03/Photo-29-03-2014-09-36-14-4869.jpg
+124 ./iPhone/2020/03/Photo-03-03-2020-09-13-17-9198.jpeg
+124 ./iPhone/2020/03/Photo-03-03-2020-09-13-17-9283.jpeg
+128 ./iPhone/2014/07/Photo-19-07-2014-09-58-33-6798.jpg
+128 ./iPhone/2014/07/Photo-21-07-2014-06-12-52-6824.jpg
+148 ./iPhone/2013/09/Photo-08-09-2013-07-28-53-2276.jpg
+148 ./iPhone/2013/09/Photo-08-09-2013-07-37-27-2278.jpg
+192 ./iPhone/2014/03/Photo-07-03-2014-05-09-07-4544.jpg
+192 ./iPhone/2014/03/Photo-07-03-2014-05-11-11-4545.jpg
+212 ./iPhone/2020/02/Photo-05-02-2020-06-33-35-8879.jpg
+212 ./iPhone/2020/02/Photo-06-02-2020-10-47-00-8888.jpg
+264 ./iPhone/2015/03/Photo-28-03-2015 04-01-07-9655.jpg
+264 ./iPhone/2015/03/Photo-28-03-2015 07-26-49-9657.jpg
+304 ./iPhone/2015/02/Photo-27-02-2015 03-57-55-9189.jpg
+304 ./iPhone/2015/02/Photo-27-02-2015-03-57-55-9189.jpg
+356 ./iPhone/2013/12/Photo-31-12-2013-08-26-39-4052.jpg
+356 ./iPhone/2013/12/Photo-31-12-2013-08-35-05-4054.jpg
+404 ./iPhone/2011/04/Photo-15-04-2011-01-16-11-2990.png
+404 ./iPhone/2011/07/Photo-21-07-2011-09-16-29-4039.png
+1924    ./2020/03/Video-20-03-2020-06-53-01-9363.mp4
+1924    ./2020/03/Video-21-03-2020-08-29-08-9370.mp4
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Excluding empty files, 22 dupes found.&lt;/p&gt;
+
+&lt;h3 id=&quot;fslint-1&quot;&gt;fslint&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@cloud: /usr/share/fslint/fslint
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./findup &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--summary&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/mnt/volume_nc/data/james/files/Photos&quot;&lt;/span&gt;
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 1970176	2020/03/Video-20-03-2020-06-53-01-9363.mp4 2020/03/Video-21-03-2020-08-29-08-9370.mp4
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 413696	iPhone/2011/04/Photo-15-04-2011-01-16-11-2990.png iPhone/2011/07/Photo-21-07-2011-09-16-29-4039.png
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 364544	iPhone/2013/12/Photo-31-12-2013-08-26-39-4052.jpg iPhone/2013/12/Photo-31-12-2013-08-35-05-4054.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 311296	iPhone/2015/02/Photo-27-02-2015 03-57-55-9189.jpg iPhone/2015/02/Photo-27-02-2015-03-57-55-9189.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 270336	iPhone/2015/03/Photo-28-03-2015 04-01-07-9655.jpg iPhone/2015/03/Photo-28-03-2015 07-26-49-9657.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 217088	iPhone/2020/02/Photo-05-02-2020-06-33-35-8879.jpg iPhone/2020/02/Photo-06-02-2020-10-47-00-8888.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 196608	iPhone/2014/03/Photo-07-03-2014-05-09-07-4544.jpg iPhone/2014/03/Photo-07-03-2014-05-11-11-4545.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 151552	iPhone/2013/09/Photo-08-09-2013-07-28-53-2276.jpg iPhone/2013/09/Photo-08-09-2013-07-37-27-2278.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 131072	iPhone/2014/07/Photo-19-07-2014-09-58-33-6798.jpg iPhone/2014/07/Photo-21-07-2014-06-12-52-6824.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 126976	iPhone/2020/03/Photo-03-03-2020-09-13-17-9198.jpeg iPhone/2020/03/Photo-03-03-2020-09-13-17-9283.jpeg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 118784	iPhone/2014/03/Photo-29-03-2014-02-47-45-4865.jpg iPhone/2014/03/Photo-29-03-2014-09-36-14-4869.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 114688	iPhone/2014/08/Photo-05-08-2014-03-44-27-7051.jpg iPhone/2014/08/Photo-05-08-2014-03-54-09-7056.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 110592	iPhone/2020/02/Photo-10-02-2020-06-12-40-8979.jpg iPhone/2020/02/Photo-10-02-2020-07-38-06-8981.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 110592	iPhone/2014/08/Photo-09-08-2014-12-29-52-7143.jpg iPhone/2014/09/Photo-04-09-2014-10-28-17-7449.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 110592	iPhone/2014/05/Photo-21-05-2014-06-19-27-5844.jpg iPhone/2014/05/Photo-24-05-2014-03-55-02-5891.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 102400	iPhone/2014/04/Photo-04-04-2014-07-40-58-4998.jpg iPhone/2014/04/Photo-05-04-2014-09-35-52-5031.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 98304	iPhone/2014/03/Photo-29-03-2014-09-35-58-4868.jpg iPhone/2014/03/Photo-29-03-2014-09-42-29-4870.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 94208	iPhone/2014/05/Photo-02-05-2014-01-01-36-5396.jpg iPhone/2014/05/Photo-02-05-2014-01-02-44-5398.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 90112	iPhone/2014/04/Photo-01-04-2014-02-18-24-4946.jpg iPhone/2014/04/Photo-01-04-2014-03-25-45-4955.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 86016	iPhone/2014/02/Photo-04-02-2014-02-09-43-4341.jpg iPhone/2014/02/Photo-08-02-2014-01-13-46-4364.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 81920	iPhone/2014/05/Photo-02-05-2014-01-01-37-5397.jpg iPhone/2014/05/Photo-02-05-2014-01-02-45-5399.jpg
+2 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 65536	iPhone/2015/03/Photo-03-03-2015 05-08-17-9238.jpg iPhone/2015/03/Photo-24-03-2015 11-16-35-9597.jpg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;22 dupes found.&lt;/p&gt;
+
+&lt;p&gt;So they all find the same dupes, but how do they perform?&lt;/p&gt;
+
+&lt;h2 id=&quot;performance&quot;&gt;Performance&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;find&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;real    1m15.949s
+user    0m20.144s
+sys     0m4.599s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;fdupes&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;real    0m0.759s
+user    0m0.181s
+sys     0m0.324s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;fslint&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;real    0m0.220s
+user    0m0.148s
+sys     0m0.049s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fslint&lt;/code&gt; is the winner there, with &lt;code class=&quot;highlighter-rouge&quot;&gt;fdupes&lt;/code&gt; a close second, and &lt;code class=&quot;highlighter-rouge&quot;&gt;find&lt;/code&gt; miles behind.&lt;/p&gt;
+
+&lt;p&gt;I compared the results with the Mac apps:&lt;/p&gt;
+
+&lt;h3 id=&quot;duplicate-detective-2&quot;&gt;Duplicate Detective 2&lt;/h3&gt;
+
+&lt;p&gt;Also found 22 dupes, in about 6 seconds.&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/dupes/dupe-detective-2.png&quot; src=&quot;/assets/images/posts/dupes/dupe-detective-2-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Duplicates Finder screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;duplicates-finder&quot;&gt;Duplicates Finder&lt;/h3&gt;
+
+&lt;p&gt;Also found 22 dupes, but took 52 seconds.&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/dupes/dupe-finder.png&quot; src=&quot;/assets/images/posts/dupes/dupe-finder-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Duplicates Finder screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;PhotoSync works better than I thought and while the Mac apps give you a nice preview of the duplicates, the command line tools are much faster.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;footnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:fn-find&quot;&gt;
+      &lt;p&gt;find &lt;a href=&quot;https://linux.die.net/man/1/find&quot;&gt;man page&lt;/a&gt;. &lt;a href=&quot;#fnref:fn-find&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:fn-fdupes&quot;&gt;
+      &lt;p&gt;fdupes &lt;a href=&quot;http://premium.caribe.net/~adrian2/fdupes.html&quot;&gt;home&lt;/a&gt; and &lt;a href=&quot;https://linux.die.net/man/1/fdupes&quot;&gt;man page&lt;/a&gt;. &lt;a href=&quot;#fnref:fn-fdupes&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:fn-fslint&quot;&gt;
+      &lt;p&gt;fslint &lt;a href=&quot;https://www.pixelbeat.org/fslint/&quot;&gt;home&lt;/a&gt; and &lt;a href=&quot;https://linux.die.net/man/1/fslint&quot;&gt;man page&lt;/a&gt;. &lt;a href=&quot;#fnref:fn-fslint&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="duplicates" /><category term="unix" /><category term="fdupes" /><category term="fslint" /><category term="find" /><category term="photo sync" /><category term="NAS" /><summary type="html">Testing different tools to find duplicate files on Linux/macOS.</summary></entry></feed>

@@ -1,0 +1,1116 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Compress-Upload-CocoaLumberjack - My First CocoaPod | stouty.xyz</title>
+<meta name="description" content="My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack. ">
+
+
+  <meta name="author" content="James Stout">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="stouty.xyz">
+<meta property="og:title" content="Compress-Upload-CocoaLumberjack - My First CocoaPod">
+<meta property="og:url" content="https://stouty.xyz/ios/2020/05/09/compress-upload-cocoalumberjack/">
+
+
+  <meta property="og:description" content="My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack. ">
+
+
+
+
+
+  <meta name="twitter:site" content="@stoutyhk">
+  <meta name="twitter:title" content="Compress-Upload-CocoaLumberjack - My First CocoaPod">
+  <meta name="twitter:description" content="My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack. ">
+  <meta name="twitter:url" content="https://stouty.xyz/ios/2020/05/09/compress-upload-cocoalumberjack/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+    <meta name="twitter:creator" content="@stoutyhk">
+  
+
+
+
+  <meta property="article:published_time" content="2020-05-09T23:09:06+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://stouty.xyz/ios/2020/05/09/compress-upload-cocoalumberjack/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "stouty.xyz",
+      "url": "https://stouty.xyz/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="stouty.xyz Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<script src="/assets/files/head.load.min.js"></script>
+
+<!-- <script defer src="/assets/files/lazysizes.min.js"></script> -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> -->
+<style>
+	.blur-up {
+		-webkit-filter: blur(5px);
+		filter: blur(5px);
+		transition: filter 400ms, -webkit-filter 400ms;
+	}
+
+	.blur-up.lazyloaded {
+		-webkit-filter: blur(0);
+		filter: blur(0);
+	}
+</style>
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          stouty.xyz
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">about</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/things-i-use/">things</a>
+            </li><li class="masthead__menu-item">
+              <a href="/links/">links</a>
+            </li><li class="masthead__menu-item">
+              <a href="/snippets/">snippets</a>
+            </li><li class="masthead__menu-item">
+              <a href="/sitemap.xml">sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">James Stout</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>iOS/Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Hong Kong</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://keybase.io/stouty" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fas fa-fw fa-key" aria-hidden="true"></i> Keybase
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://twitter.com/stoutyhk" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+      
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://bitbucket.org/stouty" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://github.com/jamesstout" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://last.fm/user/stoutyhk" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-lastfm-square" aria-hidden="true"></i> Last.fm
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a href="http://www.feedio.co/@stoutyhk?came_from=homepagefeedbutton" itemprop="sameAs">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feedio
+        </a>
+      </li>
+    
+
+    
+    <li>
+      <a rel="me" href="https://mastodon.social/@stouty" itemprop="sameAs">
+        <i class="fab fa-fw fa-mastodon" aria-hidden="true"></i> Mastodon
+      </a>
+    </li>
+       
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Compress-Upload-CocoaLumberjack - My First CocoaPod">
+    <meta itemprop="description" content="My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack.">
+    <meta itemprop="datePublished" content="2020-05-09T23:09:06+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Compress-Upload-CocoaLumberjack - My First CocoaPod
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>I just published my first CocoaPod: <a href="https://cocoapods.org/pods/Compress-Upload-CocoaLumberjack">Compress-Upload-CocoaLumberjack</a>:</p>
+
+<blockquote>
+  <p>Remote logging via NSURLSession transfer to upload compressed CocoaLumberjack logs to an HTTP server.</p>
+</blockquote>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
+<span class="nv">$ </span>pod trunk me
+  - Name:     James Stout
+  - Email:    stoutyhk@gmail.com
+  - Since:    May 7th, 20:14
+  - Pods:
+    - Compress-Upload-CocoaLumberjack
+  - Sessions:
+    - May 7th, 20:14 - September 14th, 21:44. IP: 203.218.233.190 Description: imac
+
+james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
+<span class="nv">$ </span>pod search Compress-Upload-CocoaLumberjack 2&gt; /dev/null
+
+-&gt; Compress-Upload-CocoaLumberjack <span class="o">(</span>0.1.2<span class="o">)</span>
+   Remote logging via NSURLSession transfer to upload compressed CocoaLumberjack logs to an HTTP server.
+   pod <span class="s1">'Compress-Upload-CocoaLumberjack'</span>, <span class="s1">'~&gt; 0.1.2'</span>
+   - Homepage: https://github.com/jamesstout/Compress-Upload-CocoaLumberjack
+   - Source:   https://github.com/jamesstout/Compress-Upload-CocoaLumberjack.git
+   - Versions: 0.1.2, 0.1.1, 0.1.0 <span class="o">[</span>Specs repo]
+</code></pre></div></div>
+
+<p>The rationale for creating this Pod was that the <a href="https://github.com/CocoaLumberjack/CocoaLumberjack/tree/master/Demos/LogFileCompressor">demo log file compression project</a> in <a href="https://github.com/CocoaLumberjack/CocoaLumberjack">CocoaLumberjack</a> just zips archived files, and <a href="https://github.com/pushd/BackgroundUpload-CocoaLumberjack">BackgroundUpload-CocoaLumberjack</a> only uploads uncompressed log files. I wanted to compress, and then upload, to save space and bandwidth.</p>
+
+<p><em>So first things first, thank you to <a href="https://github.com/pushd">pushd</a> and <a href="https://cocoalumberjack.github.io/">CocoaLumberjack</a> for their work, inspiration, examples and permissive licenses. This wouldn’t exist without them.</em></p>
+
+<p>CocoaLumberjack is  a fast &amp; simple, yet powerful &amp; flexible logging framework</p>
+
+<blockquote>
+  <h2 id="lumberjack-is-fast--simple-yet-powerful--flexible">Lumberjack is Fast &amp; Simple, yet Powerful &amp; Flexible.</h2>
+  <p>It is similar in concept to other popular logging frameworks such as log4j, yet is designed specifically for Objective-C, and takes advantage of features such as multi-threading, grand central dispatch (if available), lockless atomic operations, and the dynamic nature of the Objective-C runtime.</p>
+
+  <h2 id="lumberjack-is-fast">Lumberjack is Fast</h2>
+  <p>In most cases it is an order of magnitude faster than NSLog.</p>
+
+  <h2 id="lumberjack-is-powerful">Lumberjack is Powerful</h2>
+  <p>One log statement can be sent to multiple loggers, meaning you can log to a file and the console simultaneously. Want more? Create your own loggers (it’s easy) and send your log statements over the network. Or to a database or distributed file system. The sky is the limit.</p>
+</blockquote>
+
+<p>Check out the <a href="https://github.com/CocoaLumberjack/CocoaLumberjack/blob/master/Documentation/Performance.md">benchmarks</a>.</p>
+
+<p>The default philosophy for asynchronous logging is very simple:</p>
+
+<ul>
+  <li>Log messages with errors should be executed synchronously.</li>
+  <li>All other log messages, such as debug output, are executed asynchronously.</li>
+</ul>
+
+<p>Getting started is simple. This will add a pair of “loggers” and your log statements will be sent to the Console.app and the Xcode console (just like a normal <code class="highlighter-rouge">NSLog</code>).</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define LOG_LEVEL_DEF ddLogLevel
+#import &lt;CocoaLumberjack/CocoaLumberjack.h&gt;
+</span>
+<span class="p">[</span><span class="n">DDLog</span> <span class="nf">addLogger</span><span class="p">:[</span><span class="n">DDOSLogger</span> <span class="nf">sharedInstance</span><span class="p">]];</span>
+</code></pre></div></div>
+
+<p>To add another logger, one that writes to a file:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DDFileLogger</span> <span class="o">*</span><span class="n">fileLogger</span> <span class="o">=</span> <span class="p">[[</span><span class="n">DDFileLogger</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+<span class="n">fileLogger</span><span class="p">.</span><span class="n">rollingFrequency</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">;</span> <span class="c1">// 24 hour rolling</span>
+<span class="n">fileLogger</span><span class="p">.</span><span class="n">logFileManager</span><span class="p">.</span><span class="n">maximumNumberOfLogFiles</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">DDLog</span> <span class="nf">addLogger</span><span class="p">:</span><span class="n">fileLogger</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>That’s a fairly standard log file setup, with one file per day, for a week. After a week, the oldest file is deleted.</p>
+
+<p>Then to log, just convert your <code class="highlighter-rouge">NSLog</code> calls:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Convert from this:</span>
+<span class="n">NSLog</span><span class="p">(</span><span class="s">@"Broken sprocket detected!"</span><span class="p">);</span>
+<span class="n">NSLog</span><span class="p">(</span><span class="s">@"User selected file:%@ withSize:%u"</span><span class="p">,</span> <span class="n">filePath</span><span class="p">,</span> <span class="n">fileSize</span><span class="p">);</span>
+
+<span class="c1">// To this:</span>
+<span class="n">DDLogError</span><span class="p">(</span><span class="s">@"Broken sprocket detected!"</span><span class="p">);</span>
+<span class="n">DDLogVerbose</span><span class="p">(</span><span class="s">@"User selected file:%@ withSize:%u"</span><span class="p">,</span> <span class="n">filePath</span><span class="p">,</span> <span class="n">fileSize</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Those logs will be set to the console, and to the log file.</p>
+
+<p>If you make the <code class="highlighter-rouge">logFileManager</code> a <code class="highlighter-rouge">CompressingLogFileManager</code>, per the LogFileCompressor demo project mentioned above, your setup looks like this:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CompressingLogFileManager</span> <span class="o">*</span><span class="n">logFileManager</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CompressingLogFileManager</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+<span class="n">fileLogger</span> <span class="o">=</span> <span class="p">[[</span><span class="n">DDFileLogger</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithLogFileManager</span><span class="p">:</span><span class="n">logFileManager</span><span class="p">];</span>
+
+<span class="c1">// 1kB and 1 min, just to demo quick rolling/compressing</span>
+<span class="n">fileLogger</span><span class="p">.</span><span class="n">maximumFileSize</span>  <span class="o">=</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// 1 KB</span>
+<span class="n">fileLogger</span><span class="p">.</span><span class="n">rollingFrequency</span> <span class="o">=</span>   <span class="mi">60</span> <span class="o">*</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// 1 Minute</span>
+
+<span class="n">fileLogger</span><span class="p">.</span><span class="n">logFileManager</span><span class="p">.</span><span class="n">maximumNumberOfLogFiles</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">DDLog</span> <span class="nf">addLogger</span><span class="p">:[</span><span class="n">DDOSLogger</span> <span class="nf">sharedInstance</span><span class="p">]];</span>
+<span class="p">[</span><span class="n">DDLog</span> <span class="nf">addLogger</span><span class="p">:</span><span class="n">fileLogger</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>With this setup, your log file is ‘archived’ and then compressed to a <code class="highlighter-rouge">.gz</code> file. After a while, the log folder looks like this:</p>
+
+<p><a href="/assets/images/posts/compress-upload-cocoalumberjack/log-folder.png"><img data-src="/assets/images/posts/compress-upload-cocoalumberjack/log-folder.png" class="lazyload align-center blur-up" alt="log-folder" /></a></p>
+
+<p>Seems the <code class="highlighter-rouge">.gz</code> files are excluded from the deletion based on <code class="highlighter-rouge">maximumNumberOfLogFiles</code>, so the folder would just fill up, I think.</p>
+
+<p>I deal with this in Compress-Upload-CocoaLumberjack. To set up Compress-Upload-CocoaLumberjack, you need an HTTP(S) server with an endpoint that accepts the log files, then instantiate the logger with your URL:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// change the URL to your domain/endpoint</span>
+<span class="n">NSMutableURLRequest</span> <span class="o">*</span><span class="n">request</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableURLRequest</span>
+                                    <span class="nl">requestWithURL:</span><span class="p">[</span><span class="n">NSURL</span> <span class="nf">URLWithString</span><span class="p">:</span><span class="s">@"http://localhost:3000/log"</span><span class="p">]];</span>
+<span class="p">[</span><span class="n">request</span> <span class="nf">setHTTPMethod</span><span class="p">:</span><span class="s">@"POST"</span><span class="p">];</span>
+
+<span class="n">logFileManager</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CompressingAndUploadingLogFileManager</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithUploadRequest</span><span class="p">:</span><span class="n">request</span><span class="p">];</span>
+
+<span class="n">fileLogger</span> <span class="o">=</span> <span class="p">[[</span><span class="n">DDFileLogger</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithLogFileManager</span><span class="p">:</span><span class="n">logFileManager</span><span class="p">];</span>
+
+<span class="c1">// set to 1 min and 1kB so they roll quickly</span>
+<span class="n">fileLogger</span><span class="p">.</span><span class="n">maximumFileSize</span>  <span class="o">=</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">100</span><span class="p">;</span>  <span class="c1">// 1 KB</span>
+<span class="n">fileLogger</span><span class="p">.</span><span class="n">rollingFrequency</span> <span class="o">=</span>   <span class="mi">60</span> <span class="o">*</span> <span class="mi">1</span><span class="p">;</span>  <span class="c1">// 1 Minute</span>
+
+<span class="n">fileLogger</span><span class="p">.</span><span class="n">logFileManager</span><span class="p">.</span><span class="n">maximumNumberOfLogFiles</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">DDLog</span> <span class="nf">addLogger</span><span class="p">:[</span><span class="n">DDOSLogger</span> <span class="nf">sharedInstance</span><span class="p">]];</span>
+<span class="p">[</span><span class="n">DDLog</span> <span class="nf">addLogger</span><span class="p">:</span><span class="n">fileLogger</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>The compression behaviour is the same as in LogFileCompressor, except in <code class="highlighter-rouge">compressionDidSucceed</code></p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma mark - compressionDidSucceed
+</span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">compressionDidSucceed</span><span class="p">:(</span><span class="n">DDLogFileInfo</span> <span class="o">*</span><span class="p">)</span><span class="nv">logFile</span>
+<span class="p">{</span>
+    <span class="n">NSLogVerbose</span><span class="p">(</span><span class="s">@"CompressingAndUploadingLogFileManager: compressionDidSucceed: %@"</span><span class="p">,</span> <span class="n">logFile</span><span class="p">.</span><span class="n">fileName</span><span class="p">);</span>
+  
+    <span class="c1">// at this point we want to upload logFile, if the dontUpload flag isn't set</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">doUpload</span> <span class="o">==</span> <span class="nb">YES</span><span class="p">){</span>
+        <span class="p">[</span><span class="n">self</span> <span class="nf">uploadArchivedFile</span><span class="p">:</span><span class="n">logFile</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">isCompressing</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+  
+    <span class="p">[</span><span class="n">self</span> <span class="nf">compressNextLogFile</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">uploadArchivedFile</code> eventually calls:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">uploadLogFile</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">logFilePath</span>
+<span class="p">{</span>
+    <span class="n">NSMutableURLRequest</span> <span class="o">*</span><span class="n">request</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">uploadRequest</span> <span class="nf">mutableCopy</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">request</span> <span class="nf">setValue</span><span class="p">:[</span><span class="n">logFilePath</span> <span class="nf">stringByAddingPercentEncodingWithAllowedCharacters</span><span class="p">:[</span><span class="n">NSCharacterSet</span> <span class="nf">URLHostAllowedCharacterSet</span><span class="p">]]</span> <span class="nf">forHTTPHeaderField</span><span class="p">:</span><span class="s">@"X-BackgroundUpload-File"</span><span class="p">];</span>
+
+    <span class="c1">// added extra header to identify upload</span>
+    <span class="p">[</span><span class="n">request</span> <span class="nf">setValue</span><span class="p">:[</span><span class="n">UIDevice</span><span class="p">.</span><span class="n">currentDevice</span><span class="p">.</span><span class="n">identifierForVendor</span><span class="p">.</span><span class="n">UUIDString</span> <span class="nf">stringByAddingPercentEncodingWithAllowedCharacters</span><span class="p">:[</span><span class="n">NSCharacterSet</span> <span class="nf">URLHostAllowedCharacterSet</span><span class="p">]]</span> <span class="nf">forHTTPHeaderField</span><span class="p">:</span><span class="s">@"X-BackgroundUpload-File-UUID"</span><span class="p">];</span>
+  
+    <span class="n">NSURLSessionTask</span> <span class="o">*</span><span class="n">task</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">session</span> <span class="nf">uploadTaskWithRequest</span><span class="p">:</span><span class="n">request</span> <span class="nf">fromFile</span><span class="p">:[</span><span class="n">NSURL</span> <span class="nf">fileURLWithPath</span><span class="p">:</span><span class="n">logFilePath</span><span class="p">]];</span>
+    <span class="n">task</span><span class="p">.</span><span class="n">taskDescription</span> <span class="o">=</span> <span class="n">logFilePath</span><span class="p">;</span>
+    <span class="p">[</span><span class="n">task</span> <span class="nf">resume</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">([</span><span class="n">self</span><span class="p">.</span><span class="n">delegate</span> <span class="nf">respondsToSelector</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="nf">attemptingUploadForFilePath</span><span class="p">:)])</span> <span class="p">{</span>
+        <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">delegate</span> <span class="nf">attemptingUploadForFilePath</span><span class="p">:</span><span class="n">logFilePath</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">X-BackgroundUpload-File</code> contains the filename. I added <code class="highlighter-rouge">X-BackgroundUpload-File-UUID</code> to anonymously identify each device so I could separate the log files on the server-side, and do a few security checks.</p>
+
+<p>I’m not going to publish the server code, as I’m pretty sure it has some vulnerabilities! Something like this, in PHP:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">function</span> <span class="nf">hhud</span><span class="p">(</span><span class="nv">$var</span><span class="p">,</span> <span class="nv">$index</span><span class="p">){</span>
+    <span class="k">return</span>  <span class="nb">isset</span><span class="p">(</span><span class="nv">$var</span><span class="p">[</span><span class="nv">$index</span><span class="p">])</span> <span class="o">?</span> <span class="nb">rawurldecode</span><span class="p">(</span><span class="nv">$var</span><span class="p">[</span><span class="nv">$index</span><span class="p">])</span> <span class="o">:</span> <span class="s1">''</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nv">$request_body</span> <span class="o">=</span> <span class="o">@</span><span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">'php://input'</span><span class="p">);</span>
+
+<span class="k">if</span><span class="p">(</span><span class="nv">$request_body</span> <span class="o">!=</span> <span class="kc">null</span> <span class="p">){</span>
+
+    <span class="c1">// do some checks and validation on input</span>
+
+    <span class="nv">$fullFileName</span> <span class="o">=</span> <span class="nx">hhud</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">,</span> <span class="s2">"HTTP_X_BACKGROUNDUPLOAD_FILE"</span><span class="p">);</span>
+    <span class="c1">// File path to save file</span>
+    <span class="nv">$filePath</span> <span class="o">=</span> <span class="s1">'xxxxx/'</span><span class="p">;</span>
+    <span class="nv">$fileName</span> <span class="o">=</span> <span class="s1">''</span><span class="p">;</span>
+    <span class="nv">$fileDir</span> <span class="o">=</span> <span class="s1">'xxxxx/'</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="nv">$fullFileName</span> <span class="o">!=</span> <span class="s1">''</span><span class="p">){</span>
+        <span class="nv">$fileName</span> <span class="o">=</span> <span class="nb">basename</span><span class="p">(</span><span class="nv">$fullFileName</span><span class="p">);</span>
+        <span class="nv">$fileName</span> <span class="o">=</span> <span class="nb">preg_replace</span><span class="p">(</span><span class="s1">'/\s+/'</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="nv">$fileName</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nv">$filePath</span> <span class="o">=</span> <span class="nv">$filePath</span> <span class="o">.</span> <span class="nv">$fileDir</span><span class="p">;</span>
+
+    <span class="nv">$file</span> <span class="o">=</span> <span class="nv">$filePath</span> <span class="o">.</span> <span class="s2">"/"</span> <span class="o">.</span> <span class="nv">$fileName</span><span class="p">;</span>
+
+    <span class="c1">// Write the request body to file</span>
+    <span class="k">if</span><span class="p">(</span><span class="nb">file_put_contents</span><span class="p">(</span><span class="nv">$file</span><span class="p">,</span> <span class="nv">$request_body</span><span class="p">)</span> <span class="o">===</span> <span class="k">FALSE</span><span class="p">){</span>
+        <span class="nv">$serverDeets</span> <span class="o">=</span> <span class="nb">var_export</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span> <span class="s2">"Failed to write to file:"</span> <span class="o">.</span> <span class="nv">$file</span>  <span class="o">.</span> <span class="s2">"</span><span class="se">\n\n\$</span><span class="s2">_SERVER was:</span><span class="se">\n</span><span class="s2"> </span><span class="nv">$serverDeets</span><span class="se">\n</span><span class="s2"> "</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">else</span><span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span>
+    <span class="nb">http_response_code</span><span class="p">();</span>
+    <span class="k">exit</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>To deal with old compressed files in the logs directory, I added <code class="highlighter-rouge">uploadOldCompressedLogFiles</code> to the <code class="highlighter-rouge">CompressingAndUploadingLogFileManager init</code>:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">uploadOldCompressedLogFiles</span><span class="p">{</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">doUpload</span> <span class="o">==</span> <span class="nb">NO</span><span class="p">){</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">NSArray</span> <span class="o">*</span><span class="n">unsortedLogFileInfos</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span> <span class="nf">unsortedLogFileInfosGZ</span><span class="p">];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">DDLogFileInfo</span> <span class="o">*</span><span class="n">fileInfo</span> <span class="k">in</span> <span class="n">unsortedLogFileInfos</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">NSLogVerbose</span><span class="p">(</span><span class="s">@"CompressingAndUploadingLogFileManager: fileInfo: %@"</span><span class="p">,</span> <span class="n">fileInfo</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">fileInfo</span><span class="p">.</span><span class="n">isArchived</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">NSLogVerbose</span><span class="p">(</span><span class="s">@"is Archived, uploading..."</span><span class="p">);</span>
+            <span class="p">[</span><span class="n">self</span> <span class="nf">uploadArchivedFile</span><span class="p">:</span><span class="n">fileInfo</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>You might have spotted that there’s a property on the LogFileManager that you can set to prevent uploads (it defaults to <code class="highlighter-rouge">YES</code>). To stop uploading, simply set to <code class="highlighter-rouge">NO</code>.</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logFileManager</span><span class="p">.</span><span class="n">doUpload</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>In my <a href="https://apps.apple.com/us/app/hkwarnings/id370901118#?platform=ipad">HKWarnings app</a>, I can set this flag from my server, enabling me to remotely switch log file uploading on and off.</p>
+
+<p>On the server, I end up with folders full of gzipped log files:</p>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/posts/compress-upload-cocoalumberjack/logs.png" title="Log files">
+          <img src="/assets/images/posts/compress-upload-cocoalumberjack/logs-th.png" alt="Log files" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/compress-upload-cocoalumberjack/tree.png" title="Log tree">
+          <img src="/assets/images/posts/compress-upload-cocoalumberjack/tree-th.png" alt="Log tree" />
+      </a>
+    
+  
+  
+</figure>
+
+<p>I take a copy, unzip and <code class="highlighter-rouge">grep</code> the logs for insights. For example, this lists debug lines and orders them by the number of times they occur:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>egrep <span class="s1">'\[\D\]'</span> <span class="k">*</span>.log | <span class="nb">grep</span> <span class="nt">-Po</span> <span class="s1">' \[.*'</span> | <span class="nb">sed</span> <span class="s1">'s/^ *//g'</span> | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-c</span> | <span class="nb">sort</span> <span class="nt">-n</span>
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1182 [D] [Warning -[Warning isItNight]][Line 1619] in isItNight
+1343 [D] [WarningViewController3 -[WarningViewController3 showLabel]][Line 2152] have not purchased ads
+1361 [D] [NSMutableString+HKWUtilities -[NSMutableString(HKWUtilities) hkw_base64EncodedURLQueryString:]][Line 14] encQueryString is []
+1377 [D] [WarningViewController3 -[WarningViewController3 showLabel]][Line 2136] In showLabel
+</code></pre></div></div>
+
+<p>So I can see I should make sure these are performant:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">isItNight</code></li>
+  <li><code class="highlighter-rouge">hkw_base64EncodedURLQueryString</code></li>
+</ul>
+
+<p>In fact I’ve already released a version where <code class="highlighter-rouge">hkw_base64EncodedURLQueryString</code> is 66% faster and <code class="highlighter-rouge">isItNight</code> is ~30% faster:</p>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/posts/compress-upload-cocoalumberjack/isitnight.png" title="Is it night test">
+          <img src="/assets/images/posts/compress-upload-cocoalumberjack/isitnight-th.png" alt="Is it night test" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/compress-upload-cocoalumberjack/isitnight2.png" title="Is it night 2 tests">
+          <img src="/assets/images/posts/compress-upload-cocoalumberjack/isitnight2-th.png" alt="Is it night 2 tests" />
+      </a>
+    
+  
+  
+</figure>
+
+<p>Final test to check the output of the new version matches the old version:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">testisItNight_isItNight2</span> <span class="p">{</span>
+    <span class="n">Warning</span> <span class="o">*</span><span class="n">warning</span> <span class="o">=</span> <span class="p">[</span><span class="n">Warning</span> <span class="nf">alloc</span><span class="p">];</span>
+    <span class="n">BOOL</span> <span class="n">isitNight2</span> <span class="o">=</span> <span class="p">[</span><span class="n">warning</span> <span class="nf">isItNight2</span><span class="p">];</span>
+    <span class="n">BOOL</span> <span class="n">isitNight</span> <span class="o">=</span> <span class="p">[</span><span class="n">warning</span> <span class="nf">isItNight</span><span class="p">];</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">isitNight2</span><span class="p">).</span><span class="n">to</span><span class="p">.</span><span class="n">equal</span><span class="p">(</span><span class="n">isitNight</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#cocoalumberjack" class="page__taxonomy-item" rel="tag">CocoaLumberjack</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#cocoapods" class="page__taxonomy-item" rel="tag">CocoaPods</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#compression" class="page__taxonomy-item" rel="tag">compression</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#logging" class="page__taxonomy-item" rel="tag">logging</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#pod" class="page__taxonomy-item" rel="tag">pod</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#remote-logging" class="page__taxonomy-item" rel="tag">remote logging</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#ios" class="page__taxonomy-item" rel="tag">iOS</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-09T23:09:06+08:00">May 9, 2020</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/nextcloud/2020/05/08/nextcloud-sync/" class="pagination--pager" title="Nextcloud Sync Client for Docker
+">Previous</a>
+    
+    
+      <a href="/macos/2020/05/11/zoom-update/" class="pagination--pager" title="A Quick Update on Zoom Code Signing
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/macos/2020/05/11/zoom-update/" rel="permalink">A Quick Update on Zoom Code Signing
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">A quick update on Zoom code signing.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/nextcloud/2020/05/08/nextcloud-sync/" rel="permalink">Nextcloud Sync Client for Docker
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Syncing to Nextcloud from a Docker container, and how to build that container.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ios/2020/05/04/hkwarnings/" rel="permalink">HKWarnings v5.0.0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Fixing 10 year old code to build HKWarnings v5.0.0.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/macos/2020/04/29/mobile-device/" rel="permalink">Update to MobileDevice.framework on macOS Breaks Old GarageBand
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">iTunes update breaks GarageBand.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 stouty.xyz. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script defer src="/assets/files/lazysizes.min.js"></script>
+  <script defer src="/assets/js/main.min.js"></script>
+  <!-- <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+  <script defer src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+<!-- Including InstantSearch.js library and styling -->
+
+<script>
+  head.load("https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.js", function() {
+    // Instanciating InstantSearch.js with Algolia credentials
+    const search = instantsearch({
+      appId: 'TE1537XNZ4',
+      apiKey: 'c3967c693f4a1d3ca8ed221f259c6a5f',
+      indexName: 'stouty.xyz',
+      searchParameters: {
+        restrictSearchableAttributes: [
+        'title',
+        'content'
+        ]
+      }
+    });
+    
+    const hitTemplate = function(hit) {
+      const url = hit.url;
+      const title = (hit._highlightResult.title !== undefined) ? hit._highlightResult.title.value : "";
+      const content = (hit._highlightResult.html !== undefined) ? hit._highlightResult.html.value : undefined;
+      
+      if(content === undefined){
+        throw "whoops";
+      }
+      else{
+        return `
+        <div class="list__item">
+          <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+            <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+            <div class="archive__item-excerpt" itemprop="description">${content}</div>
+          </article>
+        </div>
+        `;
+      }
+    }
+    
+    // Adding searchbar and results widgets
+    search.addWidget(
+    instantsearch.widgets.searchBox({
+      container: '.search-searchbar',
+      poweredBy: true,
+      placeholder: 'Enter your search term...'
+    })
+    );
+    search.addWidget(
+    instantsearch.widgets.hits({
+      container: '.search-hits',
+      templates: {
+        item: hitTemplate
+      }
+    })
+    );
+    
+    // Starting the search
+    search.start();
+  });
+</script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js"></script> -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css">
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121620384-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-121620384-1', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.333%;
+        height: 0;
+        background: black;
+    }
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }    
+    </style>
+    
+    <script>
+    function get_youtube_id(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+    function vimeo_embed(url,el) {
+        var id = false;
+        $.ajax({
+          url: 'https://vimeo.com/api/oembed.json?url='+url,
+          async: true,
+          success: function(response) {
+            if(response.video_id) {
+              id = response.video_id;
+              if(url.indexOf('autoplay=1') !== -1) var autoplay=1; else var autoplay=0;
+              if(url.indexOf('loop=1') !== -1) var loop=1; else var loop=0;
+              var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/'+id+'/?byline=0&title=0&portrait=0';
+              if(autoplay==1) theInnerHTML += '&autoplay=1';
+              if(loop==1) theInnerHTML += '&loop=1';
+              theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>'; 
+              el.innerHTML = theInnerHTML;
+            }
+          }
+        });
+    }
+    function video_embed() {
+        var p = document.getElementsByTagName('p');
+        for(var i = 0; i < p.length; i++) {
+            //check if this is an external url (that starts with https:// or http://
+            if (p[i].innerHTML.indexOf("http://") == 0 ||
+                p[i].innerHTML.indexOf("https://") == 0) {
+                var youtube_id = get_youtube_id(p[i].innerHTML);
+                if(youtube_id) {
+                    if(p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay=1; else var autoplay=0;
+                    if(p[i].innerHTML.indexOf('loop=1') !== -1) var loop=1; else var loop=0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
+                    if(autoplay==1) theInnerHTML += '&autoplay=1';
+                    if(loop==1) theInnerHTML += '&loop=1&playlist='+youtube_id+'&version=3';
+                    if(p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start='+p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=')+6);
+                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
+                    p[i].innerHTML = theInnerHTML;
+                }
+                if(p[i].innerHTML.indexOf('vimeo.com') !== -1) {
+                    //ask vimeo for the id and place the embed
+                    vimeo_embed(p[i].innerHTML,p[i]);
+                }
+            }
+        }
+    }
+    video_embed();
+    
+    function mp3_embed() {
+        var p = document.getElementsByTagName('p');
+        for(var i = 0; i < p.length; i++) {
+            if(p[i].innerHTML.indexOf('.mp3') !== -1) {
+                var str = p[i].innerHTML.split('?');
+                if(str.length == 1) str[1] = '';
+                var str1 = str[1];
+                str1 = str1.replace('&','').replace('&','');
+                str1 = str1.replace('autoplay=1','').replace('autoplay=0','');
+                str1 = str1.replace('loop=1','').replace('loop=0','');
+                str1 = str1.replace('controls=0','').replace('controls=1','');
+    
+                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
+                    if(str[1].indexOf('autoplay=1') !== -1) var autoplay=1; else var autoplay=0;
+                    if(str[1].indexOf('loop=1') !== -1) var loop=1; else var loop=0;
+                    if(str[1].indexOf('controls=0') !== -1) var controls=0; else var controls=1;
+                    var newInnerHTML = '<audio';
+                    if(autoplay==1) newInnerHTML += ' autoplay';
+                    if(loop==1) newInnerHTML += ' loop';
+                    if(controls==1) newInnerHTML += ' controls';
+                    newInnerHTML += '><source src="'+str[0]+'" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+                    p[i].innerHTML = newInnerHTML;
+                }
+            }
+        }
+    }
+    mp3_embed();
+    </script>
+
+
+
+
+  </body>
+</html>

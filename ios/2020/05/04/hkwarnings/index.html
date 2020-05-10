@@ -1,0 +1,1178 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>HKWarnings v5.0.0 | stouty.xyz</title>
+<meta name="description" content="Fixing 10 year old code to build HKWarnings v5.0.0. ">
+
+
+  <meta name="author" content="James Stout">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="stouty.xyz">
+<meta property="og:title" content="HKWarnings v5.0.0">
+<meta property="og:url" content="https://stouty.xyz/ios/2020/05/04/hkwarnings/">
+
+
+  <meta property="og:description" content="Fixing 10 year old code to build HKWarnings v5.0.0. ">
+
+
+
+
+
+  <meta name="twitter:site" content="@stoutyhk">
+  <meta name="twitter:title" content="HKWarnings v5.0.0">
+  <meta name="twitter:description" content="Fixing 10 year old code to build HKWarnings v5.0.0. ">
+  <meta name="twitter:url" content="https://stouty.xyz/ios/2020/05/04/hkwarnings/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+    <meta name="twitter:creator" content="@stoutyhk">
+  
+
+
+
+  <meta property="article:published_time" content="2020-05-04T23:40:49+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://stouty.xyz/ios/2020/05/04/hkwarnings/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "stouty.xyz",
+      "url": "https://stouty.xyz/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="stouty.xyz Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<script src="/assets/files/head.load.min.js"></script>
+
+<!-- <script defer src="/assets/files/lazysizes.min.js"></script> -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> -->
+<style>
+	.blur-up {
+		-webkit-filter: blur(5px);
+		filter: blur(5px);
+		transition: filter 400ms, -webkit-filter 400ms;
+	}
+
+	.blur-up.lazyloaded {
+		-webkit-filter: blur(0);
+		filter: blur(0);
+	}
+</style>
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          stouty.xyz
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">about</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/things-i-use/">things</a>
+            </li><li class="masthead__menu-item">
+              <a href="/links/">links</a>
+            </li><li class="masthead__menu-item">
+              <a href="/snippets/">snippets</a>
+            </li><li class="masthead__menu-item">
+              <a href="/sitemap.xml">sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">James Stout</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>iOS/Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Hong Kong</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://keybase.io/stouty" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fas fa-fw fa-key" aria-hidden="true"></i> Keybase
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://twitter.com/stoutyhk" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+      
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://bitbucket.org/stouty" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://github.com/jamesstout" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://last.fm/user/stoutyhk" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-lastfm-square" aria-hidden="true"></i> Last.fm
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a href="http://www.feedio.co/@stoutyhk?came_from=homepagefeedbutton" itemprop="sameAs">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feedio
+        </a>
+      </li>
+    
+
+    
+    <li>
+      <a rel="me" href="https://mastodon.social/@stouty" itemprop="sameAs">
+        <i class="fab fa-fw fa-mastodon" aria-hidden="true"></i> Mastodon
+      </a>
+    </li>
+       
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="HKWarnings v5.0.0">
+    <meta itemprop="description" content="Fixing 10 year old code to build HKWarnings v5.0.0.">
+    <meta itemprop="datePublished" content="2020-05-04T23:40:49+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">HKWarnings v5.0.0
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>When I initially made HKWarnings <a href="https://help.apple.com/xcode/mac/current/#/deve69552ee5">universal</a> and added an iPad interface, I based the interface on a <a href="https://developer.apple.com/library/archive/samplecode/MultipleDetailViews/Introduction/Intro.html">MultipleDetailViews</a> demo from Apple. That version is updated, I used the older code from <a href="https://developer.apple.com/library/archive/samplecode/MultipleDetailViews/History/History.html#//apple_ref/doc/uid/DTS40009775-RevisionHistory-DontLinkElementID_1">2010</a>, so it’s 10 years old and built for iOS 3.2.</p>
+
+<p>Architecturally, there’s a Master ViewController that displays multiple different Detail ViewControllers.</p>
+
+<p>The Master ViewController is a TableView that’s usually hidden:</p>
+
+<p><img data-src="/assets/images/posts/hkwarnings/master.png" class="lazyload blur-up align-center" alt="master vc" /></p>
+
+<p>It’s used to choose one of many Detail VCs:</p>
+
+<figure class="third ">
+  
+    
+      <a href="/assets/images/posts/hkwarnings/Four-Warning.png" title="Four Warnings">
+          <img src="/assets/images/posts/hkwarnings/Four-Warning-th.png" alt="Four Warnings" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/hkwarnings/Deets-Warning.png" title="Warning Details">
+          <img src="/assets/images/posts/hkwarnings/Deets-Warning-th.png" alt="Warning Details" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/hkwarnings/Radar.png" title="Radar">
+          <img src="/assets/images/posts/hkwarnings/Radar-th.png" alt="Radar" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/hkwarnings/Sat.png" title="Sat">
+          <img src="/assets/images/posts/hkwarnings/Sat-th.png" alt="Sat" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/hkwarnings/TC-Warning.png" title="Typhoon">
+          <img src="/assets/images/posts/hkwarnings/TC-Warning-th.png" alt="Typhoon" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/hkwarnings/Warnings-History.png" title="Warnings-History">
+          <img src="/assets/images/posts/hkwarnings/Warnings-History-th.png" alt="Warnings-History" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/hkwarnings/Weather-Images.png" title="Weather Images">
+          <img src="/assets/images/posts/hkwarnings/Weather-Images-th.png" alt="Weather Images" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/hkwarnings/Weather-Image.png" title="Weather Image">
+          <img src="/assets/images/posts/hkwarnings/Weather-Image-th.png" alt="Weather Image" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/hkwarnings/Deets-Warning-Screen-CN.png" title="Warning Details Chinese">
+          <img src="/assets/images/posts/hkwarnings/Deets-Warning-Screen-CN-th.png" alt="Warning Details Chinese" />
+      </a>
+    
+  
+  
+    <figcaption>Click a row in the Master table and the selected Detail VC loads.
+</figcaption>
+  
+</figure>
+
+<p>Anyway, this 10 year old code has survived <a href="https://en.wikipedia.org/wiki/IOS_version_history">9 OS updates</a>, but finally, on iOS 13, it no longer works. The code below that switches the Detail VC and hides the Master <em>is</em> called, but the <code class="highlighter-rouge">UIPopoverController</code> is always <code class="highlighter-rouge">nil</code>:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">splitViewController</span><span class="p">:(</span><span class="n">UISplitViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">svc</span>
+     <span class="nf">willHideViewController</span><span class="p">:(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">aViewController</span>
+          <span class="nf">withBarButtonItem</span><span class="p">:(</span><span class="n">UIBarButtonItem</span> <span class="o">*</span><span class="p">)</span><span class="nv">barButtonItem</span>
+       <span class="nf">forPopoverController</span><span class="p">:(</span><span class="n">UIPopoverController</span> <span class="o">*</span><span class="p">)</span><span class="nv">pc</span> <span class="p">{</span>
+
+    <span class="c1">// Keep references to the popover controller and the popover button,</span>
+    <span class="c1">// and tell the detail view controller to show the button.</span>
+    <span class="n">barButtonItem</span><span class="p">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">NSLocalizedString</span><span class="p">(</span><span class="s">@"Menu"</span><span class="p">,</span> <span class="s">"Menu"</span><span class="p">);</span>
+
+    <span class="n">self</span><span class="p">.</span><span class="n">popoverController</span> <span class="o">=</span> <span class="n">pc</span><span class="p">;</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">rootPopoverButtonItem</span> <span class="o">=</span> <span class="n">barButtonItem</span><span class="p">;</span>
+    <span class="n">UIViewController</span> <span class="o">&lt;</span><span class="n">SubstitutableDetailViewController</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">detailViewController</span> <span class="o">=</span> <span class="p">[</span><span class="n">splitViewController</span><span class="p">.</span><span class="n">viewControllers</span> <span class="nf">objectAtIndex</span><span class="p">:</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">detailViewController</span> <span class="nf">showRootPopoverButtonItem</span><span class="p">:</span><span class="n">rootPopoverButtonItem</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">splitViewController</span><span class="p">:(</span><span class="n">UISplitViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">svc</span>
+     <span class="nf">willShowViewController</span><span class="p">:(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">aViewController</span>
+  <span class="nf">invalidatingBarButtonItem</span><span class="p">:(</span><span class="n">UIBarButtonItem</span> <span class="o">*</span><span class="p">)</span><span class="nv">barButtonItem</span> <span class="p">{</span>
+
+    <span class="c1">// Nil out references to the popover controller and the popover button,</span>
+    <span class="c1">// and tell the detail view controller to hide the button.</span>
+    <span class="n">UIViewController</span> <span class="o">&lt;</span><span class="n">SubstitutableDetailViewController</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">detailViewController</span> <span class="o">=</span> <span class="p">[</span><span class="n">splitViewController</span><span class="p">.</span><span class="n">viewControllers</span> <span class="nf">objectAtIndex</span><span class="p">:</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">[</span><span class="n">detailViewController</span> <span class="nf">invalidateRootPopoverButtonItem</span><span class="p">:</span><span class="n">rootPopoverButtonItem</span><span class="p">];</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">popoverController</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">rootPopoverButtonItem</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Nothing I tried could make it work. There are not too many other people searching for an answer on Stackoverflow. I started a major rewrite based on the stock Xcode Master-Detail project:</p>
+
+<figure class="half ">
+  
+    
+      <a href="/assets/images/posts/hkwarnings/master-detail.png" title="Four Warning">
+          <img src="/assets/images/posts/hkwarnings/master-detail-th.png" alt="Four Warnings" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/hkwarnings/master-detail-code.png" title="Warning Details">
+          <img src="/assets/images/posts/hkwarnings/master-detail-code-th.png" alt="Warning Details" />
+      </a>
+    
+  
+  
+</figure>
+
+<p>But it’s all <a href="https://developer.apple.com/library/archive/documentation/ToolsLanguages/Conceptual/Xcode_Overview/DesigningwithStoryboards.html#//apple_ref/doc/uid/TP40010215-CH43-SW1">Storyboards, scenes and segues</a>. I’m not a fan. I soon had a huge mess of a main storyboard. I prefer to do things <a href="https://www.toptal.com/ios/ios-user-interfaces-storyboards-vs-nibs-vs-custom-code">programmatically</a>, well, a mix of code and <a href="http://www.monobjc.net/xib-file-format.html">xibs</a>.</p>
+
+<p>Eventually I found <a href="https://github.com/mutualmobile/MMDrawerController">MMDrawerController</a>, it’s also fairly old code (targets iOS 7), but I quickly built a working prototype that worked on iOS 13.</p>
+
+<p>It took a few days, but I have just released <a href="https://apps.apple.com/us/app/hkwarnings/id370901118#?platform=ipad">v5.0.0 of HKWarnings</a>, using the new side drawer.</p>
+
+<h2 id="code-changes">Code Changes</h2>
+
+<p>178 files were changed:</p>
+
+<p><a href="/assets/images/posts/hkwarnings/changes.png"><img data-src="/assets/images/posts/hkwarnings/changes.png" src="/assets/images/posts/hkwarnings/changes-lq.png" class="lazyload blur-up" alt="Git files changes screenshot" /></a></p>
+
+<p>Lines changed:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: ~/Projects/iPhone Apps/HKWarnings on 5.0.1[!?<span class="nv">$]</span>
+<span class="nv">$ </span>git log <span class="nt">--numstat</span> <span class="nt">--pretty</span><span class="o">=</span><span class="s2">"%H"</span> <span class="nt">--author</span><span class="o">=</span><span class="s2">"James Stout"</span> <span class="se">\</span>
+<span class="o">&gt;</span> b318bae1 bc535bb7 | <span class="nb">grep</span> <span class="nt">-v</span> Pods | <span class="nb">grep</span> <span class="nt">-v</span> Carthage <span class="se">\</span>
+<span class="o">&gt;</span> | <span class="nb">awk</span> <span class="s1">'NF==3 {plus+=$1; minus+=$2} END {printf("+%d, -%d\n", plus, minus)}'</span>
++183978, <span class="nt">-119453</span>
+</code></pre></div></div>
+<p><strong>+183978, -119453</strong></p>
+
+<p>BTW, that command takes a <em>quite</em> a while:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: ~/Projects/iPhone Apps/HKWarnings on 5.0.1[!?<span class="nv">$]</span>
+<span class="nv">$ </span><span class="nb">time </span>git log <span class="nt">--numstat</span> <span class="nt">--pretty</span><span class="o">=</span><span class="s2">"%H"</span> <span class="nt">--author</span><span class="o">=</span><span class="s2">"James Stout"</span> <span class="se">\</span>
+<span class="o">&gt;</span> b318bae1 bc535bb7 | <span class="nb">grep</span> <span class="nt">-v</span> Pods | <span class="nb">grep</span> <span class="nt">-v</span> Carthage <span class="se">\</span>
+<span class="o">&gt;</span> | <span class="nb">awk</span> <span class="s1">'NF==3 {plus+=$1; minus+=$2} END {printf("+%d, -%d\n", plus, minus)}'</span>
++183978, <span class="nt">-119453</span>
+
+real	0m40.285s
+user	0m35.363s
+sys	0m4.840s
+</code></pre></div></div>
+
+<h2 id="some-stats">Some Stats</h2>
+
+<p><a href="https://github.com/AlDanial/cloc/">cloc</a> output, excluding Pods:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: ~/Projects/iPhone Apps/HKWarnings on 5.0.1[!?<span class="nv">$]</span>
+<span class="nv">$ </span>cloc <span class="nt">--ignored</span><span class="o">=</span>ignored.txt <span class="se">\</span>
+<span class="o">&gt;</span> <span class="nt">--exclude-dir</span><span class="o">=</span>Pods,HKWeatherWarningsTabs.xcodeproj,HKWeatherWarningsTabs.xcworkspace <span class="se">\</span>
+<span class="o">&gt;</span> <span class="nt">--exclude-ext</span><span class="o">=</span>entitlements,plist,strings,xcodeproj <span class="se">\</span>
+<span class="o">&gt;</span> <span class="nt">--report-file</span><span class="o">=</span>cloc-report3.txt <span class="nb">.</span>
+     394 text files.
+     380 unique files.
+Wrote ignored.txt
+      44 files ignored.
+Wrote cloc-report3.txt
+
+github.com/AlDanial/cloc v 1.84  <span class="nv">T</span><span class="o">=</span>0.40 s <span class="o">(</span>873.2 files/s, 133349.8 lines/s<span class="o">)</span>
+<span class="nt">--------------------------------------------------------------------------------</span>
+Language                      files          blank        comment           code
+<span class="nt">--------------------------------------------------------------------------------</span>
+Objective C                      91          11963           5279          20095
+XML                              41            105              5           3536
+Bourne Shell                     12             83             80           3522
+JSON                             99              1              0           3227
+C/C++ Header                     96           1073           1060           2157
+Swift                             2            108             40            448
+HTML                              1             19              0            420
+Bourne Again Shell                7             44             11            146
+Perl                              1             21            121             30
+YAML                              1              0              0              7
+<span class="nt">--------------------------------------------------------------------------------</span>
+SUM:                            351          13417           6596          33588
+<span class="nt">--------------------------------------------------------------------------------</span>
+</code></pre></div></div>
+
+<p>Including Pods:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: ~/Projects/iPhone Apps/HKWarnings on 5.0.1[!?<span class="nv">$]</span>
+<span class="nv">$ </span>cloc <span class="nt">--ignored</span><span class="o">=</span>ignored.txt <span class="se">\</span>
+<span class="o">&gt;</span> <span class="nt">--exclude-dir</span><span class="o">=</span>HKWeatherWarningsTabs.xcodeproj,HKWeatherWarningsTabs.xcworkspace <span class="se">\</span>
+<span class="o">&gt;</span> <span class="nt">--exclude-ext</span><span class="o">=</span>entitlements,plist,strings,xcodeproj <span class="se">\</span>
+<span class="nt">--report-file</span><span class="o">=</span>cloc-inc-pods-report3.txt <span class="nb">.</span>
+    1645 text files.
+    1101 unique files.
+Wrote ignored.txt
+     697 files ignored.
+Wrote cloc-inc-pods-report3.txt
+
+github.com/AlDanial/cloc v 1.84  <span class="nv">T</span><span class="o">=</span>1.25 s <span class="o">(</span>758.6 files/s, 101853.4 lines/s<span class="o">)</span>
+<span class="nt">--------------------------------------------------------------------------------</span>
+Language                      files          blank        comment           code
+<span class="nt">--------------------------------------------------------------------------------</span>
+Objective C                     303          18922          11355          48001
+C/C++ Header                    443           5716          14128           9569
+Bourne Shell                     15            124            149           3804
+XML                              41            105              5           3536
+Markdown                         32           1410              0           3449
+JSON                            100              1              0           3255
+C                                 3            379            261           1834
+Swift                             2            108             40            448
+HTML                              1             19              0            420
+Bourne Again Shell                7             44             11            146
+Perl                              1             21            121             30
+YAML                              1              0              0              7
+<span class="nt">--------------------------------------------------------------------------------</span>
+SUM:                            949          26849          26070          74499
+<span class="nt">--------------------------------------------------------------------------------</span>
+</code></pre></div></div>
+
+<p>For reference, these are the <a href="https://cocoapods.org/">Pods</a> I use:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">source</span> <span class="s1">'https://github.com/CocoaPods/Specs.git'</span>
+<span class="n">source</span> <span class="s1">'https://github.com/jamesstout/Specs.git'</span>
+
+<span class="n">platform</span> <span class="ss">:ios</span><span class="p">,</span> <span class="s1">'11.0'</span>
+
+<span class="n">target</span> <span class="ss">:HKWeatherWarningsTabs</span> <span class="k">do</span>
+  <span class="n">pod</span> <span class="s1">'OneSignal'</span>
+  <span class="n">pod</span> <span class="s1">'Fabric'</span>
+  <span class="n">pod</span> <span class="s1">'Crashlytics'</span><span class="p">,</span> <span class="s1">'~&gt;  3.12'</span>
+  <span class="n">pod</span> <span class="s1">'MBProgressHUD'</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">'https://github.com/jamesstout/MBProgressHUD.git'</span><span class="p">,</span> <span class="ss">:branch</span> <span class="o">=&gt;</span> <span class="s1">'pre-iOS13'</span>
+  <span class="n">pod</span> <span class="s1">'StandardPaths'</span>
+  <span class="n">pod</span> <span class="s1">'SDWebImage'</span><span class="p">,</span> <span class="s1">'~&gt; 4.3'</span>
+  <span class="n">pod</span> <span class="s1">'SDWebImage/GIF'</span>
+  <span class="n">pod</span> <span class="s1">'SAMCategories'</span>
+  <span class="n">pod</span> <span class="s1">'TSMarkdownParser'</span><span class="p">,</span> <span class="s1">'~&gt; 2.1'</span>
+  <span class="n">pod</span> <span class="s1">'PureLayout'</span>
+  <span class="n">pod</span> <span class="s1">'FlatUIKit'</span>
+  <span class="n">pod</span> <span class="s1">'KVOController'</span>
+  <span class="n">pod</span> <span class="s1">'DTTJailbreakDetection'</span>
+  <span class="n">pod</span> <span class="s1">'OHAttributedStringAdditions'</span>
+  <span class="n">pod</span> <span class="s1">'JSQSystemSoundPlayer'</span>
+  <span class="n">pod</span> <span class="s1">'Google-Mobile-Ads-SDK'</span>
+  <span class="n">pod</span> <span class="s1">'NYTPhotoViewer'</span><span class="p">,</span> <span class="s1">'~&gt; 1.2.0'</span>
+  <span class="n">pod</span> <span class="s1">'DateTools'</span>
+  <span class="n">pod</span> <span class="s1">'HVTableView'</span>
+  <span class="n">pod</span> <span class="s1">'CocoaLumberjack'</span><span class="p">,</span>  <span class="s1">'~&gt; 3.6.1'</span>
+  <span class="n">pod</span> <span class="s1">'CompressingAndUploadingLogFileManager'</span>
+  <span class="n">pod</span> <span class="s1">'GZIP'</span><span class="p">,</span> <span class="s1">'~&gt; 1.3.0'</span>
+  <span class="n">pod</span> <span class="s1">'MMDrawerController'</span>
+  <span class="n">target</span> <span class="ss">:HKWarningsTests</span> <span class="k">do</span>
+    <span class="n">inherit!</span> <span class="ss">:search_paths</span>
+
+    <span class="n">pod</span> <span class="s1">'Expecta'</span><span class="p">,</span> <span class="s1">'~&gt; 1.0'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+<h2 id="significant-pods">Significant Pods</h2>
+
+<ul>
+  <li><a href="https://www.onesignal.com/">OneSignal</a> - for push notifications.</li>
+  <li><a href="https://fabric.io/">Fabric/Crashlytics</a> - for crash reporting, moving to <a href="https://firebase.google.com/">Firebase</a> soon.</li>
+  <li><a href="https://github.com/matej/MBProgressHUD">MBProgressHUD</a> - an iOS activity indicator view, but pointing to a branch on my fork, so it <a href="https://github.com/jamesstout/MBProgressHUD/commit/c013d38c2dee75f52245290c394c23a68c15d506">compiles on iOS 12.1</a>.</li>
+  <li><a href="https://github.com/SDWebImage/SDWebImage">SDWebImage</a> - an asynchronous image downloader with cache support.</li>
+  <li><a href="https://github.com/PureLayout/PureLayout">PureLayout</a> - API for iOS &amp; OS X Auto Layout. None of that <a href="https://developer.apple.com/xcode/interface-builder/">IB</a> rubbish.</li>
+  <li><a href="https://github.com/CocoaLumberjack/CocoaLumberjack">CocoaLumberjack</a> - a fast &amp; simple, yet powerful &amp; flexible logging framework.</li>
+  <li><a href="https://github.com/jamesstout/CompressingAndUploadingLogFileManager">CompressingAndUploadingLogFileManager</a> - my, as yet unpublished<sup id="fnref:fn-repo"><a href="#fn:fn-repo" class="footnote">1</a></sup> library, that compresses log files and then uploads them to an HTTP server for examination, stats etc.</li>
+  <li><a href="https://github.com/nicklockwood/GZIP">GZIP</a> - to unzip <code class="highlighter-rouge">.gz</code> files. To <a href="https://developer.apple.com/documentation/xcode/reducing_your_app_s_size/doing_basic_optimization_to_reduce_your_app_s_size?language=objc">reduce package size</a> I zip some text files. See below.</li>
+  <li><a href="https://github.com/laptobbe/TSMarkdownParser">TSMarkdownParser</a> - a markdown to NSAttributedString parser. I use it to display the <a href="https://github.com/CocoaPods/CocoaPods/wiki/Acknowledgements">acknowledgements</a> Markdown created by the <code class="highlighter-rouge">pod install</code> command. Again, see below.</li>
+</ul>
+
+<p>In my Podfile, I have a <code class="highlighter-rouge">post_install</code> hook that does various things, including, copying the acknowledgements <code class="highlighter-rouge">plist</code> to the Settings bundle, and the Markdown to a text file that I then compress.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'fileutils'</span>
+<span class="no">FileUtils</span><span class="p">.</span><span class="nf">cp_r</span><span class="p">(</span><span class="s1">'Pods/Target Support Files/Pods-HKWeatherWarningsTabs/Pods-HKWeatherWarningsTabs-acknowledgements.plist'</span><span class="p">,</span> <span class="s1">'Settings.bundle/Acknowledgements.plist'</span><span class="p">,</span> <span class="ss">:remove_destination</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span>
+<span class="no">FileUtils</span><span class="p">.</span><span class="nf">cp_r</span><span class="p">(</span><span class="s1">'Pods/Target Support Files/Pods-HKWeatherWarningsTabs/Pods-HKWeatherWarningsTabs-acknowledgements.markdown'</span><span class="p">,</span> <span class="s1">'Acknowledgements.txt'</span><span class="p">,</span> <span class="ss">:remove_destination</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span>
+
+<span class="nb">require</span> <span class="s1">'zlib'</span>
+<span class="n">zipped</span> <span class="o">=</span> <span class="s2">"Acknowledgements.txt.gz"</span>
+  
+<span class="no">Zlib</span><span class="o">::</span><span class="no">GzipWriter</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">zipped</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">gz</span><span class="o">|</span>
+    <span class="n">gz</span><span class="p">.</span><span class="nf">write</span> <span class="no">IO</span><span class="p">.</span><span class="nf">binread</span><span class="p">(</span><span class="s2">"Acknowledgements.txt"</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>In the app code to display the Markdown, I first unzip, then parse:</p>
+
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">NSFileManager</span> <span class="o">*</span><span class="n">fm</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSFileManager</span> <span class="nf">defaultManager</span><span class="p">];</span>
+
+<span class="n">NSString</span> <span class="o">*</span><span class="n">pathGZ</span> <span class="o">=</span> <span class="p">[</span><span class="n">fm</span> <span class="nf">pathForResource</span><span class="p">:</span><span class="s">@"Acknowledgements.txt.gz"</span><span class="p">];</span>
+
+<span class="k">if</span> <span class="p">([</span><span class="n">fm</span> <span class="nf">fileExistsAtPath</span><span class="p">:</span><span class="n">pathGZ</span><span class="p">])</span> <span class="p">{</span>
+
+    <span class="n">NSData</span> <span class="o">*</span><span class="n">zippedContent</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSData</span> <span class="nf">dataWithContentsOfFile</span><span class="p">:</span><span class="n">pathGZ</span><span class="p">];</span>
+    <span class="n">NSData</span> <span class="o">*</span><span class="n">unZippedContent</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">content</span> <span class="o">=</span> <span class="nb">nil</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">([</span><span class="n">zippedContent</span> <span class="nf">isGzippedData</span><span class="p">]){</span>
+        <span class="n">DDLogDebug</span><span class="p">(</span><span class="s">@"Data is zipped"</span><span class="p">);</span>
+        <span class="n">unZippedContent</span> <span class="o">=</span> <span class="p">[</span><span class="n">zippedContent</span> <span class="nf">gunzippedData</span><span class="p">];</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSString</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithData</span><span class="p">:</span><span class="n">unZippedContent</span> <span class="nf">encoding</span><span class="p">:</span><span class="n">NSUTF8StringEncoding</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="n">DDLogError</span><span class="p">(</span><span class="s">@"Acknowledgements.txt.gz is not zipped"</span><span class="p">);</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="s">@"ERROR"</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">DDLogDebug</span><span class="p">(</span><span class="s">@"content is %@"</span><span class="p">,</span> <span class="n">content</span><span class="p">);</span>
+
+    <span class="n">self</span><span class="p">.</span><span class="n">parser</span> <span class="o">=</span> <span class="p">[</span><span class="n">TSMarkdownParser</span> <span class="nf">standardParser</span><span class="p">];</span>
+
+    <span class="n">NSAttributedString</span> <span class="o">*</span><span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">parser</span> <span class="nf">attributedStringFromMarkdown</span><span class="p">:</span><span class="n">content</span><span class="p">];</span>
+
+    <span class="n">_textView</span><span class="p">.</span><span class="n">attributedText</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>Saves about 47kB<sup id="fnref:fn-gz"><a href="#fn:fn-gz" class="footnote">2</a></sup>:</p>
+
+<p><a href="/assets/images/posts/hkwarnings/gz.png"><img data-src="/assets/images/posts/hkwarnings/gz.png" class="lazyload align-center blur-up" alt="gzipped ack file" /></a></p>
+
+<p>I do this so that I can display the acknowledgements in the app, and in the OS Settings app:</p>
+
+<figure class="third ">
+  
+    
+      <a href="/assets/images/posts/hkwarnings/ack-inapp.png" title="acknowledgements in-app">
+          <img src="/assets/images/posts/hkwarnings/ack-inapp-th.png" alt="ack-inapp.png" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/hkwarnings/ack-settings.png" title="acknowledgements in setting">
+          <img src="/assets/images/posts/hkwarnings/ack-settings-th.png" alt="acknowledgements in settings" />
+      </a>
+    
+  
+    
+      <a href="/assets/images/posts/hkwarnings/ack-settings-1.png" title="acknowledgements in setting">
+          <img src="/assets/images/posts/hkwarnings/ack-settings-1-th.png" alt="acknowledgements in settings" />
+      </a>
+    
+  
+  
+</figure>
+
+<p>Anyway, here’s v5.0.0 (click through to view the video):</p>
+
+<p><a href="https://cloud.stouty.xyz/s/ZKmpfo6pC8JTQ8r"><img data-src="/assets/images/posts/hkwarnings/HKWarnings.png" class="lazyload align-center blur-up" alt="HKWarnings.png" /></a></p>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:fn-repo">
+      <p>See that private Spec source in the <a href="https://guides.cocoapods.org/using/the-podfile.html">Podfile</a>? <code class="highlighter-rouge">source 'https://github.com/jamesstout/Specs.git'</code> <a href="#fnref:fn-repo" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:fn-gz">
+      <p>Well, about 30kB as the GZIP library is about 17kB. <a href="#fnref:fn-gz" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#hkwarnings" class="page__taxonomy-item" rel="tag">HKWarnings</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#ios" class="page__taxonomy-item" rel="tag">iOS</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#ipad" class="page__taxonomy-item" rel="tag">iPad</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#uisplitviewcontroller" class="page__taxonomy-item" rel="tag">UISplitViewController</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#xcode" class="page__taxonomy-item" rel="tag">Xcode</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#ios" class="page__taxonomy-item" rel="tag">iOS</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-04T23:40:49+08:00">May 4, 2020</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/macos/2020/04/29/mobile-device/" class="pagination--pager" title="Update to MobileDevice.framework on macOS Breaks Old GarageBand
+">Previous</a>
+    
+    
+      <a href="/nextcloud/2020/05/08/nextcloud-sync/" class="pagination--pager" title="Nextcloud Sync Client for Docker
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/macos/2020/05/11/zoom-update/" rel="permalink">A Quick Update on Zoom Code Signing
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">A quick update on Zoom code signing.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ios/2020/05/09/compress-upload-cocoalumberjack/" rel="permalink">Compress-Upload-CocoaLumberjack - My First CocoaPod
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/nextcloud/2020/05/08/nextcloud-sync/" rel="permalink">Nextcloud Sync Client for Docker
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Syncing to Nextcloud from a Docker container, and how to build that container.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/macos/2020/04/29/mobile-device/" rel="permalink">Update to MobileDevice.framework on macOS Breaks Old GarageBand
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">iTunes update breaks GarageBand.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 stouty.xyz. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script defer src="/assets/files/lazysizes.min.js"></script>
+  <script defer src="/assets/js/main.min.js"></script>
+  <!-- <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+  <script defer src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+<!-- Including InstantSearch.js library and styling -->
+
+<script>
+  head.load("https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.js", function() {
+    // Instanciating InstantSearch.js with Algolia credentials
+    const search = instantsearch({
+      appId: 'TE1537XNZ4',
+      apiKey: 'c3967c693f4a1d3ca8ed221f259c6a5f',
+      indexName: 'stouty.xyz',
+      searchParameters: {
+        restrictSearchableAttributes: [
+        'title',
+        'content'
+        ]
+      }
+    });
+    
+    const hitTemplate = function(hit) {
+      const url = hit.url;
+      const title = (hit._highlightResult.title !== undefined) ? hit._highlightResult.title.value : "";
+      const content = (hit._highlightResult.html !== undefined) ? hit._highlightResult.html.value : undefined;
+      
+      if(content === undefined){
+        throw "whoops";
+      }
+      else{
+        return `
+        <div class="list__item">
+          <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+            <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+            <div class="archive__item-excerpt" itemprop="description">${content}</div>
+          </article>
+        </div>
+        `;
+      }
+    }
+    
+    // Adding searchbar and results widgets
+    search.addWidget(
+    instantsearch.widgets.searchBox({
+      container: '.search-searchbar',
+      poweredBy: true,
+      placeholder: 'Enter your search term...'
+    })
+    );
+    search.addWidget(
+    instantsearch.widgets.hits({
+      container: '.search-hits',
+      templates: {
+        item: hitTemplate
+      }
+    })
+    );
+    
+    // Starting the search
+    search.start();
+  });
+</script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js"></script> -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css">
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121620384-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-121620384-1', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.333%;
+        height: 0;
+        background: black;
+    }
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }    
+    </style>
+    
+    <script>
+    function get_youtube_id(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+    function vimeo_embed(url,el) {
+        var id = false;
+        $.ajax({
+          url: 'https://vimeo.com/api/oembed.json?url='+url,
+          async: true,
+          success: function(response) {
+            if(response.video_id) {
+              id = response.video_id;
+              if(url.indexOf('autoplay=1') !== -1) var autoplay=1; else var autoplay=0;
+              if(url.indexOf('loop=1') !== -1) var loop=1; else var loop=0;
+              var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/'+id+'/?byline=0&title=0&portrait=0';
+              if(autoplay==1) theInnerHTML += '&autoplay=1';
+              if(loop==1) theInnerHTML += '&loop=1';
+              theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>'; 
+              el.innerHTML = theInnerHTML;
+            }
+          }
+        });
+    }
+    function video_embed() {
+        var p = document.getElementsByTagName('p');
+        for(var i = 0; i < p.length; i++) {
+            //check if this is an external url (that starts with https:// or http://
+            if (p[i].innerHTML.indexOf("http://") == 0 ||
+                p[i].innerHTML.indexOf("https://") == 0) {
+                var youtube_id = get_youtube_id(p[i].innerHTML);
+                if(youtube_id) {
+                    if(p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay=1; else var autoplay=0;
+                    if(p[i].innerHTML.indexOf('loop=1') !== -1) var loop=1; else var loop=0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
+                    if(autoplay==1) theInnerHTML += '&autoplay=1';
+                    if(loop==1) theInnerHTML += '&loop=1&playlist='+youtube_id+'&version=3';
+                    if(p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start='+p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=')+6);
+                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
+                    p[i].innerHTML = theInnerHTML;
+                }
+                if(p[i].innerHTML.indexOf('vimeo.com') !== -1) {
+                    //ask vimeo for the id and place the embed
+                    vimeo_embed(p[i].innerHTML,p[i]);
+                }
+            }
+        }
+    }
+    video_embed();
+    
+    function mp3_embed() {
+        var p = document.getElementsByTagName('p');
+        for(var i = 0; i < p.length; i++) {
+            if(p[i].innerHTML.indexOf('.mp3') !== -1) {
+                var str = p[i].innerHTML.split('?');
+                if(str.length == 1) str[1] = '';
+                var str1 = str[1];
+                str1 = str1.replace('&','').replace('&','');
+                str1 = str1.replace('autoplay=1','').replace('autoplay=0','');
+                str1 = str1.replace('loop=1','').replace('loop=0','');
+                str1 = str1.replace('controls=0','').replace('controls=1','');
+    
+                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
+                    if(str[1].indexOf('autoplay=1') !== -1) var autoplay=1; else var autoplay=0;
+                    if(str[1].indexOf('loop=1') !== -1) var loop=1; else var loop=0;
+                    if(str[1].indexOf('controls=0') !== -1) var controls=0; else var controls=1;
+                    var newInnerHTML = '<audio';
+                    if(autoplay==1) newInnerHTML += ' autoplay';
+                    if(loop==1) newInnerHTML += ' loop';
+                    if(controls==1) newInnerHTML += ' controls';
+                    newInnerHTML += '><source src="'+str[0]+'" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+                    p[i].innerHTML = newInnerHTML;
+                }
+            }
+        }
+    }
+    mp3_embed();
+    </script>
+
+
+
+
+  </body>
+</html>

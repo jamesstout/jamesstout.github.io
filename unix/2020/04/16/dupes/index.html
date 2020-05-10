@@ -1,0 +1,1118 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Finding duplicate files | stouty.xyz</title>
+<meta name="description" content="Testing different tools to find duplicate files on Linux/macOS. ">
+
+
+  <meta name="author" content="James Stout">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="stouty.xyz">
+<meta property="og:title" content="Finding duplicate files">
+<meta property="og:url" content="https://stouty.xyz/unix/2020/04/16/dupes/">
+
+
+  <meta property="og:description" content="Testing different tools to find duplicate files on Linux/macOS. ">
+
+
+
+
+
+  <meta name="twitter:site" content="@stoutyhk">
+  <meta name="twitter:title" content="Finding duplicate files">
+  <meta name="twitter:description" content="Testing different tools to find duplicate files on Linux/macOS. ">
+  <meta name="twitter:url" content="https://stouty.xyz/unix/2020/04/16/dupes/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+    <meta name="twitter:creator" content="@stoutyhk">
+  
+
+
+
+  <meta property="article:published_time" content="2020-04-16T19:39:39+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://stouty.xyz/unix/2020/04/16/dupes/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "stouty.xyz",
+      "url": "https://stouty.xyz/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="stouty.xyz Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+
+<script src="/assets/files/head.load.min.js"></script>
+
+<!-- <script defer src="/assets/files/lazysizes.min.js"></script> -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/> -->
+<style>
+	.blur-up {
+		-webkit-filter: blur(5px);
+		filter: blur(5px);
+		transition: filter 400ms, -webkit-filter 400ms;
+	}
+
+	.blur-up.lazyloaded {
+		-webkit-filter: blur(0);
+		filter: blur(0);
+	}
+</style>
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          stouty.xyz
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/">about</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/things-i-use/">things</a>
+            </li><li class="masthead__menu-item">
+              <a href="/links/">links</a>
+            </li><li class="masthead__menu-item">
+              <a href="/snippets/">snippets</a>
+            </li><li class="masthead__menu-item">
+              <a href="/sitemap.xml">sitemap</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">James Stout</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>iOS/Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Hong Kong</span>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://keybase.io/stouty" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fas fa-fw fa-key" aria-hidden="true"></i> Keybase
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://twitter.com/stoutyhk" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter
+          </a>
+        </li>
+      
+
+      
+
+      
+      
+      
+
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://bitbucket.org/stouty" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket
+          </a>
+        </li>
+      
+
+      
+        <li>
+          <a href="https://github.com/jamesstout" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+        <li>
+          <a href="https://last.fm/user/stoutyhk" itemprop="sameAs" rel="nofollow noopener noreferrer">
+            <i class="fab fa-fw fa-lastfm-square" aria-hidden="true"></i> Last.fm
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+      <li>
+        <a href="http://www.feedio.co/@stoutyhk?came_from=homepagefeedbutton" itemprop="sameAs">
+          <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feedio
+        </a>
+      </li>
+    
+
+    
+    <li>
+      <a rel="me" href="https://mastodon.social/@stouty" itemprop="sameAs">
+        <i class="fab fa-fw fa-mastodon" aria-hidden="true"></i> Mastodon
+      </a>
+    </li>
+       
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Finding duplicate files">
+    <meta itemprop="description" content="Testing different tools to find duplicate files on Linux/macOS.">
+    <meta itemprop="datePublished" content="2020-04-16T19:39:39+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Finding duplicate files
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>I’ve been using <a href="https://www.photosync-app.com/home.html">PhotoSync</a> to automatically transfer any new photos from my iPhone to my NAS. It’s a pretty wonderful app, here’s the NAS <a href="https://www.photosync-app.com/home.html#nas-features">part</a>:</p>
+
+<blockquote>
+  <p>Securely backup photos &amp; videos directly from your iPhone, iPad and Android devices to any NAS, remote server or personal cloud over (S)FTP, SMB or WebDAV.</p>
+
+  <p>You can also download and view photos &amp; videos on (S)FTP, SMB and WebDAV servers.
+PhotoSync works seamlessly with all major NAS storage devices, servers and personal cloud services.</p>
+</blockquote>
+
+<p>I have it set up so that it kicks off Autotransfer whenever my device connects to my home WiFi network.</p>
+
+<p>It syncs to a folder that is then again synced to my <a href="https://nextcloud.com/athome/">Nextcloud</a> server using a <a href="https://github.com/jamesstout/nextcloud-client-docker">Docker container</a> I adapted. It all works fine. Except…</p>
+
+<p>The way I had PhotoSync configured meant that every time I changed iPhone, it synced everything again to a new subfolder with the name of the new device. So I have a tree looking like this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@dusky2: /volume1/docker/nextcloud/media/iPhoneSync
+<span class="nv">$ </span>tree <span class="nt">-d</span> <span class="nt">-I</span> <span class="s1">'*eaDir'</span>
+<span class="nb">.</span>
+<span class="sb">`</span><span class="nt">--</span> James<span class="s1">'s iPhone 8
+    |-- CABG
+    |-- Camera Roll
+    |-- deGeo'</span>d Photos
+    |-- Dropbox
+    |-- Dubsmash
+    |-- Instagram
+    |-- James<span class="s1">'s iPhone 8
+    |   |-- Adobe Capture
+    |   |-- Camera Roll
+    |   |-- Dropbox
+    |   |-- RAW
+    |   `-- WhatsApp
+    |-- James'</span>s iPhone XS
+    |   |-- Camera Roll
+    |   |-- Dropbox
+    |   |-- James<span class="s1">'s iPhone 11 Pro
+    |   |   |-- Adobe Capture
+    |   |   |-- Dropbox
+    |   |   |-- My Photo Stream
+    |   |   |-- PSExpress
+    |   |   |-- Recents
+    |   |   |   `-- James'</span>s iPhone 11 Pro
+    |   |   |       |-- Dropbox
+    |   |   |       |-- Nextcloud
+    |   |   |       |-- Recents
+    |   |   |       |-- Telegram
+    |   |   |       |-- Twitter
+    |   |   |       <span class="sb">`</span><span class="nt">--</span> WhatsApp
+    |   |   |-- Snapchat
+    |   |   |-- Telegram
+    |   |   |-- Twitter
+    |   |   <span class="sb">`</span><span class="nt">--</span> WhatsApp
+    |   |-- James<span class="s1">'s iPhone XS
+    |   |   |-- Camera Roll
+    |   |   |-- Snapchat
+    |   |   |-- Telegram
+    |   |   |-- Twitter
+    |   |   `-- WhatsApp
+    |   |-- Josh'</span>s handiwork
+    |   |-- Telegram
+    |   |-- Twitter
+    |   <span class="sb">`</span><span class="nt">--</span> WhatsApp
+    |-- Josh<span class="s1">'s handiwork
+    |-- Skype
+    |-- Twitter
+    `-- WhatsApp
+</span></code></pre></div></div>
+<p>Duplicate directories, duplicate device names, also, in iOS 13, <a href="https://appletoolbox.com/where-is-camera-roll-in-ios-13-and-ipados/#Changes_to_your_Apple_device8217s_camera_roll">Camera Roll changed to Recents</a>.</p>
+
+<p>A bit of a mess. 63 directories, 24590 files.</p>
+
+<p>I wanted to know if any files were duplicates. I have some Mac apps like <a href="https://apps.apple.com/hk/app/duplicates-finder-find-review-and-remove-duplicates/id1101010407?l=en&amp;mt=12">Duplicates Finder</a> and <a href="https://fiplab.com/apps/duplicate-detective-2-for-mac">Duplicate Detective 2</a>, but wondered if there were any Unix tools I could try as well.</p>
+
+<p>Straight to <a href="https://unix.stackexchange.com/questions/71176/find-duplicate-files">StackOverflow</a>, which provided many methods:</p>
+
+<h2 id="find">find<sup id="fnref:fn-find"><a href="#fn:fn-find" class="footnote">1</a></sup></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="nb">.</span> <span class="o">!</span> <span class="nt">-empty</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">md5sum</span> <span class="o">{}</span> + | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-w32</span> <span class="nt">-dD</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="nb">.</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">md5sum</span> <span class="o">{}</span> <span class="se">\;</span> <span class="o">&gt;</span> md5sums
+<span class="nb">awk</span> <span class="s1">'{print $1}'</span> md5sums | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-d</span> <span class="o">&gt;</span> dupes
+<span class="k">while </span><span class="nb">read</span> <span class="nt">-r</span> d<span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="s2">"---"</span><span class="p">;</span> <span class="nb">grep</span> <span class="nt">--</span> <span class="s2">"</span><span class="nv">$d</span><span class="s2">"</span> md5sums | <span class="nb">cut</span> <span class="nt">-d</span> <span class="s1">' '</span> <span class="nt">-f</span> 2-<span class="p">;</span> <span class="k">done</span> &lt; dupes
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="nb">.</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">md5sum</span> <span class="s1">'{}'</span> + | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">--all-repeated</span> <span class="se">\</span>
+<span class="nt">--check-chars</span><span class="o">=</span>32 | <span class="nb">cut</span> <span class="nt">--characters</span><span class="o">=</span>35-
+</code></pre></div></div>
+<h2 id="fdupes">fdupes<sup id="fnref:fn-fdupes"><a href="#fn:fn-fdupes" class="footnote">2</a></sup></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fdupes <span class="nt">-r</span> <span class="nb">.</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fdupes <span class="nt">-r</span> <span class="nb">.</span> | <span class="o">{</span>
+    <span class="k">while </span><span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> <span class="nt">-r</span> file<span class="p">;</span> <span class="k">do</span>
+        <span class="o">[[</span> <span class="nv">$file</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">du</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span>
+    <span class="k">done</span>
+<span class="o">}</span> | <span class="nb">sort</span> <span class="nt">-n</span>
+</code></pre></div></div>
+
+<h2 id="fslint">fslint<sup id="fnref:fn-fslint"><a href="#fn:fn-fslint" class="footnote">3</a></sup></h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/share/fslint/fslint <span class="o">&amp;&amp;</span> ./fslint /path/to/directory
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/share/fslint/fslint <span class="o">&amp;&amp;</span> findup <span class="nt">-t</span> <span class="nt">--summary</span> /path/to/directory
+</code></pre></div></div>
+
+<p><strong>Amazingly, none of them found dupes in my iPhoneSync folder</strong>. So that’s good.</p>
+
+<p>They did, however, find dupes in my Photos folder:</p>
+
+<h3 id="find-1">find</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@cloud: /mnt/volume_nc/data/james/files/Photos
+<span class="nv">$ </span>find <span class="nb">.</span> <span class="o">!</span> <span class="nt">-empty</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">md5sum</span> <span class="o">{}</span> + | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-w32</span> <span class="nt">-dD</span>
+0aadc1b11a8407b295008e6c9d22fc3e  ./iPhone/2015/02/Photo-27-02-2015 03-57-55-9189.jpg
+0aadc1b11a8407b295008e6c9d22fc3e  ./iPhone/2015/02/Photo-27-02-2015-03-57-55-9189.jpg
+0acd0d5b0c01c4bee9afe9176073b4fa  ./iPhone/2014/05/Photo-02-05-2014-01-01-36-5396.jpg
+0acd0d5b0c01c4bee9afe9176073b4fa  ./iPhone/2014/05/Photo-02-05-2014-01-02-44-5398.jpg
+1212fb3e6490ddfb066e6c556bc392b4  ./iPhone/2020/02/Photo-10-02-2020-06-12-40-8979.jpg
+1212fb3e6490ddfb066e6c556bc392b4  ./iPhone/2020/02/Photo-10-02-2020-07-38-06-8981.jpg
+155754a324daff68c8daed1044328a16  ./iPhone/2014/07/Photo-19-07-2014-09-58-33-6798.jpg
+155754a324daff68c8daed1044328a16  ./iPhone/2014/07/Photo-21-07-2014-06-12-52-6824.jpg
+1a82cddba43617c75d9b686002db7cb6  ./iPhone/2013/09/Photo-08-09-2013-07-28-53-2276.jpg
+1a82cddba43617c75d9b686002db7cb6  ./iPhone/2013/09/Photo-08-09-2013-07-37-27-2278.jpg
+2faf11e6b5c80f09fccf957c8dd2f95a  ./iPhone/2014/03/Photo-29-03-2014-09-35-58-4868.jpg
+2faf11e6b5c80f09fccf957c8dd2f95a  ./iPhone/2014/03/Photo-29-03-2014-09-42-29-4870.jpg
+459acd94c6128d60d16341a815c7d6e5  ./iPhone/2014/03/Photo-29-03-2014-02-47-45-4865.jpg
+459acd94c6128d60d16341a815c7d6e5  ./iPhone/2014/03/Photo-29-03-2014-09-36-14-4869.jpg
+5573dac4e8a2447dd4080374820a951b  ./iPhone/2014/03/Photo-07-03-2014-05-09-07-4544.jpg
+5573dac4e8a2447dd4080374820a951b  ./iPhone/2014/03/Photo-07-03-2014-05-11-11-4545.jpg
+5ee8ed449af66395f11021da4c7f5e65  ./iPhone/2015/03/Photo-03-03-2015 05-08-17-9238.jpg
+5ee8ed449af66395f11021da4c7f5e65  ./iPhone/2015/03/Photo-24-03-2015 11-16-35-9597.jpg
+634ad569036b9afb05692d330453f598  ./iPhone/2020/02/Photo-05-02-2020-06-33-35-8879.jpg
+634ad569036b9afb05692d330453f598  ./iPhone/2020/02/Photo-06-02-2020-10-47-00-8888.jpg
+75994932717b5a0eb9d1c9e5e096205e  ./iPhone/2011/04/Photo-15-04-2011-01-16-11-2990.png
+75994932717b5a0eb9d1c9e5e096205e  ./iPhone/2011/07/Photo-21-07-2011-09-16-29-4039.png
+896c522d3c4972a01abc35c91993b959  ./iPhone/2020/03/Photo-03-03-2020-09-13-17-9198.jpeg
+896c522d3c4972a01abc35c91993b959  ./iPhone/2020/03/Photo-03-03-2020-09-13-17-9283.jpeg
+8e5a153ee2e61eacca6ae04d790620d6  ./iPhone/2014/04/Photo-01-04-2014-02-18-24-4946.jpg
+8e5a153ee2e61eacca6ae04d790620d6  ./iPhone/2014/04/Photo-01-04-2014-03-25-45-4955.jpg
+95d066c26fdf046f272939ae9606e7c5  ./iPhone/2014/02/Photo-04-02-2014-02-09-43-4341.jpg
+95d066c26fdf046f272939ae9606e7c5  ./iPhone/2014/02/Photo-08-02-2014-01-13-46-4364.jpg
+a389e5ab5d8752884680dd7ea31ac1c3  ./iPhone/2014/05/Photo-21-05-2014-06-19-27-5844.jpg
+a389e5ab5d8752884680dd7ea31ac1c3  ./iPhone/2014/05/Photo-24-05-2014-03-55-02-5891.jpg
+aa37f32c86a4206739d38922544717dd  ./iPhone/2014/05/Photo-02-05-2014-01-01-37-5397.jpg
+aa37f32c86a4206739d38922544717dd  ./iPhone/2014/05/Photo-02-05-2014-01-02-45-5399.jpg
+b278f87efe7381facf3fd4dd75def8e9  ./iPhone/2014/08/Photo-05-08-2014-03-44-27-7051.jpg
+b278f87efe7381facf3fd4dd75def8e9  ./iPhone/2014/08/Photo-05-08-2014-03-54-09-7056.jpg
+b27e3d78a9c419147b9d7feb387f4ec9  ./iPhone/2014/08/Photo-09-08-2014-12-29-52-7143.jpg
+b27e3d78a9c419147b9d7feb387f4ec9  ./iPhone/2014/09/Photo-04-09-2014-10-28-17-7449.jpg
+dd7025344bd32d7433b16d99ce5c846e  ./iPhone/2014/04/Photo-04-04-2014-07-40-58-4998.jpg
+dd7025344bd32d7433b16d99ce5c846e  ./iPhone/2014/04/Photo-05-04-2014-09-35-52-5031.jpg
+e5df162f9f04c0de281bd2f5692dfffe  ./iPhone/2013/12/Photo-31-12-2013-08-26-39-4052.jpg
+e5df162f9f04c0de281bd2f5692dfffe  ./iPhone/2013/12/Photo-31-12-2013-08-35-05-4054.jpg
+fcbecc72fd2540829a4359a3ac620191  ./2020/03/Video-20-03-2020-06-53-01-9363.mp4
+fcbecc72fd2540829a4359a3ac620191  ./2020/03/Video-21-03-2020-08-29-08-9370.mp4
+ff846d763f428049dcb1b2615f9ee500  ./iPhone/2015/03/Photo-28-03-2015 04-01-07-9655.jpg
+ff846d763f428049dcb1b2615f9ee500  ./iPhone/2015/03/Photo-28-03-2015 07-26-49-9657.jpg
+</code></pre></div></div>
+<p>22 dupes found.</p>
+
+<h3 id="fdupes-1">fdupes</h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@cloud: /mnt/volume_nc/data/james/files/Photos
+<span class="nv">$ </span>fdupes <span class="nt">-r</span> <span class="nb">.</span> | <span class="o">{</span>
+<span class="o">&gt;</span>     <span class="k">while </span><span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> <span class="nt">-r</span> file<span class="p">;</span> <span class="k">do</span>
+<span class="o">&gt;</span>         <span class="o">[[</span> <span class="nv">$file</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">du</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span>
+<span class="o">&gt;</span>     <span class="k">done</span>
+<span class="o">&gt;</span> <span class="o">}</span> | <span class="nb">sort</span> <span class="nt">-n</span>
+
+&lt;snip&gt;
+64  ./iPhone/2015/03/Photo-03-03-2015 05-08-17-9238.jpg
+64  ./iPhone/2015/03/Photo-24-03-2015 11-16-35-9597.jpg
+80  ./iPhone/2014/05/Photo-02-05-2014-01-01-37-5397.jpg
+80  ./iPhone/2014/05/Photo-02-05-2014-01-02-45-5399.jpg
+84  ./iPhone/2014/02/Photo-04-02-2014-02-09-43-4341.jpg
+84  ./iPhone/2014/02/Photo-08-02-2014-01-13-46-4364.jpg
+88  ./iPhone/2014/04/Photo-01-04-2014-02-18-24-4946.jpg
+88  ./iPhone/2014/04/Photo-01-04-2014-03-25-45-4955.jpg
+92  ./iPhone/2014/05/Photo-02-05-2014-01-01-36-5396.jpg
+92  ./iPhone/2014/05/Photo-02-05-2014-01-02-44-5398.jpg
+96  ./iPhone/2014/03/Photo-29-03-2014-09-35-58-4868.jpg
+96  ./iPhone/2014/03/Photo-29-03-2014-09-42-29-4870.jpg
+100 ./iPhone/2014/04/Photo-04-04-2014-07-40-58-4998.jpg
+100 ./iPhone/2014/04/Photo-05-04-2014-09-35-52-5031.jpg
+108 ./iPhone/2014/05/Photo-21-05-2014-06-19-27-5844.jpg
+108 ./iPhone/2014/05/Photo-24-05-2014-03-55-02-5891.jpg
+108 ./iPhone/2014/08/Photo-09-08-2014-12-29-52-7143.jpg
+108 ./iPhone/2014/09/Photo-04-09-2014-10-28-17-7449.jpg
+108 ./iPhone/2020/02/Photo-10-02-2020-06-12-40-8979.jpg
+108 ./iPhone/2020/02/Photo-10-02-2020-07-38-06-8981.jpg
+112 ./iPhone/2014/08/Photo-05-08-2014-03-44-27-7051.jpg
+112 ./iPhone/2014/08/Photo-05-08-2014-03-54-09-7056.jpg
+116 ./iPhone/2014/03/Photo-29-03-2014-02-47-45-4865.jpg
+116 ./iPhone/2014/03/Photo-29-03-2014-09-36-14-4869.jpg
+124 ./iPhone/2020/03/Photo-03-03-2020-09-13-17-9198.jpeg
+124 ./iPhone/2020/03/Photo-03-03-2020-09-13-17-9283.jpeg
+128 ./iPhone/2014/07/Photo-19-07-2014-09-58-33-6798.jpg
+128 ./iPhone/2014/07/Photo-21-07-2014-06-12-52-6824.jpg
+148 ./iPhone/2013/09/Photo-08-09-2013-07-28-53-2276.jpg
+148 ./iPhone/2013/09/Photo-08-09-2013-07-37-27-2278.jpg
+192 ./iPhone/2014/03/Photo-07-03-2014-05-09-07-4544.jpg
+192 ./iPhone/2014/03/Photo-07-03-2014-05-11-11-4545.jpg
+212 ./iPhone/2020/02/Photo-05-02-2020-06-33-35-8879.jpg
+212 ./iPhone/2020/02/Photo-06-02-2020-10-47-00-8888.jpg
+264 ./iPhone/2015/03/Photo-28-03-2015 04-01-07-9655.jpg
+264 ./iPhone/2015/03/Photo-28-03-2015 07-26-49-9657.jpg
+304 ./iPhone/2015/02/Photo-27-02-2015 03-57-55-9189.jpg
+304 ./iPhone/2015/02/Photo-27-02-2015-03-57-55-9189.jpg
+356 ./iPhone/2013/12/Photo-31-12-2013-08-26-39-4052.jpg
+356 ./iPhone/2013/12/Photo-31-12-2013-08-35-05-4054.jpg
+404 ./iPhone/2011/04/Photo-15-04-2011-01-16-11-2990.png
+404 ./iPhone/2011/07/Photo-21-07-2011-09-16-29-4039.png
+1924    ./2020/03/Video-20-03-2020-06-53-01-9363.mp4
+1924    ./2020/03/Video-21-03-2020-08-29-08-9370.mp4
+</code></pre></div></div>
+<p>Excluding empty files, 22 dupes found.</p>
+
+<h3 id="fslint-1">fslint</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@cloud: /usr/share/fslint/fslint
+<span class="nv">$ </span>./findup <span class="nt">-t</span> <span class="nt">--summary</span> <span class="s2">"/mnt/volume_nc/data/james/files/Photos"</span>
+2 <span class="k">*</span> 1970176	2020/03/Video-20-03-2020-06-53-01-9363.mp4 2020/03/Video-21-03-2020-08-29-08-9370.mp4
+2 <span class="k">*</span> 413696	iPhone/2011/04/Photo-15-04-2011-01-16-11-2990.png iPhone/2011/07/Photo-21-07-2011-09-16-29-4039.png
+2 <span class="k">*</span> 364544	iPhone/2013/12/Photo-31-12-2013-08-26-39-4052.jpg iPhone/2013/12/Photo-31-12-2013-08-35-05-4054.jpg
+2 <span class="k">*</span> 311296	iPhone/2015/02/Photo-27-02-2015 03-57-55-9189.jpg iPhone/2015/02/Photo-27-02-2015-03-57-55-9189.jpg
+2 <span class="k">*</span> 270336	iPhone/2015/03/Photo-28-03-2015 04-01-07-9655.jpg iPhone/2015/03/Photo-28-03-2015 07-26-49-9657.jpg
+2 <span class="k">*</span> 217088	iPhone/2020/02/Photo-05-02-2020-06-33-35-8879.jpg iPhone/2020/02/Photo-06-02-2020-10-47-00-8888.jpg
+2 <span class="k">*</span> 196608	iPhone/2014/03/Photo-07-03-2014-05-09-07-4544.jpg iPhone/2014/03/Photo-07-03-2014-05-11-11-4545.jpg
+2 <span class="k">*</span> 151552	iPhone/2013/09/Photo-08-09-2013-07-28-53-2276.jpg iPhone/2013/09/Photo-08-09-2013-07-37-27-2278.jpg
+2 <span class="k">*</span> 131072	iPhone/2014/07/Photo-19-07-2014-09-58-33-6798.jpg iPhone/2014/07/Photo-21-07-2014-06-12-52-6824.jpg
+2 <span class="k">*</span> 126976	iPhone/2020/03/Photo-03-03-2020-09-13-17-9198.jpeg iPhone/2020/03/Photo-03-03-2020-09-13-17-9283.jpeg
+2 <span class="k">*</span> 118784	iPhone/2014/03/Photo-29-03-2014-02-47-45-4865.jpg iPhone/2014/03/Photo-29-03-2014-09-36-14-4869.jpg
+2 <span class="k">*</span> 114688	iPhone/2014/08/Photo-05-08-2014-03-44-27-7051.jpg iPhone/2014/08/Photo-05-08-2014-03-54-09-7056.jpg
+2 <span class="k">*</span> 110592	iPhone/2020/02/Photo-10-02-2020-06-12-40-8979.jpg iPhone/2020/02/Photo-10-02-2020-07-38-06-8981.jpg
+2 <span class="k">*</span> 110592	iPhone/2014/08/Photo-09-08-2014-12-29-52-7143.jpg iPhone/2014/09/Photo-04-09-2014-10-28-17-7449.jpg
+2 <span class="k">*</span> 110592	iPhone/2014/05/Photo-21-05-2014-06-19-27-5844.jpg iPhone/2014/05/Photo-24-05-2014-03-55-02-5891.jpg
+2 <span class="k">*</span> 102400	iPhone/2014/04/Photo-04-04-2014-07-40-58-4998.jpg iPhone/2014/04/Photo-05-04-2014-09-35-52-5031.jpg
+2 <span class="k">*</span> 98304	iPhone/2014/03/Photo-29-03-2014-09-35-58-4868.jpg iPhone/2014/03/Photo-29-03-2014-09-42-29-4870.jpg
+2 <span class="k">*</span> 94208	iPhone/2014/05/Photo-02-05-2014-01-01-36-5396.jpg iPhone/2014/05/Photo-02-05-2014-01-02-44-5398.jpg
+2 <span class="k">*</span> 90112	iPhone/2014/04/Photo-01-04-2014-02-18-24-4946.jpg iPhone/2014/04/Photo-01-04-2014-03-25-45-4955.jpg
+2 <span class="k">*</span> 86016	iPhone/2014/02/Photo-04-02-2014-02-09-43-4341.jpg iPhone/2014/02/Photo-08-02-2014-01-13-46-4364.jpg
+2 <span class="k">*</span> 81920	iPhone/2014/05/Photo-02-05-2014-01-01-37-5397.jpg iPhone/2014/05/Photo-02-05-2014-01-02-45-5399.jpg
+2 <span class="k">*</span> 65536	iPhone/2015/03/Photo-03-03-2015 05-08-17-9238.jpg iPhone/2015/03/Photo-24-03-2015 11-16-35-9597.jpg
+</code></pre></div></div>
+<p>22 dupes found.</p>
+
+<p>So they all find the same dupes, but how do they perform?</p>
+
+<h2 id="performance">Performance</h2>
+
+<p><strong>find</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>real    1m15.949s
+user    0m20.144s
+sys     0m4.599s
+</code></pre></div></div>
+<p><strong>fdupes</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>real    0m0.759s
+user    0m0.181s
+sys     0m0.324s
+</code></pre></div></div>
+<p><strong>fslint</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>real    0m0.220s
+user    0m0.148s
+sys     0m0.049s
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">fslint</code> is the winner there, with <code class="highlighter-rouge">fdupes</code> a close second, and <code class="highlighter-rouge">find</code> miles behind.</p>
+
+<p>I compared the results with the Mac apps:</p>
+
+<h3 id="duplicate-detective-2">Duplicate Detective 2</h3>
+
+<p>Also found 22 dupes, in about 6 seconds.</p>
+
+<p><img data-src="/assets/images/posts/dupes/dupe-detective-2.png" src="/assets/images/posts/dupes/dupe-detective-2-lq.png" class="lazyload blur-up" alt="Duplicates Finder screenshot" /></p>
+
+<h3 id="duplicates-finder">Duplicates Finder</h3>
+
+<p>Also found 22 dupes, but took 52 seconds.</p>
+
+<p><img data-src="/assets/images/posts/dupes/dupe-finder.png" src="/assets/images/posts/dupes/dupe-finder-lq.png" class="lazyload blur-up" alt="Duplicates Finder screenshot" /></p>
+
+<h2 id="summary">Summary</h2>
+<p>PhotoSync works better than I thought and while the Mac apps give you a nice preview of the duplicates, the command line tools are much faster.</p>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:fn-find">
+      <p>find <a href="https://linux.die.net/man/1/find">man page</a>. <a href="#fnref:fn-find" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:fn-fdupes">
+      <p>fdupes <a href="http://premium.caribe.net/~adrian2/fdupes.html">home</a> and <a href="https://linux.die.net/man/1/fdupes">man page</a>. <a href="#fnref:fn-fdupes" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:fn-fslint">
+      <p>fslint <a href="https://www.pixelbeat.org/fslint/">home</a> and <a href="https://linux.die.net/man/1/fslint">man page</a>. <a href="#fnref:fn-fslint" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#duplicates" class="page__taxonomy-item" rel="tag">duplicates</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#fdupes" class="page__taxonomy-item" rel="tag">fdupes</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#find" class="page__taxonomy-item" rel="tag">find</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#fslint" class="page__taxonomy-item" rel="tag">fslint</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#nas" class="page__taxonomy-item" rel="tag">NAS</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#photo-sync" class="page__taxonomy-item" rel="tag">photo sync</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#unix" class="page__taxonomy-item" rel="tag">unix</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#unix" class="page__taxonomy-item" rel="tag">unix</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-04-16T19:39:39+08:00">April 16, 2020</time></p>
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/itunes/2020/04/06/itunes-playlist-recovery/" class="pagination--pager" title="Recovering iTunes Playlists
+">Previous</a>
+    
+    
+      <a href="/music/2020/04/25/times-like-these/" class="pagination--pager" title="Live Lounge Allstars - Times Like These
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/macos/2020/05/11/zoom-update/" rel="permalink">A Quick Update on Zoom Code Signing
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">A quick update on Zoom code signing.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ios/2020/05/09/compress-upload-cocoalumberjack/" rel="permalink">Compress-Upload-CocoaLumberjack - My First CocoaPod
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/nextcloud/2020/05/08/nextcloud-sync/" rel="permalink">Nextcloud Sync Client for Docker
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Syncing to Nextcloud from a Docker container, and how to build that container.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ios/2020/05/04/hkwarnings/" rel="permalink">HKWarnings v5.0.0
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Fixing 10 year old code to build HKWarnings v5.0.0.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><div class="search-searchbar"></div>
+  <div class="search-hits"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 stouty.xyz. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script defer src="/assets/files/lazysizes.min.js"></script>
+  <script defer src="/assets/js/main.min.js"></script>
+  <!-- <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+  <script defer src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+<!-- Including InstantSearch.js library and styling -->
+
+<script>
+  head.load("https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.js", function() {
+    // Instanciating InstantSearch.js with Algolia credentials
+    const search = instantsearch({
+      appId: 'TE1537XNZ4',
+      apiKey: 'c3967c693f4a1d3ca8ed221f259c6a5f',
+      indexName: 'stouty.xyz',
+      searchParameters: {
+        restrictSearchableAttributes: [
+        'title',
+        'content'
+        ]
+      }
+    });
+    
+    const hitTemplate = function(hit) {
+      const url = hit.url;
+      const title = (hit._highlightResult.title !== undefined) ? hit._highlightResult.title.value : "";
+      const content = (hit._highlightResult.html !== undefined) ? hit._highlightResult.html.value : undefined;
+      
+      if(content === undefined){
+        throw "whoops";
+      }
+      else{
+        return `
+        <div class="list__item">
+          <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+            <h2 class="archive__item-title" itemprop="headline"><a href="${url}">${title}</a></h2>
+            <div class="archive__item-excerpt" itemprop="description">${content}</div>
+          </article>
+        </div>
+        `;
+      }
+    }
+    
+    // Adding searchbar and results widgets
+    search.addWidget(
+    instantsearch.widgets.searchBox({
+      container: '.search-searchbar',
+      poweredBy: true,
+      placeholder: 'Enter your search term...'
+    })
+    );
+    search.addWidget(
+    instantsearch.widgets.hits({
+      container: '.search-hits',
+      templates: {
+        item: hitTemplate
+      }
+    })
+    );
+    
+    // Starting the search
+    search.start();
+  });
+</script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.8.0/dist/instantsearch.min.js"></script> -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.9.0/dist/instantsearch-theme-algolia.min.css">
+
+
+
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-121620384-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-121620384-1', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.333%;
+        height: 0;
+        background: black;
+    }
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }    
+    </style>
+    
+    <script>
+    function get_youtube_id(url) {
+        var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
+    }
+    function vimeo_embed(url,el) {
+        var id = false;
+        $.ajax({
+          url: 'https://vimeo.com/api/oembed.json?url='+url,
+          async: true,
+          success: function(response) {
+            if(response.video_id) {
+              id = response.video_id;
+              if(url.indexOf('autoplay=1') !== -1) var autoplay=1; else var autoplay=0;
+              if(url.indexOf('loop=1') !== -1) var loop=1; else var loop=0;
+              var theInnerHTML = '<div class="videoWrapper"><iframe src="https://player.vimeo.com/video/'+id+'/?byline=0&title=0&portrait=0';
+              if(autoplay==1) theInnerHTML += '&autoplay=1';
+              if(loop==1) theInnerHTML += '&loop=1';
+              theInnerHTML += '" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>'; 
+              el.innerHTML = theInnerHTML;
+            }
+          }
+        });
+    }
+    function video_embed() {
+        var p = document.getElementsByTagName('p');
+        for(var i = 0; i < p.length; i++) {
+            //check if this is an external url (that starts with https:// or http://
+            if (p[i].innerHTML.indexOf("http://") == 0 ||
+                p[i].innerHTML.indexOf("https://") == 0) {
+                var youtube_id = get_youtube_id(p[i].innerHTML);
+                if(youtube_id) {
+                    if(p[i].innerHTML.indexOf('autoplay=1') !== -1) var autoplay=1; else var autoplay=0;
+                    if(p[i].innerHTML.indexOf('loop=1') !== -1) var loop=1; else var loop=0;
+                    var theInnerHTML = '<div class="videoWrapper"><iframe width="720" height="420" src="https://www.youtube.com/embed/' + youtube_id + '?rel=0&showinfo=0';
+                    if(autoplay==1) theInnerHTML += '&autoplay=1';
+                    if(loop==1) theInnerHTML += '&loop=1&playlist='+youtube_id+'&version=3';
+                    if(p[i].innerHTML.indexOf('start=') !== -1) theInnerHTML += '&start='+p[i].innerHTML.substring(p[i].innerHTML.indexOf('start=')+6);
+                    theInnerHTML += '" frameborder="0" allowfullscreen></iframe></div>';
+                    p[i].innerHTML = theInnerHTML;
+                }
+                if(p[i].innerHTML.indexOf('vimeo.com') !== -1) {
+                    //ask vimeo for the id and place the embed
+                    vimeo_embed(p[i].innerHTML,p[i]);
+                }
+            }
+        }
+    }
+    video_embed();
+    
+    function mp3_embed() {
+        var p = document.getElementsByTagName('p');
+        for(var i = 0; i < p.length; i++) {
+            if(p[i].innerHTML.indexOf('.mp3') !== -1) {
+                var str = p[i].innerHTML.split('?');
+                if(str.length == 1) str[1] = '';
+                var str1 = str[1];
+                str1 = str1.replace('&','').replace('&','');
+                str1 = str1.replace('autoplay=1','').replace('autoplay=0','');
+                str1 = str1.replace('loop=1','').replace('loop=0','');
+                str1 = str1.replace('controls=0','').replace('controls=1','');
+    
+                if (str[0].lastIndexOf('.mp3', str[0].length - 4) === str[0].length - 4 && str1.length == 0) {
+                    if(str[1].indexOf('autoplay=1') !== -1) var autoplay=1; else var autoplay=0;
+                    if(str[1].indexOf('loop=1') !== -1) var loop=1; else var loop=0;
+                    if(str[1].indexOf('controls=0') !== -1) var controls=0; else var controls=1;
+                    var newInnerHTML = '<audio';
+                    if(autoplay==1) newInnerHTML += ' autoplay';
+                    if(loop==1) newInnerHTML += ' loop';
+                    if(controls==1) newInnerHTML += ' controls';
+                    newInnerHTML += '><source src="'+str[0]+'" type="audio/mpeg">Your browser does not support the audio element.</audio>';
+                    p[i].innerHTML = newInnerHTML;
+                }
+            }
+        }
+    }
+    mp3_embed();
+    </script>
+
+
+
+
+  </body>
+</html>

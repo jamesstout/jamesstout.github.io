@@ -1,0 +1,12 @@
+User-agent: dotbot
+      Disallow: /
+User-agent: SiteExplorer
+Disallow: /
+
+User-agent: SeznamBot
+Disallow: /
+
+User-agent: *
+Disallow: /assets
+Allow: sitemap*
+Sitemap: https://stouty.xyz/sitemap.xml
