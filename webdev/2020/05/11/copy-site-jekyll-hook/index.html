@@ -368,7 +368,7 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>This site doesn’t build as a <a href="https://pages.github.com/">GitHub Page</a> as it uses <a href="https://pages.github.com/versions/">unsupported gems and plugins</a>. So when I push to <code class="highlighter-rouge">jamesstout.github.io.git</code> I get build failures.</p>
+        <p>This <a href="https://stouty.xyz/webdev/2020/04/28/git-deploy/">site</a> doesn’t build as a <a href="https://pages.github.com/">GitHub Page</a> as it uses <a href="https://pages.github.com/versions/">unsupported gems and plugins</a>. So when I push to <code class="highlighter-rouge">jamesstout.github.io.git</code> I get build failures.</p>
 
 <p>My solution is to have two repositories, the source where I write and build the site, and a destination repo that points to the <code class="highlighter-rouge">jamesstout.github.io.git</code> <a href="https://github.com/jamesstout/jamesstout.github.io">repo</a>. The difference is, the destination repo just contains the files from the already built <code class="highlighter-rouge">_site</code> folder. This is what is pushed to the destination, and ultimately rendered at <a href="https://jamesstout.github.io/">jamesstout.github.io</a>.</p>
 
