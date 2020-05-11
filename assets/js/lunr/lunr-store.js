@@ -208,4 +208,10 @@ var store = [{
         "tags": ["macOS","Zoom","security","code signing","spctl"],
         "url": "https://stouty.xyz/macos/2020/05/11/zoom-update/",
         "teaser": null
+      },{
+        "title": "A Jekyll Hook to Copy Pre-Built Site to Another Directory",
+        "excerpt":"This site doesn’t build as a GitHub Page as it uses unsupported gems and plugins. So when I push to jamesstout.github.io.git I get build failures. My solution is to have two repositories, the source where I write and build the site, and a destination repo that points to the jamesstout.github.io.git...","categories": ["webdev"],
+        "tags": ["jekyll","hooks","ruby","github.io","jekyll plugins"],
+        "url": "https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook/",
+        "teaser": null
       }]
