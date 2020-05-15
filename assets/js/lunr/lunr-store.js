@@ -214,4 +214,10 @@ var store = [{
         "tags": ["jekyll","hooks","ruby","github.io","jekyll plugins"],
         "url": "https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook/",
         "teaser": null
+      },{
+        "title": "Firebase Crashlytics - Are They Having a Laugh?",
+        "excerpt":"Crash reporting is an important part of app development, you don’t want your app to crash on users, so when it does it’s important to know when and why and be able to fix the issue. I was a beta tester for Crashlytics back in 2012, exchanging emails with Wayne...","categories": ["iOS"],
+        "tags": ["iOS","crash reporting","Firebase","Crashlytics"],
+        "url": "https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/",
+        "teaser": null
       }]

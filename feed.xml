@@ -1,4 +1,197 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-05-12T00:19:33+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">A Jekyll Hook to Copy Pre-Built Site to Another Directory</title><link href="https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook/" rel="alternate" type="text/html" title="A Jekyll Hook to Copy Pre-Built Site to Another Directory" /><published>2020-05-11T23:42:03+08:00</published><updated>2020-05-11T23:42:03+08:00</updated><id>https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook</id><content type="html" xml:base="https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook/">&lt;p&gt;This &lt;a href=&quot;https://stouty.xyz/webdev/2020/04/28/git-deploy/&quot;&gt;site&lt;/a&gt; doesn’t build as a &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Page&lt;/a&gt; as it uses &lt;a href=&quot;https://pages.github.com/versions/&quot;&gt;unsupported gems and plugins&lt;/a&gt;. So when I push to &lt;code class=&quot;highlighter-rouge&quot;&gt;jamesstout.github.io.git&lt;/code&gt; I get build failures.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-05-15T22:25:16+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Firebase Crashlytics - Are They Having a Laugh?</title><link href="https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/" rel="alternate" type="text/html" title="Firebase Crashlytics - Are They Having a Laugh?" /><published>2020-05-15T22:22:55+08:00</published><updated>2020-05-15T22:22:55+08:00</updated><id>https://stouty.xyz/ios/2020/05/15/firebase-crashlytics</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/">&lt;p&gt;Crash reporting is an important part of app development, you don’t want your app to crash on users, so when it does it’s important to know when and why and be able to fix the issue.&lt;/p&gt;
+
+&lt;p&gt;I was a beta tester for &lt;a href=&quot;https://en.wikipedia.org/wiki/Crashlytics&quot;&gt;Crashlytics&lt;/a&gt; back in 2012, exchanging emails with &lt;a href=&quot;https://en.wikipedia.org/wiki/Wayne_Chang&quot;&gt;Wayne Chang&lt;/a&gt;, one of the founders:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/firebase-crashlytics/wayne.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/firebase-crashlytics/wayne.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;wayne chang email&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We exchanged feedback for a few months as they rolled out the SDK and the Mac app.&lt;/p&gt;
+
+&lt;p&gt;I like to think I was, in part, responsible for getting rid of the awful zipper thing they had on early versions of the crash report Web page:&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/firebase-crashlytics/zipper.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;wayne chang email&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I think &lt;a href=&quot;https://xconomy.com/boston/2013/02/05/twitters-boston-acquisitions-crashlytics-tops-100m-bluefin-labs-close-behind/&quot;&gt;Twitter bought them&lt;/a&gt;, then in January 2017, &lt;a href=&quot;https://fabric.io/blog/fabric-joins-google&quot;&gt;Crashlytics and Fabric were acquired by Google&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In September 2018 Google announced that &lt;a href=&quot;https://venturebeat.com/2018/09/14/google-is-killing-fabric-in-mid-2019-pushes-developers-to-firebase/&quot;&gt;Fabric will be deprecated&lt;/a&gt; and developers should use Crashlytics via Firebase.&lt;/p&gt;
+
+&lt;p&gt;They’re a little late on their roadmap (by a year or so), but finally, this week:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/firebase-crashlytics/fabric.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/firebase-crashlytics/fabric.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;fabruc shutdown&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Developers have until November 15th 2020 for migrate to &lt;a href=&quot;https://firebase.google.com/docs/crashlytics&quot;&gt;Firebase Crashlytics&lt;/a&gt;, or, another crash reporter.&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/firebase-crashlytics/fabric2.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;fabric2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The current Fabric/Crashlytics SDK still works, you just have to go to the Firebase console to see the crash report. I currently have one outstanding crash in an old version, due to &lt;a href=&quot;http://www.qnx.com/developers/docs/qnxcar2/index.jsp?topic=%2Fcom.qnx.doc.neutrino.prog%2Ftopic%2Fhat_ProblemsWithHeapCorruption.html&quot;&gt;heap corruption&lt;/a&gt;. Here’s an example of some of the data you can get:&lt;/p&gt;
+
+&lt;figure class=&quot;half &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/posts/firebase-crashlytics/cr1.png&quot; title=&quot;Example crash report&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/firebase-crashlytics/cr1-th.png&quot; alt=&quot;Example crash report&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/firebase-crashlytics/cr2.png&quot; title=&quot;Example crash report&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/firebase-crashlytics/cr2-th.png&quot; alt=&quot;Example crash report&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/firebase-crashlytics/cr3.png&quot; title=&quot;Example crash report&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/firebase-crashlytics/cr3-th.png&quot; alt=&quot;Example crash report&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/firebase-crashlytics/cr4.png&quot; title=&quot;Example crash report&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/firebase-crashlytics/cr4-th.png&quot; alt=&quot;Example crash report&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;p&gt;Anyway, to the point of this post. The migration guide says to simply switch your Pods, add the plist and change the way you initiate the shared Crashlytics object:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Add the pod for Firebase Crashlytics&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pod&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Firebase/Crashlytics'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;But check out what else it installs:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Projects/iPhone Apps/HKWarnings on fb[!&lt;span class=&quot;nv&quot;&gt;$]&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;pod &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--no-repo-update&lt;/span&gt;
+Analyzing dependencies
+Downloading dependencies
+Installing Firebase &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;6.24.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Installing FirebaseAnalyticsInterop &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1.5.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Installing FirebaseCore &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;6.7.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Installing FirebaseCoreDiagnostics &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1.3.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Installing FirebaseCoreDiagnosticsInterop &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1.2.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Installing FirebaseCrashlytics &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;4.1.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Installing FirebaseInstallations &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1.2.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Installing GoogleDataTransport &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;6.1.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Installing GoogleDataTransportCCTSupport &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;3.1.0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Installing GoogleUtilities 6.6.0
+Removing Crashlytics
+Removing Fabric
+Generating Pods project
+Integrating client project
+Pod installation &lt;span class=&quot;nb&quot;&gt;complete&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; There are 23 dependencies from the Podfile and 38 total pods installed.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Extra pods installed:&lt;/p&gt;
+
+&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Firebase/CoreOnly (6.24.0)&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseCore (= 6.7.0)&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Firebase/Crashlytics (6.24.0)&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Firebase/CoreOnly&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseCrashlytics (~&amp;gt; 4.1.0)&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseAnalyticsInterop (1.5.0)&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseCore (6.7.0)&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseCoreDiagnostics (~&amp;gt; 1.3)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseCoreDiagnosticsInterop (~&amp;gt; 1.2)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleUtilities/Environment (~&amp;gt; 6.5)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleUtilities/Logger (~&amp;gt; 6.5)&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseCoreDiagnostics (1.3.0)&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseCoreDiagnosticsInterop (~&amp;gt; 1.2)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleDataTransportCCTSupport (~&amp;gt; 3.1)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleUtilities/Environment (~&amp;gt; 6.5)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleUtilities/Logger (~&amp;gt; 6.5)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nanopb (~&amp;gt; 1.30905.0)&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseCoreDiagnosticsInterop (1.2.0)&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseCrashlytics (4.1.0)&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseAnalyticsInterop (~&amp;gt; 1.2)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseCore (~&amp;gt; 6.6)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseInstallations (~&amp;gt; 1.1)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleDataTransport (~&amp;gt; 6.1)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleDataTransportCCTSupport (~&amp;gt; 3.1)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nanopb (~&amp;gt; 1.30905.0)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;PromisesObjC (~&amp;gt; 1.2)&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseInstallations (1.2.0)&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;FirebaseCore (~&amp;gt; 6.6)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleUtilities/Environment (~&amp;gt; 6.6)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleUtilities/UserDefaults (~&amp;gt; 6.6)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;PromisesObjC (~&amp;gt; 1.2)&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleDataTransport (6.1.0)&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleDataTransportCCTSupport (3.1.0)&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleDataTransport (~&amp;gt; 6.1)&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;nanopb (~&amp;gt; 1.30905.0)&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleUtilities/UserDefaults (6.6.0)&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;GoogleUtilities/Logger&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;665 extra files, 3MB, Xcode build tasks go from 740 to 1600.&lt;/p&gt;
+
+&lt;p&gt;Build time goes from 43 to 70 seconds, 60% longer.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What are all those files doing?!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can check out the full &lt;a href=&quot;https://github.com/firebase/firebase-ios-sdk&quot;&gt;Firebase platform on GitHub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I’m not very keen, but I’ll give it a go. You can see how many iterations of the SDKs I’ve been through by the commented code:&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;k&quot;&gt;@try&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//[Crashlytics startWithAPIKey:kCrashlyticsKey];&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//[[Fabric sharedSDK] setDebug: FABRIC_DEBUG];&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//[Fabric with:@[CrashlyticsKit]];&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//[[Fabric with:@[[Crashlytics class]]] setDebug:FABRIC_DEBUG];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FIRApp&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;@catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exception&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;NSLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;[FIRApp configure]; Caught %@: %@&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exception&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exception&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;reason&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;startedCrashlytics&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Verbose logging from the SDK. It’s doing a lot, including downloading settings and logging each screen (even though it does nothing with it as I didn’t install Firebase Analytics).&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/jamesstout/444216d80bff511c96aa7927e8c73b55.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Build artifacts and app sizes:&lt;/p&gt;
+
+&lt;figure class=&quot;half &quot;&gt;
+  
+    
+      &lt;a href=&quot;/assets/images/posts/firebase-crashlytics/archive-no-firebase.png&quot; title=&quot;archive-no-firebase&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/firebase-crashlytics/archive-no-firebase-th.png&quot; alt=&quot;archive-no-firebase&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/firebase-crashlytics/archive-with-firebase.png&quot; title=&quot;archive-with-firebase&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/firebase-crashlytics/archive-with-firebase-th.png&quot; alt=&quot;archive-with-firebase&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/firebase-crashlytics/build-no-firebase.png&quot; title=&quot;build-no-firebase&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/firebase-crashlytics/build-no-firebase-th.png&quot; alt=&quot;build-no-firebase&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+    
+      &lt;a href=&quot;/assets/images/posts/firebase-crashlytics/build-with-firebase.png&quot; title=&quot;build-with-firebase&quot;&gt;
+          &lt;img src=&quot;/assets/images/posts/firebase-crashlytics/build-with-firebase-th.png&quot; alt=&quot;build-with-firebase&quot; /&gt;
+      &lt;/a&gt;
+    
+  
+  
+&lt;/figure&gt;
+
+&lt;p&gt;1MB or so larger binary and dSYM.&lt;/p&gt;
+
+&lt;p&gt;There’s just too much going on that isn’t clear or documented. I’m going to have to look for alternatives.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.bugsnag.com/platforms/ios-crash-reporting&quot;&gt;Bugsnag&lt;/a&gt; - free for up to 7500 events.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://count.ly/&quot;&gt;Countly&lt;/a&gt; - looks good, open source, free and self-hosted.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://sentry.io/&quot;&gt;Sentry&lt;/a&gt; - Uses Pod frameworks or &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;Carthage&lt;/a&gt;, and an 16MB framework…🧐&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I think I’ll check out Countly first.&lt;/p&gt;</content><author><name>James Stout</name></author><category term="iOS" /><category term="crash reporting" /><category term="Firebase" /><category term="Crashlytics" /><summary type="html">Investigating the new Firebase Crashlytics SDK.</summary></entry><entry><title type="html">A Jekyll Hook to Copy Pre-Built Site to Another Directory</title><link href="https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook/" rel="alternate" type="text/html" title="A Jekyll Hook to Copy Pre-Built Site to Another Directory" /><published>2020-05-11T23:42:03+08:00</published><updated>2020-05-11T23:42:03+08:00</updated><id>https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook</id><content type="html" xml:base="https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook/">&lt;p&gt;This &lt;a href=&quot;https://stouty.xyz/webdev/2020/04/28/git-deploy/&quot;&gt;site&lt;/a&gt; doesn’t build as a &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Page&lt;/a&gt; as it uses &lt;a href=&quot;https://pages.github.com/versions/&quot;&gt;unsupported gems and plugins&lt;/a&gt;. So when I push to &lt;code class=&quot;highlighter-rouge&quot;&gt;jamesstout.github.io.git&lt;/code&gt; I get build failures.&lt;/p&gt;
 
 &lt;p&gt;My solution is to have two repositories, the source where I write and build the site, and a destination repo that points to the &lt;code class=&quot;highlighter-rouge&quot;&gt;jamesstout.github.io.git&lt;/code&gt; &lt;a href=&quot;https://github.com/jamesstout/jamesstout.github.io&quot;&gt;repo&lt;/a&gt;. The difference is, the destination repo just contains the files from the already built &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder. This is what is pushed to the destination, and ultimately rendered at &lt;a href=&quot;https://jamesstout.github.io/&quot;&gt;jamesstout.github.io&lt;/a&gt;.&lt;/p&gt;
 
@@ -1256,9 +1449,4 @@ james@Jamess-iMac: ~/Downloads
 
 &lt;p&gt;And all my docker containers started just fine:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;/assets/images/posts/dsm/dockers.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/dsm/dockers.png&quot; src=&quot;/assets/images/posts/dsm/dockers-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Dockers running&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>James Stout</name></author><category term="synology" /><category term="DSM 6.2.3" /><category term="NAS" /><summary type="html">Manually updating Synology NAS to DSM 6.2.3.</summary></entry><entry><title type="html">Live Lounge Allstars - Times Like These</title><link href="https://stouty.xyz/music/2020/04/25/times-like-these/" rel="alternate" type="text/html" title="Live Lounge Allstars - Times Like These" /><published>2020-04-25T20:07:23+08:00</published><updated>2020-04-25T20:07:23+08:00</updated><id>https://stouty.xyz/music/2020/04/25/times-like-these</id><content type="html" xml:base="https://stouty.xyz/music/2020/04/25/times-like-these/">&lt;!-- Courtesy of embedresponsively.com //--&gt;
-&lt;div class=&quot;responsive-video-container&quot;&gt;
-
-  &lt;iframe src=&quot;https://www.youtube-nocookie.com/embed/7GElP4YdrBE&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-
-&lt;/div&gt;</content><author><name>James Stout</name></author><category term="music" /><category term="youtube" /><category term="foo fighters" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/dsm/dockers.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/dsm/dockers.png&quot; src=&quot;/assets/images/posts/dsm/dockers-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Dockers running&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>James Stout</name></author><category term="synology" /><category term="DSM 6.2.3" /><category term="NAS" /><summary type="html">Manually updating Synology NAS to DSM 6.2.3.</summary></entry></feed>
