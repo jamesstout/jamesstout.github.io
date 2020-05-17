@@ -361,7 +361,7 @@
 
 
 
-  1 minute read
+  2 minute read
 
 </p>
           
@@ -426,6 +426,31 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: /Volumes/docker/nextcloud/media/Dropbox
 <span class="nv">$ </span>find <span class="nb">.</span> <span class="nt">-name</span> <span class="s1">'*conflict*'</span> | <span class="nb">wc</span> <span class="nt">-l</span>
      620
+</code></pre></div></div>
+
+<p>Right. I couldn’t fix them manually, or at least didn’t want to.</p>
+
+<p>Script time.</p>
+
+<p>The script below has been though a few iterations, to deal with spaces in filenames/directories, and files without an extension. It mostly works, but some files fail, and maybe some symlinks.</p>
+
+<p>Now:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: /Volumes/docker/nextcloud/media/Dropbox
+<span class="nv">$ </span>find <span class="nb">.</span> <span class="nt">-name</span> <span class="s1">'*conflict*'</span> | <span class="nb">wc</span> <span class="nt">-l</span>
+      10
+james@Jamess-iMac: /Volumes/docker/nextcloud/media/Dropbox
+<span class="nv">$ </span>find <span class="nb">.</span> <span class="nt">-name</span> <span class="s1">'*conflict*'</span>
+./Apps/Yojimbo/Database.bbyojimbostorage/Contents/Database/Database <span class="o">(</span>Jamess-iMac<span class="s1">'s conflicted copy 2018-07-07).sqlite
+./Apps/Yojimbo/Database.bbyojimbostorage/Contents/Database/Database (Jamess-iMac'</span>s conflicted copy 2018-07-07<span class="o">)</span>.sqlite-shm
+./Apps/Yojimbo/Database.bbyojimbostorage/Contents/Database/Database <span class="o">(</span>Jamess-iMac<span class="s1">'s conflicted copy 2018-07-07).sqlite-wal
+./Apps/Yojimbo/State (Jamess-MacBook-Air'</span>s conflicted copy 2020-03-25<span class="o">)</span>.plist
+./Apps/Yojimbo/State <span class="o">(</span>Jamess-iMac<span class="s1">'s conflicted copy 2020-01-24).plist
+./Apps/Yojimbo/State (Jamess-iMac'</span>s conflicted copy 2020-03-25<span class="o">)</span>.plist
+./Code/HKWarnings-server/1604/etc/monit/conf-available/mysql <span class="o">(</span>conflicted copy 2017-11-28 110223<span class="o">)</span>
+./Code/HKWarnings-server/1604/etc/monit/conf-available/rsyslog <span class="o">(</span>conflicted copy 2017-11-28 110223<span class="o">)</span>
+./Code/HKWarnings-server/nginx-config.io/sites-enabled/01_stouty.xyz <span class="o">(</span>conflicted copy 2019-10-11 110101<span class="o">)</span>.conf
+./Code/HKWarnings-server/nginx-config.io/sites-enabled/02_hkwarnings.com <span class="o">(</span>conflicted copy 2019-10-11 110125<span class="o">)</span>.conf
 </code></pre></div></div>
 
         
