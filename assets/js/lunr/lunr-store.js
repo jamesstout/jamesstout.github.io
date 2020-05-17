@@ -220,4 +220,10 @@ var store = [{
         "tags": ["iOS","crash reporting","Firebase","Crashlytics"],
         "url": "https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/",
         "teaser": null
+      },{
+        "title": "Fixing Nextcloud Conflicting Files",
+        "excerpt":"I made a bit of a mess with my Nextcloud sync yesterday. I have my Dropbox folder synced to my Mac Nextcloud folder, but not to the sync folder on my NAS. I thought I would save time and bandwidth by copying the folder from my Mac to my NAS...","categories": ["nextcloud"],
+        "tags": ["nextcloud","bash","stat","find","sync"],
+        "url": "https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files/",
+        "teaser": null
       }]

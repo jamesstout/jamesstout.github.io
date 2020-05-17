@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>asciinema | stouty.xyz</title>
-<meta name="description" content="asciinema. Record and share your terminal sessions, the right way. ">
+<!-- begin _includes/seo.html --><title>Fixing Nextcloud Conflicting Files | stouty.xyz</title>
+<meta name="description" content="A bash script to correct conflicting files. ">
 
 
   <meta name="author" content="James Stout">
@@ -19,20 +19,20 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="stouty.xyz">
-<meta property="og:title" content="asciinema">
-<meta property="og:url" content="https://stouty.xyz/macos/2018/09/20/asciinema/">
+<meta property="og:title" content="Fixing Nextcloud Conflicting Files">
+<meta property="og:url" content="https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files/">
 
 
-  <meta property="og:description" content="asciinema. Record and share your terminal sessions, the right way. ">
+  <meta property="og:description" content="A bash script to correct conflicting files. ">
 
 
 
 
 
   <meta name="twitter:site" content="@stoutyhk">
-  <meta name="twitter:title" content="asciinema">
-  <meta name="twitter:description" content="asciinema. Record and share your terminal sessions, the right way. ">
-  <meta name="twitter:url" content="https://stouty.xyz/macos/2018/09/20/asciinema/">
+  <meta name="twitter:title" content="Fixing Nextcloud Conflicting Files">
+  <meta name="twitter:description" content="A bash script to correct conflicting files. ">
+  <meta name="twitter:url" content="https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files/">
 
   
     <meta name="twitter:card" content="summary">
@@ -45,14 +45,14 @@
 
 
 
-  <meta property="article:published_time" content="2018-09-20T01:56:01+08:00">
+  <meta property="article:published_time" content="2020-05-17T21:00:30+08:00">
 
 
 
 
 
 
-<link rel="canonical" href="https://stouty.xyz/macos/2018/09/20/asciinema/">
+<link rel="canonical" href="https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files/">
 
 
 
@@ -345,15 +345,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="asciinema">
-    <meta itemprop="description" content="asciinema. Record and share your terminal sessions, the right way.">
-    <meta itemprop="datePublished" content="2018-09-20T01:56:01+08:00">
+    <meta itemprop="headline" content="Fixing Nextcloud Conflicting Files">
+    <meta itemprop="description" content="A bash script to correct conflicting files.">
+    <meta itemprop="datePublished" content="2020-05-17T21:00:30+08:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">asciinema
+          <h1 id="page-title" class="page__title" itemprop="headline">Fixing Nextcloud Conflicting Files
 </h1>
           
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -361,7 +361,7 @@
 
 
 
-  less than 1 minute read
+  1 minute read
 
 </p>
           
@@ -370,37 +370,63 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>I’ve been playing around with <a href="https://asciinema.org/">asciinema</a>:</p>
+        <p>I made a bit of a mess with my Nextcloud sync yesterday. I have my Dropbox folder synced to my Mac Nextcloud folder, but not to the sync folder on my NAS. I thought I would save time and bandwidth by copying the folder from my Mac to my NAS and seeing if the sync could figure it out.</p>
 
-<blockquote>
-  <p>Record and share your terminal sessions, the right way.</p>
+<p>It didn’t.</p>
 
-  <p>Forget screen recording apps and blurry video. Enjoy a lightweight, purely text-based approach to terminal recording.</p>
-</blockquote>
+<p>I ended up with loads of conflicts. For example:</p>
 
-<p>It’s simple to <a href="https://asciinema.org/docs/installation">install</a><sup id="fnref:fn-req"><a href="#fn:fn-req" class="footnote">1</a></sup> and <a href="https://asciinema.org/docs/usage">use</a> and has a few <a href="https://asciinema.org/docs/embedding">sharing and embedding</a> options.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: /Volumes/docker/nextcloud/media/Dropbox/Code/HKWarnings
+<span class="nv">$ </span>find <span class="nb">.</span> <span class="nt">-name</span> <span class="s1">'*conflict*'</span>
+./Classes/AboutViewControlleriPad <span class="o">(</span>conflicted copy 2020-05-03 151942<span class="o">)</span>.m
+./Classes/AboutViewControlleriPad <span class="o">(</span>conflicted copy 2020-05-03 151942<span class="o">)</span>.h
+./Classes/AboutViewController <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/Acknowledgements_iPhoneViewController <span class="o">(</span>conflicted copy 2020-04-28 103701<span class="o">)</span>.m
+./Classes/Constants <span class="o">(</span>conflicted copy 2020-05-16 172756<span class="o">)</span>.h
+./Classes/DisclaimerViewController2 <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/DetailViewController2 <span class="o">(</span>conflicted copy 2020-05-16 172756<span class="o">)</span>.m
+./Classes/FCReachability <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/ForecastViewController <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/GetHistoricalWarnings <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/GADMasterViewController <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/HKWWarnings <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/HKWPhotosViewController <span class="o">(</span>conflicted copy 2020-05-14 193739<span class="o">)</span>.h
+./Classes/HKWarningsWeatherImages <span class="o">(</span>conflicted copy 2020-05-11 083931<span class="o">)</span>.m
+./Classes/HKWPhotosViewController <span class="o">(</span>conflicted copy 2020-05-14 193739<span class="o">)</span>.m
+./Classes/HKWeatherWarningsTabsAppDelegate <span class="o">(</span>conflicted copy 2020-05-16 172756<span class="o">)</span>.h
+./Classes/HKWeatherWarningsTabsAppDelegate <span class="o">(</span>conflicted copy 2020-05-16 172756<span class="o">)</span>.m
+./Classes/HomeViewController <span class="o">(</span>conflicted copy 2020-05-03 151942<span class="o">)</span>.h
+./Classes/HKWeatherWarningsiPadAppDelegate <span class="o">(</span>conflicted copy 2020-05-16 172756<span class="o">)</span>.m
+./Classes/HKWeatherWarningsiPadAppDelegate <span class="o">(</span>conflicted copy 2020-05-16 172756<span class="o">)</span>.h
+./Classes/HomeViewController <span class="o">(</span>conflicted copy 2020-05-05 135634<span class="o">)</span>.m
+./Classes/InAppPurchaseViewController2 <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/InAppPurchaseManager <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/InAppPurchaseViewController_iPad <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/MYUIActivityItemProvider <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/MyUIActivity <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/NSDate+HKWUtilities <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.h
+./Classes/NSMutableString+HKWUtilities <span class="o">(</span>conflicted copy 2020-05-08 172828<span class="o">)</span>.m
+./Classes/NSDate+HKWUtilities <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/NSObject+JSON <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/NSString_HKWUtilities <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.h
+./Classes/NSString_HKWUtilities <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/PopoverContentViewController <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/OptOutViewController_iPad <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/OptOutViewController_iPhone <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/PushSettingsViewController_iPad <span class="o">(</span>conflicted copy 2020-04-20 100727<span class="o">)</span>.m
+./Classes/RadarViewController <span class="o">(</span>conflicted copy 2020-05-03 151942<span class="o">)</span>.h
+./Classes/RadarViewController <span class="o">(</span>conflicted copy 2020-05-03 151942<span class="o">)</span>.m
+./Classes/PushSettingsViewController_iPhone <span class="o">(</span>conflicted copy 2020-04-28 103701<span class="o">)</span>.m
+./Classes/RadarViewController <span class="o">(</span>conflicted copy 2020-05-03 151942<span class="o">)</span>.xib
+./Classes/SatViewController <span class="o">(</span>conflicted copy 2020-05-03 151942<span class="o">)</span>.h
+./Classes/SatViewController <span class="o">(</span>conflicted copy 2020-05-03 151942<span class="o">)</span>.m
+</code></pre></div></div>
 
-<p>Here’s me starting up a <a href="https://www.vagrantup.com/">Vagrant</a> box:</p>
-
-<script src="https://asciinema.org/a/MEjWz4OBlLHalz4xuyTHkCaSH.js" id="asciicast-MEjWz4OBlLHalz4xuyTHkCaSH" async="" data-preload="false"></script>
-
-<p>A nice feature is being able to record some casts, before creating an account, then later, if you create an account, your recordings<sup id="fnref:fn-id"><a href="#fn:fn-id" class="footnote">2</a></sup> associated with your account:</p>
-
-<blockquote>
-  <p>Install ID is a random ID (UUID v4) generated locally when you run asciinema for the first time, and saved at $HOME/.config/asciinema/install-id. It’s purpose is to connect local machine with uploaded recordings, so they can later be associated with asciinema.org 15 account. This way we decouple uploading from account creation, allowing them to happen in any order.</p>
-</blockquote>
-
-<hr />
-<div class="footnotes">
-  <ol>
-    <li id="fn:fn-req">
-      <p>Requires <a href="https://www.python.org/">Python 3</a>, or you could use a <a href="https://asciinema.org/docs/installation#running-in-docker-container">Docker container</a>. <a href="#fnref:fn-req" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:fn-id">
-      <p>From that specific machine. <a href="#fnref:fn-id" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
+<p>In total:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: /Volumes/docker/nextcloud/media/Dropbox
+<span class="nv">$ </span>find <span class="nb">.</span> <span class="nt">-name</span> <span class="s1">'*conflict*'</span> | <span class="nb">wc</span> <span class="nt">-l</span>
+     620
+</code></pre></div></div>
 
         
       </section>
@@ -425,11 +451,19 @@
     
       
       
-      <a href="/tags/#macos" class="page__taxonomy-item" rel="tag">macOS</a><span class="sep">, </span>
+      <a href="/tags/#find" class="page__taxonomy-item" rel="tag">find</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#terminal" class="page__taxonomy-item" rel="tag">terminal</a>
+      <a href="/tags/#nextcloud" class="page__taxonomy-item" rel="tag">nextcloud</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#stat" class="page__taxonomy-item" rel="tag">stat</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#sync" class="page__taxonomy-item" rel="tag">sync</a>
     
     </span>
   </p>
@@ -450,14 +484,14 @@
     
       
       
-      <a href="/categories/#macos" class="page__taxonomy-item" rel="tag">macOS</a>
+      <a href="/categories/#nextcloud" class="page__taxonomy-item" rel="tag">nextcloud</a>
     
     </span>
   </p>
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-09-20T01:56:01+08:00">September 20, 2018</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-17T21:00:30+08:00">May 17, 2020</time></p>
         
       </footer>
 
@@ -466,12 +500,11 @@
       
   <nav class="pagination">
     
-      <a href="/macos/2018/08/18/hkbn/" class="pagination--pager" title="Reverse Engineering HKBN Speed Test for macOS
+      <a href="/ios/2020/05/15/firebase-crashlytics/" class="pagination--pager" title="Firebase Crashlytics - Are They Having a Laugh?
 ">Previous</a>
     
     
-      <a href="/unix/2019/09/30/dotfiles/" class="pagination--pager" title="Dotfiles
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -485,35 +518,6 @@
     <div class="page__related">
       <h4 class="page__related-title">You May Also Enjoy</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/nextcloud/2020/05/17/nextcloud-conflicting-files/" rel="permalink">Fixing Nextcloud Conflicting Files
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  1 minute read
-
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">A bash script to correct conflicting files.
-</p>
-  </article>
-</div>
-
         
           
 
@@ -597,6 +601,35 @@
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">A quick update on Zoom code signing.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/ios/2020/05/09/compress-upload-cocoalumberjack/" rel="permalink">Compress-Upload-CocoaLumberjack - My First CocoaPod
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack.
 </p>
   </article>
 </div>

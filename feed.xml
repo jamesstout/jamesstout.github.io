@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-05-17T21:08:16+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Firebase Crashlytics - Are They Having a Laugh?</title><link href="https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/" rel="alternate" type="text/html" title="Firebase Crashlytics - Are They Having a Laugh?" /><published>2020-05-15T22:22:55+08:00</published><updated>2020-05-15T22:22:55+08:00</updated><id>https://stouty.xyz/ios/2020/05/15/firebase-crashlytics</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/">&lt;p&gt;Crash reporting is an important part of app development, you don’t want your app to crash on users, so when it does it’s important to know when and why and be able to fix the issue.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-05-17T21:08:33+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Fixing Nextcloud Conflicting Files</title><link href="https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files/" rel="alternate" type="text/html" title="Fixing Nextcloud Conflicting Files" /><published>2020-05-17T21:00:30+08:00</published><updated>2020-05-17T21:00:30+08:00</updated><id>https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files</id><content type="html" xml:base="https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files/">&lt;p&gt;I made a bit of a mess with my Nextcloud sync yesterday. I have my Dropbox folder synced to my Mac Nextcloud folder, but not to the sync folder on my NAS. I thought I would save time and bandwidth by copying the folder from my Mac to my NAS and seeing if the sync could figure it out.&lt;/p&gt;
+
+&lt;p&gt;It didn’t.&lt;/p&gt;
+
+&lt;p&gt;I ended up with loads of conflicts. For example:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: /Volumes/docker/nextcloud/media/Dropbox/Code/HKWarnings
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'*conflict*'&lt;/span&gt;
+./Classes/AboutViewControlleriPad &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-03 151942&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/AboutViewControlleriPad &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-03 151942&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.h
+./Classes/AboutViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/Acknowledgements_iPhoneViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-28 103701&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/Constants &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-16 172756&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.h
+./Classes/DisclaimerViewController2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/DetailViewController2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-16 172756&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/FCReachability &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/ForecastViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/GetHistoricalWarnings &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/GADMasterViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/HKWWarnings &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/HKWPhotosViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-14 193739&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.h
+./Classes/HKWarningsWeatherImages &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-11 083931&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/HKWPhotosViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-14 193739&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/HKWeatherWarningsTabsAppDelegate &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-16 172756&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.h
+./Classes/HKWeatherWarningsTabsAppDelegate &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-16 172756&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/HomeViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-03 151942&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.h
+./Classes/HKWeatherWarningsiPadAppDelegate &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-16 172756&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/HKWeatherWarningsiPadAppDelegate &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-16 172756&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.h
+./Classes/HomeViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-05 135634&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/InAppPurchaseViewController2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/InAppPurchaseManager &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/InAppPurchaseViewController_iPad &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/MYUIActivityItemProvider &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/MyUIActivity &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/NSDate+HKWUtilities &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.h
+./Classes/NSMutableString+HKWUtilities &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-08 172828&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/NSDate+HKWUtilities &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/NSObject+JSON &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/NSString_HKWUtilities &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.h
+./Classes/NSString_HKWUtilities &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/PopoverContentViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/OptOutViewController_iPad &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/OptOutViewController_iPhone &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/PushSettingsViewController_iPad &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-20 100727&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/RadarViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-03 151942&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.h
+./Classes/RadarViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-03 151942&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/PushSettingsViewController_iPhone &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-04-28 103701&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+./Classes/RadarViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-03 151942&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.xib
+./Classes/SatViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-03 151942&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.h
+./Classes/SatViewController &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;conflicted copy 2020-05-03 151942&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.m
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In total:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: /Volumes/docker/nextcloud/media/Dropbox
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'*conflict*'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;wc&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+     620
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>James Stout</name></author><category term="nextcloud" /><category term="bash" /><category term="stat" /><category term="find" /><category term="sync" /><summary type="html">A bash script to correct conflicting files.</summary></entry><entry><title type="html">Firebase Crashlytics - Are They Having a Laugh?</title><link href="https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/" rel="alternate" type="text/html" title="Firebase Crashlytics - Are They Having a Laugh?" /><published>2020-05-15T22:22:55+08:00</published><updated>2020-05-15T22:22:55+08:00</updated><id>https://stouty.xyz/ios/2020/05/15/firebase-crashlytics</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/">&lt;p&gt;Crash reporting is an important part of app development, you don’t want your app to crash on users, so when it does it’s important to know when and why and be able to fix the issue.&lt;/p&gt;
 
 &lt;p&gt;I was a beta tester for &lt;a href=&quot;https://en.wikipedia.org/wiki/Crashlytics&quot;&gt;Crashlytics&lt;/a&gt; back in 2012, exchanging emails with &lt;a href=&quot;https://en.wikipedia.org/wiki/Wayne_Chang&quot;&gt;Wayne Chang&lt;/a&gt;, one of the founders:&lt;/p&gt;
 
@@ -1386,67 +1442,4 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
 
 &lt;p&gt;They all get an A+ score on the &lt;a href=&quot;https://www.ssllabs.com/ssltest/&quot;&gt;Qualys SSL Lab test&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Certificates are renewed using &lt;a href=&quot;https://certbot.eff.org/&quot;&gt;Certbot&lt;/a&gt;, configured with the help of &lt;a href=&quot;https://www.digitalocean.com/community/tools/nginx&quot;&gt;nginxconfig.io&lt;/a&gt;, and protected from bad bots by &lt;a href=&quot;https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker&quot;&gt;The Ultimate Nginx Bad Bot Blocker&lt;/a&gt;.&lt;/p&gt;</content><author><name>James Stout</name></author><category term="HTTPS" /><category term="SSL" /><category term="web servers" /><summary type="html">HTTPS and SSL info.</summary></entry><entry><title type="html">Synology DSM 6.2.3 Update</title><link href="https://stouty.xyz/synology/2020/04/28/dsm/" rel="alternate" type="text/html" title="Synology DSM 6.2.3 Update" /><published>2020-04-28T19:15:38+08:00</published><updated>2020-04-28T19:15:38+08:00</updated><id>https://stouty.xyz/synology/2020/04/28/dsm</id><content type="html" xml:base="https://stouty.xyz/synology/2020/04/28/dsm/">&lt;p&gt;I was thinking that there hadn’t been a &lt;a href=&quot;https://en.wikipedia.org/wiki/Synology#Synology_DiskStation_Manager_(DSM)&quot;&gt;DSM&lt;/a&gt; upgrade for my &lt;a href=&quot;https://www.storagereview.com/review/synology-diskstation-ds1817-nas-review&quot;&gt;DS1817+&lt;/a&gt; for a while. I check the update screen quite often:&lt;/p&gt;
-
-&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/dsm/dsm6.2.3.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;synology DSM update screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;v6.2.2-24922-6 was released on 17th March 2020. Anyway, my system still says there is no new update. However, the release notes page says there is a new version, &lt;a href=&quot;https://www.synology.com/en-global/releaseNote/DS1817+#6.2.3-25423&quot;&gt;6.2.3-25423&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Lots of changes/fixes for a point release. A highlight:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;Added support for Let’s Encrypt wildcard certificates for Synology DDNS.&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I wanted it. But how to get it?&lt;/p&gt;
-
-&lt;p&gt;Well, there’s the &lt;a href=&quot;https://archive.synology.com/download/DSM/release/6.2.3/25423/&quot;&gt;Synology download archive&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Download the &lt;code class=&quot;highlighter-rouge&quot;&gt;pat&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;md5&lt;/code&gt; files for your model.&lt;/p&gt;
-
-&lt;p&gt;Check the md5 checksum:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Downloads
-&lt;span class=&quot;nv&quot;&gt;$ DLSUM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;md5 DSM_DS1817+_25423.pat | &lt;span class=&quot;nb&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'='&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f2&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{$1=$1};1'&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
-
-james@Jamess-iMac: ~/Downloads
-&lt;span class=&quot;nv&quot;&gt;$ SERVERSUM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;DSM_DS1817+_25423.pat.md5.txt&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
-
-james@Jamess-iMac: ~/Downloads
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$SERVERSUM&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DLSUM&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;md5 match&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;fi
-&lt;/span&gt;md5 match
-
-james@Jamess-iMac: ~/Downloads
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$SERVERSUM&lt;/span&gt;
-3a168ad3e914cd48fc3cda2461f86f3e
-
-james@Jamess-iMac: ~/Downloads
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$DLSUM&lt;/span&gt;
-3a168ad3e914cd48fc3cda2461f86f3e
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Shutdown any services and docker containers. Log out of any &lt;code class=&quot;highlighter-rouge&quot;&gt;ssh&lt;/code&gt; sessions and unmount any shared folders.&lt;/p&gt;
-
-&lt;p&gt;Click “Manual DSM Update” and select your &lt;code class=&quot;highlighter-rouge&quot;&gt;pat&lt;/code&gt; file:&lt;/p&gt;
-
-&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/dsm/dsm-manual.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Manual Synology DSM update screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Click “Yes”.&lt;/p&gt;
-
-&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/dsm/dsm-warning.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Manual Synology DSM update warning screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Then wait, with 🤞…&lt;/p&gt;
-
-&lt;p&gt;For me it took about 5 minutes, then some time updating various packages.&lt;/p&gt;
-
-&lt;p&gt;Updated fine:&lt;/p&gt;
-
-&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/dsm/dsm-updated.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Synology DSM info screenshot&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;And all my docker containers started just fine:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/images/posts/dsm/dockers.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/dsm/dockers.png&quot; src=&quot;/assets/images/posts/dsm/dockers-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Dockers running&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>James Stout</name></author><category term="synology" /><category term="DSM 6.2.3" /><category term="NAS" /><summary type="html">Manually updating Synology NAS to DSM 6.2.3.</summary></entry></feed>
+&lt;p&gt;Certificates are renewed using &lt;a href=&quot;https://certbot.eff.org/&quot;&gt;Certbot&lt;/a&gt;, configured with the help of &lt;a href=&quot;https://www.digitalocean.com/community/tools/nginx&quot;&gt;nginxconfig.io&lt;/a&gt;, and protected from bad bots by &lt;a href=&quot;https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker&quot;&gt;The Ultimate Nginx Bad Bot Blocker&lt;/a&gt;.&lt;/p&gt;</content><author><name>James Stout</name></author><category term="HTTPS" /><category term="SSL" /><category term="web servers" /><summary type="html">HTTPS and SSL info.</summary></entry></feed>
