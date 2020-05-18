@@ -1,4 +1,120 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-05-17T21:23:11+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Fixing Nextcloud Conflicting Files</title><link href="https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files/" rel="alternate" type="text/html" title="Fixing Nextcloud Conflicting Files" /><published>2020-05-17T21:00:30+08:00</published><updated>2020-05-17T21:00:30+08:00</updated><id>https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files</id><content type="html" xml:base="https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files/">&lt;p&gt;I made a bit of a mess with my Nextcloud sync yesterday. I have my Dropbox folder synced to my Mac Nextcloud folder, but not to the sync folder on my NAS. I thought I would save time and bandwidth by copying the folder from my Mac to my NAS and seeing if the sync could figure it out.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-05-18T20:09:40+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Countly For iOS and Web Analytics</title><link href="https://stouty.xyz/ios/2020/05/18/countly/" rel="alternate" type="text/html" title="Countly For iOS and Web Analytics" /><published>2020-05-18T17:45:32+08:00</published><updated>2020-05-18T17:45:32+08:00</updated><id>https://stouty.xyz/ios/2020/05/18/countly</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/18/countly/">&lt;p&gt;I previously &lt;a href=&quot;https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/&quot;&gt;mentioned&lt;/a&gt; that I wasn’t too keen on all the things Firebase Crashlytics installed and would look at &lt;a href=&quot;https://count.ly/product&quot;&gt;Countly&lt;/a&gt; as an alternative.&lt;/p&gt;
+
+&lt;p&gt;Countly is impressive. They have loads of &lt;a href=&quot;https://support.count.ly/hc/en-us/categories/360002373332-Knowledge-Base&quot;&gt;documentation&lt;/a&gt;, and support &lt;a href=&quot;https://support.count.ly/hc/en-us/sections/360007310512-SDKs&quot;&gt;loads&lt;/a&gt; of platforms.&lt;/p&gt;
+
+&lt;p&gt;They &lt;a href=&quot;https://count.ly/pricing&quot;&gt;offer&lt;/a&gt; a paid Enterprise version or a free Community, self-hosted, option. I went with the Community edition.&lt;/p&gt;
+
+&lt;p&gt;The only significant missing feature (for me at least) in the Community version is no &lt;a href=&quot;https://developer.apple.com/library/archive/technotes/tn2151/_index.html&quot;&gt;symbolication&lt;/a&gt; and de-obfuscation of crash traces.&lt;/p&gt;
+
+&lt;p&gt;Also, if you’re installing onto a server where you already have Nginx set up, you have to run the install scripts carefully.&lt;/p&gt;
+
+&lt;h2 id=&quot;server-installation&quot;&gt;Server Installation&lt;/h2&gt;
+
+&lt;p&gt;They have many install options, including a &lt;a href=&quot;https://raw.githubusercontent.com/Countly/countly-server/master/bin/installer.sh&quot;&gt;one-liner install script&lt;/a&gt; that downloads the rest of the server and tries to install and configure your server. I did it manually.&lt;/p&gt;
+
+&lt;p&gt;Get the latest release and unzip:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;LATEST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;-qO-&lt;/span&gt; https://api.github.com/repos/countly/countly-server/releases/latest | &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;browser_download_url | &lt;span class=&quot;nb&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; 1 | &lt;span class=&quot;nb&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'&quot;'&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; 4&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Downloading from Github...&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$LATEST&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;zip &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;-nv&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$LATEST&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt; ./countly.zip &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    unzip countly.zip
+&lt;span class=&quot;k&quot;&gt;else
+    &lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;-nv&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$LATEST&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-O&lt;/span&gt; ./countly.tar.gz &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;tar &lt;/span&gt;zxfv countly.tar.gz &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then run the installer script:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;DATE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; +%Y-%m-%d:%H:%M:%S&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-z&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$APT_GET_CMD&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;bash countly/bin/countly.install.sh 2&amp;gt;&amp;amp;1 | &lt;span class=&quot;nb&quot;&gt;tee&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;countly/log/countly-install-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DATE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.log&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-z&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$YUM_CMD&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
+    &lt;/span&gt;bash countly/bin/countly.install_rhel.sh 2&amp;gt;&amp;amp;1 | &lt;span class=&quot;nb&quot;&gt;tee&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;countly/log/countly-install-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DATE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.log&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;error can't install Countly&quot;&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;exit &lt;/span&gt;1&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Which, for Ubuntu, calls &lt;a href=&quot;https://github.com/Countly/countly-server/blob/master/bin/countly.install_ubuntu.sh#L1&quot;&gt;countly.install_ubuntu.sh&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Installs build dependencies&lt;/li&gt;
+  &lt;li&gt;Installs &lt;a href=&quot;https://nodejs.org/fr/blog/release/v10.0.0/&quot;&gt;Node 10&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Installs Nginx (I skipped this)&lt;/li&gt;
+  &lt;li&gt;Installs &lt;a href=&quot;http://supervisord.org/introduction.html&quot;&gt;supervisor&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Installs &lt;a href=&quot;https://gruntjs.com/&quot;&gt;grunt&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://www.npmjs.com/&quot;&gt;npm&lt;/a&gt; modules&lt;/li&gt;
+  &lt;li&gt;Installs &lt;a href=&quot;https://www.mongodb.com/&quot;&gt;MongoDB&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Installs the Countly commands&lt;/li&gt;
+  &lt;li&gt;Configures a default site for Nginx (I skipped this)&lt;/li&gt;
+  &lt;li&gt;Installs various config files&lt;/li&gt;
+  &lt;li&gt;Installs &lt;a href=&quot;https://nghttp2.org/&quot;&gt;Nghttp2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Installs Countly plugins&lt;/li&gt;
+  &lt;li&gt;Builds Countly, then starts it.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I had to do a bit of extra faffing to get Let’s Encrypt certificates and plug it into my already configured Nginx setup.&lt;/p&gt;
+
+&lt;p&gt;After that you need to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://support.count.ly/hc/en-us/articles/360037814871-Configuring-Countly&quot;&gt;Configure&lt;/a&gt; Countly&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://support.count.ly/hc/en-us/articles/360037445752-Securing-MongoDB&quot;&gt;Secure&lt;/a&gt; MongoDB&lt;/li&gt;
+  &lt;li&gt;Setup your &lt;a href=&quot;https://support.count.ly/hc/en-us/articles/360037444232-Backing-up-Countly-server&quot;&gt;backups&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Learn the &lt;a href=&quot;https://support.count.ly/hc/en-us/articles/360037444912-Countly-command-line&quot;&gt;Countly command line&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Then login and create your admin user, create your apps, get the app keys and install the SDK for the &lt;a href=&quot;https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS&quot;&gt;apps&lt;/a&gt; or &lt;a href=&quot;https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-&quot;&gt;Web site&lt;/a&gt; you want to monitor.&lt;/p&gt;
+
+&lt;h2 id=&quot;ios-sdk-installation&quot;&gt;iOS SDK Installation&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/countly/countly-sdk-ios&quot;&gt;Download&lt;/a&gt; and install the SDK - just 32 files, all easy to comprehend.&lt;/p&gt;
+
+&lt;p&gt;Then instantiate Countly:&lt;/p&gt;
+
+&lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;CountlyConfig&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CountlyConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appKey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCountlyAPIKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;host&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCountlyEndpoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;features&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;@[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CLYCrashReporting&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CLYAutoViewTracking&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;starRatingDisableAskingForEachAppVersion&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;secretSalt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kCountlyAPISalt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alwaysUsePOST&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Countly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sharedInstance&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;startWithConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Countly&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sharedInstance&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;disableLocationInfo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;That’s about it. There are &lt;em&gt;many&lt;/em&gt; things you can configure on both the SDK and the server. Check the docs for that.&lt;/p&gt;
+
+&lt;p&gt;One note of warning, the SDK, by default, uses the &lt;a href=&quot;https://developer.apple.com/documentation/adsupport/asidentifiermanager?language=objc&quot;&gt;Advertising Identifier (IDFA)&lt;/a&gt;, so you have to tell Apple why you’re using it, or disable it entirely. See the &lt;a href=&quot;https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#app-store-connect-idfa-warning&quot;&gt;Countly docs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;web-analytics-installation&quot;&gt;Web Analytics Installation&lt;/h2&gt;
+
+&lt;p&gt;You need to either add &lt;code class=&quot;highlighter-rouge&quot;&gt;sdk/web/countly.min.js&lt;/code&gt; from your Countly server to your header code for the site you want to track, or grab the file and add it to your site’s build process. That’s what I did.&lt;/p&gt;
+
+&lt;p&gt;Added it to assets:&lt;/p&gt;
+
+&lt;p&gt;&lt;img data-src=&quot;/assets/images/posts/countly/assets.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;assets&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Created a setup html file:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/countly/setup.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/countly/setup.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;setup&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Then added it to my custom scripts &lt;code class=&quot;highlighter-rouge&quot;&gt;_include&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/countly/scripts.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/countly/scripts.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;scripts&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;So I now have some analytics trickling in:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/countly/HKWarnings.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/countly/HKWarnings.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;HKWarnings&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;/assets/images/posts/countly/stouty.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/countly/stouty.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;stouty&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>James Stout</name></author><category term="iOS" /><category term="webdev" /><category term="crash logs" /><category term="analytics crashlytics" /><category term="firebase" /><summary type="html">Installing Countly server and SDK for iOS and Web analytics</summary></entry><entry><title type="html">Fixing Nextcloud Conflicting Files</title><link href="https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files/" rel="alternate" type="text/html" title="Fixing Nextcloud Conflicting Files" /><published>2020-05-17T21:00:30+08:00</published><updated>2020-05-17T21:00:30+08:00</updated><id>https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files</id><content type="html" xml:base="https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files/">&lt;p&gt;I made a bit of a mess with my Nextcloud sync yesterday. I have my Dropbox folder synced to my Mac Nextcloud folder, but not to the sync folder on my NAS. I thought I would save time and bandwidth by copying the folder from my Mac to my NAS and seeing if the sync could figure it out.&lt;/p&gt;
 
 &lt;p&gt;It didn’t.&lt;/p&gt;
 
@@ -1458,19 +1574,4 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
       &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;.well-known/acme-challenge&lt;/code&gt; is just to ensure the directory exists for Certbot challenges during certificate renewal. &lt;a href=&quot;#fnref:fn-certbot&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>James Stout</name></author><category term="git" /><category term="Jekyll" /><category term="git hooks" /><category term="deployment" /><summary type="html">How to use Git hooks to deploy a static site.</summary></entry><entry><title type="html">Does My Site Need HTTPS?</title><link href="https://stouty.xyz/internet/2020/04/28/ssl/" rel="alternate" type="text/html" title="Does My Site Need HTTPS?" /><published>2020-04-28T22:19:46+08:00</published><updated>2020-04-28T22:19:46+08:00</updated><id>https://stouty.xyz/internet/2020/04/28/ssl</id><content type="html" xml:base="https://stouty.xyz/internet/2020/04/28/ssl/">&lt;p&gt;&lt;a href=&quot;https://doesmysiteneedhttps.com/&quot;&gt;Does My Site Need HTTPS?&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Yes, yes it does. Also see: &lt;a href=&quot;https://istlsfastyet.com/&quot;&gt;istlsfastyet.com&lt;/a&gt; and &lt;a href=&quot;https://dassur.ma/things/h2setup/&quot;&gt;h2setup&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;I run a few sites, all over HTTPS, using SSL/TLS certificates from &lt;a href=&quot;https://letsencrypt.org/about/&quot;&gt;Let’s Encrypt&lt;/a&gt;:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://stouty.xyz/&quot;&gt;stouty.xyz&lt;/a&gt; - this site.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://git.stouty.xyz/&quot;&gt;git.stouty.xyz&lt;/a&gt; - my painless, self-hosted &lt;a href=&quot;https://stouty.xyz/git/2020/03/11/gitea/&quot;&gt;Git service&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://cloud.stouty.xyz/&quot;&gt;cloud.stouty.xyz&lt;/a&gt; - my self-hosted &lt;a href=&quot;https://nextcloud.com/athome/&quot;&gt;Nextcloud&lt;/a&gt; instance.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.hkwarnings.com/&quot;&gt;hkwarnings.com&lt;/a&gt; - blog and server for &lt;a href=&quot;https://apps.apple.com/us/app/hkwarnings/id370901118&quot;&gt;HKWarnings&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;They all get an A+ score on the &lt;a href=&quot;https://www.ssllabs.com/ssltest/&quot;&gt;Qualys SSL Lab test&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Certificates are renewed using &lt;a href=&quot;https://certbot.eff.org/&quot;&gt;Certbot&lt;/a&gt;, configured with the help of &lt;a href=&quot;https://www.digitalocean.com/community/tools/nginx&quot;&gt;nginxconfig.io&lt;/a&gt;, and protected from bad bots by &lt;a href=&quot;https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker&quot;&gt;The Ultimate Nginx Bad Bot Blocker&lt;/a&gt;.&lt;/p&gt;</content><author><name>James Stout</name></author><category term="HTTPS" /><category term="SSL" /><category term="web servers" /><summary type="html">HTTPS and SSL info.</summary></entry></feed>
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="git" /><category term="Jekyll" /><category term="git hooks" /><category term="deployment" /><summary type="html">How to use Git hooks to deploy a static site.</summary></entry></feed>

@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>APFS Snapshots Saved The Day | stouty.xyz</title>
-<meta name="description" content="The perils of rm -rf and the wonder of filesystem snapshots. ">
+<!-- begin _includes/seo.html --><title>Countly For iOS and Web Analytics | stouty.xyz</title>
+<meta name="description" content="Installing Countly server and SDK for iOS and Web analytics ">
 
 
   <meta name="author" content="James Stout">
@@ -19,20 +19,20 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="stouty.xyz">
-<meta property="og:title" content="APFS Snapshots Saved The Day">
-<meta property="og:url" content="https://stouty.xyz/macos/2018/05/01/apfs-snapshots/">
+<meta property="og:title" content="Countly For iOS and Web Analytics">
+<meta property="og:url" content="https://stouty.xyz/ios/2020/05/18/countly/">
 
 
-  <meta property="og:description" content="The perils of rm -rf and the wonder of filesystem snapshots. ">
+  <meta property="og:description" content="Installing Countly server and SDK for iOS and Web analytics ">
 
 
 
 
 
   <meta name="twitter:site" content="@stoutyhk">
-  <meta name="twitter:title" content="APFS Snapshots Saved The Day">
-  <meta name="twitter:description" content="The perils of rm -rf and the wonder of filesystem snapshots. ">
-  <meta name="twitter:url" content="https://stouty.xyz/macos/2018/05/01/apfs-snapshots/">
+  <meta name="twitter:title" content="Countly For iOS and Web Analytics">
+  <meta name="twitter:description" content="Installing Countly server and SDK for iOS and Web analytics ">
+  <meta name="twitter:url" content="https://stouty.xyz/ios/2020/05/18/countly/">
 
   
     <meta name="twitter:card" content="summary">
@@ -45,14 +45,14 @@
 
 
 
-  <meta property="article:published_time" content="2018-05-01T09:29:01+08:00">
+  <meta property="article:published_time" content="2020-05-18T17:45:32+08:00">
 
 
 
 
 
 
-<link rel="canonical" href="https://stouty.xyz/macos/2018/05/01/apfs-snapshots/">
+<link rel="canonical" href="https://stouty.xyz/ios/2020/05/18/countly/">
 
 
 
@@ -345,15 +345,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="APFS Snapshots Saved The Day">
-    <meta itemprop="description" content="The perils of rm -rf and the wonder of filesystem snapshots.">
-    <meta itemprop="datePublished" content="2018-05-01T09:29:01+08:00">
+    <meta itemprop="headline" content="Countly For iOS and Web Analytics">
+    <meta itemprop="description" content="Installing Countly server and SDK for iOS and Web analytics">
+    <meta itemprop="datePublished" content="2020-05-18T17:45:32+08:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">APFS Snapshots Saved The Day
+          <h1 id="page-title" class="page__title" itemprop="headline">Countly For iOS and Web Analytics
 </h1>
           
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -361,7 +361,7 @@
 
 
 
-  1 minute read
+  2 minute read
 
 </p>
           
@@ -370,91 +370,123 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>I had a shocker earlier with an out of control<sup id="fnref:fn-bad-code"><a href="#fn:fn-bad-code" class="footnote">1</a></sup> shell script that was supposed to tidy up a load of empty directories on my Mac. Just in my home dir I had nearly 18,000 empty directories:</p>
+        <p>I previously <a href="https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/">mentioned</a> that I wasn’t too keen on all the things Firebase Crashlytics installed and would look at <a href="https://count.ly/product">Countly</a> as an alternative.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: ~
-<span class="nv">$ </span>find <span class="nb">.</span> <span class="nt">-not</span> <span class="se">\(</span> <span class="nt">-name</span> .svn <span class="nt">-prune</span> <span class="nt">-o</span> <span class="nt">-name</span> .git <span class="nt">-prune</span> <span class="se">\)</span> <span class="nt">-type</span> d <span class="nt">-empty</span> | <span class="nb">wc</span> <span class="nt">-l</span>
-   17825
+<p>Countly is impressive. They have loads of <a href="https://support.count.ly/hc/en-us/categories/360002373332-Knowledge-Base">documentation</a>, and support <a href="https://support.count.ly/hc/en-us/sections/360007310512-SDKs">loads</a> of platforms.</p>
+
+<p>They <a href="https://count.ly/pricing">offer</a> a paid Enterprise version or a free Community, self-hosted, option. I went with the Community edition.</p>
+
+<p>The only significant missing feature (for me at least) in the Community version is no <a href="https://developer.apple.com/library/archive/technotes/tn2151/_index.html">symbolication</a> and de-obfuscation of crash traces.</p>
+
+<p>Also, if you’re installing onto a server where you already have Nginx set up, you have to run the install scripts carefully.</p>
+
+<h2 id="server-installation">Server Installation</h2>
+
+<p>They have many install options, including a <a href="https://raw.githubusercontent.com/Countly/countly-server/master/bin/installer.sh">one-liner install script</a> that downloads the rest of the server and tries to install and configure your server. I did it manually.</p>
+
+<p>Get the latest release and unzip:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">LATEST</span><span class="o">=</span><span class="si">$(</span>wget <span class="nt">-qO-</span> https://api.github.com/repos/countly/countly-server/releases/latest | <span class="nb">grep </span>browser_download_url | <span class="nb">head</span> <span class="nt">-n</span> 1 | <span class="nb">cut</span> <span class="nt">-d</span> <span class="s1">'"'</span> <span class="nt">-f</span> 4<span class="si">)</span> <span class="p">;</span>
+
+<span class="nb">echo</span> <span class="s2">"Downloading from Github..."</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="nv">$LATEST</span><span class="s2">"</span> <span class="o">==</span> <span class="k">*</span>zip <span class="o">]]</span>
+<span class="k">then
+    </span>wget <span class="nt">-nv</span> <span class="s2">"</span><span class="nv">$LATEST</span><span class="s2">"</span> <span class="nt">-O</span> ./countly.zip <span class="p">;</span>
+    unzip countly.zip
+<span class="k">else
+    </span>wget <span class="nt">-nv</span> <span class="s2">"</span><span class="nv">$LATEST</span><span class="s2">"</span> <span class="nt">-O</span> ./countly.tar.gz <span class="p">;</span>
+    <span class="nb">tar </span>zxfv countly.tar.gz <span class="p">;</span>
+<span class="k">fi</span>
 </code></pre></div></div>
 
-<p>I wrote a <em>test</em> script to try out on a few directories. The next thing I saw … <code class="highlighter-rouge">rm -rf /</code> commands whizzing past on my terminal. Then things stopped working: <code class="highlighter-rouge">bash</code> had been deleted.</p>
+<p>Then run the installer script:</p>
 
-<p>I use <a href="https://brew.sh/">Homebrew</a> so <code class="highlighter-rouge">/usr/local</code> is writable by my user. And deletable. So my <code class="highlighter-rouge">/usr/local/bin</code> dir was gone, along with some other files.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">DATE</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span> +%Y-%m-%d:%H:%M:%S<span class="si">)</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="o">!</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$APT_GET_CMD</span><span class="s2">"</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+    </span>bash countly/bin/countly.install.sh 2&gt;&amp;1 | <span class="nb">tee</span> <span class="s2">"countly/log/countly-install-</span><span class="nv">$DATE</span><span class="s2">.log"</span>
+<span class="k">elif</span> <span class="o">[[</span> <span class="o">!</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$YUM_CMD</span><span class="s2">"</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+    </span>bash countly/bin/countly.install_rhel.sh 2&gt;&amp;1 | <span class="nb">tee</span> <span class="s2">"countly/log/countly-install-</span><span class="nv">$DATE</span><span class="s2">.log"</span>
+<span class="k">else
+    </span><span class="nb">echo</span> <span class="s2">"error can't install Countly"</span>
+    <span class="nb">exit </span>1<span class="p">;</span>
+<span class="k">fi</span>
+</code></pre></div></div>
 
-<p>I’m a proper backup nerd and have multiple backup strategies:</p>
+<p>Which, for Ubuntu, calls <a href="https://github.com/Countly/countly-server/blob/master/bin/countly.install_ubuntu.sh#L1">countly.install_ubuntu.sh</a></p>
 
 <ul>
-  <li><a href="https://en.wikipedia.org/wiki/Time_Machine_(macOS)">Time Machine</a> to my <a href="https://www.synology.com/en-global/products/DS1817+">NAS</a>.</li>
-  <li><a href="https://www.econtechnologies.com/chronosync/overview.html">ChronoSync</a> to a <a href="https://www.docker.com/">Docker</a> container running <a href="https://www.crashplan.com/en-us/business/">CrashPlan</a>.</li>
-  <li><a href="https://secure.backblaze.com/r/001z1s">Backblaze</a>.<sup id="fnref:fn-ref-link"><a href="#fn:fn-ref-link" class="footnote">2</a></sup></li>
-  <li>Finally, and this is what let me down, a <a href="https://bombich.com/">Carbon Copy</a> clone of my main drive.</li>
+  <li>Installs build dependencies</li>
+  <li>Installs <a href="https://nodejs.org/fr/blog/release/v10.0.0/">Node 10</a></li>
+  <li>Installs Nginx (I skipped this)</li>
+  <li>Installs <a href="http://supervisord.org/introduction.html">supervisor</a></li>
+  <li>Installs <a href="https://gruntjs.com/">grunt</a> &amp; <a href="https://www.npmjs.com/">npm</a> modules</li>
+  <li>Installs <a href="https://www.mongodb.com/">MongoDB</a></li>
+  <li>Installs the Countly commands</li>
+  <li>Configures a default site for Nginx (I skipped this)</li>
+  <li>Installs various config files</li>
+  <li>Installs <a href="https://nghttp2.org/">Nghttp2</a></li>
+  <li>Installs Countly plugins</li>
+  <li>Builds Countly, then starts it.</li>
 </ul>
 
-<p>The clone was a few weeks old, my <code class="highlighter-rouge">/usr/local</code> changes all the time. It wasn’t usable.</p>
+<p>I had to do a bit of extra faffing to get Let’s Encrypt certificates and plug it into my already configured Nginx setup.</p>
 
-<div class="premonition warning"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">TIP</p><p>Clone your drive often and test that it <a href="https://bombich.com/kb/ccc5/how-verify-or-test-your-backup">works</a>!</p>
+<p>After that you need to:</p>
 
+<ul>
+  <li><a href="https://support.count.ly/hc/en-us/articles/360037814871-Configuring-Countly">Configure</a> Countly</li>
+  <li><a href="https://support.count.ly/hc/en-us/articles/360037445752-Securing-MongoDB">Secure</a> MongoDB</li>
+  <li>Setup your <a href="https://support.count.ly/hc/en-us/articles/360037444232-Backing-up-Countly-server">backups</a></li>
+  <li>Learn the <a href="https://support.count.ly/hc/en-us/articles/360037444912-Countly-command-line">Countly command line</a></li>
+</ul>
 
-</div></div>
-<p>However, I’d been learning about APFS, and had taken a snapshot .. yesterday.</p>
+<p>Then login and create your admin user, create your apps, get the app keys and install the SDK for the <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS">apps</a> or <a href="https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-">Web site</a> you want to monitor.</p>
 
-<p><a href="https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/APFS_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40016999-CH1-DontLinkElementID_19">APFS</a> is Apple’s new filesystem:</p>
+<h2 id="ios-sdk-installation">iOS SDK Installation</h2>
 
-<blockquote>
-  <p>Apple File System is a new, modern file system for iOS, macOS, tvOS, and watchOS. It is optimized for Flash/SSD storage and features strong encryption, copy-on-write metadata, space sharing, cloning for files and directories, snapshots, fast directory sizing, atomic safe-save primitives, and improved file system fundamentals.</p>
-</blockquote>
+<p><a href="https://github.com/countly/countly-sdk-ios">Download</a> and install the SDK - just 32 files, all easy to comprehend.</p>
 
-<p>What’s a <a href="https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/APFS_Guide/Features/Features.html#//apple_ref/doc/uid/TP40016999-CH5-DontLinkElementID_5">snapshot</a>?</p>
-<blockquote>
-  <p>A volume snapshot is a point-in-time, read-only instance of the file system.</p>
-</blockquote>
+<p>Then instantiate Countly:</p>
 
-<p>Time Machine also takes local snapshots if your <a href="https://support.apple.com/en-hk/HT204015">backup drive isn’t available</a>, so I actually had a few snapshots:</p>
+<div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CountlyConfig</span><span class="o">*</span> <span class="n">config</span> <span class="o">=</span> <span class="n">CountlyConfig</span><span class="p">.</span><span class="n">new</span><span class="p">;</span>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>tmutil listlocalsnapshots /
-com.apple.TimeMachine.2018-04-30-165525
-com.apple.TimeMachine.2018-04-30-175518
-com.apple.TimeMachine.2018-04-30-185503
-com.apple.TimeMachine.2018-04-30-195506
-com.apple.TimeMachine.2018-04-30-205509
-com.apple.TimeMachine.2018-04-30-215522
-com.apple.TimeMachine.2018-04-30-225512
-com.apple.TimeMachine.2018-04-30-235517
-com.apple.TimeMachine.2018-05-01-005520
-com.apple.TimeMachine.2018-05-01-015548
-com.apple.TimeMachine.2018-05-01-025524
+<span class="n">config</span><span class="p">.</span><span class="n">appKey</span> <span class="o">=</span> <span class="n">kCountlyAPIKey</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">kCountlyEndpoint</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">features</span> <span class="o">=</span> <span class="p">@[</span><span class="n">CLYCrashReporting</span><span class="p">,</span> <span class="n">CLYAutoViewTracking</span><span class="p">];</span>
+<span class="n">config</span><span class="p">.</span><span class="n">starRatingDisableAskingForEachAppVersion</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">secretSalt</span> <span class="o">=</span> <span class="n">kCountlyAPISalt</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">alwaysUsePOST</span> <span class="o">=</span> <span class="nb">YES</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">Countly</span><span class="p">.</span><span class="n">sharedInstance</span> <span class="nf">startWithConfig</span><span class="p">:</span><span class="n">config</span><span class="p">];</span>
+
+<span class="p">[</span><span class="n">Countly</span><span class="p">.</span><span class="n">sharedInstance</span> <span class="nf">disableLocationInfo</span><span class="p">];</span>
 </code></pre></div></div>
 
-<p>You can use <code class="highlighter-rouge">tmutil</code> to <a href="http://krypted.com/mac-os-x/ins-outs-using-tmutil-backup-restore-review-time-machine-backups/">compare and restore</a>, or simply Time Machine, but the files are available right there on the filesystem, I just had to copy my missing files back into the right places from the local snapshot dir:</p>
+<p>That’s about it. There are <em>many</em> things you can configure on both the SDK and the server. Check the docs for that.</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /Volumes/com.apple.TimeMachine.localsnapshots/Backups.backupdb/James’s<span class="se">\ </span>iMac/2018-05-01-025524/Macintosh<span class="se">\ </span>HD/usr/local/
+<p>One note of warning, the SDK, by default, uses the <a href="https://developer.apple.com/documentation/adsupport/asidentifiermanager?language=objc">Advertising Identifier (IDFA)</a>, so you have to tell Apple why you’re using it, or disable it entirely. See the <a href="https://support.count.ly/hc/en-us/articles/360037753511-iOS-watchOS-tvOS-macOS#app-store-connect-idfa-warning">Countly docs</a>.</p>
 
-james@Jamess-iMac: /Volumes/com.apple.TimeMachine.localsnapshots/Backups.backupdb/James’s iMac/2018-05-01-025524/Macintosh HD/usr/local
-<span class="nv">$ </span><span class="nb">ls
-</span>Caskroom      Frameworks    MacGPG2       etc           lib           opt           remotedesktop share
-Cellar        Homebrew      bin           include       man           pear          sbin          var
-</code></pre></div></div>
+<h2 id="web-analytics-installation">Web Analytics Installation</h2>
 
-<p>Phew. All fixed.</p>
+<p>You need to either add <code class="highlighter-rouge">sdk/web/countly.min.js</code> from your Countly server to your header code for the site you want to track, or grab the file and add it to your site’s build process. That’s what I did.</p>
 
-<p>Do I like APFS?</p>
+<p>Added it to assets:</p>
 
-<video width="240" height="240" autoplay="" muted="" loop="" playsinline="" poster="/assets/images/posts/apfs-snapshots/bale.gif">
-  <source src="/assets/images/posts/apfs-snapshots/bale.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
+<p><img data-src="/assets/images/posts/countly/assets.png" class="lazyload align-center blur-up" alt="assets" /></p>
 
-<hr />
-<div class="footnotes">
-  <ol>
-    <li id="fn:fn-bad-code">
-      <p>Er, poorly written. <a href="#fnref:fn-bad-code" class="reversefootnote">&#8617;</a></p>
-    </li>
-    <li id="fn:fn-ref-link">
-      <p>Referral link. <a href="#fnref:fn-ref-link" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
+<p>Created a setup html file:</p>
+
+<p><a href="/assets/images/posts/countly/setup.png"><img data-src="/assets/images/posts/countly/setup.png" class="lazyload align-center blur-up" alt="setup" /></a></p>
+
+<p>Then added it to my custom scripts <code class="highlighter-rouge">_include</code>:</p>
+
+<p><a href="/assets/images/posts/countly/scripts.png"><img data-src="/assets/images/posts/countly/scripts.png" class="lazyload align-center blur-up" alt="scripts" /></a></p>
+
+<p>So I now have some analytics trickling in:</p>
+
+<p><a href="/assets/images/posts/countly/HKWarnings.png"><img data-src="/assets/images/posts/countly/HKWarnings.png" class="lazyload align-center blur-up" alt="HKWarnings" /></a></p>
+
+<p><a href="/assets/images/posts/countly/stouty.png"><img data-src="/assets/images/posts/countly/stouty.png" class="lazyload align-center blur-up" alt="stouty" /></a></p>
 
         
       </section>
@@ -475,23 +507,23 @@ Cellar        Homebrew      bin           include       man           pear      
     
       
       
-      <a href="/tags/#apfs" class="page__taxonomy-item" rel="tag">APFS</a><span class="sep">, </span>
+      <a href="/tags/#analytics-crashlytics" class="page__taxonomy-item" rel="tag">analytics crashlytics</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#filesystems" class="page__taxonomy-item" rel="tag">filesystems</a><span class="sep">, </span>
+      <a href="/tags/#crash-logs" class="page__taxonomy-item" rel="tag">crash logs</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#macos" class="page__taxonomy-item" rel="tag">macOS</a><span class="sep">, </span>
+      <a href="/tags/#firebase" class="page__taxonomy-item" rel="tag">firebase</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#snapshots" class="page__taxonomy-item" rel="tag">snapshots</a><span class="sep">, </span>
+      <a href="/tags/#ios" class="page__taxonomy-item" rel="tag">iOS</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#tmutil" class="page__taxonomy-item" rel="tag">tmutil</a>
+      <a href="/tags/#webdev" class="page__taxonomy-item" rel="tag">webdev</a>
     
     </span>
   </p>
@@ -512,14 +544,14 @@ Cellar        Homebrew      bin           include       man           pear      
     
       
       
-      <a href="/categories/#macos" class="page__taxonomy-item" rel="tag">macOS</a>
+      <a href="/categories/#ios" class="page__taxonomy-item" rel="tag">iOS</a>
     
     </span>
   </p>
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-05-01T09:29:01+08:00">May 1, 2018</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-18T17:45:32+08:00">May 18, 2020</time></p>
         
       </footer>
 
@@ -528,12 +560,11 @@ Cellar        Homebrew      bin           include       man           pear      
       
   <nav class="pagination">
     
-      <a href="/music/2018/04/22/prince/" class="pagination--pager" title="Prince estate releases original version of ‘Nothing Compares 2 U’
+      <a href="/nextcloud/2020/05/17/nextcloud-conflicting-files/" class="pagination--pager" title="Fixing Nextcloud Conflicting Files
 ">Previous</a>
     
     
-      <a href="/macos/2018/05/05/suspicious-package/" class="pagination--pager" title="Essential macOS Software: Suspicious Package
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -547,35 +578,6 @@ Cellar        Homebrew      bin           include       man           pear      
     <div class="page__related">
       <h4 class="page__related-title">You May Also Enjoy</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/ios/2020/05/18/countly/" rel="permalink">Countly For iOS and Web Analytics
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  2 minute read
-
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Installing Countly server and SDK for iOS and Web analytics
-</p>
-  </article>
-</div>
-
         
           
 
@@ -659,6 +661,35 @@ Cellar        Homebrew      bin           include       man           pear      
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">My first attempt at a Jekyll plugin, it copies the _site folder somewhere else.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/macos/2020/05/11/zoom-update/" rel="permalink">A Quick Update on Zoom Code Signing
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">A quick update on Zoom code signing.
 </p>
   </article>
 </div>

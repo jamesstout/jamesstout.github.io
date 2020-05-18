@@ -226,4 +226,10 @@ var store = [{
         "tags": ["nextcloud","bash","stat","find","sync"],
         "url": "https://stouty.xyz/nextcloud/2020/05/17/nextcloud-conflicting-files/",
         "teaser": null
+      },{
+        "title": "Countly For iOS and Web Analytics",
+        "excerpt":"I previously mentioned that I wasn’t too keen on all the things Firebase Crashlytics installed and would look at Countly as an alternative. Countly is impressive. They have loads of documentation, and support loads of platforms. They offer a paid Enterprise version or a free Community, self-hosted, option. I went...","categories": ["iOS"],
+        "tags": ["iOS","webdev","crash logs","analytics crashlytics","firebase"],
+        "url": "https://stouty.xyz/ios/2020/05/18/countly/",
+        "teaser": null
       }]
