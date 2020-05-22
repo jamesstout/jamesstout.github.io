@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -432,7 +432,7 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
   <p>The <code class="highlighter-rouge">post-receive</code> hook runs after the entire process is completed and can be used to update other services or notify users.</p>
 </blockquote>
 
-<p>I have it configured to change directory to the Web <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#root">root</a>, which is also a Git repo, with the same <code class="highlighter-rouge">origin</code> as the working repo on my local machine, and simply execute <code class="highlighter-rouge">git pull</code><sup id="fnref:fn-certbot"><a href="#fn:fn-certbot" class="footnote">1</a></sup>:</p>
+<p>I have it configured to change directory to the Web <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#root">root</a>, which is also a Git repo, with the same <code class="highlighter-rouge">origin</code> as the working repo on my local machine, and simply execute <code class="highlighter-rouge">git pull</code><sup id="fnref:fn-certbot" role="doc-noteref"><a href="#fn:fn-certbot" class="footnote">1</a></sup>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@hkwarnings: /usr/src/stouty.git/hooks
 <span class="nv">$ </span><span class="nb">cat </span>post-receive
@@ -455,10 +455,10 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
 
 <hr />
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:fn-certbot">
-      <p>The <code class="highlighter-rouge">.well-known/acme-challenge</code> is just to ensure the directory exists for Certbot challenges during certificate renewal. <a href="#fnref:fn-certbot" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:fn-certbot" role="doc-endnote">
+      <p>The <code class="highlighter-rouge">.well-known/acme-challenge</code> is just to ensure the directory exists for Certbot challenges during certificate renewal. <a href="#fnref:fn-certbot" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

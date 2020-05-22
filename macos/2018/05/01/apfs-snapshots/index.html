@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -370,7 +370,7 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>I had a shocker earlier with an out of control<sup id="fnref:fn-bad-code"><a href="#fn:fn-bad-code" class="footnote">1</a></sup> shell script that was supposed to tidy up a load of empty directories on my Mac. Just in my home dir I had nearly 18,000 empty directories:</p>
+        <p>I had a shocker earlier with an out of control<sup id="fnref:fn-bad-code" role="doc-noteref"><a href="#fn:fn-bad-code" class="footnote">1</a></sup> shell script that was supposed to tidy up a load of empty directories on my Mac. Just in my home dir I had nearly 18,000 empty directories:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: ~
 <span class="nv">$ </span>find <span class="nb">.</span> <span class="nt">-not</span> <span class="se">\(</span> <span class="nt">-name</span> .svn <span class="nt">-prune</span> <span class="nt">-o</span> <span class="nt">-name</span> .git <span class="nt">-prune</span> <span class="se">\)</span> <span class="nt">-type</span> d <span class="nt">-empty</span> | <span class="nb">wc</span> <span class="nt">-l</span>
@@ -386,7 +386,7 @@
 <ul>
   <li><a href="https://en.wikipedia.org/wiki/Time_Machine_(macOS)">Time Machine</a> to my <a href="https://www.synology.com/en-global/products/DS1817+">NAS</a>.</li>
   <li><a href="https://www.econtechnologies.com/chronosync/overview.html">ChronoSync</a> to a <a href="https://www.docker.com/">Docker</a> container running <a href="https://www.crashplan.com/en-us/business/">CrashPlan</a>.</li>
-  <li><a href="https://secure.backblaze.com/r/001z1s">Backblaze</a>.<sup id="fnref:fn-ref-link"><a href="#fn:fn-ref-link" class="footnote">2</a></sup></li>
+  <li><a href="https://secure.backblaze.com/r/001z1s">Backblaze</a>.<sup id="fnref:fn-ref-link" role="doc-noteref"><a href="#fn:fn-ref-link" class="footnote">2</a></sup></li>
   <li>Finally, and this is what let me down, a <a href="https://bombich.com/">Carbon Copy</a> clone of my main drive.</li>
 </ul>
 
@@ -445,13 +445,13 @@ Cellar        Homebrew      bin           include       man           pear      
 </video>
 
 <hr />
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:fn-bad-code">
-      <p>Er, poorly written. <a href="#fnref:fn-bad-code" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:fn-bad-code" role="doc-endnote">
+      <p>Er, poorly written. <a href="#fnref:fn-bad-code" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:fn-ref-link">
-      <p>Referral link. <a href="#fnref:fn-ref-link" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:fn-ref-link" role="doc-endnote">
+      <p>Referral link. <a href="#fnref:fn-ref-link" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

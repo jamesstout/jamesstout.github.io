@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -380,7 +380,7 @@
   <li>OneSignal’s Free tier will support up to 10 Data Tags per device. This limitation applies to all Free users, regardless of subscriber count.</li>
 </ul>
 
-<p>It’s the last limit that affects me and HKWarnings. I use tags to exclude certain devices when sending certain push notifications<sup id="fnref:fn-optout"><a href="#fn:fn-optout" class="footnote">1</a></sup>. I also tagged other info, so I quite easily had more than 10 tags.</p>
+<p>It’s the last limit that affects me and HKWarnings. I use tags to exclude certain devices when sending certain push notifications<sup id="fnref:fn-optout" role="doc-noteref"><a href="#fn:fn-optout" class="footnote">1</a></sup>. I also tagged other info, so I quite easily had more than 10 tags.</p>
 
 <p>Hmmm, more than 35,000 subscribers, with all sorts of tags I don’t need, but a few I need.</p>
 
@@ -424,8 +424,8 @@
 
 <span class="nv">$onesig</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
-<span class="k">if</span> <span class="p">((</span><span class="nv">$handle</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="s2">"onesignal_users.csv"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">))</span> <span class="o">!==</span> <span class="k">FALSE</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">((</span><span class="nv">$data</span> <span class="o">=</span> <span class="nb">fgetcsv</span><span class="p">(</span><span class="nv">$handle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">","</span><span class="p">))</span> <span class="o">!==</span> <span class="k">FALSE</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">((</span><span class="nv">$handle</span> <span class="o">=</span> <span class="nb">fopen</span><span class="p">(</span><span class="s2">"onesignal_users.csv"</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">((</span><span class="nv">$data</span> <span class="o">=</span> <span class="nb">fgetcsv</span><span class="p">(</span><span class="nv">$handle</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">","</span><span class="p">))</span> <span class="o">!==</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="p">{</span>
         <span class="nv">$num</span> <span class="o">=</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
 
         <span class="c1">// no tags = "{}", so skip them</span>
@@ -585,10 +585,10 @@
 </code></pre></div></div>
 
 <hr />
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:fn-optout">
-      <p>There are 21 possible warnings issued by the HKO, people can opt out of certain warnings. If they do, I set a tag on the device in OneSignal. <a href="#fnref:fn-optout" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:fn-optout" role="doc-endnote">
+      <p>There are 21 possible warnings issued by the HKO, people can opt out of certain warnings. If they do, I set a tag on the device in OneSignal. <a href="#fnref:fn-optout" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.1 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -444,7 +444,7 @@ PhotoSync works seamlessly with all major NAS storage devices, servers and perso
 
 <p>Straight to <a href="https://unix.stackexchange.com/questions/71176/find-duplicate-files">StackOverflow</a>, which provided many methods:</p>
 
-<h2 id="find">find<sup id="fnref:fn-find"><a href="#fn:fn-find" class="footnote">1</a></sup></h2>
+<h2 id="find">find<sup id="fnref:fn-find" role="doc-noteref"><a href="#fn:fn-find" class="footnote">1</a></sup></h2>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="nb">.</span> <span class="o">!</span> <span class="nt">-empty</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">md5sum</span> <span class="o">{}</span> + | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-w32</span> <span class="nt">-dD</span>
 </code></pre></div></div>
@@ -455,7 +455,7 @@ PhotoSync works seamlessly with all major NAS storage devices, servers and perso
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="nb">.</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">md5sum</span> <span class="s1">'{}'</span> + | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">--all-repeated</span> <span class="se">\</span>
 <span class="nt">--check-chars</span><span class="o">=</span>32 | <span class="nb">cut</span> <span class="nt">--characters</span><span class="o">=</span>35-
 </code></pre></div></div>
-<h2 id="fdupes">fdupes<sup id="fnref:fn-fdupes"><a href="#fn:fn-fdupes" class="footnote">2</a></sup></h2>
+<h2 id="fdupes">fdupes<sup id="fnref:fn-fdupes" role="doc-noteref"><a href="#fn:fn-fdupes" class="footnote">2</a></sup></h2>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fdupes <span class="nt">-r</span> <span class="nb">.</span>
 </code></pre></div></div>
@@ -466,7 +466,7 @@ PhotoSync works seamlessly with all major NAS storage devices, servers and perso
 <span class="o">}</span> | <span class="nb">sort</span> <span class="nt">-n</span>
 </code></pre></div></div>
 
-<h2 id="fslint">fslint<sup id="fnref:fn-fslint"><a href="#fn:fn-fslint" class="footnote">3</a></sup></h2>
+<h2 id="fslint">fslint<sup id="fnref:fn-fslint" role="doc-noteref"><a href="#fn:fn-fslint" class="footnote">3</a></sup></h2>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/share/fslint/fslint <span class="o">&amp;&amp;</span> ./fslint /path/to/directory
 </code></pre></div></div>
@@ -654,16 +654,16 @@ sys     0m0.049s
 
 <hr />
 
-<div class="footnotes">
+<div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:fn-find">
-      <p>find <a href="https://linux.die.net/man/1/find">man page</a>. <a href="#fnref:fn-find" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:fn-find" role="doc-endnote">
+      <p>find <a href="https://linux.die.net/man/1/find">man page</a>. <a href="#fnref:fn-find" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:fn-fdupes">
-      <p>fdupes <a href="http://premium.caribe.net/~adrian2/fdupes.html">home</a> and <a href="https://linux.die.net/man/1/fdupes">man page</a>. <a href="#fnref:fn-fdupes" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:fn-fdupes" role="doc-endnote">
+      <p>fdupes <a href="http://premium.caribe.net/~adrian2/fdupes.html">home</a> and <a href="https://linux.die.net/man/1/fdupes">man page</a>. <a href="#fnref:fn-fdupes" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:fn-fslint">
-      <p>fslint <a href="https://www.pixelbeat.org/fslint/">home</a> and <a href="https://linux.die.net/man/1/fslint">man page</a>. <a href="#fnref:fn-fslint" class="reversefootnote">&#8617;</a></p>
+    <li id="fn:fn-fslint" role="doc-endnote">
+      <p>fslint <a href="https://www.pixelbeat.org/fslint/">home</a> and <a href="https://linux.die.net/man/1/fslint">man page</a>. <a href="#fnref:fn-fslint" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
