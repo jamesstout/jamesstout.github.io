@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>A Jekyll Hook to Copy Pre-Built Site to Another Directory | stouty.xyz</title>
-<meta name="description" content="My first attempt at a Jekyll plugin, it copies the _site folder somewhere else. ">
+<meta name="description" content="My first attempt at a Jekyll plugin, it copies the _site folder somewhere else.">
 
 
   <meta name="author" content="James Stout">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook/">
 
 
-  <meta property="og:description" content="My first attempt at a Jekyll plugin, it copies the _site folder somewhere else. ">
+  <meta property="og:description" content="My first attempt at a Jekyll plugin, it copies the _site folder somewhere else.">
 
 
 
@@ -31,7 +31,7 @@
 
   <meta name="twitter:site" content="@stoutyhk">
   <meta name="twitter:title" content="A Jekyll Hook to Copy Pre-Built Site to Another Directory">
-  <meta name="twitter:description" content="My first attempt at a Jekyll plugin, it copies the _site folder somewhere else. ">
+  <meta name="twitter:description" content="My first attempt at a Jekyll plugin, it copies the _site folder somewhere else.">
   <meta name="twitter:url" content="https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook/">
 
   
@@ -370,11 +370,11 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>This <a href="https://stouty.xyz/webdev/2020/04/28/git-deploy/">site</a> doesn’t build as a <a href="https://pages.github.com/">GitHub Page</a> as it uses <a href="https://pages.github.com/versions/">unsupported gems and plugins</a>. So when I push to <code class="highlighter-rouge">jamesstout.github.io.git</code> I get build failures.</p>
+        <p>This <a href="https://stouty.xyz/webdev/2020/04/28/git-deploy/">site</a> doesn’t build as a <a href="https://pages.github.com/">GitHub Page</a> as it uses <a href="https://pages.github.com/versions/">unsupported gems and plugins</a>. So when I push to <code class="language-plaintext highlighter-rouge">jamesstout.github.io.git</code> I get build failures.</p>
 
-<p>My solution is to have two repositories, the source where I write and build the site, and a destination repo that points to the <code class="highlighter-rouge">jamesstout.github.io.git</code> <a href="https://github.com/jamesstout/jamesstout.github.io">repo</a>. The difference is, the destination repo just contains the files from the already built <code class="highlighter-rouge">_site</code> folder. This is what is pushed to the destination, and ultimately rendered at <a href="https://jamesstout.github.io/">jamesstout.github.io</a>.</p>
+<p>My solution is to have two repositories, the source where I write and build the site, and a destination repo that points to the <code class="language-plaintext highlighter-rouge">jamesstout.github.io.git</code> <a href="https://github.com/jamesstout/jamesstout.github.io">repo</a>. The difference is, the destination repo just contains the files from the already built <code class="language-plaintext highlighter-rouge">_site</code> folder. This is what is pushed to the destination, and ultimately rendered at <a href="https://jamesstout.github.io/">jamesstout.github.io</a>.</p>
 
-<p>Not wanting to do anything manually, I wrote a <a href="https://jekyllrb.com/docs/plugins/hooks/">Jekyll hook plugin</a> that copies the files from the <code class="highlighter-rouge">_site</code> folder to the destination repo, commits the changes and pushes to its remote, but only if there is a new commit in the source repo. No point copying, and pushing if you haven’t yet committed your changes. Here’s the plugin:</p>
+<p>Not wanting to do anything manually, I wrote a <a href="https://jekyllrb.com/docs/plugins/hooks/">Jekyll hook plugin</a> that copies the files from the <code class="language-plaintext highlighter-rouge">_site</code> folder to the destination repo, commits the changes and pushes to its remote, but only if there is a new commit in the source repo. No point copying, and pushing if you haven’t yet committed your changes. Here’s the plugin:</p>
 
 <script src="https://gist.github.com/jamesstout/42201bbc498a4b91a9a1f884a17ced8c.js"></script>
 
@@ -442,8 +442,9 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-11T23:42:03+08:00">May 11, 2020</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-11T23:42:03+08:00">May 11, 2020</time></p>
+
+
       </footer>
 
       

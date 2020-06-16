@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Using Git to Deploy a Static Website | stouty.xyz</title>
-<meta name="description" content="How to use Git hooks to deploy a static site. ">
+<meta name="description" content="How to use Git hooks to deploy a static site.">
 
 
   <meta name="author" content="James Stout">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://stouty.xyz/webdev/2020/04/28/git-deploy/">
 
 
-  <meta property="og:description" content="How to use Git hooks to deploy a static site. ">
+  <meta property="og:description" content="How to use Git hooks to deploy a static site.">
 
 
 
@@ -31,7 +31,7 @@
 
   <meta name="twitter:site" content="@stoutyhk">
   <meta name="twitter:title" content="Using Git to Deploy a Static Website">
-  <meta name="twitter:description" content="How to use Git hooks to deploy a static site. ">
+  <meta name="twitter:description" content="How to use Git hooks to deploy a static site.">
   <meta name="twitter:url" content="https://stouty.xyz/webdev/2020/04/28/git-deploy/">
 
   
@@ -389,11 +389,11 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
                     <span class="k">done in </span>1.531 seconds.
  Auto-regeneration: disabled. Use <span class="nt">--watch</span> to enable.
 </code></pre></div></div>
-<p>Generating the new <code class="highlighter-rouge">_site</code> folder:</p>
+<p>Generating the new <code class="language-plaintext highlighter-rouge">_site</code> folder:</p>
 
 <p><a href="/assets/images/posts/git-deploy/gs.png"><img data-src="/assets/images/posts/git-deploy/gs.png" src="/assets/images/posts/git-deploy/gs-lq.png" class="lazyload blur-up" alt="Git status screenshot" /></a></p>
 
-<p>The Git repo for this site has the usual <code class="highlighter-rouge">origin</code> <a href="https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes">remote</a>, but also a remote named <code class="highlighter-rouge">deploy</code>:</p>
+<p>The Git repo for this site has the usual <code class="language-plaintext highlighter-rouge">origin</code> <a href="https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes">remote</a>, but also a remote named <code class="language-plaintext highlighter-rouge">deploy</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: ~/Projects/jamesstout.github.io/.git
 <span class="nv">$ </span><span class="nb">cat </span>config
@@ -417,7 +417,7 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
 	fetch <span class="o">=</span> +refs/heads/<span class="k">*</span>:refs/remotes/deploy/<span class="k">*</span>
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">deploy</code> remote is a <a href="https://mijingo.com/blog/what-is-a-bare-git-repository">bare</a> git repository on the Web server, that simply receives the latest git objects. There’s no working tree:</p>
+<p>The <code class="language-plaintext highlighter-rouge">deploy</code> remote is a <a href="https://mijingo.com/blog/what-is-a-bare-git-repository">bare</a> git repository on the Web server, that simply receives the latest git objects. There’s no working tree:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@hkwarnings: /usr/src/stouty.git
 <span class="nv">$ </span><span class="nb">ls
@@ -429,10 +429,10 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
 <blockquote>
   <p>These scripts run before and after pushes to the server.</p>
 
-  <p>The <code class="highlighter-rouge">post-receive</code> hook runs after the entire process is completed and can be used to update other services or notify users.</p>
+  <p>The <code class="language-plaintext highlighter-rouge">post-receive</code> hook runs after the entire process is completed and can be used to update other services or notify users.</p>
 </blockquote>
 
-<p>I have it configured to change directory to the Web <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#root">root</a>, which is also a Git repo, with the same <code class="highlighter-rouge">origin</code> as the working repo on my local machine, and simply execute <code class="highlighter-rouge">git pull</code><sup id="fnref:fn-certbot" role="doc-noteref"><a href="#fn:fn-certbot" class="footnote">1</a></sup>:</p>
+<p>I have it configured to change directory to the Web <a href="https://nginx.org/en/docs/http/ngx_http_core_module.html#root">root</a>, which is also a Git repo, with the same <code class="language-plaintext highlighter-rouge">origin</code> as the working repo on my local machine, and simply execute <code class="language-plaintext highlighter-rouge">git pull</code><sup id="fnref:fn-certbot" role="doc-noteref"><a href="#fn:fn-certbot" class="footnote">1</a></sup>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@hkwarnings: /usr/src/stouty.git/hooks
 <span class="nv">$ </span><span class="nb">cat </span>post-receive
@@ -458,7 +458,7 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:fn-certbot" role="doc-endnote">
-      <p>The <code class="highlighter-rouge">.well-known/acme-challenge</code> is just to ensure the directory exists for Certbot challenges during certificate renewal. <a href="#fnref:fn-certbot" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p>The <code class="language-plaintext highlighter-rouge">.well-known/acme-challenge</code> is just to ensure the directory exists for Certbot challenges during certificate renewal. <a href="#fnref:fn-certbot" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -522,8 +522,9 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-04-28T23:02:33+08:00">April 28, 2020</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-04-28T23:02:33+08:00">April 28, 2020</time></p>
+
+
       </footer>
 
       

@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>APFS Snapshots Saved The Day | stouty.xyz</title>
-<meta name="description" content="The perils of rm -rf and the wonder of filesystem snapshots. ">
+<meta name="description" content="The perils of rm -rf and the wonder of filesystem snapshots.">
 
 
   <meta name="author" content="James Stout">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://stouty.xyz/macos/2018/05/01/apfs-snapshots/">
 
 
-  <meta property="og:description" content="The perils of rm -rf and the wonder of filesystem snapshots. ">
+  <meta property="og:description" content="The perils of rm -rf and the wonder of filesystem snapshots.">
 
 
 
@@ -31,7 +31,7 @@
 
   <meta name="twitter:site" content="@stoutyhk">
   <meta name="twitter:title" content="APFS Snapshots Saved The Day">
-  <meta name="twitter:description" content="The perils of rm -rf and the wonder of filesystem snapshots. ">
+  <meta name="twitter:description" content="The perils of rm -rf and the wonder of filesystem snapshots.">
   <meta name="twitter:url" content="https://stouty.xyz/macos/2018/05/01/apfs-snapshots/">
 
   
@@ -377,9 +377,9 @@
    17825
 </code></pre></div></div>
 
-<p>I wrote a <em>test</em> script to try out on a few directories. The next thing I saw … <code class="highlighter-rouge">rm -rf /</code> commands whizzing past on my terminal. Then things stopped working: <code class="highlighter-rouge">bash</code> had been deleted.</p>
+<p>I wrote a <em>test</em> script to try out on a few directories. The next thing I saw … <code class="language-plaintext highlighter-rouge">rm -rf /</code> commands whizzing past on my terminal. Then things stopped working: <code class="language-plaintext highlighter-rouge">bash</code> had been deleted.</p>
 
-<p>I use <a href="https://brew.sh/">Homebrew</a> so <code class="highlighter-rouge">/usr/local</code> is writable by my user. And deletable. So my <code class="highlighter-rouge">/usr/local/bin</code> dir was gone, along with some other files.</p>
+<p>I use <a href="https://brew.sh/">Homebrew</a> so <code class="language-plaintext highlighter-rouge">/usr/local</code> is writable by my user. And deletable. So my <code class="language-plaintext highlighter-rouge">/usr/local/bin</code> dir was gone, along with some other files.</p>
 
 <p>I’m a proper backup nerd and have multiple backup strategies:</p>
 
@@ -390,7 +390,7 @@
   <li>Finally, and this is what let me down, a <a href="https://bombich.com/">Carbon Copy</a> clone of my main drive.</li>
 </ul>
 
-<p>The clone was a few weeks old, my <code class="highlighter-rouge">/usr/local</code> changes all the time. It wasn’t usable.</p>
+<p>The clone was a few weeks old, my <code class="language-plaintext highlighter-rouge">/usr/local</code> changes all the time. It wasn’t usable.</p>
 
 <div class="premonition warning"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">TIP</p><p>Clone your drive often and test that it <a href="https://bombich.com/kb/ccc5/how-verify-or-test-your-backup">works</a>!</p>
 
@@ -425,7 +425,7 @@ com.apple.TimeMachine.2018-05-01-015548
 com.apple.TimeMachine.2018-05-01-025524
 </code></pre></div></div>
 
-<p>You can use <code class="highlighter-rouge">tmutil</code> to <a href="http://krypted.com/mac-os-x/ins-outs-using-tmutil-backup-restore-review-time-machine-backups/">compare and restore</a>, or simply Time Machine, but the files are available right there on the filesystem, I just had to copy my missing files back into the right places from the local snapshot dir:</p>
+<p>You can use <code class="language-plaintext highlighter-rouge">tmutil</code> to <a href="http://krypted.com/mac-os-x/ins-outs-using-tmutil-backup-restore-review-time-machine-backups/">compare and restore</a>, or simply Time Machine, but the files are available right there on the filesystem, I just had to copy my missing files back into the right places from the local snapshot dir:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /Volumes/com.apple.TimeMachine.localsnapshots/Backups.backupdb/James’s<span class="se">\ </span>iMac/2018-05-01-025524/Macintosh<span class="se">\ </span>HD/usr/local/
 
@@ -519,8 +519,9 @@ Cellar        Homebrew      bin           include       man           pear      
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-05-01T09:29:01+08:00">May 1, 2018</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-05-01T09:29:01+08:00">May 1, 2018</time></p>
+
+
       </footer>
 
       

@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Reverse Engineering HKBN Speed Test for macOS | stouty.xyz</title>
-<meta name="description" content="Reverse Engineered HKBN Speed Test for macOS. ">
+<meta name="description" content="Reverse Engineered HKBN Speed Test for macOS.">
 
 
   <meta name="author" content="James Stout">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://stouty.xyz/macos/2018/08/18/hkbn/">
 
 
-  <meta property="og:description" content="Reverse Engineered HKBN Speed Test for macOS. ">
+  <meta property="og:description" content="Reverse Engineered HKBN Speed Test for macOS.">
 
 
 
@@ -31,7 +31,7 @@
 
   <meta name="twitter:site" content="@stoutyhk">
   <meta name="twitter:title" content="Reverse Engineering HKBN Speed Test for macOS">
-  <meta name="twitter:description" content="Reverse Engineered HKBN Speed Test for macOS. ">
+  <meta name="twitter:description" content="Reverse Engineered HKBN Speed Test for macOS.">
   <meta name="twitter:url" content="https://stouty.xyz/macos/2018/08/18/hkbn/">
 
   
@@ -374,11 +374,11 @@
 
 <p>Sure you could just use <a href="http://www.speedtest.net/">speedtest.net</a>, but I wondered if I could reverse engineer their old app?</p>
 
-<p>Alas I no longer have the app, but analysed it previously. It was basically <code class="highlighter-rouge">iperf</code><sup id="fnref:fn-iperf" role="doc-noteref"><a href="#fn:fn-iperf" class="footnote">1</a></sup>, <code class="highlighter-rouge">upnpc</code><sup id="fnref:fn-upnpc" role="doc-noteref"><a href="#fn:fn-upnpc" class="footnote">2</a></sup> and some AppleScripts to manipulate the output from <code class="highlighter-rouge">iperf</code> then load the results into a URL for display.</p>
+<p>Alas I no longer have the app, but analysed it previously. It was basically <code class="language-plaintext highlighter-rouge">iperf</code><sup id="fnref:fn-iperf" role="doc-noteref"><a href="#fn:fn-iperf" class="footnote">1</a></sup>, <code class="language-plaintext highlighter-rouge">upnpc</code><sup id="fnref:fn-upnpc" role="doc-noteref"><a href="#fn:fn-upnpc" class="footnote">2</a></sup> and some AppleScripts to manipulate the output from <code class="language-plaintext highlighter-rouge">iperf</code> then load the results into a URL for display.</p>
 
-<p><code class="highlighter-rouge">upnpc</code> was used to route a port on your public IP address to the same port on your local IP, to make your local machine accessible from the Internet.</p>
+<p><code class="language-plaintext highlighter-rouge">upnpc</code> was used to route a port on your public IP address to the same port on your local IP, to make your local machine accessible from the Internet.</p>
 
-<p><code class="highlighter-rouge">iperf</code> was started in client and server mode and the client pointed to iperfmac.speedtest.com.hk. Wait for a bit, parse the output and post to the URL.</p>
+<p><code class="language-plaintext highlighter-rouge">iperf</code> was started in client and server mode and the client pointed to iperfmac.speedtest.com.hk. Wait for a bit, parse the output and post to the URL.</p>
 
 <p>The shell script I devised is shown below and linked <a href="/assets/files/HKBN-speedtest.sh">here</a>.</p>
 
@@ -681,8 +681,9 @@ killall Safari
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-18T17:29:01+08:00">August 18, 2018</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-18T17:29:01+08:00">August 18, 2018</time></p>
+
+
       </footer>
 
       

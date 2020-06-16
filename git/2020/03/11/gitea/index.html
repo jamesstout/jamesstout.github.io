@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Gitea - Git with a cup of tea | stouty.xyz</title>
-<meta name="description" content="Gitea - Git with a cup of tea. A painless self-hosted Git service. ">
+<meta name="description" content="Gitea - Git with a cup of tea. A painless self-hosted Git service.">
 
 
   <meta name="author" content="James Stout">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://stouty.xyz/git/2020/03/11/gitea/">
 
 
-  <meta property="og:description" content="Gitea - Git with a cup of tea. A painless self-hosted Git service. ">
+  <meta property="og:description" content="Gitea - Git with a cup of tea. A painless self-hosted Git service.">
 
 
 
@@ -31,7 +31,7 @@
 
   <meta name="twitter:site" content="@stoutyhk">
   <meta name="twitter:title" content="Gitea - Git with a cup of tea">
-  <meta name="twitter:description" content="Gitea - Git with a cup of tea. A painless self-hosted Git service. ">
+  <meta name="twitter:description" content="Gitea - Git with a cup of tea. A painless self-hosted Git service.">
   <meta name="twitter:url" content="https://stouty.xyz/git/2020/03/11/gitea/">
 
   
@@ -390,7 +390,7 @@
 
 <p>I opted to host on a subdomain of stouty.xyz with a <a href="https://www.postgresql.org/">Postgres</a> database, and the <a href="https://docs.gitea.io/en-us/install-from-binary/">binary install</a>, running behind <a href="https://docs.gitea.io/en-us/reverse-proxies/">nginx</a> over HTTPS of <a href="https://www.troyhunt.com/the-6-step-happy-path-to-https/">course</a>.</p>
 
-<p>My nginx config wasn’t as straightforward as in the Gitea docs, as I wanted to enforce HTTPS and use Let’s Encrypt for SSL certificates. I needed to set a few <code class="highlighter-rouge">proxy_set_header</code> options. A snippet of my conf is below:</p>
+<p>My nginx config wasn’t as straightforward as in the Gitea docs, as I wanted to enforce HTTPS and use Let’s Encrypt for SSL certificates. I needed to set a few <code class="language-plaintext highlighter-rouge">proxy_set_header</code> options. A snippet of my conf is below:</p>
 
 <script src="https://gist.github.com/jamesstout/fb4ac8b87dd00eee0e18c59b95da889b.js"></script>
 
@@ -405,7 +405,7 @@
 <h3 id="commit-diff">Commit Diff</h3>
 <p><a href="/assets/images/posts/gitea/commit-diff.png"><img data-src="/assets/images/posts/gitea/commit-diff.png" class="lazyload blur-up" alt="gitea commit-diff" /></a></p>
 
-<p>In the above commit, I’m fixing my use of <code class="highlighter-rouge">[NSData description]</code>. <a href="https://mjtsai.com/blog/2019/09/17/breaking-the-nsdata-description-contract/">iOS 13 changed the format of descriptions</a> for Foundation objects, including NSData:</p>
+<p>In the above commit, I’m fixing my use of <code class="language-plaintext highlighter-rouge">[NSData description]</code>. <a href="https://mjtsai.com/blog/2019/09/17/breaking-the-nsdata-description-contract/">iOS 13 changed the format of descriptions</a> for Foundation objects, including NSData:</p>
 
 <blockquote>
   <p>Was Apple irresponsible in making this particular change?
@@ -494,8 +494,9 @@ No, not really — developers shouldn’t have relied on a specific format for a
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-03-11T17:05:55+08:00">March 11, 2020</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-03-11T17:05:55+08:00">March 11, 2020</time></p>
+
+
       </footer>
 
       

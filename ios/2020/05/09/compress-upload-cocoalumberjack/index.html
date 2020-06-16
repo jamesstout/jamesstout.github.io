@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Compress-Upload-CocoaLumberjack - My First CocoaPod | stouty.xyz</title>
-<meta name="description" content="My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack. ">
+<meta name="description" content="My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack.">
 
 
   <meta name="author" content="James Stout">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://stouty.xyz/ios/2020/05/09/compress-upload-cocoalumberjack/">
 
 
-  <meta property="og:description" content="My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack. ">
+  <meta property="og:description" content="My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack.">
 
 
 
@@ -31,7 +31,7 @@
 
   <meta name="twitter:site" content="@stoutyhk">
   <meta name="twitter:title" content="Compress-Upload-CocoaLumberjack - My First CocoaPod">
-  <meta name="twitter:description" content="My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack. ">
+  <meta name="twitter:description" content="My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack.">
   <meta name="twitter:url" content="https://stouty.xyz/ios/2020/05/09/compress-upload-cocoalumberjack/">
 
   
@@ -423,7 +423,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
   <li>All other log messages, such as debug output, are executed asynchronously.</li>
 </ul>
 
-<p>Getting started is simple. This will add a pair of “loggers” and your log statements will be sent to the Console.app and the Xcode console (just like a normal <code class="highlighter-rouge">NSLog</code>).</p>
+<p>Getting started is simple. This will add a pair of “loggers” and your log statements will be sent to the Console.app and the Xcode console (just like a normal <code class="language-plaintext highlighter-rouge">NSLog</code>).</p>
 
 <div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#define LOG_LEVEL_DEF ddLogLevel
 #import &lt;CocoaLumberjack/CocoaLumberjack.h&gt;
@@ -442,7 +442,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 
 <p>That’s a fairly standard log file setup, with one file per day, for a week. After a week, the oldest file is deleted.</p>
 
-<p>Then to log, just convert your <code class="highlighter-rouge">NSLog</code> calls:</p>
+<p>Then to log, just convert your <code class="language-plaintext highlighter-rouge">NSLog</code> calls:</p>
 
 <div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Convert from this:</span>
 <span class="n">NSLog</span><span class="p">(</span><span class="s">@"Broken sprocket detected!"</span><span class="p">);</span>
@@ -455,7 +455,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 
 <p>Those logs will be set to the console, and to the log file.</p>
 
-<p>If you make the <code class="highlighter-rouge">logFileManager</code> a <code class="highlighter-rouge">CompressingLogFileManager</code>, per the LogFileCompressor demo project mentioned above, your setup looks like this:</p>
+<p>If you make the <code class="language-plaintext highlighter-rouge">logFileManager</code> a <code class="language-plaintext highlighter-rouge">CompressingLogFileManager</code>, per the LogFileCompressor demo project mentioned above, your setup looks like this:</p>
 
 <div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">CompressingLogFileManager</span> <span class="o">*</span><span class="n">logFileManager</span> <span class="o">=</span> <span class="p">[[</span><span class="n">CompressingLogFileManager</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
 <span class="n">fileLogger</span> <span class="o">=</span> <span class="p">[[</span><span class="n">DDFileLogger</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithLogFileManager</span><span class="p">:</span><span class="n">logFileManager</span><span class="p">];</span>
@@ -470,11 +470,11 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 <span class="p">[</span><span class="n">DDLog</span> <span class="nf">addLogger</span><span class="p">:</span><span class="n">fileLogger</span><span class="p">];</span>
 </code></pre></div></div>
 
-<p>With this setup, your log file is ‘archived’ and then compressed to a <code class="highlighter-rouge">.gz</code> file. After a while, the log folder looks like this:</p>
+<p>With this setup, your log file is ‘archived’ and then compressed to a <code class="language-plaintext highlighter-rouge">.gz</code> file. After a while, the log folder looks like this:</p>
 
 <p><a href="/assets/images/posts/compress-upload-cocoalumberjack/log-folder.png"><img data-src="/assets/images/posts/compress-upload-cocoalumberjack/log-folder.png" class="lazyload align-center blur-up" alt="log-folder" /></a></p>
 
-<p>Seems the <code class="highlighter-rouge">.gz</code> files are excluded from the deletion based on <code class="highlighter-rouge">maximumNumberOfLogFiles</code>, so the folder would just fill up, I think.</p>
+<p>Seems the <code class="language-plaintext highlighter-rouge">.gz</code> files are excluded from the deletion based on <code class="language-plaintext highlighter-rouge">maximumNumberOfLogFiles</code>, so the folder would just fill up, I think.</p>
 
 <p>I deal with this in Compress-Upload-CocoaLumberjack. To set up Compress-Upload-CocoaLumberjack, you need an HTTP(S) server with an endpoint that accepts the log files, then instantiate the logger with your URL:</p>
 
@@ -497,7 +497,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 <span class="p">[</span><span class="n">DDLog</span> <span class="nf">addLogger</span><span class="p">:</span><span class="n">fileLogger</span><span class="p">];</span>
 </code></pre></div></div>
 
-<p>The compression behaviour is the same as in LogFileCompressor, except in <code class="highlighter-rouge">compressionDidSucceed</code></p>
+<p>The compression behaviour is the same as in LogFileCompressor, except in <code class="language-plaintext highlighter-rouge">compressionDidSucceed</code></p>
 
 <div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma mark - compressionDidSucceed
 </span><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">compressionDidSucceed</span><span class="p">:(</span><span class="n">DDLogFileInfo</span> <span class="o">*</span><span class="p">)</span><span class="nv">logFile</span>
@@ -514,7 +514,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p><code class="highlighter-rouge">uploadArchivedFile</code> eventually calls:</p>
+<p><code class="language-plaintext highlighter-rouge">uploadArchivedFile</code> eventually calls:</p>
 
 <div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">uploadLogFile</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">logFilePath</span>
 <span class="p">{</span>
@@ -533,7 +533,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">X-BackgroundUpload-File</code> contains the filename. I added <code class="highlighter-rouge">X-BackgroundUpload-File-UUID</code> to anonymously identify each device so I could separate the log files on the server-side, and do a few security checks.</p>
+<p>The <code class="language-plaintext highlighter-rouge">X-BackgroundUpload-File</code> contains the filename. I added <code class="language-plaintext highlighter-rouge">X-BackgroundUpload-File-UUID</code> to anonymously identify each device so I could separate the log files on the server-side, and do a few security checks.</p>
 
 <p>I’m not going to publish the server code, as I’m pretty sure it has some vulnerabilities! Something like this, in PHP:</p>
 
@@ -576,7 +576,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>To deal with old compressed files in the logs directory, I added <code class="highlighter-rouge">uploadOldCompressedLogFiles</code> to the <code class="highlighter-rouge">CompressingAndUploadingLogFileManager init</code>:</p>
+<p>To deal with old compressed files in the logs directory, I added <code class="language-plaintext highlighter-rouge">uploadOldCompressedLogFiles</code> to the <code class="language-plaintext highlighter-rouge">CompressingAndUploadingLogFileManager init</code>:</p>
 
 <div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">uploadOldCompressedLogFiles</span><span class="p">{</span>
 
@@ -597,7 +597,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>You might have spotted that there’s a property on the LogFileManager that you can set to prevent uploads (it defaults to <code class="highlighter-rouge">YES</code>). To stop uploading, simply set to <code class="highlighter-rouge">NO</code>.</p>
+<p>You might have spotted that there’s a property on the LogFileManager that you can set to prevent uploads (it defaults to <code class="language-plaintext highlighter-rouge">YES</code>). To stop uploading, simply set to <code class="language-plaintext highlighter-rouge">NO</code>.</p>
 
 <div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logFileManager</span><span class="p">.</span><span class="n">doUpload</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
 </code></pre></div></div>
@@ -623,7 +623,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
   
 </figure>
 
-<p>I take a copy, unzip and <code class="highlighter-rouge">grep</code> the logs for insights. For example, this lists debug lines and orders them by the number of times they occur:</p>
+<p>I take a copy, unzip and <code class="language-plaintext highlighter-rouge">grep</code> the logs for insights. For example, this lists debug lines and orders them by the number of times they occur:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>egrep <span class="s1">'\[\D\]'</span> <span class="k">*</span>.log | <span class="nb">grep</span> <span class="nt">-Po</span> <span class="s1">' \[.*'</span> | <span class="nb">sed</span> <span class="s1">'s/^ *//g'</span> | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-c</span> | <span class="nb">sort</span> <span class="nt">-n</span>
 </code></pre></div></div>
@@ -637,11 +637,11 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 <p>So I can see I should make sure these are performant:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">isItNight</code></li>
-  <li><code class="highlighter-rouge">hkw_base64EncodedURLQueryString</code></li>
+  <li><code class="language-plaintext highlighter-rouge">isItNight</code></li>
+  <li><code class="language-plaintext highlighter-rouge">hkw_base64EncodedURLQueryString</code></li>
 </ul>
 
-<p>In fact I’ve already released a version where <code class="highlighter-rouge">hkw_base64EncodedURLQueryString</code> is 66% faster and <code class="highlighter-rouge">isItNight</code> is ~30% faster:</p>
+<p>In fact I’ve already released a version where <code class="language-plaintext highlighter-rouge">hkw_base64EncodedURLQueryString</code> is 66% faster and <code class="language-plaintext highlighter-rouge">isItNight</code> is ~30% faster:</p>
 
 <figure class="half ">
   
@@ -741,8 +741,9 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-09T23:09:06+08:00">May 9, 2020</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-09T23:09:06+08:00">May 9, 2020</time></p>
+
+
       </footer>
 
       

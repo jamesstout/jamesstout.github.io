@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Nextcloud Sync Client for Docker | stouty.xyz</title>
-<meta name="description" content="Syncing to Nextcloud from a Docker container, and how to build that container. ">
+<meta name="description" content="Syncing to Nextcloud from a Docker container, and how to build that container.">
 
 
   <meta name="author" content="James Stout">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://stouty.xyz/nextcloud/2020/05/08/nextcloud-sync/">
 
 
-  <meta property="og:description" content="Syncing to Nextcloud from a Docker container, and how to build that container. ">
+  <meta property="og:description" content="Syncing to Nextcloud from a Docker container, and how to build that container.">
 
 
 
@@ -31,7 +31,7 @@
 
   <meta name="twitter:site" content="@stoutyhk">
   <meta name="twitter:title" content="Nextcloud Sync Client for Docker">
-  <meta name="twitter:description" content="Syncing to Nextcloud from a Docker container, and how to build that container. ">
+  <meta name="twitter:description" content="Syncing to Nextcloud from a Docker container, and how to build that container.">
   <meta name="twitter:url" content="https://stouty.xyz/nextcloud/2020/05/08/nextcloud-sync/">
 
   
@@ -399,7 +399,7 @@
   
 </figure>
 
-<p>In the last screenshot there you can see my image: <a href="https://registry.hub.docker.com/r/stoutyhk/nextcloud-client/">stoutyhk/nextcloud-client</a>. It’s based on the image from <a href="https://github.com/juanitomint/nextcloud-client-docker">juanitomint</a>, with some <a href="https://github.com/jamesstout/nextcloud-client-docker/commit/c6184018dcc46289cbbb59060c63870814710e59">small tweaks</a> to add functionality to exclude certain folders and to set folders for selective sync. I also slightly tweaked how the arguments to the client are constructed and exposed the <code class="highlighter-rouge">media</code> and <code class="highlighter-rouge">config</code> folders.</p>
+<p>In the last screenshot there you can see my image: <a href="https://registry.hub.docker.com/r/stoutyhk/nextcloud-client/">stoutyhk/nextcloud-client</a>. It’s based on the image from <a href="https://github.com/juanitomint/nextcloud-client-docker">juanitomint</a>, with some <a href="https://github.com/jamesstout/nextcloud-client-docker/commit/c6184018dcc46289cbbb59060c63870814710e59">small tweaks</a> to add functionality to exclude certain folders and to set folders for selective sync. I also slightly tweaked how the arguments to the client are constructed and exposed the <code class="language-plaintext highlighter-rouge">media</code> and <code class="language-plaintext highlighter-rouge">config</code> folders.</p>
 
 <figure class="half ">
   
@@ -421,13 +421,13 @@
 <p>The config folder can contain files named:</p>
 
 <ul>
-  <li><code class="highlighter-rouge">exclude</code> - this contains files/folders/patterns that you don’t want to sync</li>
-  <li><code class="highlighter-rouge">unsyncedfolders</code> - contains the list of un-synced remote folders (selective sync)</li>
+  <li><code class="language-plaintext highlighter-rouge">exclude</code> - this contains files/folders/patterns that you don’t want to sync</li>
+  <li><code class="language-plaintext highlighter-rouge">unsyncedfolders</code> - contains the list of un-synced remote folders (selective sync)</li>
 </ul>
 
 <p>For example, I want to exclude syncing the Synology-generated metadata <a href="https://www.reddit.com/r/synology/comments/an4a4l/modern_solution_to_stopping_the_generation_of/">@eaDir</a> directories to my server:</p>
 
-<p>So I have a config directory containing an <code class="highlighter-rouge">exclude</code> file:</p>
+<p>So I have a config directory containing an <code class="language-plaintext highlighter-rouge">exclude</code> file:</p>
 
 <p><a href="/assets/images/posts/nextcloud-sync/config.png"><img data-src="/assets/images/posts/nextcloud-sync/config.png" class="lazyload align-center blur-up" alt="config folder screenshot" /></a></p>
 
@@ -435,7 +435,7 @@
 
 <p><a href="/assets/images/posts/nextcloud-sync/exclude.png"><img data-src="/assets/images/posts/nextcloud-sync/exclude.png" class="lazyload align-center blur-up" alt="exclude file screenshot" /></a></p>
 
-<p>Additionally, on my server there are folders that I do not want to sync down to my NAS. So those folders go in the <code class="highlighter-rouge">unsyncedfolders</code> file:</p>
+<p>Additionally, on my server there are folders that I do not want to sync down to my NAS. So those folders go in the <code class="language-plaintext highlighter-rouge">unsyncedfolders</code> file:</p>
 
 <p><a href="/assets/images/posts/nextcloud-sync/unsyncedfolders.png"><img data-src="/assets/images/posts/nextcloud-sync/unsyncedfolders.png" class="lazyload align-center blur-up" alt="unsyncedfolders file screenshot" /></a></p>
 
@@ -628,7 +628,7 @@ stoutyhk/nextcloud-client   latest              aa064981bb5b        1 second ago
 stoutyhk/nextcloud-client   &lt;none&gt;              6ca8291dece4        3 weeks ago         311MB
 </code></pre></div></div>
 
-<p>You can see the <code class="highlighter-rouge">latest</code> tag is now pointing to image <code class="highlighter-rouge">aa064981bb5b</code>. To update, you export the settings, stop the container, <code class="highlighter-rouge">docker rm stoutyhk-nextcloud-client</code>, then import the settings and launch the new image:</p>
+<p>You can see the <code class="language-plaintext highlighter-rouge">latest</code> tag is now pointing to image <code class="language-plaintext highlighter-rouge">aa064981bb5b</code>. To update, you export the settings, stop the container, <code class="language-plaintext highlighter-rouge">docker rm stoutyhk-nextcloud-client</code>, then import the settings and launch the new image:</p>
 
 <p><a href="/assets/images/posts/nextcloud-sync/new-image.png"><img data-src="/assets/images/posts/nextcloud-sync/new-image.png" class="lazyload align-center blur-up" alt="new-image screenshot" /></a></p>
 
@@ -666,7 +666,7 @@ Deleted: sha256:688a57e452c154219a34c88e18ec695ef3a15ce4a1d4f73875d56ff40a8a6de6
 Potential wasted space: 179kB
 Image efficiency score: 99 %
 </code></pre></div></div>
-<p>Here’s a look at <code class="highlighter-rouge">dive</code>:</p>
+<p>Here’s a look at <code class="language-plaintext highlighter-rouge">dive</code>:</p>
 
 <p><a href="https://asciinema.org/a/2xQFxw4LdqjYuh9cc7WEv4Xc7"><img src="https://asciinema.org/a/2xQFxw4LdqjYuh9cc7WEv4Xc7.svg" alt="asciicast" /></a></p>
 
@@ -753,8 +753,9 @@ Image efficiency score: 99 %
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-08T22:27:27+08:00">May 8, 2020</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-08T22:27:27+08:00">May 8, 2020</time></p>
+
+
       </footer>
 
       

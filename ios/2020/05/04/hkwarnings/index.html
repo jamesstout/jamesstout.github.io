@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>HKWarnings v5.0.0 | stouty.xyz</title>
-<meta name="description" content="Fixing 10 year old code to build HKWarnings v5.0.0. ">
+<meta name="description" content="Fixing 10 year old code to build HKWarnings v5.0.0.">
 
 
   <meta name="author" content="James Stout">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://stouty.xyz/ios/2020/05/04/hkwarnings/">
 
 
-  <meta property="og:description" content="Fixing 10 year old code to build HKWarnings v5.0.0. ">
+  <meta property="og:description" content="Fixing 10 year old code to build HKWarnings v5.0.0.">
 
 
 
@@ -31,7 +31,7 @@
 
   <meta name="twitter:site" content="@stoutyhk">
   <meta name="twitter:title" content="HKWarnings v5.0.0">
-  <meta name="twitter:description" content="Fixing 10 year old code to build HKWarnings v5.0.0. ">
+  <meta name="twitter:description" content="Fixing 10 year old code to build HKWarnings v5.0.0.">
   <meta name="twitter:url" content="https://stouty.xyz/ios/2020/05/04/hkwarnings/">
 
   
@@ -442,7 +442,7 @@
   
 </figure>
 
-<p>Anyway, this 10 year old code has survived <a href="https://en.wikipedia.org/wiki/IOS_version_history">9 OS updates</a>, but finally, on iOS 13, it no longer works. The code below that switches the Detail VC and hides the Master <em>is</em> called, but the <code class="highlighter-rouge">UIPopoverController</code> is always <code class="highlighter-rouge">nil</code>:</p>
+<p>Anyway, this 10 year old code has survived <a href="https://en.wikipedia.org/wiki/IOS_version_history">9 OS updates</a>, but finally, on iOS 13, it no longer works. The code below that switches the Detail VC and hides the Master <em>is</em> called, but the <code class="language-plaintext highlighter-rouge">UIPopoverController</code> is always <code class="language-plaintext highlighter-rouge">nil</code>:</p>
 
 <div class="language-objc highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">splitViewController</span><span class="p">:(</span><span class="n">UISplitViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">svc</span>
      <span class="nf">willHideViewController</span><span class="p">:(</span><span class="n">UIViewController</span> <span class="o">*</span><span class="p">)</span><span class="nv">aViewController</span>
@@ -641,11 +641,11 @@ SUM:                            949          26849          26070          74499
   <li><a href="https://github.com/PureLayout/PureLayout">PureLayout</a> - API for iOS &amp; OS X Auto Layout. None of that <a href="https://developer.apple.com/xcode/interface-builder/">IB</a> rubbish.</li>
   <li><a href="https://github.com/CocoaLumberjack/CocoaLumberjack">CocoaLumberjack</a> - a fast &amp; simple, yet powerful &amp; flexible logging framework.</li>
   <li><a href="https://github.com/jamesstout/CompressingAndUploadingLogFileManager">CompressingAndUploadingLogFileManager</a> - my, as yet unpublished<sup id="fnref:fn-repo" role="doc-noteref"><a href="#fn:fn-repo" class="footnote">1</a></sup> library, that compresses log files and then uploads them to an HTTP server for examination, stats etc.</li>
-  <li><a href="https://github.com/nicklockwood/GZIP">GZIP</a> - to unzip <code class="highlighter-rouge">.gz</code> files. To <a href="https://developer.apple.com/documentation/xcode/reducing_your_app_s_size/doing_basic_optimization_to_reduce_your_app_s_size?language=objc">reduce package size</a> I zip some text files. See below.</li>
-  <li><a href="https://github.com/laptobbe/TSMarkdownParser">TSMarkdownParser</a> - a markdown to NSAttributedString parser. I use it to display the <a href="https://github.com/CocoaPods/CocoaPods/wiki/Acknowledgements">acknowledgements</a> Markdown created by the <code class="highlighter-rouge">pod install</code> command. Again, see below.</li>
+  <li><a href="https://github.com/nicklockwood/GZIP">GZIP</a> - to unzip <code class="language-plaintext highlighter-rouge">.gz</code> files. To <a href="https://developer.apple.com/documentation/xcode/reducing_your_app_s_size/doing_basic_optimization_to_reduce_your_app_s_size?language=objc">reduce package size</a> I zip some text files. See below.</li>
+  <li><a href="https://github.com/laptobbe/TSMarkdownParser">TSMarkdownParser</a> - a markdown to NSAttributedString parser. I use it to display the <a href="https://github.com/CocoaPods/CocoaPods/wiki/Acknowledgements">acknowledgements</a> Markdown created by the <code class="language-plaintext highlighter-rouge">pod install</code> command. Again, see below.</li>
 </ul>
 
-<p>In my Podfile, I have a <code class="highlighter-rouge">post_install</code> hook that does various things, including, copying the acknowledgements <code class="highlighter-rouge">plist</code> to the Settings bundle, and the Markdown to a text file that I then compress.</p>
+<p>In my Podfile, I have a <code class="language-plaintext highlighter-rouge">post_install</code> hook that does various things, including, copying the acknowledgements <code class="language-plaintext highlighter-rouge">plist</code> to the Settings bundle, and the Markdown to a text file that I then compress.</p>
 
 <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'fileutils'</span>
 <span class="no">FileUtils</span><span class="p">.</span><span class="nf">cp_r</span><span class="p">(</span><span class="s1">'Pods/Target Support Files/Pods-HKWeatherWarningsTabs/Pods-HKWeatherWarningsTabs-acknowledgements.plist'</span><span class="p">,</span> <span class="s1">'Settings.bundle/Acknowledgements.plist'</span><span class="p">,</span> <span class="ss">:remove_destination</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span>
@@ -728,7 +728,7 @@ SUM:                            949          26849          26070          74499
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:fn-repo" role="doc-endnote">
-      <p>See that private Spec source in the <a href="https://guides.cocoapods.org/using/the-podfile.html">Podfile</a>? <code class="highlighter-rouge">source 'https://github.com/jamesstout/Specs.git'</code> <a href="#fnref:fn-repo" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p>See that private Spec source in the <a href="https://guides.cocoapods.org/using/the-podfile.html">Podfile</a>? <code class="language-plaintext highlighter-rouge">source 'https://github.com/jamesstout/Specs.git'</code> <a href="#fnref:fn-repo" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
     <li id="fn:fn-gz" role="doc-endnote">
       <p>Well, about 30kB as the GZIP library is about 17kB. <a href="#fnref:fn-gz" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
@@ -799,8 +799,9 @@ SUM:                            949          26849          26070          74499
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-04T23:40:49+08:00">May 4, 2020</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-04T23:40:49+08:00">May 4, 2020</time></p>
+
+
       </footer>
 
       

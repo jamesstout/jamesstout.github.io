@@ -1,6 +1,6 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.2 by Michael Rose
+  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
   Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Adobe Shenanigans | stouty.xyz</title>
-<meta name="description" content="What on Earth are Adobe up to? ">
+<meta name="description" content="What on Earth are Adobe up to?">
 
 
   <meta name="author" content="James Stout">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://stouty.xyz/macos/2018/04/15/adobe-shenanigans/">
 
 
-  <meta property="og:description" content="What on Earth are Adobe up to? ">
+  <meta property="og:description" content="What on Earth are Adobe up to?">
 
 
 
@@ -31,7 +31,7 @@
 
   <meta name="twitter:site" content="@stoutyhk">
   <meta name="twitter:title" content="Adobe Shenanigans">
-  <meta name="twitter:description" content="What on Earth are Adobe up to? ">
+  <meta name="twitter:description" content="What on Earth are Adobe up to?">
   <meta name="twitter:url" content="https://stouty.xyz/macos/2018/04/15/adobe-shenanigans/">
 
   
@@ -372,7 +372,7 @@
         
         <p><em>What on Earth are Adobe up to?</em></p>
 
-<p>I found a random folder in my <a href="https://github.com/github/gitignore"><code class="highlighter-rouge">~/.gitignore-boilerplates</code></a> repo (created by <a href="https://github.com/simonwhitaker/gibo">gibo</a>):</p>
+<p>I found a random folder in my <a href="https://github.com/github/gitignore"><code class="language-plaintext highlighter-rouge">~/.gitignore-boilerplates</code></a> repo (created by <a href="https://github.com/simonwhitaker/gibo">gibo</a>):</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: ~/.gitignore-boilerplates on master
 <span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-ld</span> <span class="k">*</span>/
@@ -382,7 +382,7 @@ drwxr-xr-x  61 james  staff  1952 Mar 17 15:09 Global/
 drwx------+  3 root   staff    96 Apr 15 00:39 Library/
 </code></pre></div></div>
 
-<p>The <code class="highlighter-rouge">Library</code> folder, created by <code class="highlighter-rouge">root</code> contains an Adobe log file:</p>
+<p>The <code class="language-plaintext highlighter-rouge">Library</code> folder, created by <code class="language-plaintext highlighter-rouge">root</code> contains an Adobe log file:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">ls</span> <span class="nt">-l</span> Library/Logs/AdobeDownload/<span class="k">*</span>
 <span class="nt">-rw-rw-rw-</span>@ 1 root  staff  5184 Mar 27 01:14 Library/Logs/AdobeDownload/DLM.log
@@ -396,9 +396,9 @@ The file “.extra” couldn’t be saved <span class="k">in </span>the folder �
 failed to create a <span class="nb">dir</span> - /Users/james/.extra/Adobe/AdobeGCClient/ on <span class="nb">local </span>disk.
 </code></pre></div></div>
 
-<p>Eh? <code class="highlighter-rouge">.extra</code>? I already have a file named that in that location, hence the error. What’s it up to?</p>
+<p>Eh? <code class="language-plaintext highlighter-rouge">.extra</code>? I already have a file named that in that location, hence the error. What’s it up to?</p>
 
-<p>I found another log file here <code class="highlighter-rouge">/Users/james/Library/Logs/AdobeDownload/DLM.log</code></p>
+<p>I found another log file here <code class="language-plaintext highlighter-rouge">/Users/james/Library/Logs/AdobeDownload/DLM.log</code></p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| *******************start of Download****************
 | GDE Version is 9.0.0.4 (BuildVersion: 6.0; BuildDate: Wed Mar 04 2015 21:34:10 )
@@ -409,7 +409,7 @@ failed to create a <span class="nb">dir</span> - /Users/james/.extra/Adobe/Adobe
 | *******************End****************
 </code></pre></div></div>
 
-<p>Eh? <code class="highlighter-rouge">.../ImageOptim/Adobe/AdobeGCClient/AdobeGCClient.zip</code></p>
+<p>Eh? <code class="language-plaintext highlighter-rouge">.../ImageOptim/Adobe/AdobeGCClient/AdobeGCClient.zip</code></p>
 
 <p>So I went searching:</p>
 
@@ -417,7 +417,7 @@ failed to create a <span class="nb">dir</span> - /Users/james/.extra/Adobe/Adobe
 find ~  <span class="nt">-name</span> AdobeGCClient <span class="nt">-print</span> 2&gt;/dev/null
 </code></pre></div></div>
 
-<p>After a bit of <code class="highlighter-rouge">awk</code> and <code class="highlighter-rouge">uniq</code>, I found:</p>
+<p>After a bit of <code class="language-plaintext highlighter-rouge">awk</code> and <code class="language-plaintext highlighter-rouge">uniq</code>, I found:</p>
 
 <div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Adobe/AdobeGCClient/AdobeGCClient.app
 /Adobe/AdobeGCClient/AdobeGCClientNew.app
@@ -497,8 +497,9 @@ find ~  <span class="nt">-name</span> AdobeGCClient <span class="nt">-print</spa
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-04-15T01:29:01+08:00">April 15, 2018</time></p>
-        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-04-15T01:29:01+08:00">April 15, 2018</time></p>
+
+
       </footer>
 
       

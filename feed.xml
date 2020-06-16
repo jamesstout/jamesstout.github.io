@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.1">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-05-23T00:08:14+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Countly For iOS and Web Analytics</title><link href="https://stouty.xyz/ios/2020/05/18/countly/" rel="alternate" type="text/html" title="Countly For iOS and Web Analytics" /><published>2020-05-18T17:45:32+08:00</published><updated>2020-05-18T17:45:32+08:00</updated><id>https://stouty.xyz/ios/2020/05/18/countly</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/18/countly/">&lt;p&gt;I previously &lt;a href=&quot;https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/&quot;&gt;mentioned&lt;/a&gt; that I wasn’t too keen on all the things Firebase Crashlytics installed and would look at &lt;a href=&quot;https://count.ly/product&quot;&gt;Countly&lt;/a&gt; as an alternative.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-06-16T23:39:54+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Countly For iOS and Web Analytics</title><link href="https://stouty.xyz/ios/2020/05/18/countly/" rel="alternate" type="text/html" title="Countly For iOS and Web Analytics" /><published>2020-05-18T17:45:32+08:00</published><updated>2020-05-18T17:45:32+08:00</updated><id>https://stouty.xyz/ios/2020/05/18/countly</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/18/countly/">&lt;p&gt;I previously &lt;a href=&quot;https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/&quot;&gt;mentioned&lt;/a&gt; that I wasn’t too keen on all the things Firebase Crashlytics installed and would look at &lt;a href=&quot;https://count.ly/product&quot;&gt;Countly&lt;/a&gt; as an alternative.&lt;/p&gt;
 
 &lt;p&gt;Countly is impressive. They have loads of &lt;a href=&quot;https://support.count.ly/hc/en-us/categories/360002373332-Knowledge-Base&quot;&gt;documentation&lt;/a&gt;, and support &lt;a href=&quot;https://support.count.ly/hc/en-us/sections/360007310512-SDKs&quot;&gt;loads&lt;/a&gt; of platforms.&lt;/p&gt;
 
@@ -96,7 +96,7 @@
 
 &lt;h2 id=&quot;web-analytics-installation&quot;&gt;Web Analytics Installation&lt;/h2&gt;
 
-&lt;p&gt;You need to either add &lt;code class=&quot;highlighter-rouge&quot;&gt;sdk/web/countly.min.js&lt;/code&gt; from your Countly server to your header code for the site you want to track, or grab the file and add it to your site’s build process. That’s what I did.&lt;/p&gt;
+&lt;p&gt;You need to either add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sdk/web/countly.min.js&lt;/code&gt; from your Countly server to your header code for the site you want to track, or grab the file and add it to your site’s build process. That’s what I did.&lt;/p&gt;
 
 &lt;p&gt;Added it to assets:&lt;/p&gt;
 
@@ -106,7 +106,7 @@
 
 &lt;p&gt;&lt;a href=&quot;/assets/images/posts/countly/setup.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/countly/setup.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;setup&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Then added it to my custom scripts &lt;code class=&quot;highlighter-rouge&quot;&gt;_include&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Then added it to my custom scripts &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_include&lt;/code&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/images/posts/countly/scripts.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/countly/scripts.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;scripts&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -394,11 +394,11 @@ Pod installation &lt;span class=&quot;nb&quot;&gt;complete&lt;/span&gt;&lt;span 
   &lt;li&gt;&lt;a href=&quot;https://sentry.io/&quot;&gt;Sentry&lt;/a&gt; - Uses Pod frameworks or &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;Carthage&lt;/a&gt;, and a &lt;a href=&quot;https://github.com/getsentry/sentry-cocoa/releases&quot;&gt;16MB framework&lt;/a&gt;…🧐&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;I think I’ll check out Countly first.&lt;/p&gt;</content><author><name>James Stout</name></author><category term="iOS" /><category term="crash reporting" /><category term="Firebase" /><category term="Crashlytics" /><summary type="html">Investigating the new Firebase Crashlytics SDK.</summary></entry><entry><title type="html">A Jekyll Hook to Copy Pre-Built Site to Another Directory</title><link href="https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook/" rel="alternate" type="text/html" title="A Jekyll Hook to Copy Pre-Built Site to Another Directory" /><published>2020-05-11T23:42:03+08:00</published><updated>2020-05-11T23:42:03+08:00</updated><id>https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook</id><content type="html" xml:base="https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook/">&lt;p&gt;This &lt;a href=&quot;https://stouty.xyz/webdev/2020/04/28/git-deploy/&quot;&gt;site&lt;/a&gt; doesn’t build as a &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Page&lt;/a&gt; as it uses &lt;a href=&quot;https://pages.github.com/versions/&quot;&gt;unsupported gems and plugins&lt;/a&gt;. So when I push to &lt;code class=&quot;highlighter-rouge&quot;&gt;jamesstout.github.io.git&lt;/code&gt; I get build failures.&lt;/p&gt;
+&lt;p&gt;I think I’ll check out Countly first.&lt;/p&gt;</content><author><name>James Stout</name></author><category term="iOS" /><category term="crash reporting" /><category term="Firebase" /><category term="Crashlytics" /><summary type="html">Investigating the new Firebase Crashlytics SDK.</summary></entry><entry><title type="html">A Jekyll Hook to Copy Pre-Built Site to Another Directory</title><link href="https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook/" rel="alternate" type="text/html" title="A Jekyll Hook to Copy Pre-Built Site to Another Directory" /><published>2020-05-11T23:42:03+08:00</published><updated>2020-05-11T23:42:03+08:00</updated><id>https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook</id><content type="html" xml:base="https://stouty.xyz/webdev/2020/05/11/copy-site-jekyll-hook/">&lt;p&gt;This &lt;a href=&quot;https://stouty.xyz/webdev/2020/04/28/git-deploy/&quot;&gt;site&lt;/a&gt; doesn’t build as a &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Page&lt;/a&gt; as it uses &lt;a href=&quot;https://pages.github.com/versions/&quot;&gt;unsupported gems and plugins&lt;/a&gt;. So when I push to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jamesstout.github.io.git&lt;/code&gt; I get build failures.&lt;/p&gt;
 
-&lt;p&gt;My solution is to have two repositories, the source where I write and build the site, and a destination repo that points to the &lt;code class=&quot;highlighter-rouge&quot;&gt;jamesstout.github.io.git&lt;/code&gt; &lt;a href=&quot;https://github.com/jamesstout/jamesstout.github.io&quot;&gt;repo&lt;/a&gt;. The difference is, the destination repo just contains the files from the already built &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder. This is what is pushed to the destination, and ultimately rendered at &lt;a href=&quot;https://jamesstout.github.io/&quot;&gt;jamesstout.github.io&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My solution is to have two repositories, the source where I write and build the site, and a destination repo that points to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jamesstout.github.io.git&lt;/code&gt; &lt;a href=&quot;https://github.com/jamesstout/jamesstout.github.io&quot;&gt;repo&lt;/a&gt;. The difference is, the destination repo just contains the files from the already built &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder. This is what is pushed to the destination, and ultimately rendered at &lt;a href=&quot;https://jamesstout.github.io/&quot;&gt;jamesstout.github.io&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Not wanting to do anything manually, I wrote a &lt;a href=&quot;https://jekyllrb.com/docs/plugins/hooks/&quot;&gt;Jekyll hook plugin&lt;/a&gt; that copies the files from the &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder to the destination repo, commits the changes and pushes to its remote, but only if there is a new commit in the source repo. No point copying, and pushing if you haven’t yet committed your changes. Here’s the plugin:&lt;/p&gt;
+&lt;p&gt;Not wanting to do anything manually, I wrote a &lt;a href=&quot;https://jekyllrb.com/docs/plugins/hooks/&quot;&gt;Jekyll hook plugin&lt;/a&gt; that copies the files from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder to the destination repo, commits the changes and pushes to its remote, but only if there is a new commit in the source repo. No point copying, and pushing if you haven’t yet committed your changes. Here’s the plugin:&lt;/p&gt;
 
 &lt;script src=&quot;https://gist.github.com/jamesstout/42201bbc498a4b91a9a1f884a17ced8c.js&quot;&gt;&lt;/script&gt;</content><author><name>James Stout</name></author><category term="jekyll" /><category term="hooks" /><category term="ruby" /><category term="github.io" /><category term="jekyll plugins" /><summary type="html">My first attempt at a Jekyll plugin, it copies the `_site` folder somewhere else.</summary></entry><entry><title type="html">A Quick Update on Zoom Code Signing</title><link href="https://stouty.xyz/macos/2020/05/11/zoom-update/" rel="alternate" type="text/html" title="A Quick Update on Zoom Code Signing" /><published>2020-05-11T00:32:38+08:00</published><updated>2020-05-11T00:32:38+08:00</updated><id>https://stouty.xyz/macos/2020/05/11/zoom-update</id><content type="html" xml:base="https://stouty.xyz/macos/2020/05/11/zoom-update/">&lt;p&gt;A quick update to my previous post on &lt;a href=&quot;https://stouty.xyz/macos/2020/04/05/zoom/&quot;&gt;Zoom security&lt;/a&gt;.&lt;/p&gt;
 
@@ -411,7 +411,7 @@ Pod installation &lt;span class=&quot;nb&quot;&gt;complete&lt;/span&gt;&lt;span 
 
 &lt;p&gt;Maybe I don’t understand &lt;a href=&quot;https://developer.apple.com/library/archive/documentation/Security/Conceptual/CodeSigningGuide/Procedures/Procedures.html&quot;&gt;code signing&lt;/a&gt;, &lt;a href=&quot;https://www.manpagez.com/man/8/spctl/&quot;&gt;spctl&lt;/a&gt; or &lt;a href=&quot;https://en.wikipedia.org/wiki/Gatekeeper_(macOS)#Execution&quot;&gt;Gatekeeper&lt;/a&gt; well enough.&lt;/p&gt;
 
-&lt;p&gt;Gatekeeper is on, &lt;code class=&quot;highlighter-rouge&quot;&gt;spctl&lt;/code&gt; says rejected, but Zoom still opens after removing the signature… 🧐&lt;/p&gt;
+&lt;p&gt;Gatekeeper is on, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;spctl&lt;/code&gt; says rejected, but Zoom still opens after removing the signature… 🧐&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;spctl &lt;span class=&quot;nt&quot;&gt;--status&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt;
@@ -490,7 +490,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
   &lt;li&gt;All other log messages, such as debug output, are executed asynchronously.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Getting started is simple. This will add a pair of “loggers” and your log statements will be sent to the Console.app and the Xcode console (just like a normal &lt;code class=&quot;highlighter-rouge&quot;&gt;NSLog&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;Getting started is simple. This will add a pair of “loggers” and your log statements will be sent to the Console.app and the Xcode console (just like a normal &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NSLog&lt;/code&gt;).&lt;/p&gt;
 
 &lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#define LOG_LEVEL_DEF ddLogLevel
 #import &amp;lt;CocoaLumberjack/CocoaLumberjack.h&amp;gt;
@@ -509,7 +509,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 
 &lt;p&gt;That’s a fairly standard log file setup, with one file per day, for a week. After a week, the oldest file is deleted.&lt;/p&gt;
 
-&lt;p&gt;Then to log, just convert your &lt;code class=&quot;highlighter-rouge&quot;&gt;NSLog&lt;/code&gt; calls:&lt;/p&gt;
+&lt;p&gt;Then to log, just convert your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NSLog&lt;/code&gt; calls:&lt;/p&gt;
 
 &lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Convert from this:&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;NSLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;@&quot;Broken sprocket detected!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -522,7 +522,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 
 &lt;p&gt;Those logs will be set to the console, and to the log file.&lt;/p&gt;
 
-&lt;p&gt;If you make the &lt;code class=&quot;highlighter-rouge&quot;&gt;logFileManager&lt;/code&gt; a &lt;code class=&quot;highlighter-rouge&quot;&gt;CompressingLogFileManager&lt;/code&gt;, per the LogFileCompressor demo project mentioned above, your setup looks like this:&lt;/p&gt;
+&lt;p&gt;If you make the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;logFileManager&lt;/code&gt; a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CompressingLogFileManager&lt;/code&gt;, per the LogFileCompressor demo project mentioned above, your setup looks like this:&lt;/p&gt;
 
 &lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;CompressingLogFileManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logFileManager&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CompressingLogFileManager&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDFileLogger&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;initWithLogFileManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logFileManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
@@ -537,11 +537,11 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDLog&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;With this setup, your log file is ‘archived’ and then compressed to a &lt;code class=&quot;highlighter-rouge&quot;&gt;.gz&lt;/code&gt; file. After a while, the log folder looks like this:&lt;/p&gt;
+&lt;p&gt;With this setup, your log file is ‘archived’ and then compressed to a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gz&lt;/code&gt; file. After a while, the log folder looks like this:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/images/posts/compress-upload-cocoalumberjack/log-folder.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/compress-upload-cocoalumberjack/log-folder.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;log-folder&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Seems the &lt;code class=&quot;highlighter-rouge&quot;&gt;.gz&lt;/code&gt; files are excluded from the deletion based on &lt;code class=&quot;highlighter-rouge&quot;&gt;maximumNumberOfLogFiles&lt;/code&gt;, so the folder would just fill up, I think.&lt;/p&gt;
+&lt;p&gt;Seems the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gz&lt;/code&gt; files are excluded from the deletion based on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;maximumNumberOfLogFiles&lt;/code&gt;, so the folder would just fill up, I think.&lt;/p&gt;
 
 &lt;p&gt;I deal with this in Compress-Upload-CocoaLumberjack. To set up Compress-Upload-CocoaLumberjack, you need an HTTP(S) server with an endpoint that accepts the log files, then instantiate the logger with your URL:&lt;/p&gt;
 
@@ -564,7 +564,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDLog&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;addLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileLogger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The compression behaviour is the same as in LogFileCompressor, except in &lt;code class=&quot;highlighter-rouge&quot;&gt;compressionDidSucceed&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The compression behaviour is the same as in LogFileCompressor, except in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;compressionDidSucceed&lt;/code&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#pragma mark - compressionDidSucceed
 &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;compressionDidSucceed&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DDLogFileInfo&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;logFile&lt;/span&gt;
@@ -581,7 +581,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;uploadArchivedFile&lt;/code&gt; eventually calls:&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uploadArchivedFile&lt;/code&gt; eventually calls:&lt;/p&gt;
 
 &lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;uploadLogFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;NSString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;logFilePath&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -600,7 +600,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;X-BackgroundUpload-File&lt;/code&gt; contains the filename. I added &lt;code class=&quot;highlighter-rouge&quot;&gt;X-BackgroundUpload-File-UUID&lt;/code&gt; to anonymously identify each device so I could separate the log files on the server-side, and do a few security checks.&lt;/p&gt;
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X-BackgroundUpload-File&lt;/code&gt; contains the filename. I added &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X-BackgroundUpload-File-UUID&lt;/code&gt; to anonymously identify each device so I could separate the log files on the server-side, and do a few security checks.&lt;/p&gt;
 
 &lt;p&gt;I’m not going to publish the server code, as I’m pretty sure it has some vulnerabilities! Something like this, in PHP:&lt;/p&gt;
 
@@ -643,7 +643,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;To deal with old compressed files in the logs directory, I added &lt;code class=&quot;highlighter-rouge&quot;&gt;uploadOldCompressedLogFiles&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;CompressingAndUploadingLogFileManager init&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;To deal with old compressed files in the logs directory, I added &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;uploadOldCompressedLogFiles&lt;/code&gt; to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CompressingAndUploadingLogFileManager init&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;uploadOldCompressedLogFiles&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 
@@ -664,7 +664,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;You might have spotted that there’s a property on the LogFileManager that you can set to prevent uploads (it defaults to &lt;code class=&quot;highlighter-rouge&quot;&gt;YES&lt;/code&gt;). To stop uploading, simply set to &lt;code class=&quot;highlighter-rouge&quot;&gt;NO&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You might have spotted that there’s a property on the LogFileManager that you can set to prevent uploads (it defaults to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YES&lt;/code&gt;). To stop uploading, simply set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NO&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;logFileManager&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;doUpload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;NO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -690,7 +690,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
   
 &lt;/figure&gt;
 
-&lt;p&gt;I take a copy, unzip and &lt;code class=&quot;highlighter-rouge&quot;&gt;grep&lt;/code&gt; the logs for insights. For example, this lists debug lines and orders them by the number of times they occur:&lt;/p&gt;
+&lt;p&gt;I take a copy, unzip and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;grep&lt;/code&gt; the logs for insights. For example, this lists debug lines and orders them by the number of times they occur:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;egrep &lt;span class=&quot;s1&quot;&gt;'\[\D\]'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.log | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Po&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' \[.*'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/^ *//g'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;uniq&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -704,11 +704,11 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 &lt;p&gt;So I can see I should make sure these are performant:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;isItNight&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;hkw_base64EncodedURLQueryString&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isItNight&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hkw_base64EncodedURLQueryString&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;In fact I’ve already released a version where &lt;code class=&quot;highlighter-rouge&quot;&gt;hkw_base64EncodedURLQueryString&lt;/code&gt; is 66% faster and &lt;code class=&quot;highlighter-rouge&quot;&gt;isItNight&lt;/code&gt; is ~30% faster:&lt;/p&gt;
+&lt;p&gt;In fact I’ve already released a version where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hkw_base64EncodedURLQueryString&lt;/code&gt; is 66% faster and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isItNight&lt;/code&gt; is ~30% faster:&lt;/p&gt;
 
 &lt;figure class=&quot;half &quot;&gt;
   
@@ -768,7 +768,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
   
 &lt;/figure&gt;
 
-&lt;p&gt;In the last screenshot there you can see my image: &lt;a href=&quot;https://registry.hub.docker.com/r/stoutyhk/nextcloud-client/&quot;&gt;stoutyhk/nextcloud-client&lt;/a&gt;. It’s based on the image from &lt;a href=&quot;https://github.com/juanitomint/nextcloud-client-docker&quot;&gt;juanitomint&lt;/a&gt;, with some &lt;a href=&quot;https://github.com/jamesstout/nextcloud-client-docker/commit/c6184018dcc46289cbbb59060c63870814710e59&quot;&gt;small tweaks&lt;/a&gt; to add functionality to exclude certain folders and to set folders for selective sync. I also slightly tweaked how the arguments to the client are constructed and exposed the &lt;code class=&quot;highlighter-rouge&quot;&gt;media&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;config&lt;/code&gt; folders.&lt;/p&gt;
+&lt;p&gt;In the last screenshot there you can see my image: &lt;a href=&quot;https://registry.hub.docker.com/r/stoutyhk/nextcloud-client/&quot;&gt;stoutyhk/nextcloud-client&lt;/a&gt;. It’s based on the image from &lt;a href=&quot;https://github.com/juanitomint/nextcloud-client-docker&quot;&gt;juanitomint&lt;/a&gt;, with some &lt;a href=&quot;https://github.com/jamesstout/nextcloud-client-docker/commit/c6184018dcc46289cbbb59060c63870814710e59&quot;&gt;small tweaks&lt;/a&gt; to add functionality to exclude certain folders and to set folders for selective sync. I also slightly tweaked how the arguments to the client are constructed and exposed the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;media&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config&lt;/code&gt; folders.&lt;/p&gt;
 
 &lt;figure class=&quot;half &quot;&gt;
   
@@ -790,13 +790,13 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 &lt;p&gt;The config folder can contain files named:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;exclude&lt;/code&gt; - this contains files/folders/patterns that you don’t want to sync&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;unsyncedfolders&lt;/code&gt; - contains the list of un-synced remote folders (selective sync)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exclude&lt;/code&gt; - this contains files/folders/patterns that you don’t want to sync&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unsyncedfolders&lt;/code&gt; - contains the list of un-synced remote folders (selective sync)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;For example, I want to exclude syncing the Synology-generated metadata &lt;a href=&quot;https://www.reddit.com/r/synology/comments/an4a4l/modern_solution_to_stopping_the_generation_of/&quot;&gt;@eaDir&lt;/a&gt; directories to my server:&lt;/p&gt;
 
-&lt;p&gt;So I have a config directory containing an &lt;code class=&quot;highlighter-rouge&quot;&gt;exclude&lt;/code&gt; file:&lt;/p&gt;
+&lt;p&gt;So I have a config directory containing an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exclude&lt;/code&gt; file:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/images/posts/nextcloud-sync/config.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/nextcloud-sync/config.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;config folder screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -804,7 +804,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 
 &lt;p&gt;&lt;a href=&quot;/assets/images/posts/nextcloud-sync/exclude.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/nextcloud-sync/exclude.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;exclude file screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Additionally, on my server there are folders that I do not want to sync down to my NAS. So those folders go in the &lt;code class=&quot;highlighter-rouge&quot;&gt;unsyncedfolders&lt;/code&gt; file:&lt;/p&gt;
+&lt;p&gt;Additionally, on my server there are folders that I do not want to sync down to my NAS. So those folders go in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;unsyncedfolders&lt;/code&gt; file:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/images/posts/nextcloud-sync/unsyncedfolders.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/nextcloud-sync/unsyncedfolders.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;unsyncedfolders file screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -997,7 +997,7 @@ stoutyhk/nextcloud-client   latest              aa064981bb5b        1 second ago
 stoutyhk/nextcloud-client   &amp;lt;none&amp;gt;              6ca8291dece4        3 weeks ago         311MB
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;You can see the &lt;code class=&quot;highlighter-rouge&quot;&gt;latest&lt;/code&gt; tag is now pointing to image &lt;code class=&quot;highlighter-rouge&quot;&gt;aa064981bb5b&lt;/code&gt;. To update, you export the settings, stop the container, &lt;code class=&quot;highlighter-rouge&quot;&gt;docker rm stoutyhk-nextcloud-client&lt;/code&gt;, then import the settings and launch the new image:&lt;/p&gt;
+&lt;p&gt;You can see the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;latest&lt;/code&gt; tag is now pointing to image &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;aa064981bb5b&lt;/code&gt;. To update, you export the settings, stop the container, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker rm stoutyhk-nextcloud-client&lt;/code&gt;, then import the settings and launch the new image:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/images/posts/nextcloud-sync/new-image.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/nextcloud-sync/new-image.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;new-image screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1035,7 +1035,7 @@ Deleted: sha256:688a57e452c154219a34c88e18ec695ef3a15ce4a1d4f73875d56ff40a8a6de6
 Potential wasted space: 179kB
 Image efficiency score: 99 %
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Here’s a look at &lt;code class=&quot;highlighter-rouge&quot;&gt;dive&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Here’s a look at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dive&lt;/code&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://asciinema.org/a/2xQFxw4LdqjYuh9cc7WEv4Xc7&quot;&gt;&lt;img src=&quot;https://asciinema.org/a/2xQFxw4LdqjYuh9cc7WEv4Xc7.svg&quot; alt=&quot;asciicast&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>James Stout</name></author><category term="Nextcloud" /><category term="Docker" /><category term="NAS" /><category term="Synology" /><category term="docker build" /><category term="sync" /><category term="Dockerfile" /><category term="docker images" /><category term="dive" /><category term="docker layers" /><summary type="html">Syncing to Nextcloud from a Docker container, and how to build that container.</summary></entry><entry><title type="html">HKWarnings v5.0.0</title><link href="https://stouty.xyz/ios/2020/05/04/hkwarnings/" rel="alternate" type="text/html" title="HKWarnings v5.0.0" /><published>2020-05-04T23:40:49+08:00</published><updated>2020-05-04T23:40:49+08:00</updated><id>https://stouty.xyz/ios/2020/05/04/hkwarnings</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/04/hkwarnings/">&lt;p&gt;When I initially made HKWarnings &lt;a href=&quot;https://help.apple.com/xcode/mac/current/#/deve69552ee5&quot;&gt;universal&lt;/a&gt; and added an iPad interface, I based the interface on a &lt;a href=&quot;https://developer.apple.com/library/archive/samplecode/MultipleDetailViews/Introduction/Intro.html&quot;&gt;MultipleDetailViews&lt;/a&gt; demo from Apple. That version is updated, I used the older code from &lt;a href=&quot;https://developer.apple.com/library/archive/samplecode/MultipleDetailViews/History/History.html#//apple_ref/doc/uid/DTS40009775-RevisionHistory-DontLinkElementID_1&quot;&gt;2010&lt;/a&gt;, so it’s 10 years old and built for iOS 3.2.&lt;/p&gt;
 
@@ -1109,7 +1109,7 @@ Image efficiency score: 99 %
   
 &lt;/figure&gt;
 
-&lt;p&gt;Anyway, this 10 year old code has survived &lt;a href=&quot;https://en.wikipedia.org/wiki/IOS_version_history&quot;&gt;9 OS updates&lt;/a&gt;, but finally, on iOS 13, it no longer works. The code below that switches the Detail VC and hides the Master &lt;em&gt;is&lt;/em&gt; called, but the &lt;code class=&quot;highlighter-rouge&quot;&gt;UIPopoverController&lt;/code&gt; is always &lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;Anyway, this 10 year old code has survived &lt;a href=&quot;https://en.wikipedia.org/wiki/IOS_version_history&quot;&gt;9 OS updates&lt;/a&gt;, but finally, on iOS 13, it no longer works. The code below that switches the Detail VC and hides the Master &lt;em&gt;is&lt;/em&gt; called, but the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UIPopoverController&lt;/code&gt; is always &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nil&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-objc highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;splitViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UISplitViewController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;svc&lt;/span&gt;
      &lt;span class=&quot;nf&quot;&gt;willHideViewController&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIViewController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;aViewController&lt;/span&gt;
@@ -1308,11 +1308,11 @@ SUM:                            949          26849          26070          74499
   &lt;li&gt;&lt;a href=&quot;https://github.com/PureLayout/PureLayout&quot;&gt;PureLayout&lt;/a&gt; - API for iOS &amp;amp; OS X Auto Layout. None of that &lt;a href=&quot;https://developer.apple.com/xcode/interface-builder/&quot;&gt;IB&lt;/a&gt; rubbish.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/CocoaLumberjack/CocoaLumberjack&quot;&gt;CocoaLumberjack&lt;/a&gt; - a fast &amp;amp; simple, yet powerful &amp;amp; flexible logging framework.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/jamesstout/CompressingAndUploadingLogFileManager&quot;&gt;CompressingAndUploadingLogFileManager&lt;/a&gt; - my, as yet unpublished&lt;sup id=&quot;fnref:fn-repo&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn-repo&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; library, that compresses log files and then uploads them to an HTTP server for examination, stats etc.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/nicklockwood/GZIP&quot;&gt;GZIP&lt;/a&gt; - to unzip &lt;code class=&quot;highlighter-rouge&quot;&gt;.gz&lt;/code&gt; files. To &lt;a href=&quot;https://developer.apple.com/documentation/xcode/reducing_your_app_s_size/doing_basic_optimization_to_reduce_your_app_s_size?language=objc&quot;&gt;reduce package size&lt;/a&gt; I zip some text files. See below.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/laptobbe/TSMarkdownParser&quot;&gt;TSMarkdownParser&lt;/a&gt; - a markdown to NSAttributedString parser. I use it to display the &lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/wiki/Acknowledgements&quot;&gt;acknowledgements&lt;/a&gt; Markdown created by the &lt;code class=&quot;highlighter-rouge&quot;&gt;pod install&lt;/code&gt; command. Again, see below.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/nicklockwood/GZIP&quot;&gt;GZIP&lt;/a&gt; - to unzip &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gz&lt;/code&gt; files. To &lt;a href=&quot;https://developer.apple.com/documentation/xcode/reducing_your_app_s_size/doing_basic_optimization_to_reduce_your_app_s_size?language=objc&quot;&gt;reduce package size&lt;/a&gt; I zip some text files. See below.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/laptobbe/TSMarkdownParser&quot;&gt;TSMarkdownParser&lt;/a&gt; - a markdown to NSAttributedString parser. I use it to display the &lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/wiki/Acknowledgements&quot;&gt;acknowledgements&lt;/a&gt; Markdown created by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod install&lt;/code&gt; command. Again, see below.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;In my Podfile, I have a &lt;code class=&quot;highlighter-rouge&quot;&gt;post_install&lt;/code&gt; hook that does various things, including, copying the acknowledgements &lt;code class=&quot;highlighter-rouge&quot;&gt;plist&lt;/code&gt; to the Settings bundle, and the Markdown to a text file that I then compress.&lt;/p&gt;
+&lt;p&gt;In my Podfile, I have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post_install&lt;/code&gt; hook that does various things, including, copying the acknowledgements &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plist&lt;/code&gt; to the Settings bundle, and the Markdown to a text file that I then compress.&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fileutils'&lt;/span&gt;
 &lt;span class=&quot;no&quot;&gt;FileUtils&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cp_r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Pods/Target Support Files/Pods-HKWeatherWarningsTabs/Pods-HKWeatherWarningsTabs-acknowledgements.plist'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Settings.bundle/Acknowledgements.plist'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:remove_destination&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -1395,7 +1395,7 @@ SUM:                            949          26849          26070          74499
 &lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:fn-repo&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;See that private Spec source in the &lt;a href=&quot;https://guides.cocoapods.org/using/the-podfile.html&quot;&gt;Podfile&lt;/a&gt;? &lt;code class=&quot;highlighter-rouge&quot;&gt;source 'https://github.com/jamesstout/Specs.git'&lt;/code&gt; &lt;a href=&quot;#fnref:fn-repo&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;See that private Spec source in the &lt;a href=&quot;https://guides.cocoapods.org/using/the-podfile.html&quot;&gt;Podfile&lt;/a&gt;? &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source 'https://github.com/jamesstout/Specs.git'&lt;/code&gt; &lt;a href=&quot;#fnref:fn-repo&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:fn-gz&quot; role=&quot;doc-endnote&quot;&gt;
       &lt;p&gt;Well, about 30kB as the GZIP library is about 17kB. &lt;a href=&quot;#fnref:fn-gz&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
@@ -1467,7 +1467,7 @@ MobileDevice &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;Built for both archs…&lt;/p&gt;
 
-&lt;p&gt;Sooooo, I could fiddle with &lt;code class=&quot;highlighter-rouge&quot;&gt;csrutil&lt;/code&gt; and &lt;a href=&quot;https://forums.creativecow.net/thread/19/897177#897188&quot;&gt;replace the new framework with the one from my clone&lt;/a&gt;, or, see if there’s an update. No update has ever shown up in the App Store for GarageBand, but it turns out there is one:&lt;/p&gt;
+&lt;p&gt;Sooooo, I could fiddle with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;csrutil&lt;/code&gt; and &lt;a href=&quot;https://forums.creativecow.net/thread/19/897177#897188&quot;&gt;replace the new framework with the one from my clone&lt;/a&gt;, or, see if there’s an update. No update has ever shown up in the App Store for GarageBand, but it turns out there is one:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/images/posts/mobile-device/gb-update.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/mobile-device/gb-update.png&quot; src=&quot;/assets/images/posts/mobile-device/gb-update-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;GarageBand update&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1502,11 +1502,11 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
                     &lt;span class=&quot;k&quot;&gt;done in &lt;/span&gt;1.531 seconds.
  Auto-regeneration: disabled. Use &lt;span class=&quot;nt&quot;&gt;--watch&lt;/span&gt; to enable.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Generating the new &lt;code class=&quot;highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder:&lt;/p&gt;
+&lt;p&gt;Generating the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/images/posts/git-deploy/gs.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/git-deploy/gs.png&quot; src=&quot;/assets/images/posts/git-deploy/gs-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Git status screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;The Git repo for this site has the usual &lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt; &lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes&quot;&gt;remote&lt;/a&gt;, but also a remote named &lt;code class=&quot;highlighter-rouge&quot;&gt;deploy&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;The Git repo for this site has the usual &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;origin&lt;/code&gt; &lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes&quot;&gt;remote&lt;/a&gt;, but also a remote named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deploy&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Projects/jamesstout.github.io/.git
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;config
@@ -1530,7 +1530,7 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
 	fetch &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; +refs/heads/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;:refs/remotes/deploy/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;deploy&lt;/code&gt; remote is a &lt;a href=&quot;https://mijingo.com/blog/what-is-a-bare-git-repository&quot;&gt;bare&lt;/a&gt; git repository on the Web server, that simply receives the latest git objects. There’s no working tree:&lt;/p&gt;
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deploy&lt;/code&gt; remote is a &lt;a href=&quot;https://mijingo.com/blog/what-is-a-bare-git-repository&quot;&gt;bare&lt;/a&gt; git repository on the Web server, that simply receives the latest git objects. There’s no working tree:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@hkwarnings: /usr/src/stouty.git
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls
@@ -1542,10 +1542,10 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
 &lt;blockquote&gt;
   &lt;p&gt;These scripts run before and after pushes to the server.&lt;/p&gt;
 
-  &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;post-receive&lt;/code&gt; hook runs after the entire process is completed and can be used to update other services or notify users.&lt;/p&gt;
+  &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-receive&lt;/code&gt; hook runs after the entire process is completed and can be used to update other services or notify users.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;I have it configured to change directory to the Web &lt;a href=&quot;https://nginx.org/en/docs/http/ngx_http_core_module.html#root&quot;&gt;root&lt;/a&gt;, which is also a Git repo, with the same &lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt; as the working repo on my local machine, and simply execute &lt;code class=&quot;highlighter-rouge&quot;&gt;git pull&lt;/code&gt;&lt;sup id=&quot;fnref:fn-certbot&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn-certbot&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;I have it configured to change directory to the Web &lt;a href=&quot;https://nginx.org/en/docs/http/ngx_http_core_module.html#root&quot;&gt;root&lt;/a&gt;, which is also a Git repo, with the same &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;origin&lt;/code&gt; as the working repo on my local machine, and simply execute &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git pull&lt;/code&gt;&lt;sup id=&quot;fnref:fn-certbot&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn-certbot&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@hkwarnings: /usr/src/stouty.git/hooks
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;post-receive
@@ -1571,7 +1571,7 @@ Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
 &lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:fn-certbot&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;.well-known/acme-challenge&lt;/code&gt; is just to ensure the directory exists for Certbot challenges during certificate renewal. &lt;a href=&quot;#fnref:fn-certbot&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.well-known/acme-challenge&lt;/code&gt; is just to ensure the directory exists for Certbot challenges during certificate renewal. &lt;a href=&quot;#fnref:fn-certbot&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;</content><author><name>James Stout</name></author><category term="git" /><category term="Jekyll" /><category term="git hooks" /><category term="deployment" /><summary type="html">How to use Git hooks to deploy a static site.</summary></entry></feed>
