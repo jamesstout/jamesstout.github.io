@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
-  Minimal Mistakes Jekyll Theme 4.19.3 by Michael Rose
-  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
   Free for personal and commercial use under the MIT license
   https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
 -->
@@ -14,6 +14,9 @@
 
 
   <meta name="author" content="James Stout">
+  
+  <meta property="article:author" content="James Stout">
+  
 
 
 <meta property="og:type" content="article">
@@ -87,6 +90,7 @@
 
 <!-- For all browsers -->
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
 
 <!--[if IE]>
   <style>
@@ -356,15 +360,26 @@
           <h1 id="page-title" class="page__title" itemprop="headline">Recovering iTunes Playlists
 </h1>
           
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
 
 
-
-
-  3 minute read
-
-</p>
-          
         </header>
       
 
@@ -383,7 +398,7 @@
 
 <p>I found an <a href="https://github.com/mheap/iTunes-Library-Parser">iTunes Library parser</a>, extended it to load <a href="https://github.com/jamesstout/iTunes-Library-Parser/blob/71cfc95b2f55ae581ccc9647fd4e0decb0ae438e/iTunesLibrary.php">playlists</a>, and  provide a new <a href="https://github.com/jamesstout/iTunes-Library-Parser/blob/71cfc95b2f55ae581ccc9647fd4e0decb0ae438e/iTunesLibrary.php#L130-L214">function</a> to look up a track, in say a new iTunes library, given the name, artist, album and track time.</p>
 
-<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="nf">getIDAndLocation</span><span class="p">(</span><span class="nv">$trackID</span><span class="p">,</span> <span class="nv">$trackName</span><span class="p">,</span> <span class="nv">$totalTime</span><span class="p">,</span> <span class="nv">$artist</span><span class="p">,</span> <span class="nv">$album</span><span class="p">){</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="n">getIDAndLocation</span><span class="p">(</span><span class="nv">$trackID</span><span class="p">,</span> <span class="nv">$trackName</span><span class="p">,</span> <span class="nv">$totalTime</span><span class="p">,</span> <span class="nv">$artist</span><span class="p">,</span> <span class="nv">$album</span><span class="p">){</span>
 
     <span class="c1">// error checks</span>
     <span class="k">if</span><span class="p">(</span><span class="nv">$trackName</span> <span class="o">==</span> <span class="kc">null</span><span class="p">){</span>
@@ -394,14 +409,14 @@
     <span class="nv">$match</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
     <span class="nv">$potentialMatch</span><span class="o">=</span> <span class="k">array</span><span class="p">();</span>
 
-    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">_tracks</span> <span class="k">as</span> <span class="nv">$track</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">_tracks</span> <span class="k">as</span> <span class="nv">$track</span> <span class="p">)</span> <span class="p">{</span>
       <span class="c1">// match on as much as possible</span>
-      <span class="k">if</span><span class="p">(</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Name</span> <span class="o">==</span> <span class="nv">$trackName</span> <span class="o">&amp;&amp;</span>  
-        <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$totalTime</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Total_Time</span> <span class="o">==</span> <span class="nv">$totalTime</span><span class="p">)</span> <span class="o">&amp;&amp;</span>  
-        <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$artist</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Artist</span> <span class="o">==</span> <span class="nv">$artist</span><span class="p">)</span> <span class="o">&amp;&amp;</span>  
-        <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$album</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Album</span> <span class="o">==</span> <span class="nv">$album</span><span class="p">)</span>
+      <span class="k">if</span><span class="p">(</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="nc">Name</span> <span class="o">==</span> <span class="nv">$trackName</span> <span class="o">&amp;&amp;</span>  
+        <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$totalTime</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="n">Total_Time</span> <span class="o">==</span> <span class="nv">$totalTime</span><span class="p">)</span> <span class="o">&amp;&amp;</span>  
+        <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$artist</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="nc">Artist</span> <span class="o">==</span> <span class="nv">$artist</span><span class="p">)</span> <span class="o">&amp;&amp;</span>  
+        <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$album</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="nc">Album</span> <span class="o">==</span> <span class="nv">$album</span><span class="p">)</span>
         <span class="p">){</span>
-          <span class="k">return</span> <span class="k">array</span><span class="p">(</span><span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Track_ID</span><span class="p">,</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Location</span><span class="p">);</span>
+          <span class="k">return</span> <span class="k">array</span><span class="p">(</span><span class="nv">$track</span><span class="o">-&gt;</span><span class="n">Track_ID</span><span class="p">,</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="nc">Location</span><span class="p">);</span>
       <span class="p">}</span>
 
       <span class="c1">// if no match, construct some potential matches</span>
@@ -410,21 +425,21 @@
       <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s2">"Album"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$album</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">?</span> <span class="nv">$album</span> <span class="o">:</span> <span class="s2">"NO ALBUM"</span><span class="p">);</span>
 
       <span class="c1">// tmp vars</span>
-      <span class="nv">$tmpArtist</span> <span class="o">=</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Artist</span><span class="p">)</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">?</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Artist</span> <span class="o">:</span> <span class="s2">"NO ARTIST"</span><span class="p">);</span>
-      <span class="nv">$tmpAlbum</span> <span class="o">=</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Album</span><span class="p">)</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">?</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Album</span> <span class="o">:</span> <span class="s2">"NO ALBUM"</span><span class="p">);</span>
+      <span class="nv">$tmpArtist</span> <span class="o">=</span> <span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="nv">$track</span><span class="o">-&gt;</span><span class="nc">Artist</span><span class="p">)</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">?</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="nc">Artist</span> <span class="o">:</span> <span class="s2">"NO ARTIST"</span><span class="p">);</span>
+      <span class="nv">$tmpAlbum</span> <span class="o">=</span> <span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="nv">$track</span><span class="o">-&gt;</span><span class="nc">Album</span><span class="p">)</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">?</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="nc">Album</span> <span class="o">:</span> <span class="s2">"NO ALBUM"</span><span class="p">);</span>
 
       <span class="c1">// if track name, total time and artist match, grab the details</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Total_Time</span> <span class="o">==</span> <span class="nv">$totalTime</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Name</span> <span class="o">==</span> <span class="nv">$trackName</span> <span class="o">&amp;&amp;</span> <span class="nb">is_null</span><span class="p">(</span><span class="nv">$artist</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$tmpArtist</span> <span class="o">==</span> <span class="nv">$artist</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nv">$track</span><span class="o">-&gt;</span><span class="n">Total_Time</span> <span class="o">==</span> <span class="nv">$totalTime</span> <span class="o">&amp;&amp;</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="nc">Name</span> <span class="o">==</span> <span class="nv">$trackName</span> <span class="o">&amp;&amp;</span> <span class="nb">is_null</span><span class="p">(</span><span class="nv">$artist</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span> <span class="o">&amp;&amp;</span> <span class="nv">$tmpArtist</span> <span class="o">==</span> <span class="nv">$artist</span><span class="p">)</span> <span class="p">{</span>
 
           <span class="nv">$match</span><span class="o">++</span><span class="p">;</span>
 
           <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s1">'Match'</span><span class="p">][</span><span class="nv">$match</span><span class="p">][</span><span class="s2">"Type"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Name_TotalTime"</span><span class="p">;</span>
-          <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s1">'Match'</span><span class="p">][</span><span class="nv">$match</span><span class="p">][</span><span class="s2">"Name"</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Name</span><span class="p">;</span>
-          <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s1">'Match'</span><span class="p">][</span><span class="nv">$match</span><span class="p">][</span><span class="s2">"Track_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Track_ID</span><span class="p">;</span>
-          <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s1">'Match'</span><span class="p">][</span><span class="nv">$match</span><span class="p">][</span><span class="s2">"TotalTime"</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Total_Time</span><span class="p">;</span>
+          <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s1">'Match'</span><span class="p">][</span><span class="nv">$match</span><span class="p">][</span><span class="s2">"Name"</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="nc">Name</span><span class="p">;</span>
+          <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s1">'Match'</span><span class="p">][</span><span class="nv">$match</span><span class="p">][</span><span class="s2">"Track_ID"</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="n">Track_ID</span><span class="p">;</span>
+          <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s1">'Match'</span><span class="p">][</span><span class="nv">$match</span><span class="p">][</span><span class="s2">"TotalTime"</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="n">Total_Time</span><span class="p">;</span>
           <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s1">'Match'</span><span class="p">][</span><span class="nv">$match</span><span class="p">][</span><span class="s2">"Artist"</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$tmpArtist</span><span class="p">;</span>
           <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s1">'Match'</span><span class="p">][</span><span class="nv">$match</span><span class="p">][</span><span class="s2">"Album"</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$tmpAlbum</span><span class="p">;</span>
-          <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s1">'Match'</span><span class="p">][</span><span class="nv">$match</span><span class="p">][</span><span class="s2">"Location"</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="na">Location</span><span class="p">;</span>
+          <span class="nv">$potentialMatch</span><span class="p">[</span><span class="nv">$trackName</span><span class="p">][</span><span class="s1">'Match'</span><span class="p">][</span><span class="nv">$match</span><span class="p">][</span><span class="s2">"Location"</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$track</span><span class="o">-&gt;</span><span class="nc">Location</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">}</span>
 
@@ -487,22 +502,22 @@
 <span class="p">}</span>
 
 <span class="c1">// load up old library, and playlists</span>
-<span class="nv">$oldLibrary</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">iTunesLibrary</span><span class="p">(</span><span class="nv">$oldiTunesFileGZ</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">$trackLimit</span><span class="p">);</span>
+<span class="nv">$oldLibrary</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">iTunesLibrary</span><span class="p">(</span><span class="nv">$oldiTunesFileGZ</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">$trackLimit</span><span class="p">);</span>
 
 <span class="c1">// load up new library, just the tracks</span>
-<span class="nv">$newLibrary</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">iTunesLibrary</span><span class="p">(</span><span class="nv">$newiTunesFileGZ</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="nv">$newLibrary</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">iTunesLibrary</span><span class="p">(</span><span class="nv">$newiTunesFileGZ</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
 
-<span class="k">foreach</span> <span class="p">(</span><span class="nv">$oldLibrary</span><span class="o">-&gt;</span><span class="na">getPlaylists</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$playlist</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$oldLibrary</span><span class="o">-&gt;</span><span class="nf">getPlaylists</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$playlist</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="nv">$time_start</span> <span class="o">=</span> <span class="nb">microtime</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$playlist</span><span class="o">-&gt;</span><span class="na">tracks</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$playlist</span><span class="o">-&gt;</span><span class="na">tracks</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nv">$trackLimit</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$playlist</span><span class="o">-&gt;</span><span class="n">tracks</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$playlist</span><span class="o">-&gt;</span><span class="n">tracks</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nv">$trackLimit</span><span class="p">)</span> <span class="p">{</span>
 
         <span class="k">echo</span> <span class="s2">"Playlist Name: </span><span class="nv">$playlist-&gt;Name</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 
         <span class="nv">$newTrackIDs</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
-        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$playlist</span><span class="o">-&gt;</span><span class="na">tracks</span> <span class="k">as</span> <span class="nv">$trackID</span> <span class="o">=&gt;</span> <span class="nv">$trackValues</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">list</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$location</span><span class="p">)</span> <span class="o">=</span> <span class="nv">$newLibrary</span><span class="o">-&gt;</span><span class="na">getIDAndLocation</span><span class="p">(</span><span class="nv">$trackID</span><span class="p">,</span> <span class="nv">$trackValues</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">],</span> <span class="nv">$trackValues</span><span class="p">[</span><span class="s2">"Total_Time"</span><span class="p">],</span> <span class="nv">$trackValues</span><span class="p">[</span><span class="s2">"Artist"</span><span class="p">],</span> <span class="nv">$trackValues</span><span class="p">[</span><span class="s2">"Album"</span><span class="p">]);</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$playlist</span><span class="o">-&gt;</span><span class="n">tracks</span> <span class="k">as</span> <span class="nv">$trackID</span> <span class="o">=&gt;</span> <span class="nv">$trackValues</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">list</span><span class="p">(</span><span class="nv">$id</span><span class="p">,</span> <span class="nv">$location</span><span class="p">)</span> <span class="o">=</span> <span class="nv">$newLibrary</span><span class="o">-&gt;</span><span class="nf">getIDAndLocation</span><span class="p">(</span><span class="nv">$trackID</span><span class="p">,</span> <span class="nv">$trackValues</span><span class="p">[</span><span class="s2">"Name"</span><span class="p">],</span> <span class="nv">$trackValues</span><span class="p">[</span><span class="s2">"Total_Time"</span><span class="p">],</span> <span class="nv">$trackValues</span><span class="p">[</span><span class="s2">"Artist"</span><span class="p">],</span> <span class="nv">$trackValues</span><span class="p">[</span><span class="s2">"Album"</span><span class="p">]);</span>
 
             <span class="k">if</span> <span class="p">(</span><span class="nb">is_null</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="o">==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
                 <span class="nv">$newTrackIDs</span><span class="p">[]</span><span class="o">=</span><span class="nv">$id</span><span class="p">;</span>
@@ -514,7 +529,7 @@
 
         <span class="c1">// write new xml, need name and trackIds</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$writeNewPlaylistFile</span> <span class="o">==</span> <span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$newTrackIDs</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">outputPlaylistFile</span><span class="p">(</span><span class="nv">$playlist</span><span class="o">-&gt;</span><span class="na">Name</span><span class="p">,</span> <span class="nv">$newTrackIDs</span><span class="p">);</span>
+            <span class="nf">outputPlaylistFile</span><span class="p">(</span><span class="nv">$playlist</span><span class="o">-&gt;</span><span class="nc">Name</span><span class="p">,</span> <span class="nv">$newTrackIDs</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -618,22 +633,33 @@
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ios/2020/05/18/countly/" rel="permalink">Countly For iOS and Web Analytics
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  2 minute read
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Installing Countly server and SDK for iOS and Web analytics
 </p>
   </article>
@@ -647,22 +673,33 @@
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/nextcloud/2020/05/17/nextcloud-conflicting-files/" rel="permalink">Fixing Nextcloud Conflicting Files
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  2 minute read
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">A bash script to correct conflicting files.
 </p>
   </article>
@@ -676,22 +713,33 @@
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/ios/2020/05/15/firebase-crashlytics/" rel="permalink">Firebase Crashlytics - Are They Having a Laugh?
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  3 minute read
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">Investigating the new Firebase Crashlytics SDK.
 </p>
   </article>
@@ -705,22 +753,33 @@
 <div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
+    <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/webdev/2020/05/11/copy-site-jekyll-hook/" rel="permalink">A Jekyll Hook to Copy Pre-Built Site to Another Directory
 </a>
       
     </h2>
     
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
 
-
-
-
-  less than 1 minute read
-
-</p>
+  <p class="page__meta">
     
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
     <p class="archive__item-excerpt" itemprop="description">My first attempt at a Jekyll plugin, it copies the _site folder somewhere else.
 </p>
   </article>

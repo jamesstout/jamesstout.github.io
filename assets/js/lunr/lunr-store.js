@@ -42,7 +42,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Prince estate releases original version of 'Nothing Compares 2 U'",
-        "excerpt":"          [Link]  ","categories": ["music"],
+        "excerpt":"             [Link]  ","categories": ["music"],
         "tags": ["music","youtube","prince"],
         "url": "https://stouty.xyz/music/2018/04/22/prince/",
         "teaser": null
@@ -156,7 +156,7 @@ var store = [{
         "teaser": null
       },{
         "title": "Live Lounge Allstars - Times Like These",
-        "excerpt":"          ","categories": ["music"],
+        "excerpt":"             ","categories": ["music"],
         "tags": ["music","youtube","foo fighters"],
         "url": "https://stouty.xyz/music/2020/04/25/times-like-these/",
         "teaser": null
