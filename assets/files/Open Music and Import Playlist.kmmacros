@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Activate</key>
+		<string>Normal</string>
+		<key>CreationDate</key>
+		<real>459262058.71190298</real>
+		<key>Macros</key>
+		<array>
+			<dict>
+				<key>Actions</key>
+				<array>
+					<dict>
+						<key>MacroActionType</key>
+						<string>SelectMenuItem</string>
+						<key>Menu</key>
+						<array>
+							<string>File</string>
+							<string>Library</string>
+							<string>Import Playlist…</string>
+						</array>
+						<key>TargetApplication</key>
+						<dict>
+							<key>BundleIdentifier</key>
+							<string>com.apple.Music</string>
+							<key>Name</key>
+							<string>Music</string>
+							<key>NewFile</key>
+							<string>/System/Applications/Music.app</string>
+						</dict>
+						<key>TargetingType</key>
+						<string>Specific</string>
+					</dict>
+				</array>
+				<key>CreationDate</key>
+				<real>623680433.95513999</real>
+				<key>ModificationDate</key>
+				<real>623689407.45594299</real>
+				<key>Name</key>
+				<string>Open Music and Import Playlist</string>
+				<key>Triggers</key>
+				<array>
+					<dict>
+						<key>FireType</key>
+						<string>Pressed</string>
+						<key>KeyCode</key>
+						<integer>34</integer>
+						<key>MacroTriggerType</key>
+						<string>HotKey</string>
+						<key>Modifiers</key>
+						<integer>6400</integer>
+					</dict>
+				</array>
+				<key>UID</key>
+				<string>AFE7C757-CEC3-4AED-B9C2-86C5B6BAD602</string>
+			</dict>
+		</array>
+		<key>Name</key>
+		<string>Applications</string>
+		<key>ToggleMacroUID</key>
+		<string>52B0B84A-41A4-494F-AFD1-7F7FD7DAF118</string>
+		<key>UID</key>
+		<string>C65AD9FC-D2E5-410A-A297-A40DD1AA57E7</string>
+	</dict>
+</array>
+</plist>
