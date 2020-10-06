@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-10-03T18:50:48+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Countly For iOS and Web Analytics</title><link href="https://stouty.xyz/ios/2020/05/18/countly/" rel="alternate" type="text/html" title="Countly For iOS and Web Analytics" /><published>2020-05-18T17:45:32+08:00</published><updated>2020-05-18T17:45:32+08:00</updated><id>https://stouty.xyz/ios/2020/05/18/countly</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/18/countly/">&lt;p&gt;I previously &lt;a href=&quot;https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/&quot;&gt;mentioned&lt;/a&gt; that I wasn’t too keen on all the things Firebase Crashlytics installed and would look at &lt;a href=&quot;https://count.ly/product&quot;&gt;Countly&lt;/a&gt; as an alternative.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2020-10-06T22:42:11+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Countly For iOS and Web Analytics</title><link href="https://stouty.xyz/ios/2020/05/18/countly/" rel="alternate" type="text/html" title="Countly For iOS and Web Analytics" /><published>2020-05-18T17:45:32+08:00</published><updated>2020-05-18T17:45:32+08:00</updated><id>https://stouty.xyz/ios/2020/05/18/countly</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/18/countly/">&lt;p&gt;I previously &lt;a href=&quot;https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/&quot;&gt;mentioned&lt;/a&gt; that I wasn’t too keen on all the things Firebase Crashlytics installed and would look at &lt;a href=&quot;https://count.ly/product&quot;&gt;Countly&lt;/a&gt; as an alternative.&lt;/p&gt;
 
 &lt;p&gt;Countly is impressive. They have loads of &lt;a href=&quot;https://support.count.ly/hc/en-us/categories/360002373332-Knowledge-Base&quot;&gt;documentation&lt;/a&gt;, and support &lt;a href=&quot;https://support.count.ly/hc/en-us/sections/360007310512-SDKs&quot;&gt;loads&lt;/a&gt; of platforms.&lt;/p&gt;
 
@@ -739,7 +739,7 @@ james@Jamess-iMac: ~/Projects/Compress-Upload-CocoaLumberjack on master[?]
 
 &lt;p&gt;Anyway, here it is in action (click through to view the video):&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://cloud.stouty.xyz/s/XodEPXEbxZLcnGo&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/compress-upload-cocoalumberjack/uploadingLogFiles.png&quot; src=&quot;/assets/images/posts/compress-upload-cocoalumberjack/uploadingLogFiles-lq.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;Git files changes screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>James Stout</name></author><category term="iOS" /><category term="CocoaLumberjack" /><category term="logging" /><category term="remote logging" /><category term="compression" /><category term="CocoaPods" /><category term="pod" /><summary type="html">My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack.</summary></entry><entry><title type="html">Nextcloud Sync Client for Docker</title><link href="https://stouty.xyz/nextcloud/2020/05/08/nextcloud-sync/" rel="alternate" type="text/html" title="Nextcloud Sync Client for Docker" /><published>2020-05-08T22:27:27+08:00</published><updated>2020-05-08T22:27:27+08:00</updated><id>https://stouty.xyz/nextcloud/2020/05/08/nextcloud-sync</id><content type="html" xml:base="https://stouty.xyz/nextcloud/2020/05/08/nextcloud-sync/">&lt;p&gt;I’ve found the ‘native’ macOS Nextcloud client to be a bit flakey. It’s all &lt;a href=&quot;https://www.qt.io/&quot;&gt;Qt&lt;/a&gt; and &lt;a href=&quot;https://github.com/nextcloud/desktop/search?l=c%2B%2B&quot;&gt;C++&lt;/a&gt; and times out all the time.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.dropbox.com/s/o0bvlqlo358tgc6/uploadingLogFiles-short.mp4?dl=0&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/compress-upload-cocoalumberjack/uploadingLogFiles.png&quot; src=&quot;/assets/images/posts/compress-upload-cocoalumberjack/uploadingLogFiles-lq.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;Git files changes screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>James Stout</name></author><category term="iOS" /><category term="CocoaLumberjack" /><category term="logging" /><category term="remote logging" /><category term="compression" /><category term="CocoaPods" /><category term="pod" /><summary type="html">My first CocoaPod - a mashup of CompressingLogFileManager from CocoaLumberjack and BackgroundUpload-CocoaLumberjack.</summary></entry><entry><title type="html">Nextcloud Sync Client for Docker</title><link href="https://stouty.xyz/nextcloud/2020/05/08/nextcloud-sync/" rel="alternate" type="text/html" title="Nextcloud Sync Client for Docker" /><published>2020-05-08T22:27:27+08:00</published><updated>2020-05-08T22:27:27+08:00</updated><id>https://stouty.xyz/nextcloud/2020/05/08/nextcloud-sync</id><content type="html" xml:base="https://stouty.xyz/nextcloud/2020/05/08/nextcloud-sync/">&lt;p&gt;I’ve found the ‘native’ macOS Nextcloud client to be a bit flakey. It’s all &lt;a href=&quot;https://www.qt.io/&quot;&gt;Qt&lt;/a&gt; and &lt;a href=&quot;https://github.com/nextcloud/desktop/search?l=c%2B%2B&quot;&gt;C++&lt;/a&gt; and times out all the time.&lt;/p&gt;
 
 &lt;p&gt;I’m trying to replace Dropbox on my Mac, as they get up to all sorts of &lt;a href=&quot;https://applehelpwriter.com/2016/07/28/revealing-dropboxs-dirty-little-security-hack/&quot;&gt;scummy&lt;/a&gt; &lt;a href=&quot;https://applehelpwriter.com/2016/08/29/discovering-how-dropbox-hacks-your-mac/&quot;&gt;behaviour&lt;/a&gt;, but it’s a little harder than expected.&lt;/p&gt;
 
@@ -1138,6 +1138,7 @@ Image efficiency score: 99 %
     &lt;span class=&quot;n&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rootPopoverButtonItem&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;p&gt;Nothing I tried could make it work. There are not too many other people searching for an answer on Stackoverflow. I started a major rewrite based on the stock Xcode Master-Detail project:&lt;/p&gt;
 
 &lt;figure class=&quot;half &quot;&gt;
@@ -1177,6 +1178,7 @@ Image efficiency score: 99 %
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'NF==3 {plus+=$1; minus+=$2} END {printf(&quot;+%d, -%d\n&quot;, plus, minus)}'&lt;/span&gt;
 +183978, &lt;span class=&quot;nt&quot;&gt;-119453&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;p&gt;&lt;strong&gt;+183978, -119453&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;BTW, that command takes a &lt;em&gt;quite&lt;/em&gt; a while:&lt;/p&gt;
@@ -1195,6 +1197,7 @@ sys	0m4.840s
 &lt;h2 id=&quot;some-stats&quot;&gt;Some Stats&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/AlDanial/cloc/&quot;&gt;cloc&lt;/a&gt; output, excluding Pods:&lt;/p&gt;
+
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Projects/iPhone Apps/HKWarnings on 5.0.1[!?&lt;span class=&quot;nv&quot;&gt;$]&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cloc &lt;span class=&quot;nt&quot;&gt;--ignored&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ignored.txt &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--exclude-dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;Pods,HKWeatherWarningsTabs.xcodeproj,HKWeatherWarningsTabs.xcworkspace &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
@@ -1298,6 +1301,7 @@ SUM:                            949          26849          26070          74499
   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;h2 id=&quot;significant-pods&quot;&gt;Significant Pods&lt;/h2&gt;
 
 &lt;ul&gt;
@@ -1357,6 +1361,7 @@ SUM:                            949          26849          26070          74499
     &lt;span class=&quot;n&quot;&gt;_textView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;attributedText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;p&gt;Saves about 47kB&lt;sup id=&quot;fnref:fn-gz&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn-gz&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/images/posts/hkwarnings/gz.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/hkwarnings/gz.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;gzipped ack file&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
@@ -1388,7 +1393,7 @@ SUM:                            949          26849          26070          74499
 
 &lt;p&gt;Anyway, here’s v5.0.0 (click through to view the video):&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://cloud.stouty.xyz/s/E8dncbZWd8zj8Xj&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/hkwarnings/HKWarnings.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;HKWarnings.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.dropbox.com/s/y4q7u806b5zjezh/HKWarnings.mp4?dl=0&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/hkwarnings/HKWarnings.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;HKWarnings.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
