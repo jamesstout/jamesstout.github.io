@@ -452,6 +452,7 @@ PhotoSync works seamlessly with all major NAS storage devices, servers and perso
     |-- Twitter
     `-- WhatsApp
 </span></code></pre></div></div>
+
 <p>Duplicate directories, duplicate device names, also, in iOS 13, <a href="https://appletoolbox.com/where-is-camera-roll-in-ios-13-and-ipados/#Changes_to_your_Apple_device8217s_camera_roll">Camera Roll changed to Recents</a>.</p>
 
 <p>A bit of a mess. 63 directories, 24590 files.</p>
@@ -460,21 +461,25 @@ PhotoSync works seamlessly with all major NAS storage devices, servers and perso
 
 <p>Straight to <a href="https://unix.stackexchange.com/questions/71176/find-duplicate-files">StackOverflow</a>, which provided many methods:</p>
 
-<h2 id="find">find<sup id="fnref:fn-find" role="doc-noteref"><a href="#fn:fn-find" class="footnote">1</a></sup></h2>
+<h2 id="find">find<sup id="fnref:fn-find" role="doc-noteref"><a href="#fn:fn-find" class="footnote" rel="footnote">1</a></sup></h2>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="nb">.</span> <span class="o">!</span> <span class="nt">-empty</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">md5sum</span> <span class="o">{}</span> + | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-w32</span> <span class="nt">-dD</span>
 </code></pre></div></div>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="nb">.</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">md5sum</span> <span class="o">{}</span> <span class="se">\;</span> <span class="o">&gt;</span> md5sums
 <span class="nb">awk</span> <span class="s1">'{print $1}'</span> md5sums | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-d</span> <span class="o">&gt;</span> dupes
 <span class="k">while </span><span class="nb">read</span> <span class="nt">-r</span> d<span class="p">;</span> <span class="k">do </span><span class="nb">echo</span> <span class="s2">"---"</span><span class="p">;</span> <span class="nb">grep</span> <span class="nt">--</span> <span class="s2">"</span><span class="nv">$d</span><span class="s2">"</span> md5sums | <span class="nb">cut</span> <span class="nt">-d</span> <span class="s1">' '</span> <span class="nt">-f</span> 2-<span class="p">;</span> <span class="k">done</span> &lt; dupes
 </code></pre></div></div>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="nb">.</span> <span class="nt">-type</span> f <span class="nt">-exec</span> <span class="nb">md5sum</span> <span class="s1">'{}'</span> + | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">--all-repeated</span> <span class="se">\</span>
 <span class="nt">--check-chars</span><span class="o">=</span>32 | <span class="nb">cut</span> <span class="nt">--characters</span><span class="o">=</span>35-
 </code></pre></div></div>
-<h2 id="fdupes">fdupes<sup id="fnref:fn-fdupes" role="doc-noteref"><a href="#fn:fn-fdupes" class="footnote">2</a></sup></h2>
+
+<h2 id="fdupes">fdupes<sup id="fnref:fn-fdupes" role="doc-noteref"><a href="#fn:fn-fdupes" class="footnote" rel="footnote">2</a></sup></h2>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fdupes <span class="nt">-r</span> <span class="nb">.</span>
 </code></pre></div></div>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fdupes <span class="nt">-r</span> <span class="nb">.</span> | <span class="o">{</span>
     <span class="k">while </span><span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> <span class="nt">-r</span> file<span class="p">;</span> <span class="k">do</span>
         <span class="o">[[</span> <span class="nv">$file</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">du</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span>
@@ -482,10 +487,11 @@ PhotoSync works seamlessly with all major NAS storage devices, servers and perso
 <span class="o">}</span> | <span class="nb">sort</span> <span class="nt">-n</span>
 </code></pre></div></div>
 
-<h2 id="fslint">fslint<sup id="fnref:fn-fslint" role="doc-noteref"><a href="#fn:fn-fslint" class="footnote">3</a></sup></h2>
+<h2 id="fslint">fslint<sup id="fnref:fn-fslint" role="doc-noteref"><a href="#fn:fn-fslint" class="footnote" rel="footnote">3</a></sup></h2>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/share/fslint/fslint <span class="o">&amp;&amp;</span> ./fslint /path/to/directory
 </code></pre></div></div>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/share/fslint/fslint <span class="o">&amp;&amp;</span> findup <span class="nt">-t</span> <span class="nt">--summary</span> /path/to/directory
 </code></pre></div></div>
 
@@ -542,9 +548,11 @@ fcbecc72fd2540829a4359a3ac620191  ./2020/03/Video-21-03-2020-08-29-08-9370.mp4
 ff846d763f428049dcb1b2615f9ee500  ./iPhone/2015/03/Photo-28-03-2015 04-01-07-9655.jpg
 ff846d763f428049dcb1b2615f9ee500  ./iPhone/2015/03/Photo-28-03-2015 07-26-49-9657.jpg
 </code></pre></div></div>
+
 <p>22 dupes found.</p>
 
 <h3 id="fdupes-1">fdupes</h3>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@cloud: /mnt/volume_nc/data/james/files/Photos
 <span class="nv">$ </span>fdupes <span class="nt">-r</span> <span class="nb">.</span> | <span class="o">{</span>
 <span class="o">&gt;</span>     <span class="k">while </span><span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> <span class="nt">-r</span> file<span class="p">;</span> <span class="k">do</span>
@@ -598,6 +606,7 @@ ff846d763f428049dcb1b2615f9ee500  ./iPhone/2015/03/Photo-28-03-2015 07-26-49-965
 1924    ./2020/03/Video-20-03-2020-06-53-01-9363.mp4
 1924    ./2020/03/Video-21-03-2020-08-29-08-9370.mp4
 </code></pre></div></div>
+
 <p>Excluding empty files, 22 dupes found.</p>
 
 <h3 id="fslint-1">fslint</h3>
@@ -634,16 +643,19 @@ ff846d763f428049dcb1b2615f9ee500  ./iPhone/2015/03/Photo-28-03-2015 07-26-49-965
 <h2 id="performance">Performance</h2>
 
 <p><strong>find</strong></p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>real    1m15.949s
 user    0m20.144s
 sys     0m4.599s
 </code></pre></div></div>
 <p><strong>fdupes</strong></p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>real    0m0.759s
 user    0m0.181s
 sys     0m0.324s
 </code></pre></div></div>
 <p><strong>fslint</strong></p>
+
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>real    0m0.220s
 user    0m0.148s
 sys     0m0.049s
@@ -666,6 +678,7 @@ sys     0m0.049s
 <p><img data-src="/assets/images/posts/dupes/dupe-finder.png" src="/assets/images/posts/dupes/dupe-finder-lq.png" class="lazyload blur-up" alt="Duplicates Finder screenshot" /></p>
 
 <h2 id="summary">Summary</h2>
+
 <p>PhotoSync works better than I thought and while the Mac apps give you a nice preview of the duplicates, the command line tools are much faster.</p>
 
 <hr />
@@ -764,6 +777,46 @@ sys     0m0.049s
     <div class="page__related">
       <h4 class="page__related-title">You May Also Enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/synology/docker/2021/03/31/automate-docker-updates/" rel="permalink">Automate Docker Image Updates on Synology NAS
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Automatically update Docker images running on Synology NAS
+</p>
+  </article>
+</div>
+
         
           
 
@@ -880,46 +933,6 @@ sys     0m0.049s
 
 
     <p class="archive__item-excerpt" itemprop="description">Investigating the new Firebase Crashlytics SDK.
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/webdev/2020/05/11/copy-site-jekyll-hook/" rel="permalink">A Jekyll Hook to Copy Pre-Built Site to Another Directory
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          less than 1 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">My first attempt at a Jekyll plugin, it copies the _site folder somewhere else.
 </p>
   </article>
 </div>

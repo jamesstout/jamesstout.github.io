@@ -232,4 +232,10 @@ var store = [{
         "tags": ["iOS","webdev","crash logs","analytics crashlytics","firebase"],
         "url": "/ios/2020/05/18/countly/",
         "teaser": null
+      },{
+        "title": "Automate Docker Image Updates on Synology NAS",
+        "excerpt":"I can’t believe it’s taken me this long to find Watchtower1 for Docker. My previous process for updating containers to the latest images was a weekly job that ran a script like this: logExt=\"$(date +%Y-%m-%d).log\" LOG_FILE=\"/var/services/homes/stouty/logs/$(basename \"$0\").$logExt\" # get list of all image:rev # not mariadb|redis as they cause issues...","categories": ["synology","docker"],
+        "tags": ["synology","NAS","docker","automation","Shoutrrr","Telegram","Pushover"],
+        "url": "/synology/docker/2021/03/31/automate-docker-updates/",
+        "teaser": null
       }]

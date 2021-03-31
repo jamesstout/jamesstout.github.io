@@ -1,4 +1,89 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2021-03-15T11:59:10+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Countly For iOS and Web Analytics</title><link href="https://stouty.xyz/ios/2020/05/18/countly/" rel="alternate" type="text/html" title="Countly For iOS and Web Analytics" /><published>2020-05-18T17:45:32+08:00</published><updated>2020-05-18T17:45:32+08:00</updated><id>https://stouty.xyz/ios/2020/05/18/countly</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/18/countly/">&lt;p&gt;I previously &lt;a href=&quot;https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/&quot;&gt;mentioned&lt;/a&gt; that I wasn’t too keen on all the things Firebase Crashlytics installed and would look at &lt;a href=&quot;https://count.ly/product&quot;&gt;Countly&lt;/a&gt; as an alternative.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://stouty.xyz/feed.xml" rel="self" type="application/atom+xml" /><link href="https://stouty.xyz/" rel="alternate" type="text/html" /><updated>2021-03-31T08:26:31+08:00</updated><id>https://stouty.xyz/feed.xml</id><title type="html">stouty.xyz</title><subtitle>James Stout. iOS. Web developer. Tech, crypto, comedy, Hong Kong, hcafc, smashing telly and, of course, the weather.</subtitle><author><name>James Stout</name></author><entry><title type="html">Automate Docker Image Updates on Synology NAS</title><link href="https://stouty.xyz/synology/docker/2021/03/31/automate-docker-updates/" rel="alternate" type="text/html" title="Automate Docker Image Updates on Synology NAS" /><published>2021-03-31T07:03:25+08:00</published><updated>2021-03-31T07:03:25+08:00</updated><id>https://stouty.xyz/synology/docker/2021/03/31/automate-docker-updates</id><content type="html" xml:base="https://stouty.xyz/synology/docker/2021/03/31/automate-docker-updates/">&lt;p&gt;I can’t believe it’s taken me this long to find &lt;a href=&quot;https://github.com/containrrr/watchtower&quot;&gt;Watchtower&lt;/a&gt;&lt;sup id=&quot;fnref:fn-portainer&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn-portainer&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; for Docker.&lt;/p&gt;
+
+&lt;p&gt;My previous process for updating containers to the latest images was a weekly job that ran a script like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;logExt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; +%Y-%m-%d&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.log&quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;LOG_FILE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/var/services/homes/stouty/logs/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;basename&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$logExt&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# get list of all image:rev&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# not mariadb|redis as they cause issues&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;image &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;docker ps &lt;span class=&quot;nt&quot;&gt;--all&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Ev&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'mariadb|redis|ID'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{ print $2 }'&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'\d+'&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do
+    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$image&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+    docker pull &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$image&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;tee&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$LOG_FILE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;done
+
+if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; newer &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$LOG_FILE&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-gt&lt;/span&gt; 0 &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;then&lt;/span&gt; 
+    &lt;span class=&quot;c&quot;&gt;# email me the list of new images&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then I’d go into the the &lt;a href=&quot;https://www.synology.com/en-global/dsm/packages/Docker&quot;&gt;Synology Docker UI&lt;/a&gt;, stop all the updated images, export their settings, run a docker rm command then re-import the settings. Quite a faff, and if I wanted to update MariaDB, even more of a faff as is has linked containers.&lt;/p&gt;
+
+&lt;p&gt;Enter &lt;a href=&quot;https://containrrr.dev/watchtower/introduction/&quot;&gt;Watchtower&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Watchtower is an application that will monitor your running Docker containers and watch for changes to the images that those containers were originally started from. If watchtower detects that an image has changed, it will automatically restart the container using the new image.&lt;/p&gt;
+
+  &lt;p&gt;Watchtower will pull down your new image, gracefully shut down your existing container and restart it with the same options that were used when it was deployed initially.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And the &lt;a href=&quot;https://containrrr.dev/watchtower/linked-containers/&quot;&gt;coolest thing&lt;/a&gt;?&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Watchtower will detect if there are links between any of the running containers and ensures that things are stopped/started in a way that won’t break any of the links. If an update is detected for one of the dependencies in a group of linked containers, watchtower will stop and start all of the containers in the correct order so that the application comes back up correctly.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Alas you can’t use the Synology Docker UI to start to container&lt;sup id=&quot;fnref:fn-sock&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn-sock&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;, so you have to drop to the command line:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; watchtower &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; /var/run/docker.sock:/var/run/docker.sock &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    containrrr/watchtower
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Read all the &lt;a href=&quot;https://containrrr.dev/watchtower/&quot;&gt;docs&lt;/a&gt; to configure how you want things. I ended up with a env file, a bootup job, and this docker command:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker run  &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; watchtower &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;--env-file&lt;/span&gt; /volume1/homes/james/.docker/env.list &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; /var/run/docker.sock:/var/run/docker.sock &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+    containrrr/watchtower 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;My env file:&lt;/p&gt;
+
+&lt;div class=&quot;language-ini highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;py&quot;&gt;TZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Asia/Hong_Kong&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;WATCHTOWER_DEBUG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;false&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;WATCHTOWER_POLL_INTERVAL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;60&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;WATCHTOWER_NOTIFICATION_URL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;pushover://shoutrrr:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@xxxxxxxxxxxxxxxxxxxxxxxx/?devices=iphone telegram://17849ABCD27658:ccccccccccdsfdsfsfsf@telegram?channels=my_channel&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;WATCHTOWER_ROLLING_RESTART&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;py&quot;&gt;WATCHTOWER_CLEANUP&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The notification options are numerous:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;email&lt;/code&gt; to send notifications via electronic mail.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;slack&lt;/code&gt; to send notifications through a &lt;a href=&quot;https://slack.com/intl/en-hk/&quot;&gt;Slack&lt;/a&gt; webhook.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;msteams&lt;/code&gt; to send notifications via &lt;a href=&quot;https://www.microsoft.com/en-US/microsoft-teams/group-chat-software&quot;&gt;MSTeams&lt;/a&gt; webhook.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gotify&lt;/code&gt; to send notifications via &lt;a href=&quot;https://gotify.net/&quot;&gt;Gotify&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’m trying out &lt;a href=&quot;https://containrrr.dev/shoutrrr/&quot;&gt;Shoutrrr&lt;/a&gt; with &lt;a href=&quot;https://pushover.net/&quot;&gt;Pushover&lt;/a&gt; and &lt;a href=&quot;https://telegram.org/&quot;&gt;Telegram&lt;/a&gt; &lt;a href=&quot;https://core.telegram.org/bots&quot;&gt;bots&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s see if it works in a week or so…&lt;/p&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:fn-portainer&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Yes, I tried &lt;a href=&quot;https://www.portainer.io/products/community-edition&quot;&gt;Portainer&lt;/a&gt;, but it wasn’t for me. &lt;a href=&quot;#fnref:fn-portainer&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:fn-sock&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;Check out this Reddit &lt;a href=&quot;https://www.reddit.com/r/synology/comments/bat67m/docker_impossible_to_make_portainer_to_access/eke9rpf/&quot;&gt;thread&lt;/a&gt;. &lt;a href=&quot;#fnref:fn-sock&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>James Stout</name></author><category term="synology" /><category term="docker" /><category term="synology" /><category term="NAS" /><category term="docker" /><category term="automation" /><category term="Shoutrrr" /><category term="Telegram" /><category term="Pushover" /><summary type="html">Automatically update Docker images running on Synology NAS</summary></entry><entry><title type="html">Countly For iOS and Web Analytics</title><link href="https://stouty.xyz/ios/2020/05/18/countly/" rel="alternate" type="text/html" title="Countly For iOS and Web Analytics" /><published>2020-05-18T17:45:32+08:00</published><updated>2020-05-18T17:45:32+08:00</updated><id>https://stouty.xyz/ios/2020/05/18/countly</id><content type="html" xml:base="https://stouty.xyz/ios/2020/05/18/countly/">&lt;p&gt;I previously &lt;a href=&quot;https://stouty.xyz/ios/2020/05/15/firebase-crashlytics/&quot;&gt;mentioned&lt;/a&gt; that I wasn’t too keen on all the things Firebase Crashlytics installed and would look at &lt;a href=&quot;https://count.ly/product&quot;&gt;Countly&lt;/a&gt; as an alternative.&lt;/p&gt;
 
 &lt;p&gt;Countly is impressive. They have loads of &lt;a href=&quot;https://support.count.ly/hc/en-us/categories/360002373332-Knowledge-Base&quot;&gt;documentation&lt;/a&gt;, and support &lt;a href=&quot;https://support.count.ly/hc/en-us/sections/360007310512-SDKs&quot;&gt;loads&lt;/a&gt; of platforms.&lt;/p&gt;
 
@@ -1311,7 +1396,7 @@ SUM:                            949          26849          26070          74499
   &lt;li&gt;&lt;a href=&quot;https://github.com/SDWebImage/SDWebImage&quot;&gt;SDWebImage&lt;/a&gt; - an asynchronous image downloader with cache support.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/PureLayout/PureLayout&quot;&gt;PureLayout&lt;/a&gt; - API for iOS &amp;amp; OS X Auto Layout. None of that &lt;a href=&quot;https://developer.apple.com/xcode/interface-builder/&quot;&gt;IB&lt;/a&gt; rubbish.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/CocoaLumberjack/CocoaLumberjack&quot;&gt;CocoaLumberjack&lt;/a&gt; - a fast &amp;amp; simple, yet powerful &amp;amp; flexible logging framework.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/jamesstout/CompressingAndUploadingLogFileManager&quot;&gt;CompressingAndUploadingLogFileManager&lt;/a&gt; - my, as yet unpublished&lt;sup id=&quot;fnref:fn-repo&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn-repo&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; library, that compresses log files and then uploads them to an HTTP server for examination, stats etc.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jamesstout/CompressingAndUploadingLogFileManager&quot;&gt;CompressingAndUploadingLogFileManager&lt;/a&gt; - my, as yet unpublished&lt;sup id=&quot;fnref:fn-repo&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn-repo&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; library, that compresses log files and then uploads them to an HTTP server for examination, stats etc.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/nicklockwood/GZIP&quot;&gt;GZIP&lt;/a&gt; - to unzip &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.gz&lt;/code&gt; files. To &lt;a href=&quot;https://developer.apple.com/documentation/xcode/reducing_your_app_s_size/doing_basic_optimization_to_reduce_your_app_s_size?language=objc&quot;&gt;reduce package size&lt;/a&gt; I zip some text files. See below.&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/laptobbe/TSMarkdownParser&quot;&gt;TSMarkdownParser&lt;/a&gt; - a markdown to NSAttributedString parser. I use it to display the &lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/wiki/Acknowledgements&quot;&gt;acknowledgements&lt;/a&gt; Markdown created by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pod install&lt;/code&gt; command. Again, see below.&lt;/li&gt;
 &lt;/ul&gt;
@@ -1362,7 +1447,7 @@ SUM:                            949          26849          26070          74499
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Saves about 47kB&lt;sup id=&quot;fnref:fn-gz&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn-gz&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;p&gt;Saves about 47kB&lt;sup id=&quot;fnref:fn-gz&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn-gz&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;/assets/images/posts/hkwarnings/gz.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/hkwarnings/gz.png&quot; class=&quot;lazyload align-center blur-up&quot; alt=&quot;gzipped ack file&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1488,95 +1573,4 @@ GarageBand: Mach-O 64-bit executable x86_64
 
 &lt;p&gt;Um, if you want to check out the song I recorded, here’s a preview:&lt;/p&gt;
 
-&lt;p&gt;/assets/images/posts/mobile-device/shallow-preview.mp3&lt;/p&gt;</content><author><name>James Stout</name></author><category term="macOS" /><category term="macOS" /><category term="iTunes" /><category term="GarageBand" /><category term="MobileDevice.framework" /><summary type="html">iTunes update breaks GarageBand.</summary></entry><entry><title type="html">Using Git to Deploy a Static Website</title><link href="https://stouty.xyz/webdev/2020/04/28/git-deploy/" rel="alternate" type="text/html" title="Using Git to Deploy a Static Website" /><published>2020-04-28T23:02:33+08:00</published><updated>2020-04-28T23:02:33+08:00</updated><id>https://stouty.xyz/webdev/2020/04/28/git-deploy</id><content type="html" xml:base="https://stouty.xyz/webdev/2020/04/28/git-deploy/">&lt;p&gt;This site is &lt;a href=&quot;https://en.wikipedia.org/wiki/Static_web_page#Advantages_of_a_static_website&quot;&gt;static&lt;/a&gt;, built using &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; and the &lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/&quot;&gt;Minimal Mistakes&lt;/a&gt; theme.&lt;/p&gt;
-
-&lt;p&gt;Once you have it set up, a new post is as simple as writing a new Markdown file, like this one, with the correct &lt;a href=&quot;https://jekyllrb.com/docs/front-matter/&quot;&gt;Front Matter&lt;/a&gt;:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/images/posts/git-deploy/md.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/git-deploy/md.png&quot; src=&quot;/assets/images/posts/git-deploy/md-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Markdown file screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Then building:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Projects/jamesstout.github.io on master[!?&lt;span class=&quot;nv&quot;&gt;$]&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;$ JEKYLL_ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;production bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll build 2&amp;gt; /dev/null
-Configuration file: /Users/james/Projects/jamesstout.github.io/_config.yml
-            Source: /Users/james/Projects/jamesstout.github.io
-       Destination: /Users/james/Projects/jamesstout.github.io/_site
- Incremental build: disabled. Enable with &lt;span class=&quot;nt&quot;&gt;--incremental&lt;/span&gt;
-      Generating...
-       Jekyll Feed: Generating feed &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;posts
-                    &lt;span class=&quot;k&quot;&gt;done in &lt;/span&gt;1.531 seconds.
- Auto-regeneration: disabled. Use &lt;span class=&quot;nt&quot;&gt;--watch&lt;/span&gt; to enable.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Generating the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; folder:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/assets/images/posts/git-deploy/gs.png&quot;&gt;&lt;img data-src=&quot;/assets/images/posts/git-deploy/gs.png&quot; src=&quot;/assets/images/posts/git-deploy/gs-lq.png&quot; class=&quot;lazyload blur-up&quot; alt=&quot;Git status screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The Git repo for this site has the usual &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;origin&lt;/code&gt; &lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes&quot;&gt;remote&lt;/a&gt;, but also a remote named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deploy&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;james@Jamess-iMac: ~/Projects/jamesstout.github.io/.git
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;config
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;core]
-	repositoryformatversion &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 0
-	filemode &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true
-	&lt;/span&gt;bare &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;false
-	&lt;/span&gt;logallrefupdates &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true
-	&lt;/span&gt;ignorecase &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;submodule]
-	active &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;remote &lt;span class=&quot;s2&quot;&gt;&quot;origin&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-	url &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; https://jamesstout@github.com/jamesstout/jamesstout.github.io.git
-	fetch &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; +refs/heads/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;:refs/remotes/origin/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
-	sslVerify &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;branch &lt;span class=&quot;s2&quot;&gt;&quot;master&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-	remote &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; origin
-	merge &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; refs/heads/master
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;remote &lt;span class=&quot;s2&quot;&gt;&quot;deploy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-	url &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; xxxxx@111.111.111.111:/usr/src/stouty.git
-	fetch &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; +refs/heads/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;:refs/remotes/deploy/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deploy&lt;/code&gt; remote is a &lt;a href=&quot;https://mijingo.com/blog/what-is-a-bare-git-repository&quot;&gt;bare&lt;/a&gt; git repository on the Web server, that simply receives the latest git objects. There’s no working tree:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@hkwarnings: /usr/src/stouty.git
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls
-&lt;/span&gt;HEAD  branches  config  description  hooks  info  objects  packed-refs  refs
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;However, it’s configured with a &lt;a href=&quot;https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks#_code_post_receive_code&quot;&gt;post-receive&lt;/a&gt; Git hook:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;These scripts run before and after pushes to the server.&lt;/p&gt;
-
-  &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post-receive&lt;/code&gt; hook runs after the entire process is completed and can be used to update other services or notify users.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I have it configured to change directory to the Web &lt;a href=&quot;https://nginx.org/en/docs/http/ngx_http_core_module.html#root&quot;&gt;root&lt;/a&gt;, which is also a Git repo, with the same &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;origin&lt;/code&gt; as the working repo on my local machine, and simply execute &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;git pull&lt;/code&gt;&lt;sup id=&quot;fnref:fn-certbot&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:fn-certbot&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;root@hkwarnings: /usr/src/stouty.git/hooks
-&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;post-receive
-&lt;span class=&quot;c&quot;&gt;#!/usr/bin/env bash&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;unset &lt;/span&gt;GIT_DIR &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /var/www/html/stouty.xyz/ &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; git pull
-&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;/var/www/html/stouty.xyz/_site/.well-known/acme-challenge&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-vp&lt;/span&gt;  &lt;span class=&quot;s2&quot;&gt;&quot;/var/www/html/stouty.xyz/_site/.well-known/acme-challenge&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chown&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; james:www-data &lt;span class=&quot;s2&quot;&gt;&quot;/var/www/html/stouty.xyz/_site/.well-known/acme-challenge&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chown&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; james:www-data &lt;span class=&quot;s2&quot;&gt;&quot;/var/www/html/stouty.xyz/_site/.well-known&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;The deployment process is:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Commit changed files to local repo.&lt;/li&gt;
-  &lt;li&gt;Push to origin.&lt;/li&gt;
-  &lt;li&gt;Push to deploy.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;That’s it.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:fn-certbot&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.well-known/acme-challenge&lt;/code&gt; is just to ensure the directory exists for Certbot challenges during certificate renewal. &lt;a href=&quot;#fnref:fn-certbot&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name>James Stout</name></author><category term="webdev" /><category term="git" /><category term="Jekyll" /><category term="git hooks" /><category term="deployment" /><summary type="html">How to use Git hooks to deploy a static site.</summary></entry></feed>
+&lt;p&gt;/assets/images/posts/mobile-device/shallow-preview.mp3&lt;/p&gt;</content><author><name>James Stout</name></author><category term="macOS" /><category term="macOS" /><category term="iTunes" /><category term="GarageBand" /><category term="MobileDevice.framework" /><summary type="html">iTunes update breaks GarageBand.</summary></entry></feed>

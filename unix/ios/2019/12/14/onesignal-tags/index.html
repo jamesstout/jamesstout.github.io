@@ -396,7 +396,7 @@
   <li>OneSignal’s Free tier will support up to 10 Data Tags per device. This limitation applies to all Free users, regardless of subscriber count.</li>
 </ul>
 
-<p>It’s the last limit that affects me and HKWarnings. I use tags to exclude certain devices when sending certain push notifications<sup id="fnref:fn-optout" role="doc-noteref"><a href="#fn:fn-optout" class="footnote">1</a></sup>. I also tagged other info, so I quite easily had more than 10 tags.</p>
+<p>It’s the last limit that affects me and HKWarnings. I use tags to exclude certain devices when sending certain push notifications<sup id="fnref:fn-optout" role="doc-noteref"><a href="#fn:fn-optout" class="footnote" rel="footnote">1</a></sup>. I also tagged other info, so I quite easily had more than 10 tags.</p>
 
 <p>Hmmm, more than 35,000 subscribers, with all sorts of tags I don’t need, but a few I need.</p>
 
@@ -409,13 +409,16 @@
 <p>So I needed to remove tags. There are a couple of ways.</p>
 
 <h3 id="from-within-the-app">From within the app</h3>
+
 <p>Using <a href="https://documentation.onesignal.com/docs/ios-native-sdk#section--deletetags-">deleteTags</a> from the iOS SDK:</p>
 
 <div class="language-objective_c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">OneSignal</span> <span class="nf">deleteTags</span><span class="p">:@[</span><span class="s">@"key1"</span><span class="p">,</span> <span class="s">@"key2"</span><span class="p">]];</span>
 </code></pre></div></div>
+
 <p>However, this would rely on everyone upgrading and running the app.</p>
 
 <h3 id="via-the-rest-api">Via the REST API</h3>
+
 <p>With a PUT call to the <a href="https://documentation.onesignal.com/reference#edit-device">device endpoint</a>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">--include</span> <span class="se">\</span>
@@ -543,11 +546,13 @@
 
 <span class="k">echo</span> <span class="s2">"max: </span><span class="nv">$maxNO</span><span class="s2"> </span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
 </code></pre></div></div>
+
 <p>For 35,000+ devices, it took around 4 hours, but now my devices have less than 10 tags.</p>
 
 <p>On the iOS side, I did two things:</p>
 
 <h3 id="clear-out-old-tags-on-startup">Clear out old tags on startup</h3>
+
 <div class="language-objective_c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">cleanUpOldTags</span> <span class="p">{</span>
 
     <span class="n">BOOL</span> <span class="n">clean</span> <span class="o">=</span> <span class="nb">NO</span><span class="p">;</span>
@@ -592,6 +597,7 @@
 </code></pre></div></div>
 
 <h3 id="ensure-users-can-only-opt-out-of-a-maximum-of-10-warnings">Ensure users can only opt-out of a maximum of 10 warnings</h3>
+
 <div class="language-objective_c highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">if</span><span class="p">(</span><span class="n">optOutCount</span> <span class="o">&gt;=</span> <span class="n">kMaxNumOfOptOuts</span><span class="p">){</span>
 
     <span class="c1">// show alert</span>
@@ -687,6 +693,46 @@
     <div class="page__related">
       <h4 class="page__related-title">You May Also Enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/synology/docker/2021/03/31/automate-docker-updates/" rel="permalink">Automate Docker Image Updates on Synology NAS
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Automatically update Docker images running on Synology NAS
+</p>
+  </article>
+</div>
+
         
           
 
@@ -803,46 +849,6 @@
 
 
     <p class="archive__item-excerpt" itemprop="description">Investigating the new Firebase Crashlytics SDK.
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/webdev/2020/05/11/copy-site-jekyll-hook/" rel="permalink">A Jekyll Hook to Copy Pre-Built Site to Another Directory
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          less than 1 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">My first attempt at a Jekyll plugin, it copies the _site folder somewhere else.
 </p>
   </article>
 </div>

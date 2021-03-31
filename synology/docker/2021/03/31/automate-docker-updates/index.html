@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>APFS Snapshots Saved The Day | stouty.xyz</title>
-<meta name="description" content="The perils of rm -rf and the wonder of filesystem snapshots.">
+<!-- begin _includes/seo.html --><title>Automate Docker Image Updates on Synology NAS | stouty.xyz</title>
+<meta name="description" content="Automatically update Docker images running on Synology NAS">
 
 
   <meta name="author" content="James Stout">
@@ -22,20 +22,20 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="stouty.xyz">
-<meta property="og:title" content="APFS Snapshots Saved The Day">
-<meta property="og:url" content="https://stouty.xyz/macos/2018/05/01/apfs-snapshots/">
+<meta property="og:title" content="Automate Docker Image Updates on Synology NAS">
+<meta property="og:url" content="https://stouty.xyz/synology/docker/2021/03/31/automate-docker-updates/">
 
 
-  <meta property="og:description" content="The perils of rm -rf and the wonder of filesystem snapshots.">
+  <meta property="og:description" content="Automatically update Docker images running on Synology NAS">
 
 
 
 
 
   <meta name="twitter:site" content="@stoutyhk">
-  <meta name="twitter:title" content="APFS Snapshots Saved The Day">
-  <meta name="twitter:description" content="The perils of rm -rf and the wonder of filesystem snapshots.">
-  <meta name="twitter:url" content="https://stouty.xyz/macos/2018/05/01/apfs-snapshots/">
+  <meta name="twitter:title" content="Automate Docker Image Updates on Synology NAS">
+  <meta name="twitter:description" content="Automatically update Docker images running on Synology NAS">
+  <meta name="twitter:url" content="https://stouty.xyz/synology/docker/2021/03/31/automate-docker-updates/">
 
   
     <meta name="twitter:card" content="summary">
@@ -48,14 +48,14 @@
 
 
 
-  <meta property="article:published_time" content="2018-05-01T09:29:01+08:00">
+  <meta property="article:published_time" content="2021-03-31T07:03:25+08:00">
 
 
 
 
 
 
-<link rel="canonical" href="https://stouty.xyz/macos/2018/05/01/apfs-snapshots/">
+<link rel="canonical" href="https://stouty.xyz/synology/docker/2021/03/31/automate-docker-updates/">
 
 
 
@@ -350,219 +350,17 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="APFS Snapshots Saved The Day">
-    <meta itemprop="description" content="The perils of rm -rf and the wonder of filesystem snapshots.">
-    <meta itemprop="datePublished" content="2018-05-01T09:29:01+08:00">
+    <meta itemprop="headline" content="Automate Docker Image Updates on Synology NAS">
+    <meta itemprop="description" content="Automatically update Docker images running on Synology NAS">
+    <meta itemprop="datePublished" content="2021-03-31T07:03:25+08:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">APFS Snapshots Saved The Day
+          <h1 id="page-title" class="page__title" itemprop="headline">Automate Docker Image Updates on Synology NAS
 </h1>
           
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          1 minute read
-        
-      </span>
-    
-  </p>
-
-
-        </header>
-      
-
-      <section class="page__content" itemprop="text">
-        
-        <p>I had a shocker earlier with an out of control<sup id="fnref:fn-bad-code" role="doc-noteref"><a href="#fn:fn-bad-code" class="footnote" rel="footnote">1</a></sup> shell script that was supposed to tidy up a load of empty directories on my Mac. Just in my home dir I had nearly 18,000 empty directories:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>james@Jamess-iMac: ~
-<span class="nv">$ </span>find <span class="nb">.</span> <span class="nt">-not</span> <span class="se">\(</span> <span class="nt">-name</span> .svn <span class="nt">-prune</span> <span class="nt">-o</span> <span class="nt">-name</span> .git <span class="nt">-prune</span> <span class="se">\)</span> <span class="nt">-type</span> d <span class="nt">-empty</span> | <span class="nb">wc</span> <span class="nt">-l</span>
-   17825
-</code></pre></div></div>
-
-<p>I wrote a <em>test</em> script to try out on a few directories. The next thing I saw … <code class="language-plaintext highlighter-rouge">rm -rf /</code> commands whizzing past on my terminal. Then things stopped working: <code class="language-plaintext highlighter-rouge">bash</code> had been deleted.</p>
-
-<p>I use <a href="https://brew.sh/">Homebrew</a> so <code class="language-plaintext highlighter-rouge">/usr/local</code> is writable by my user. And deletable. So my <code class="language-plaintext highlighter-rouge">/usr/local/bin</code> dir was gone, along with some other files.</p>
-
-<p>I’m a proper backup nerd and have multiple backup strategies:</p>
-
-<ul>
-  <li><a href="https://en.wikipedia.org/wiki/Time_Machine_(macOS)">Time Machine</a> to my <a href="https://www.synology.com/en-global/products/DS1817+">NAS</a>.</li>
-  <li><a href="https://www.econtechnologies.com/chronosync/overview.html">ChronoSync</a> to a <a href="https://www.docker.com/">Docker</a> container running <a href="https://www.crashplan.com/en-us/business/">CrashPlan</a>.</li>
-  <li><a href="https://secure.backblaze.com/r/001z1s">Backblaze</a>.<sup id="fnref:fn-ref-link" role="doc-noteref"><a href="#fn:fn-ref-link" class="footnote" rel="footnote">2</a></sup></li>
-  <li>Finally, and this is what let me down, a <a href="https://bombich.com/">Carbon Copy</a> clone of my main drive.</li>
-</ul>
-
-<p>The clone was a few weeks old, my <code class="language-plaintext highlighter-rouge">/usr/local</code> changes all the time. It wasn’t usable.</p>
-
-<div class="premonition warning"><div class="fa fa-exclamation-circle"></div><div class="content"><p class="header">TIP</p><p>Clone your drive often and test that it <a href="https://bombich.com/kb/ccc5/how-verify-or-test-your-backup">works</a>!</p>
-
-
-</div></div>
-<p>However, I’d been learning about APFS, and had taken a snapshot .. yesterday.</p>
-
-<p><a href="https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/APFS_Guide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40016999-CH1-DontLinkElementID_19">APFS</a> is Apple’s new filesystem:</p>
-
-<blockquote>
-  <p>Apple File System is a new, modern file system for iOS, macOS, tvOS, and watchOS. It is optimized for Flash/SSD storage and features strong encryption, copy-on-write metadata, space sharing, cloning for files and directories, snapshots, fast directory sizing, atomic safe-save primitives, and improved file system fundamentals.</p>
-</blockquote>
-
-<p>What’s a <a href="https://developer.apple.com/library/content/documentation/FileManagement/Conceptual/APFS_Guide/Features/Features.html#//apple_ref/doc/uid/TP40016999-CH5-DontLinkElementID_5">snapshot</a>?</p>
-<blockquote>
-  <p>A volume snapshot is a point-in-time, read-only instance of the file system.</p>
-</blockquote>
-
-<p>Time Machine also takes local snapshots if your <a href="https://support.apple.com/en-hk/HT204015">backup drive isn’t available</a>, so I actually had a few snapshots:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>tmutil listlocalsnapshots /
-com.apple.TimeMachine.2018-04-30-165525
-com.apple.TimeMachine.2018-04-30-175518
-com.apple.TimeMachine.2018-04-30-185503
-com.apple.TimeMachine.2018-04-30-195506
-com.apple.TimeMachine.2018-04-30-205509
-com.apple.TimeMachine.2018-04-30-215522
-com.apple.TimeMachine.2018-04-30-225512
-com.apple.TimeMachine.2018-04-30-235517
-com.apple.TimeMachine.2018-05-01-005520
-com.apple.TimeMachine.2018-05-01-015548
-com.apple.TimeMachine.2018-05-01-025524
-</code></pre></div></div>
-
-<p>You can use <code class="language-plaintext highlighter-rouge">tmutil</code> to <a href="http://krypted.com/mac-os-x/ins-outs-using-tmutil-backup-restore-review-time-machine-backups/">compare and restore</a>, or simply Time Machine, but the files are available right there on the filesystem, I just had to copy my missing files back into the right places from the local snapshot dir:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> /Volumes/com.apple.TimeMachine.localsnapshots/Backups.backupdb/James’s<span class="se">\ </span>iMac/2018-05-01-025524/Macintosh<span class="se">\ </span>HD/usr/local/
-
-james@Jamess-iMac: /Volumes/com.apple.TimeMachine.localsnapshots/Backups.backupdb/James’s iMac/2018-05-01-025524/Macintosh HD/usr/local
-<span class="nv">$ </span><span class="nb">ls
-</span>Caskroom      Frameworks    MacGPG2       etc           lib           opt           remotedesktop share
-Cellar        Homebrew      bin           include       man           pear          sbin          var
-</code></pre></div></div>
-
-<p>Phew. All fixed.</p>
-
-<p>Do I like APFS?</p>
-
-<video width="240" height="240" autoplay="" muted="" loop="" playsinline="" poster="/assets/images/posts/apfs-snapshots/bale.gif">
-  <source src="/assets/images/posts/apfs-snapshots/bale.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
-
-<hr />
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:fn-bad-code" role="doc-endnote">
-      <p>Er, poorly written. <a href="#fnref:fn-bad-code" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:fn-ref-link" role="doc-endnote">
-      <p>Referral link. <a href="#fnref:fn-ref-link" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-  
-
-
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
-    <span itemprop="keywords">
-    
-      <a href="/tags/#apfs" class="page__taxonomy-item" rel="tag">APFS</a><span class="sep">, </span>
-    
-      <a href="/tags/#filesystems" class="page__taxonomy-item" rel="tag">filesystems</a><span class="sep">, </span>
-    
-      <a href="/tags/#macos" class="page__taxonomy-item" rel="tag">macOS</a><span class="sep">, </span>
-    
-      <a href="/tags/#snapshots" class="page__taxonomy-item" rel="tag">snapshots</a><span class="sep">, </span>
-    
-      <a href="/tags/#tmutil" class="page__taxonomy-item" rel="tag">tmutil</a>
-    
-    </span>
-  </p>
-
-
-
-
-  
-
-
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
-    <span itemprop="keywords">
-    
-      <a href="/categories/#macos" class="page__taxonomy-item" rel="tag">macOS</a>
-    
-    </span>
-  </p>
-
-
-        
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-05-01T09:29:01+08:00">May 1, 2018</time></p>
-
-
-      </footer>
-
-      
-
-      
-  <nav class="pagination">
-    
-      <a href="/music/2018/04/22/prince/" class="pagination--pager" title="Prince estate releases original version of ‘Nothing Compares 2 U’
-">Previous</a>
-    
-    
-      <a href="/macos/2018/05/05/suspicious-package/" class="pagination--pager" title="Essential macOS Software: Suspicious Package
-">Next</a>
-    
-  </nav>
-
-    </div>
-
-    
-  </article>
-
-  
-  
-    <div class="page__related">
-      <h4 class="page__related-title">You May Also Enjoy</h4>
-      <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/synology/docker/2021/03/31/automate-docker-updates/" rel="permalink">Automate Docker Image Updates on Synology NAS
-</a>
-      
-    </h2>
-    
 
   <p class="page__meta">
     
@@ -583,11 +381,179 @@ Cellar        Homebrew      bin           include       man           pear      
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Automatically update Docker images running on Synology NAS
-</p>
-  </article>
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>I can’t believe it’s taken me this long to find <a href="https://github.com/containrrr/watchtower">Watchtower</a><sup id="fnref:fn-portainer" role="doc-noteref"><a href="#fn:fn-portainer" class="footnote" rel="footnote">1</a></sup> for Docker.</p>
+
+<p>My previous process for updating containers to the latest images was a weekly job that ran a script like this:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">logExt</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="nb">date</span> +%Y-%m-%d<span class="si">)</span><span class="s2">.log"</span>
+<span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">"/var/services/homes/stouty/logs/</span><span class="si">$(</span><span class="nb">basename</span> <span class="s2">"</span><span class="nv">$0</span><span class="s2">"</span><span class="si">)</span><span class="s2">.</span><span class="nv">$logExt</span><span class="s2">"</span>
+
+<span class="c"># get list of all image:rev</span>
+<span class="c"># not mariadb|redis as they cause issues</span>
+<span class="k">for </span>image <span class="k">in</span> <span class="si">$(</span>docker ps <span class="nt">--all</span> | <span class="nb">grep</span> <span class="nt">-Ev</span> <span class="s1">'mariadb|redis|ID'</span> | <span class="nb">awk</span> <span class="s1">'{ print $2 }'</span> | <span class="nb">grep</span> <span class="nt">-v</span> <span class="s1">'\d+'</span><span class="si">)</span><span class="p">;</span> <span class="k">do
+    </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$image</span><span class="s2">"</span>
+    docker pull <span class="s2">"</span><span class="nv">$image</span><span class="s2">"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span> 
+<span class="k">done
+
+if</span> <span class="o">[</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">grep</span> <span class="nt">-c</span> newer <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span><span class="si">)</span><span class="s2">"</span> <span class="nt">-gt</span> 0 <span class="o">]</span><span class="p">;</span> 
+<span class="k">then</span> 
+    <span class="c"># email me the list of new images</span>
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p>Then I’d go into the the <a href="https://www.synology.com/en-global/dsm/packages/Docker">Synology Docker UI</a>, stop all the updated images, export their settings, run a docker rm command then re-import the settings. Quite a faff, and if I wanted to update MariaDB, even more of a faff as is has linked containers.</p>
+
+<p>Enter <a href="https://containrrr.dev/watchtower/introduction/">Watchtower</a>:</p>
+
+<blockquote>
+  <p>Watchtower is an application that will monitor your running Docker containers and watch for changes to the images that those containers were originally started from. If watchtower detects that an image has changed, it will automatically restart the container using the new image.</p>
+
+  <p>Watchtower will pull down your new image, gracefully shut down your existing container and restart it with the same options that were used when it was deployed initially.</p>
+</blockquote>
+
+<p>And the <a href="https://containrrr.dev/watchtower/linked-containers/">coolest thing</a>?</p>
+
+<blockquote>
+  <p>Watchtower will detect if there are links between any of the running containers and ensures that things are stopped/started in a way that won’t break any of the links. If an update is detected for one of the dependencies in a group of linked containers, watchtower will stop and start all of the containers in the correct order so that the application comes back up correctly.</p>
+</blockquote>
+
+<p>Alas you can’t use the Synology Docker UI to start to container<sup id="fnref:fn-sock" role="doc-noteref"><a href="#fn:fn-sock" class="footnote" rel="footnote">2</a></sup>, so you have to drop to the command line:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="se">\</span>
+    <span class="nt">--name</span> watchtower <span class="se">\</span>
+    <span class="nt">-v</span> /var/run/docker.sock:/var/run/docker.sock <span class="se">\</span>
+    containrrr/watchtower
+</code></pre></div></div>
+
+<p>Read all the <a href="https://containrrr.dev/watchtower/">docs</a> to configure how you want things. I ended up with a env file, a bootup job, and this docker command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run  <span class="nt">-d</span> <span class="se">\</span>
+    <span class="nt">--name</span> watchtower <span class="se">\</span>
+    <span class="nt">--env-file</span> /volume1/homes/james/.docker/env.list <span class="se">\</span>
+    <span class="nt">-v</span> /var/run/docker.sock:/var/run/docker.sock <span class="se">\</span>
+    containrrr/watchtower 
+</code></pre></div></div>
+
+<p>My env file:</p>
+
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">TZ</span><span class="p">=</span><span class="s">Asia/Hong_Kong</span>
+<span class="py">WATCHTOWER_DEBUG</span><span class="p">=</span><span class="s">false</span>
+<span class="py">WATCHTOWER_POLL_INTERVAL</span><span class="p">=</span><span class="s">60</span>
+<span class="py">WATCHTOWER_NOTIFICATION_URL</span><span class="p">=</span><span class="s">pushover://shoutrrr:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@xxxxxxxxxxxxxxxxxxxxxxxx/?devices=iphone telegram://17849ABCD27658:ccccccccccdsfdsfsfsf@telegram?channels=my_channel</span>
+<span class="py">WATCHTOWER_ROLLING_RESTART</span><span class="p">=</span><span class="s">true</span>
+<span class="py">WATCHTOWER_CLEANUP</span><span class="p">=</span><span class="s">true</span>
+</code></pre></div></div>
+
+<p>The notification options are numerous:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">email</code> to send notifications via electronic mail.</li>
+  <li><code class="language-plaintext highlighter-rouge">slack</code> to send notifications through a <a href="https://slack.com/intl/en-hk/">Slack</a> webhook.</li>
+  <li><code class="language-plaintext highlighter-rouge">msteams</code> to send notifications via <a href="https://www.microsoft.com/en-US/microsoft-teams/group-chat-software">MSTeams</a> webhook.</li>
+  <li><code class="language-plaintext highlighter-rouge">gotify</code> to send notifications via <a href="https://gotify.net/">Gotify</a>.</li>
+</ul>
+
+<p>I’m trying out <a href="https://containrrr.dev/shoutrrr/">Shoutrrr</a> with <a href="https://pushover.net/">Pushover</a> and <a href="https://telegram.org/">Telegram</a> <a href="https://core.telegram.org/bots">bots</a>.</p>
+
+<p>Let’s see if it works in a week or so…</p>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:fn-portainer" role="doc-endnote">
+      <p>Yes, I tried <a href="https://www.portainer.io/products/community-edition">Portainer</a>, but it wasn’t for me. <a href="#fnref:fn-portainer" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:fn-sock" role="doc-endnote">
+      <p>Check out this Reddit <a href="https://www.reddit.com/r/synology/comments/bat67m/docker_impossible_to_make_portainer_to_access/eke9rpf/">thread</a>. <a href="#fnref:fn-sock" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
 </div>
 
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#automation" class="page__taxonomy-item" rel="tag">automation</a><span class="sep">, </span>
+    
+      <a href="/tags/#docker" class="page__taxonomy-item" rel="tag">docker</a><span class="sep">, </span>
+    
+      <a href="/tags/#nas" class="page__taxonomy-item" rel="tag">NAS</a><span class="sep">, </span>
+    
+      <a href="/tags/#pushover" class="page__taxonomy-item" rel="tag">Pushover</a><span class="sep">, </span>
+    
+      <a href="/tags/#shoutrrr" class="page__taxonomy-item" rel="tag">Shoutrrr</a><span class="sep">, </span>
+    
+      <a href="/tags/#synology" class="page__taxonomy-item" rel="tag">synology</a><span class="sep">, </span>
+    
+      <a href="/tags/#telegram" class="page__taxonomy-item" rel="tag">Telegram</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#docker" class="page__taxonomy-item" rel="tag">docker</a><span class="sep">, </span>
+    
+      <a href="/categories/#synology" class="page__taxonomy-item" rel="tag">synology</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-03-31T07:03:25+08:00">March 31, 2021</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/ios/2020/05/18/countly/" class="pagination--pager" title="Countly For iOS and Web Analytics
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
         
           
 
@@ -704,6 +670,46 @@ Cellar        Homebrew      bin           include       man           pear      
 
 
     <p class="archive__item-excerpt" itemprop="description">Investigating the new Firebase Crashlytics SDK.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/webdev/2020/05/11/copy-site-jekyll-hook/" rel="permalink">A Jekyll Hook to Copy Pre-Built Site to Another Directory
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">My first attempt at a Jekyll plugin, it copies the _site folder somewhere else.
 </p>
   </article>
 </div>
