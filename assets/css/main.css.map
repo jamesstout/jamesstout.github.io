@@ -3,7 +3,7 @@
 	"file": "main.css",
 	"sources": [
 		"main.scss",
-		"../jamesstout.github.io-source/_sass/premonition.scss",
+		"_sass/premonition.scss",
 		"../../.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/minimal-mistakes-jekyll-4.22.0/_sass/minimal-mistakes/skins/_mint.scss",
 		"../../.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/minimal-mistakes-jekyll-4.22.0/_sass/minimal-mistakes.scss",
 		"../../.rbenv/versions/2.6.6/lib/ruby/gems/2.6.0/gems/minimal-mistakes-jekyll-4.22.0/_sass/minimal-mistakes/_variables.scss",
